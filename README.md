@@ -1,1 +1,1 @@
-# react-super-tilemap
+# React Super Tilemap
