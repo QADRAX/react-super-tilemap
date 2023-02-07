@@ -20,6 +20,7 @@ const initialContext: Context = {
     addCameraMotion: () => {},
     addCameraMotionCenteredOnTilePosition: () => {},
     addCameraMotionCentered: () => {},
+    addZoomMotion: () => {},
   },
   computed: {
     tileSize: DEFAULT_TILE_SIZE,
