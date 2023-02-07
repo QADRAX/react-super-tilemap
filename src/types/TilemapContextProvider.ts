@@ -3,16 +3,19 @@ import { SpriteDefinition } from './SpriteDefinition';
 
 export type TilemapContextProviderEvents = {
   /**
-   * This event is triggered when any error occurs loading sprites definition.
+   * This event is triggered when an error occurs loading sprites.
    *
-   * @param error
-   * @returns
+   * @param error - Error that occurred while loading sprites.
    */
   onSpritesLoadError?: (error: Error) => void;
   /**
-   * This event is triggered when the camera ends moving by a camera motion.
+   * This event is triggered when a camera motion ends.
    */
   onCameraMotionEnd?: () => void;
+  /**
+   * This event is triggered when a zoom motion ends.
+   */
+  onZoomMotionEnd?: () => void;
 };
 
 export interface TilemapContextProviderProps extends TilemapContextProviderEvents {

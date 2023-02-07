@@ -1,7 +1,7 @@
 import React from 'react';
 import { PublicTilemapContext } from '../../../Context/TilemapContext';
 import { EasingFunction, getEasingFunction } from '../../../utils/easings';
-import { Motion, MotionPosition } from '../../../types/Motions';
+import { CurrentMotion, MotionPosition } from '../../../types/Motions';
 
 export interface MotionManagerProps {
   onMotionEnd?: () => void;
@@ -18,7 +18,7 @@ export abstract class MotionManager<
   protected abstract get position(): T | undefined;
   protected abstract set position(value: T | undefined);
 
-  protected abstract get motion(): Motion<T> | undefined;
+  protected abstract get motion(): CurrentMotion<T> | undefined;
 
   protected get easing(): EasingFunction {
     return getEasingFunction(this.motion?.easing);

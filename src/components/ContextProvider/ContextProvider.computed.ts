@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
+import { useIsChanging } from '../../hooks/useIsChanging';
 import { ContextComputedState, ContextProps, ContextState } from '../../types/TilemapContext';
 import {
     getCenteredTilePositionByCameraPosition,
@@ -15,22 +16,7 @@ export function useComputedTilemapState(
     state: ContextState,
     props: ContextProps
 ): ContextComputedState {
-    const [isResizing, setIsResizing] = useState(false);
-
-    useEffect(() => {
-        let timeoutId: number | undefined;
-        if (state.canvasSize) {
-            setIsResizing(true);
-            timeoutId = window.setTimeout(() => {
-                setIsResizing(false);
-            }, 500);
-        }
-        return () => {
-            if (timeoutId) {
-                window.clearTimeout(timeoutId);
-            }
-        };
-    }, [state.canvasSize]);
+    const isResizing = useIsChanging(state.canvasSize, 500);
 
     const tileSize = useMemo(
         () => getTileSize(state.currentZoom, props.defaultTileSizePx),

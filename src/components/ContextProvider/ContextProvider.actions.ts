@@ -5,8 +5,9 @@ import {
   _setCameraMotionQueue,
   _setCameraPosition,
   _setCurrentZoom,
+  _setZoomMotionQueue,
 } from '../../Context/TilemapContext.actions';
-import { CameraMotionRequest, MotionSettings } from '../../types/Motions';
+import { CameraMotionRequest, MotionSettings, ZoomMotionRequest } from '../../types/Motions';
 import { Position } from '../../types/Position';
 import { ContextActions, ContextComputedState, ContextState } from '../../types/TilemapContext';
 import { TilePosition } from '../../types/TilePosition';
@@ -98,6 +99,18 @@ export function useTilemapContextActions(
     [addCameraMotion, computed.mapSize, state.canvasSize]
   );
 
+  const addZoomMotion = useCallback(
+    (settings: MotionSettings, targetZoom: number) => {
+      const motionRequest: ZoomMotionRequest = {
+        settings,
+        targetPosition: targetZoom,
+      };
+      const nextMotionQueue = [...state.zoomMotionQueue, motionRequest];
+      dispatch(_setZoomMotionQueue(nextMotionQueue));
+    },
+    [state.zoomMotionQueue, dispatch]
+  );
+
   const actions: ContextActions = {
     setCameraPosition,
     setCurrentZoom,
@@ -106,6 +119,7 @@ export function useTilemapContextActions(
     addCameraMotion,
     addCameraMotionCenteredOnTilePosition,
     addCameraMotionCentered,
+    addZoomMotion,
   };
 
   return actions;

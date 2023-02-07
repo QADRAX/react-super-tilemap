@@ -10,6 +10,12 @@ import { SpriteDefinition } from '../types/SpriteDefinition';
 
 export type SpriteMap = Map<string, Sprite>;
 
+/**
+ * A sprite is a collection of images that are used to animate a game object 
+ * and are loaded from a sprite definition array.
+ * 
+ * @public
+ */
 export class Sprite {
   private _imagesSrc: string[];
   private _animationDelay: number;

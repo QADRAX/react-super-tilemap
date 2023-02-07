@@ -75,7 +75,7 @@ export type ContextActions = {
   /**
    * Sets the camera position to the given position
    *
-   * @param position
+   * @param position position to move the camera to
    */
   setCameraPosition: (position: Position) => void;
   /**
@@ -96,7 +96,7 @@ export type ContextActions = {
    * Sets the current zoom level to the given zoom level
    * If the zoom level is less than 0, it will be set to 0.
    *
-   * @param zoom
+   * @param zoom zoom level
    */
   setCurrentZoom: (zoom: number) => void;
   /**
@@ -126,11 +126,23 @@ export type ContextActions = {
   /**
    * Centers the camera in the middle of the tilemap using a camera motion.
    *
-   * @param settings
+   * @param settings motion settings
    *
    * @throws Error if the canvas has no size.
    */
   addCameraMotionCentered: (settings: MotionSettings) => void;
+  /**
+   * Adds a zoom motion to the zoom motion stack.
+   * If the zoom level is less than 0, it will be set to 0.
+   * 
+   * @param settings motion settings
+   * @param targetZoom target zoom level
+   * @returns 
+   */
+  addZoomMotion: (
+    settings: MotionSettings,
+    targetZoom: number,
+  ) => void;
 };
 
 /**

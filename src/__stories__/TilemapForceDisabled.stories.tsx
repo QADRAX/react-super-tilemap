@@ -19,6 +19,12 @@ const motionSettings: MotionSettings = {
   maxDuration: 1,
 };
 
+const zoomMotionSettings: MotionSettings = {
+  speed: 0.01,
+  easing: 'easeOutElastic',
+  maxDuration: 1,
+};
+
 const recenterCameraOnResizeSettings: ResizeCameraMotion = {
   settings: motionSettings,
   type: 'center',
@@ -69,14 +75,6 @@ const Demo = (props: DemoProps) => {
       }
     };
   }, [isDraggableIntervalActive, draggable]);
-
-  const addCameraMotion = () => {
-    const tilePos: TilePosition = {
-      col: 0,
-      row: 0,
-    };
-    actions.addCameraMotionCenteredOnTilePosition(motionSettings, tilePos);
-  };
 
   return (
     <>
@@ -136,7 +134,11 @@ const Demo = (props: DemoProps) => {
         </button>
         <button
           onClick={() => {
-            addCameraMotion();
+            const tilePos: TilePosition = {
+              col: 0,
+              row: 0,
+            };
+            actions.addCameraMotionCenteredOnTilePosition(motionSettings, tilePos);
           }}
         >
           Camera motion to 0,0
@@ -147,6 +149,28 @@ const Demo = (props: DemoProps) => {
           }}
         >
           Camera motion to center
+        </button>
+        <button
+          onClick={() => {
+            actions.addZoomMotion(zoomMotionSettings, 17);
+          }}
+        >
+          Apply Zoom motion to 17
+        </button>
+        <button
+          onClick={() => {
+            actions.addZoomMotion(zoomMotionSettings, 0);
+          }}
+        >
+          Apply Zoom motion to 0
+        </button>
+        <button
+          onClick={() => {
+            actions.addZoomMotion(zoomMotionSettings, 0);
+            window.setTimeout(() => actions.addCameraMotionCentered(motionSettings));
+          }}
+        >
+          Reset Zoom motion to 0
         </button>
       </div>
       <div
@@ -167,6 +191,7 @@ const Demo = (props: DemoProps) => {
         <label>Camera centered on tile ROW: {computed.cameraCenteredTilePosition?.row}</label>
         <label>Is camera dragging: {state.isCameraDragging ? 'true' : 'false'}</label>
         <label>Is camera in motion: {computed.isCameraInMotion ? 'true' : 'false'}</label>
+        <label>Is zoom in motion: {computed.isCurrentZoomInMotion ? 'true' : 'false'}</label>
         <label>
           Zoomeable: {zoomeable ? 'true' : 'false'}{' '}
           {isZoomeableIntervalActive && 'switching every 2s'}
