@@ -1,5 +1,5 @@
 /**
- * A tile position is a position on the board, represented by a column and a row.
+ * Position of a tile in the grid (col, row)
  *
  * @public
  */

@@ -37,7 +37,7 @@ export type MotionPosition = Position2D | Position1D;
 /**
  * A motion request.
  * 
- * @internal
+ * @public
  */
 export interface MotionRequest<T extends MotionPosition> {
   /**
@@ -55,14 +55,14 @@ export interface MotionRequest<T extends MotionPosition> {
 /**
  * A camera motion request.
  * 
- * @internal
+ * @public
  */
 export interface CameraMotionRequest extends MotionRequest<Position> {}
 
 /**
  * A zoom motion request.
  * 
- * @internal
+ * @public
  */
 export interface ZoomMotionRequest extends MotionRequest<number> {}
 

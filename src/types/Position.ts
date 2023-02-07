@@ -1,5 +1,5 @@
 /**
- * Position (x, y)
+ * Absolute position (x, y)
  *
  * @public
  */
