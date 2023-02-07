@@ -1,39 +1,6 @@
-import { MapDimensions } from '../types/MapDimensions';
 import { Size } from '../types/Size';
 import { TilePosition } from '../types/TilePosition';
-import { DEFAULT_TILE_SIZE, ZOOM_RATIO } from '../constants';
 import { Position } from '../types/Position';
-
-export function getTileSize(zoom: number, tileSize: number = DEFAULT_TILE_SIZE): number {
-  return tileSize * Math.pow(ZOOM_RATIO, zoom);
-}
-
-export function getMapSize(mapDimensions: MapDimensions, tileSize: number): Size {
-  const width = mapDimensions.cols * tileSize;
-  const height = mapDimensions.rows * tileSize;
-
-  return {
-    width,
-    height,
-  };
-}
-
-export function getMapDimensions(schema?: string[][][]): MapDimensions {
-  if (!schema) {
-    return {
-      cols: 0,
-      rows: 0,
-    };
-  }
-  const cols = schema.length;
-  const rows = schema[0]?.length ?? 0;
-
-  const dims: MapDimensions = {
-    cols,
-    rows,
-  };
-  return dims;
-}
 
 export function getTilePosition(
   mousePosition: Position,
@@ -121,13 +88,6 @@ export function getCameraPositionByTilePosition(
   };
 
   return cameraPosition;
-}
-
-export function isValidCSSColor(color?: string): boolean {
-  if (!color) return false;
-  const s = new Option().style;
-  s.color = color;
-  return s.color === color;
 }
 
 export function getDistance(p1: Position, p2: Position): number {
