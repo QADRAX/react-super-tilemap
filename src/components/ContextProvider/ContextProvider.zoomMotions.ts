@@ -13,7 +13,7 @@ export function useZoomMotions(
   state: ContextState,
   onZoomMotionEnds?: () => void
 ) {
-  const { currentZoomMotion, zoomMotionQueue, currentZoom, currentCameraMotion } = state;
+  const { currentZoomMotion, zoomMotionQueue, zoom: currentZoom, currentCameraMotion } = state;
 
   useEffect(() => {
     if (

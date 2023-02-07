@@ -28,12 +28,12 @@ export function useDragAndZoomControls(props: TilemapControlProps) {
 
   const { dispatch } = useInternalContext();
 
-  const { cameraPosition, currentZoom, isCameraDragging: isDragging } = state;
+  const { cameraPosition, zoom: currentZoom, isCameraDragging: isDragging } = state;
 
   const {
     tileSize,
     mapSize,
-    isCurrentZoomInMotion: isCurrentZoomAnimating,
+    isZoomInMotion: isCurrentZoomAnimating,
     isCameraInMotion: isCameraAnimating,
   } = computed;
 

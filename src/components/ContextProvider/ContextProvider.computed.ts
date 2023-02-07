@@ -19,8 +19,8 @@ export function useComputedTilemapState(
     const isResizing = useIsChanging(state.canvasSize, 500);
 
     const tileSize = useMemo(
-        () => getTileSize(state.currentZoom, props.defaultTileSizePx),
-        [state.currentZoom, props.defaultTileSizePx]
+        () => getTileSize(state.zoom, props.defaultTileSizePx),
+        [state.zoom, props.defaultTileSizePx]
     );
 
     const mapDimensions = useMemo(() => getMapDimensions(props.spriteSchema), [props.spriteSchema]);
@@ -54,7 +54,7 @@ export function useComputedTilemapState(
         mapSize,
         cameraCenteredTilePosition,
         isCameraInMotion,
-        isCurrentZoomInMotion,
+        isZoomInMotion: isCurrentZoomInMotion,
         isResizing,
     };
 

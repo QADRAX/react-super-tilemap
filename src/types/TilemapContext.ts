@@ -38,7 +38,7 @@ export type ContextState = {
   /**
    * Current zoom level.
    */
-  currentZoom: number;
+  zoom: number;
   /**
    * Current zoom motion is being taken.
    */
@@ -175,7 +175,7 @@ export type ContextComputedState = {
   /**
    * Indicates if zoom is beeing in a motion.
    */
-  isCurrentZoomInMotion: boolean;
+  isZoomInMotion: boolean;
   /**
    * Indicates if the tilemap is beeing resizing.
    */

@@ -9,7 +9,7 @@ export function tilemapReducer(state: ContextState, action: TilemapActions): Con
       nextState.cameraPosition = action.payload.position;
       return nextState;
     case TilemapActionType.SetCurrentZoom:
-      nextState.currentZoom = action.payload.zoom;
+      nextState.zoom = action.payload.zoom;
       return nextState;
     case TilemapActionType.SetSpriteMap:
       nextState.spriteMap = action.payload.spriteMap;

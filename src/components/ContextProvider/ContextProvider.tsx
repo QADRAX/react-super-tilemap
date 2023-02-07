@@ -31,16 +31,16 @@ export const ContextProvider: FunctionComponent<TilemapContextProviderProps> = (
 
   const contextProps = useMemo(() => {
     const contextProps: ContextProps = {
-      defaultTileSizePx: props.defaultTileSizePx || DEFAULT_TILE_SIZE,
-      spriteSchema: props.schema,
+      defaultTileSizePx: props.defaultTileSize || DEFAULT_TILE_SIZE,
+      spriteSchema: props.tilmapSchema,
     };
 
     return contextProps;
-  }, [props.defaultTileSizePx, props.schema]);
+  }, [props.defaultTileSize, props.tilmapSchema]);
 
   // Load sprites from the sprite definition
 
-  useSpriteLoader(dispatch, props.sprites, props.onSpritesLoadError);
+  useSpriteLoader(dispatch, props.spriteDefinition, props.onSpritesLoadError);
 
   // Computed values from the context state
 

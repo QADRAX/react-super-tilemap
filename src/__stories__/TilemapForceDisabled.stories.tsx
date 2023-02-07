@@ -180,7 +180,7 @@ const Demo = (props: DemoProps) => {
           alignContent: 'flex-start',
         }}
       >
-        <label>Current Zoom: {state.currentZoom}</label>
+        <label>Current Zoom: {state.zoom}</label>
         <label>Tile size: {computed.tileSize}</label>
         <label>Camera absolute position X: {state.cameraPosition?.x}</label>
         <label>Camera absolute position Y: {state.cameraPosition?.y}</label>
@@ -191,7 +191,7 @@ const Demo = (props: DemoProps) => {
         <label>Camera centered on tile ROW: {computed.cameraCenteredTilePosition?.row}</label>
         <label>Is camera dragging: {state.isCameraDragging ? 'true' : 'false'}</label>
         <label>Is camera in motion: {computed.isCameraInMotion ? 'true' : 'false'}</label>
-        <label>Is zoom in motion: {computed.isCurrentZoomInMotion ? 'true' : 'false'}</label>
+        <label>Is zoom in motion: {computed.isZoomInMotion ? 'true' : 'false'}</label>
         <label>
           Zoomeable: {zoomeable ? 'true' : 'false'}{' '}
           {isZoomeableIntervalActive && 'switching every 2s'}
@@ -242,8 +242,8 @@ storiesOf('Tilemap: zoomeable & dragable', module)
 
     return (
       <ContextProvider
-        sprites={spritesDefinition}
-        schema={schema}
+        spriteDefinition={spritesDefinition}
+        tilmapSchema={schema}
         recenterCameraOnResize={recenterCameraOnResizeSettings}
       >
         <Demo onTileClick={onTileClick} onTileRightClick={onTileRightClick} />

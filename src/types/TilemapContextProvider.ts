@@ -1,4 +1,4 @@
-import { MotionSettings, ResizeCameraMotion } from './Motions';
+import { ResizeCameraMotion } from './Motions';
 import { SpriteDefinition } from './SpriteDefinition';
 
 export type TilemapContextProviderEvents = {
@@ -27,23 +27,21 @@ export interface TilemapContextProviderProps extends TilemapContextProviderEvent
    *
    * @default 16
    */
-  defaultTileSizePx?: number;
+  defaultTileSize?: number;
   /**
-   * Columns/rows/layers matrix of tile keys.
+   * Columns/rows/layers matrix of sprite keys.
    */
-  schema: string[][][];
+  tilmapSchema: string[][][];
   /**
    * List of sprites to load.
    */
-  sprites: SpriteDefinition[];
-  /**
-   * Children to render.
-   */
-  children: React.ReactNode;
+  spriteDefinition: SpriteDefinition[];
   /**
    * Configuration for camera motions that are being executed when the canvas is resized.
    */
   recenterCameraOnResize?: ResizeCameraMotion;
-
-  recenterCameraOnZoom?: MotionSettings;
+  /**
+   * Children to render.
+   */
+  children: React.ReactNode;
 }

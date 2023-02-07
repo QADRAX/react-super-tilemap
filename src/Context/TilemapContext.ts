@@ -3,7 +3,7 @@ import { DEFAULT_TILE_SIZE } from '../constants';
 import { Context, ContextState } from '../types/TilemapContext';
 
 export const initialState: ContextState = {
-  currentZoom: 0,
+  zoom: 0,
   isSpriteMapLoading: false,
   isCameraDragging: false,
   cameraMotionQueue: [],
@@ -31,7 +31,7 @@ const initialContext: Context = {
       width: 0,
       height: 0,
     },
-    isCurrentZoomInMotion: false,
+    isZoomInMotion: false,
     isCameraInMotion: false,
     isResizing: false,
   },

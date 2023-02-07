@@ -56,7 +56,7 @@ const Demo = (props: DemoProps) => {
           alignContent: 'flex-start',
         }}
       >
-        <label>Current Zoom: {state.currentZoom}</label>
+        <label>Current Zoom: {state.zoom}</label>
         <label>Tile size: {computed.tileSize}</label>
         <label>Camera X: {state.cameraPosition?.x}</label>
         <label>Camera Y: {state.cameraPosition?.y}</label>
@@ -101,7 +101,7 @@ storiesOf('Tilemap', module)
     };
 
     return (
-      <ContextProvider sprites={spritesDefinition} schema={schema}>
+      <ContextProvider spriteDefinition={spritesDefinition} tilmapSchema={schema}>
         <Demo onTileClick={onTileClick} onTileRightClick={onTileRightClick} />
       </ContextProvider>
     );

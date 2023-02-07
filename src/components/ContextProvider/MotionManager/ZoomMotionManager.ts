@@ -3,7 +3,7 @@ import { MotionManager } from './MotionManager';
 
 export class ZoomMotionManager extends MotionManager<number> {
   protected get position(): number {
-    return this.context.state.currentZoom;
+    return this.context.state.zoom;
   }
   protected set position(value: number) {
     this.context.actions.setCurrentZoom(value);
