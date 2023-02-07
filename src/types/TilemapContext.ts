@@ -59,7 +59,7 @@ export type ContextState = {
    * This flag is used to prevent the tilemap from rendering before the sprite map is completely loaded.
    *
    * @remarks
-   * Any errors that occur while loading the sprite map will be thrown
+   * Any errors that occur while loading the sprite map will be thrown via component event.
    */
   isSpriteMapLoading: boolean;
   /**
@@ -103,10 +103,14 @@ export type ContextActions = {
    * Adds a camera motion to the camera motion stack.
    *
    * @param motionRequest motion request
+   * @param position position to move the camera to
    *
    * @throws Error if the canvas has no size.
    */
-  addCameraMotion: (motionRequest: CameraMotionRequest) => void;
+  addCameraMotion: (
+    settings: MotionSettings,
+    position: Position,
+  ) => void;
   /**
    * Adds a camera motion centered on the given tile position to the camera motion stack.
    *

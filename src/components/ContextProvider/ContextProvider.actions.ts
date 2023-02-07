@@ -61,7 +61,11 @@ export function useTilemapContextActions(
   }, [state.canvasSize, computed.mapSize, setCameraPosition]);
 
   const addCameraMotion = useCallback(
-    (motionRequest: CameraMotionRequest) => {
+    (settings: MotionSettings, position: Position) => {
+      const motionRequest: CameraMotionRequest = {
+        settings,
+        targetPosition: position,
+      };
       const nextMotionStack = [...state.cameraMotionQueue, motionRequest];
       dispatch(_setCameraMotionQueue(nextMotionStack));
     },
@@ -73,15 +77,12 @@ export function useTilemapContextActions(
       if (!state.canvasSize) {
         throw new Error(UNSIZED_CANVAS_ERROR);
       }
-      const motionRequest: CameraMotionRequest = {
-        settings,
-        targetPosition: getCameraPositionByTilePosition(
-          tilePosition,
-          computed.tileSize,
-          state.canvasSize
-        ),
-      };
-      addCameraMotion(motionRequest);
+      const position = getCameraPositionByTilePosition(
+        tilePosition,
+        computed.tileSize,
+        state.canvasSize
+      );
+      addCameraMotion(settings, position);
     },
     [addCameraMotion, computed.tileSize, state.canvasSize]
   );
@@ -91,11 +92,8 @@ export function useTilemapContextActions(
       if (!state.canvasSize) {
         throw new Error(UNSIZED_CANVAS_ERROR);
       }
-      const motionRequest: CameraMotionRequest = {
-        settings,
-        targetPosition: getCenteredCameraPosition(state.canvasSize, computed.mapSize),
-      };
-      addCameraMotion(motionRequest);
+      const position = getCenteredCameraPosition(state.canvasSize, computed.mapSize);
+      addCameraMotion(settings, position);
     },
     [addCameraMotion, computed.mapSize, state.canvasSize]
   );

@@ -1,4 +1,4 @@
-import { MotionSettings } from './Motions';
+import { MotionSettings, ResizeCameraMotion } from './Motions';
 import { SpriteDefinition } from './SpriteDefinition';
 
 export type TilemapContextProviderEvents = {
@@ -37,8 +37,10 @@ export interface TilemapContextProviderProps extends TilemapContextProviderEvent
    * Children to render.
    */
   children: React.ReactNode;
-
-  recenterCameraOnResize?: MotionSettings;
+  /**
+   * Configuration for camera motions that are being executed when the canvas is resized.
+   */
+  recenterCameraOnResize?: ResizeCameraMotion;
 
   recenterCameraOnZoom?: MotionSettings;
 }

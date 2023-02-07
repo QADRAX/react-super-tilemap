@@ -6,7 +6,7 @@ import { SpriteName, spritesDefinition } from './__Sprites__';
 import { useTilemapContext } from '../hooks/useTilemapContext';
 import { TilePosition } from '../types/TilePosition';
 import { ContextProvider } from '../components/ContextProvider/ContextProvider';
-import { MotionSettings } from '../types/Motions';
+import { MotionSettings, ResizeCameraMotion } from '../types/Motions';
 
 const wrapperStyle: React.CSSProperties = {
   width: '100%',
@@ -17,6 +17,11 @@ const motionSettings: MotionSettings = {
   speed: 0.1,
   easing: 'easeOutElastic',
   maxDuration: 1,
+};
+
+const recenterCameraOnResizeSettings: ResizeCameraMotion = {
+  settings: motionSettings,
+  type: 'center',
 };
 
 const rows = 30;
@@ -214,7 +219,7 @@ storiesOf('Tilemap: zoomeable & dragable', module)
       <ContextProvider
         sprites={spritesDefinition}
         schema={schema}
-        recenterCameraOnResize={motionSettings}
+        recenterCameraOnResize={recenterCameraOnResizeSettings}
       >
         <Demo onTileClick={onTileClick} onTileRightClick={onTileRightClick} />
       </ContextProvider>
