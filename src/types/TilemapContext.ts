@@ -1,4 +1,4 @@
-import { SpriteMap } from '../Sprite';
+import { SpriteMap } from '../classes/Sprite';
 import { MapDimensions } from './MapDimensions';
 import {
   CameraMotionRequest,

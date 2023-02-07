@@ -1,8 +1,8 @@
-import { MapDimensions } from './types/MapDimensions';
-import { Size } from './types/Size';
-import { TilePosition } from './types/TilePosition';
-import { DEFAULT_TILE_SIZE, ZOOM_RATIO } from './constants';
-import { Position } from './types/Position';
+import { MapDimensions } from '../types/MapDimensions';
+import { Size } from '../types/Size';
+import { TilePosition } from '../types/TilePosition';
+import { DEFAULT_TILE_SIZE, ZOOM_RATIO } from '../constants';
+import { Position } from '../types/Position';
 
 export function getTileSize(zoom: number, tileSize: number = DEFAULT_TILE_SIZE): number {
   return tileSize * Math.pow(ZOOM_RATIO, zoom);

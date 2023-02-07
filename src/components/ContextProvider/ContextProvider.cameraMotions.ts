@@ -6,7 +6,7 @@ import {
 } from '../../Context/TilemapContext.actions';
 import { CameraMotion } from '../../types/Motions';
 import { ContextState } from '../../types/TilemapContext';
-import { getDistance } from '../../utils';
+import { getDistance } from '../../utils/utils';
 
 export function useCameraMotions(
   dispatch: React.Dispatch<TilemapActions>,

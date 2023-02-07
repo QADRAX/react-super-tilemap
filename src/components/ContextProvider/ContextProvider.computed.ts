@@ -5,7 +5,7 @@ import {
   getMapDimensions,
   getMapSize,
   getTileSize,
-} from '../../utils';
+} from '../../utils/utils';
 
 /**
  * Returns useful computed values from the tilemap state.

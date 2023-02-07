@@ -1,4 +1,4 @@
-import { SpriteMap } from '../Sprite';
+import { SpriteMap } from '../classes/Sprite';
 import { CameraMotion, CameraMotionRequest, ZoomMotion, ZoomMotionRequest } from '../types/Motions';
 import { Position } from '../types/Position';
 import { Size } from '../types/Size';

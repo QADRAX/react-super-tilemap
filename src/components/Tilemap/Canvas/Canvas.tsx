@@ -1,6 +1,6 @@
 import React from 'react';
 import { PublicTilemapContext } from '../../../Context/TilemapContext';
-import { renderTileMap } from '../../../Render';
+import { renderTileMap } from '../../../render/Render';
 
 export interface CanvasProps {
   backgroundColor?: string;

@@ -10,7 +10,7 @@ import { CameraMotionRequest, MotionSettings } from '../../types/Motions';
 import { Position } from '../../types/Position';
 import { ContextActions, ContextComputedState, ContextState } from '../../types/TilemapContext';
 import { TilePosition } from '../../types/TilePosition';
-import { getCameraPositionByTilePosition, getCenteredCameraPosition } from '../../utils';
+import { getCameraPositionByTilePosition, getCenteredCameraPosition } from '../../utils/utils';
 
 /**
  * Returns the tilemap context actions.

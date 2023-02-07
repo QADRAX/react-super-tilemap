@@ -1,6 +1,6 @@
 import React from 'react';
 import { PublicTilemapContext } from '../../../Context/TilemapContext';
-import { EasingFunction, getEasingFunction } from '../../../easing/easings';
+import { EasingFunction, getEasingFunction } from '../../../utils/easings';
 import { Motion, MotionPosition } from '../../../types/Motions';
 
 export interface MotionManagerProps {

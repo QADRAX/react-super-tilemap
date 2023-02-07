@@ -4,9 +4,9 @@ import {
   DIFERENT_SIZE_ERROR,
   EMPTY_SPRITE_ERROR,
   INVALID_SPRITE_IMAGE_ERROR,
-} from './constants';
-import { Size } from './types/Size';
-import { SpriteDefinition } from './types/SpriteDefinition';
+} from '../constants';
+import { Size } from '../types/Size';
+import { SpriteDefinition } from '../types/SpriteDefinition';
 
 export type SpriteMap = Map<string, Sprite>;
 

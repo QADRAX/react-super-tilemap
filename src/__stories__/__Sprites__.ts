@@ -1,26 +1,3 @@
-/*
-import grass from '../../../assets/grass.png';
-import forest1 from '../../../assets/forest_1.png';
-import forest2 from '../../../assets/forest_2.png';
-import mountain from '../../../assets/montain.png';
-import shadow from '../../../assets/shadow.png';
-import road1 from '../../../assets/road_1.png';
-import road2 from '../../../assets/road_2.png';
-import road3 from '../../../assets/road_3.png';
-import road4 from '../../../assets/road_4.png';
-import road5 from '../../../assets/road_5.png';
-import road6 from '../../../assets/road_6.png';
-import ocean1_1 from '../../../assets/ocean_1_1.png';
-import ocean1_2 from '../../../assets/ocean_1_2.png';
-import ocean1_3 from '../../../assets/ocean_1_3.png';
-import ocean1_4 from '../../../assets/ocean_1_4.png';
-import armyIdle1 from '../../../assets/army_idle_1.png';
-import armyIdle2 from '../../../assets/army_idle_2.png';
-import armyIdle3 from '../../../assets/army_idle_3.png';
-import building_1 from '../../../assets/building_1.png';
-import building_2 from '../../../assets/building_2.png';
-*/
-
 import { SpriteDefinition } from '../types/SpriteDefinition';
 
 const armyIdle1 =

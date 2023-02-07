@@ -5,7 +5,7 @@ import {
   _setSpriteMap,
 } from '../../Context/TilemapContext.actions';
 import { usePromise } from '../../hooks/usePromise';
-import { Sprite } from '../../Sprite';
+import { Sprite } from '../../classes/Sprite';
 import { SpriteDefinition } from '../../types/SpriteDefinition';
 
 /**
