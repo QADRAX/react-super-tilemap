@@ -1,55 +1,67 @@
-import React, { FunctionComponent, useReducer } from 'react';
+import React, { FunctionComponent, useMemo, useReducer } from 'react';
+import { DEFAULT_TILE_SIZE } from '../../constants';
 import { InternalTilemapContext } from '../../Context/InternalTilemapContext';
 import { initialState, PublicTilemapContext } from '../../Context/TilemapContext';
-import { _setCameraPosition, _setCurrentZoom, _setDefaultTileSizePx, _setSpriteMap, _setSpriteSchema } from '../../Context/TilemapContext.actions';
 import { tilemapReducer } from '../../Context/TilemapContext.reducer';
+import { ContextProps } from '../../types/TilemapContext';
 import { TilemapContextProviderProps } from '../../types/TilemapContextProvider';
 import { useTilemapContextActions } from './ContextProvider.actions';
-import { syncCameraMotions } from './ContextProvider.cameraMotions';
+import { useCameraMotions } from './ContextProvider.cameraMotions';
 import { useComputedTilemapState } from './ContextProvider.computed';
-import { recenterCameraOnResize } from './ContextProvider.recenter';
-import { useSyncTilemapContext } from './ContextProvider.sync';
+import { useCameraRecenterOnResize } from './ContextProvider.recenter';
+import { useSpriteLoader } from './ContextProvider.spriteLoader';
 import { CameraMotionManager } from './MotionManager/CameraMotionManager';
 
 /**
  * Tilemap's context provider
- * 
+ *
  * @public
- * 
- * @param props 
+ *
+ * @param props
  * @returns Context provider for the tilemap
  */
 export const ContextProvider: FunctionComponent<TilemapContextProviderProps> = (props) => {
-    // Context Reducer
+  // Context Reducer
 
-    const [state, dispatch] = useReducer(tilemapReducer, initialState);
+  const [state, dispatch] = useReducer(tilemapReducer, initialState);
 
-    // Sync context state with props
+  // Context props
 
-    useSyncTilemapContext(props, dispatch);
+  const contextProps = useMemo(() => {
+    const contextProps: ContextProps = {
+      defaultTileSizePx: props.defaultTileSizePx || DEFAULT_TILE_SIZE,
+      spriteSchema: props.schema,
+    };
 
-    // Computed values from the context state
+    return contextProps;
+  }, [props.defaultTileSizePx, props.schema]);
 
-    const computed = useComputedTilemapState(state);
+  // Load sprites from the sprite definition
 
-    // Context actions
+  useSpriteLoader(dispatch, props.sprites, props.onSpritesLoadError);
 
-    const actions = useTilemapContextActions(dispatch, computed, state);
+  // Computed values from the context state
 
-    // Sync camera motions
+  const computed = useComputedTilemapState(state, contextProps);
 
-    const onCameraMotionEnd = syncCameraMotions(dispatch, state, props.onCameraMotionEnd);
+  // Context actions
 
-    // Recenter on resize
+  const actions = useTilemapContextActions(dispatch, computed, state);
 
-    recenterCameraOnResize(state, computed, actions, props.recenterCameraOnResize);
+  // Sync camera motions
 
-    return (
-        <PublicTilemapContext.Provider value={{ state, computed, actions }}>
-            <InternalTilemapContext.Provider value={{ dispatch }} >
-                <CameraMotionManager onMotionEnd={onCameraMotionEnd} />
-                {props.children}
-            </InternalTilemapContext.Provider>
-        </PublicTilemapContext.Provider>
-    );
+  const onCameraMotionEnd = useCameraMotions(dispatch, state, props.onCameraMotionEnd);
+
+  // Recenter on resize
+
+  useCameraRecenterOnResize(computed, actions, props.recenterCameraOnResize);
+
+  return (
+    <PublicTilemapContext.Provider value={{ state, computed, actions, props: contextProps }}>
+      <InternalTilemapContext.Provider value={{ dispatch }}>
+        <CameraMotionManager onMotionEnd={onCameraMotionEnd} />
+        {props.children}
+      </InternalTilemapContext.Provider>
+    </PublicTilemapContext.Provider>
+  );
 };

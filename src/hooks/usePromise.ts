@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 /**
  * Hook to manage async calls in function components preventing perform actions on unmounted components
- * 
+ *
  * @internal
  */
 export function usePromise<T>(
@@ -49,7 +49,7 @@ export function usePromise<T>(
     return () => {
       isSubscribed = false;
     };
-  }, deps);
+  }, [...deps, promise, defaultValue]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return [value, error, isPending];
 }

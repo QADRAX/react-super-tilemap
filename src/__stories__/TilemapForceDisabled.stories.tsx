@@ -10,7 +10,7 @@ import { MotionSettings } from '../types/Motions';
 
 const wrapperStyle: React.CSSProperties = {
   width: '100%',
-  height: '500px'
+  height: '500px',
 };
 
 const motionSettings: MotionSettings = {
@@ -30,11 +30,7 @@ interface DemoProps {
 }
 
 const Demo = (props: DemoProps) => {
-  const {
-    state,
-    computed,
-    actions,
-  } = useTilemapContext();
+  const { state, computed, actions } = useTilemapContext();
 
   const [zoomeable, setZoomeable] = React.useState(true);
   const [draggable, setDraggable] = React.useState(true);
@@ -52,7 +48,7 @@ const Demo = (props: DemoProps) => {
       if (intervalId) {
         window.clearInterval(intervalId);
       }
-    }
+    };
   }, [isZoomeableIntervalActive, zoomeable]);
 
   React.useEffect(() => {
@@ -66,7 +62,7 @@ const Demo = (props: DemoProps) => {
       if (intervalId) {
         window.clearInterval(intervalId);
       }
-    }
+    };
   }, [isDraggableIntervalActive, draggable]);
 
   const addCameraMotion = () => {
@@ -85,25 +81,76 @@ const Demo = (props: DemoProps) => {
         zoomeable={zoomeable}
         draggable={draggable}
       />
-      <div style={{
-
-        display: 'flex',
-        flexDirection: 'row',
-      }}>
-        <button onClick={() => { actions.setCurrentZoom(0) }}>Reset zoom</button>
-        <button onClick={() => { actions.setCameraPosition({ x: 0, y: 0 }) }}>Set camera position to 0,0</button>
-        <button onClick={() => { actions.centerCameraOnTilePosition({ col: 24, row: 14 }) }}>Center the camera at col 24, row 14</button>
-        <button onClick={() => { actions.centerCamera() }}>Center the camera</button>
-        <button onClick={() => { setIsZoomeableIntervalActive(!isZoomeableIntervalActive) }}>Toggle zoomeable</button>
-        <button onClick={() => { setIsDraggableIntervalActive(!isDraggableIntervalActive) }}>Toggle draggable</button>
-        <button onClick={() => { addCameraMotion() }}>Camera motion to 0,0</button>
-        <button onClick={() => { actions.addCameraMotionCentered(motionSettings) }}>Camera motion to center</button>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+        }}
+      >
+        <button
+          onClick={() => {
+            actions.setCurrentZoom(0);
+          }}
+        >
+          Reset zoom
+        </button>
+        <button
+          onClick={() => {
+            actions.setCameraPosition({ x: 0, y: 0 });
+          }}
+        >
+          Set camera position to 0,0
+        </button>
+        <button
+          onClick={() => {
+            actions.centerCameraOnTilePosition({ col: 24, row: 14 });
+          }}
+        >
+          Center the camera at col 24, row 14
+        </button>
+        <button
+          onClick={() => {
+            actions.centerCamera();
+          }}
+        >
+          Center the camera
+        </button>
+        <button
+          onClick={() => {
+            setIsZoomeableIntervalActive(!isZoomeableIntervalActive);
+          }}
+        >
+          Toggle zoomeable
+        </button>
+        <button
+          onClick={() => {
+            setIsDraggableIntervalActive(!isDraggableIntervalActive);
+          }}
+        >
+          Toggle draggable
+        </button>
+        <button
+          onClick={() => {
+            addCameraMotion();
+          }}
+        >
+          Camera motion to 0,0
+        </button>
+        <button
+          onClick={() => {
+            actions.addCameraMotionCentered(motionSettings);
+          }}
+        >
+          Camera motion to center
+        </button>
       </div>
-      <div style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignContent: 'flex-start',
-      }}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignContent: 'flex-start',
+        }}
+      >
         <label>Current Zoom: {state.currentZoom}</label>
         <label>Tile size: {computed.tileSize}</label>
         <label>Camera absolute position X: {state.cameraPosition?.x}</label>
@@ -115,15 +162,21 @@ const Demo = (props: DemoProps) => {
         <label>Camera centered on tile ROW: {computed.cameraCenteredTilePosition?.row}</label>
         <label>Is camera dragging: {state.isCameraDragging ? 'true' : 'false'}</label>
         <label>Is camera in motion: {computed.isCameraInMotion ? 'true' : 'false'}</label>
-        <label>Zoomeable: {zoomeable ? 'true' : 'false'} {isZoomeableIntervalActive && 'switching every 2s'}</label>
-        <label>Draggable: {draggable ? 'true': 'false'} {isDraggableIntervalActive && 'switching every 2s'}</label>
+        <label>
+          Zoomeable: {zoomeable ? 'true' : 'false'}{' '}
+          {isZoomeableIntervalActive && 'switching every 2s'}
+        </label>
+        <label>
+          Draggable: {draggable ? 'true' : 'false'}{' '}
+          {isDraggableIntervalActive && 'switching every 2s'}
+        </label>
       </div>
     </>
-  )
+  );
 };
 
 storiesOf('Tilemap: zoomeable & dragable', module)
-  .addDecorator(storyFn => <div style={wrapperStyle}>{storyFn()}</div>)
+  .addDecorator((storyFn) => <div style={wrapperStyle}>{storyFn()}</div>)
   .add('Disabling zoom & drag using intervals', () => {
     const [schema, setSchema] = React.useState(initialSchema);
 
@@ -132,7 +185,7 @@ storiesOf('Tilemap: zoomeable & dragable', module)
       const newSchema = [...schema];
       const tile = newSchema[tilePos.col][tilePos.row];
       if (tile) {
-        let layer = tile[1];
+        const layer = tile[1];
         if (layer) {
           tile[1] = '';
         } else {
@@ -147,7 +200,7 @@ storiesOf('Tilemap: zoomeable & dragable', module)
       const newSchema = [...schema];
       const tile = newSchema[tilePos.col][tilePos.row];
       if (tile) {
-        let layer = tile[2];
+        const layer = tile[2];
         if (layer) {
           tile[2] = '';
         } else {
@@ -157,10 +210,13 @@ storiesOf('Tilemap: zoomeable & dragable', module)
       setSchema(newSchema);
     };
 
-
     return (
-      <ContextProvider sprites={spritesDefinition} schema={schema} recenterCameraOnResize={motionSettings}>
+      <ContextProvider
+        sprites={spritesDefinition}
+        schema={schema}
+        recenterCameraOnResize={motionSettings}
+      >
         <Demo onTileClick={onTileClick} onTileRightClick={onTileRightClick} />
       </ContextProvider>
     );
-  })
+  });

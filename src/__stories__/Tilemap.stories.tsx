@@ -9,7 +9,7 @@ import { ContextProvider } from '../components/ContextProvider/ContextProvider';
 
 const wrapperStyle: React.CSSProperties = {
   width: '100%',
-  height: '700px'
+  height: '700px',
 };
 
 const rows = 30;
@@ -23,42 +23,50 @@ interface DemoProps {
 }
 
 const Demo = (props: DemoProps) => {
-  const {
-    state,
-    computed,
-    actions,
-  } = useTilemapContext();
+  const { state, computed, actions } = useTilemapContext();
 
   return (
     <>
-      <Tilemap
-        onTileClick={props.onTileClick}
-        onTileContextMenu={props.onTileRightClick}
-      />
-      <div style={{
-
-        display: 'flex',
-        flexDirection: 'row',
-      }}>
-        <button onClick={() => { actions.setCurrentZoom(0) }}>Reset zoom</button>
-        <button onClick={() => { actions.setCameraPosition({ x: 0, y: 0 }) }}>Center camera</button>
+      <Tilemap onTileClick={props.onTileClick} onTileContextMenu={props.onTileRightClick} />
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+        }}
+      >
+        <button
+          onClick={() => {
+            actions.setCurrentZoom(0);
+          }}
+        >
+          Reset zoom
+        </button>
+        <button
+          onClick={() => {
+            actions.setCameraPosition({ x: 0, y: 0 });
+          }}
+        >
+          Center camera
+        </button>
       </div>
-      <div style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignContent: 'flex-start',
-      }}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignContent: 'flex-start',
+        }}
+      >
         <label>Current Zoom: {state.currentZoom}</label>
         <label>Tile size: {computed.tileSize}</label>
         <label>Camera X: {state.cameraPosition?.x}</label>
         <label>Camera Y: {state.cameraPosition?.y}</label>
       </div>
     </>
-  )
+  );
 };
 
 storiesOf('Tilemap', module)
-  .addDecorator(storyFn => <div style={wrapperStyle}>{storyFn()}</div>)
+  .addDecorator((storyFn) => <div style={wrapperStyle}>{storyFn()}</div>)
   .add('Demo 1', () => {
     const [schema, setSchema] = React.useState(initialSchema);
 
@@ -67,7 +75,7 @@ storiesOf('Tilemap', module)
       const newSchema = [...schema];
       const tile = newSchema[tilePos.col][tilePos.row];
       if (tile) {
-        let layer = tile[1];
+        const layer = tile[1];
         if (layer) {
           tile[1] = '';
         } else {
@@ -82,7 +90,7 @@ storiesOf('Tilemap', module)
       const newSchema = [...schema];
       const tile = newSchema[tilePos.col][tilePos.row];
       if (tile) {
-        let layer = tile[2];
+        const layer = tile[2];
         if (layer) {
           tile[2] = '';
         } else {
@@ -92,10 +100,9 @@ storiesOf('Tilemap', module)
       setSchema(newSchema);
     };
 
-
     return (
       <ContextProvider sprites={spritesDefinition} schema={schema}>
         <Demo onTileClick={onTileClick} onTileRightClick={onTileRightClick} />
       </ContextProvider>
     );
-  })
+  });

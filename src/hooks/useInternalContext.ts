@@ -1,6 +1,6 @@
-import { useContext } from "react";
-import { InternalTilemapContext } from "../Context/InternalTilemapContext";
+import { useContext } from 'react';
+import { InternalTilemapContext } from '../Context/InternalTilemapContext';
 
 export function useInternalContext() {
-    return useContext(InternalTilemapContext);
+  return useContext(InternalTilemapContext);
 }

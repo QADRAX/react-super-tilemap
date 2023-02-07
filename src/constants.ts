@@ -1,4 +1,4 @@
-import { Size } from "./types/Size";
+import { Size } from './types/Size';
 
 export const DEFAULT_TILE_SIZE = 16;
 export const ZOOM_RATIO = 1.1;
