@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ResizeCameraMotion } from '../../types/Motions';
-import { isPosition, isTilePosition } from '../../types/Motions.typeGuards';
+import { isTilePosition } from '../../types/Motions.typeGuards';
 import { ContextActions, ContextComputedState } from '../../types/TilemapContext';
 import { TilePosition } from '../../types/TilePosition';
 
@@ -21,14 +21,12 @@ export function useCameraRecenterOnResize(
 
   useEffect(() => {
     if (!computed.isResizing && lastPositionBeforeResize && resizeCameraMotion) {
-      const type = resizeCameraMotion.type;
+      const type = resizeCameraMotion.target;
       if (type == 'center') {
-        actions.addCameraMotionCentered(resizeCameraMotion.settings);
+        actions.addCameraMotion(resizeCameraMotion.settings, 'center');
       } else if (type == 'last-center') {
-        actions.addCameraMotionCenteredOnTilePosition(resizeCameraMotion.settings, lastPositionBeforeResize);
+        actions.addCameraMotion(resizeCameraMotion.settings, lastPositionBeforeResize);
       } else if (isTilePosition(type)) {
-        actions.addCameraMotionCenteredOnTilePosition(resizeCameraMotion.settings, type);
-      } else if (isPosition(type)) {
         actions.addCameraMotion(resizeCameraMotion.settings, type);
       }
     }

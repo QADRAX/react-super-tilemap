@@ -27,7 +27,7 @@ const zoomMotionSettings: MotionSettings = {
 
 const recenterCameraOnResizeSettings: ResizeCameraMotion = {
   settings: motionSettings,
-  type: 'center',
+  target: 'center',
 };
 
 const rows = 30;
@@ -92,7 +92,7 @@ const Demo = (props: DemoProps) => {
       >
         <button
           onClick={() => {
-            actions.setCurrentZoom(0);
+            actions.setZoom(0);
           }}
         >
           Reset zoom
@@ -134,40 +134,36 @@ const Demo = (props: DemoProps) => {
         </button>
         <button
           onClick={() => {
-            const tilePos: TilePosition = {
-              col: 0,
-              row: 0,
-            };
-            actions.addCameraMotionCenteredOnTilePosition(motionSettings, tilePos);
+            actions.addCameraMotion(motionSettings, {col: 0, row: 0});
           }}
         >
           Camera motion to 0,0
         </button>
         <button
           onClick={() => {
-            actions.addCameraMotionCentered(motionSettings);
+            actions.addCameraMotion(motionSettings, 'center');
           }}
         >
           Camera motion to center
         </button>
         <button
           onClick={() => {
-            actions.addZoomMotion(zoomMotionSettings, 17);
+            actions.addZoomMotion(zoomMotionSettings, state.zoom + 4	);
           }}
         >
-          Apply Zoom motion to 17
+          Apply Zoom motion + 4
+        </button>
+        <button
+          onClick={() => {
+            actions.addZoomMotion(zoomMotionSettings, state.zoom - 2);
+          }}
+        >
+          Apply Zoom motion to - 2
         </button>
         <button
           onClick={() => {
             actions.addZoomMotion(zoomMotionSettings, 0);
-          }}
-        >
-          Apply Zoom motion to 0
-        </button>
-        <button
-          onClick={() => {
-            actions.addZoomMotion(zoomMotionSettings, 0);
-            window.setTimeout(() => actions.addCameraMotionCentered(motionSettings));
+            window.setTimeout(() => actions.addCameraMotion(motionSettings, 'center'));
           }}
         >
           Reset Zoom motion to 0

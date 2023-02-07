@@ -2,6 +2,8 @@ import { EasingType } from './EasingType';
 import { Position } from './Position';
 import { TilePosition } from './TilePosition';
 
+// MOTION SETTINGS
+
 /**
  * Motion settings.
  * 
@@ -30,16 +32,16 @@ export type MotionSettings = {
   maxDuration?: number;
 };
 
-export type Position1D = number;
-export type Position2D = Position;
-export type MotionPosition = Position2D | Position1D;
+// MOTION REQUESTS
+
+export type MotionRequestTarget = TilePosition | 'center' | number;
 
 /**
  * A motion request.
  * 
  * @public
  */
-export interface MotionRequest<T extends MotionPosition> {
+export interface MotionRequest<T extends MotionRequestTarget> {
   /**
    * Settings of the motion.
    * 
@@ -49,7 +51,7 @@ export interface MotionRequest<T extends MotionPosition> {
   /**
    * The target position after the motion.
    */
-  targetPosition: T;
+  target: T;
 }
 
 /**
@@ -57,7 +59,7 @@ export interface MotionRequest<T extends MotionPosition> {
  * 
  * @public
  */
-export interface CameraMotionRequest extends MotionRequest<Position> {}
+export interface CameraMotionRequest extends MotionRequest<TilePosition | 'center'> {}
 
 /**
  * A zoom motion request.
@@ -66,12 +68,18 @@ export interface CameraMotionRequest extends MotionRequest<Position> {}
  */
 export interface ZoomMotionRequest extends MotionRequest<number> {}
 
+// MOTION QUEUE
+
+export type Position1D = number;
+export type Position2D = Position;
+export type CurrentMotionPosition = Position2D | Position1D;
+
 /**
  * A motion that is being executed.
  * 
  * @public
  */
-export interface CurrentMotion<T extends MotionPosition> {
+export interface CurrentMotion<T extends CurrentMotionPosition> {
   /**
    * The time at which the motion started in long milliseconds.
    */
@@ -103,21 +111,23 @@ export interface CurrentMotion<T extends MotionPosition> {
  * 
  * @public
  */
-export interface CameraMotion extends CurrentMotion<Position2D> {}
+export interface CurrentCameraMotion extends CurrentMotion<Position2D> {}
 
 /**
  * A motion that zooms the zoom.
  * 
  * @public
  */
-export interface ZoomMotion extends CurrentMotion<Position1D> {}
+export interface CurrentZoomMotion extends CurrentMotion<Position1D> {}
+
+// RESIZE MOTION
 
 /**
  * Types of camera motion targets.
  * 
  * @public
  */
-export type MoveCameraMotionTarget = 'center' | 'last-center' | Position2D | TilePosition;
+export type ResizeCameraMotionTarget = 'center' | 'last-center' | TilePosition;
 
 /**
  * Configuration for camera motions that are being executed after a canvas resize.
@@ -136,5 +146,5 @@ export interface ResizeCameraMotion {
    * If it is a position, the camera will be centered on the given x,y position.
    * If it is a tile position, the camera will be centered on the given tile position.
    */
-  type: MoveCameraMotionTarget
+  target: ResizeCameraMotionTarget
 }

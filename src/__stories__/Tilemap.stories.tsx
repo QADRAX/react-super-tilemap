@@ -36,7 +36,7 @@ const Demo = (props: DemoProps) => {
       >
         <button
           onClick={() => {
-            actions.setCurrentZoom(0);
+            actions.setZoom(0);
           }}
         >
           Reset zoom

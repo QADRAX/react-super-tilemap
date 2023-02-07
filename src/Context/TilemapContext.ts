@@ -14,12 +14,10 @@ const initialContext: Context = {
   state: initialState,
   actions: {
     setCameraPosition: () => {},
-    setCurrentZoom: () => {},
+    setZoom: () => {},
     centerCameraOnTilePosition: () => {},
     centerCamera: () => {},
     addCameraMotion: () => {},
-    addCameraMotionCenteredOnTilePosition: () => {},
-    addCameraMotionCentered: () => {},
     addZoomMotion: () => {},
   },
   computed: {

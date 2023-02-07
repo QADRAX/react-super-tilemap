@@ -52,7 +52,7 @@ export const ContextProvider: FunctionComponent<TilemapContextProviderProps> = (
 
   // Sync camera motions
 
-  const endCameraMotion = useCameraMotions(dispatch, state, props.onCameraMotionEnd);
+  const endCameraMotion = useCameraMotions(dispatch, state, computed, props.onCameraMotionEnd);
 
   // Sync zoom motions
 

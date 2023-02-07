@@ -13,7 +13,7 @@ export function useZoomMotions(
   state: ContextState,
   onZoomMotionEnds?: () => void
 ) {
-  const { currentZoomMotion, zoomMotionQueue, zoom: currentZoom, currentCameraMotion } = state;
+  const { currentZoomMotion, zoomMotionQueue, zoom, currentCameraMotion } = state;
 
   useEffect(() => {
     if (
@@ -26,16 +26,23 @@ export function useZoomMotions(
 
       const nextMotionRequest = zoomMotionQueue[0];
 
-      const targetZoom = nextMotionRequest.targetPosition;
-      const distance = Math.abs(currentZoom - targetZoom);
+      const targetZoom = nextMotionRequest.target;
+      const distance = Math.abs(zoom - targetZoom);
 
-      const nextMotion = createMotion(nextMotionRequest, currentZoom, distance);
+      const nextMotion = createMotion(
+        zoom,
+        targetZoom,
+        nextMotionRequest.settings.speed,
+        distance,
+        nextMotionRequest.settings.maxDuration,
+        nextMotionRequest.settings.easing
+      );
       dispatch(_setCurrentZoomMotion(nextMotion));
 
       const nextQueue = zoomMotionQueue.slice(1);
       dispatch(_setZoomMotionQueue(nextQueue));
     }
-  }, [currentZoom, currentZoomMotion, zoomMotionQueue, dispatch, currentCameraMotion]);
+  }, [currentZoomMotion, zoomMotionQueue, dispatch]);
 
   const endZoomMotion = useCallback(() => {
     dispatch(_setCurrentZoomMotion(undefined));

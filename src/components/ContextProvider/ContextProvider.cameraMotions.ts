@@ -4,16 +4,30 @@ import {
   _setCameraMotionQueue,
   _setCurrentCameraMotion,
 } from '../../Context/TilemapContext.actions';
-import { ContextState } from '../../types/TilemapContext';
+import { Position } from '../../types/Position';
+import { ContextComputedState, ContextState } from '../../types/TilemapContext';
 import { createMotion } from '../../utils/createMotion';
-import { getDistance } from '../../utils/positions';
+import { getCameraPositionByTilePosition, getCenteredCameraPosition, getDistance } from '../../utils/positions';
 
 export function useCameraMotions(
   dispatch: React.Dispatch<TilemapActions>,
   state: ContextState,
+  computed: ContextComputedState,
   onCameraMotionEnds?: () => void
 ) {
-  const { currentCameraMotion, cameraMotionQueue, isCameraDragging, cameraPosition, currentZoomMotion } = state;
+  const {
+    currentCameraMotion,
+    cameraMotionQueue,
+    isCameraDragging,
+    cameraPosition,
+    currentZoomMotion,
+    canvasSize,
+  } = state;
+
+  const {
+    tileSize,
+    mapSize,
+  } = computed;
 
   useEffect(() => {
     if (
@@ -21,22 +35,53 @@ export function useCameraMotions(
       !currentCameraMotion &&
       cameraMotionQueue.length > 0 &&
       cameraPosition &&
-      !currentZoomMotion
+      !currentZoomMotion &&
+      canvasSize
     ) {
       // add next motion from the queue
 
       const nextMotionRequest = cameraMotionQueue[0];
 
-      const targetPosition = nextMotionRequest.targetPosition;
+      const targetTilePosition = nextMotionRequest.target;
+      let targetPosition: Position;
+      if (targetTilePosition == 'center') {
+        targetPosition = getCenteredCameraPosition(
+          canvasSize,
+          mapSize,
+        )
+      } else {
+        targetPosition = getCameraPositionByTilePosition(
+          targetTilePosition,
+          tileSize,
+          canvasSize
+        );
+      }
       const distance = getDistance(cameraPosition, targetPosition);
 
-      const nextMotion = createMotion(nextMotionRequest, cameraPosition, distance);
+      const nextMotion = createMotion(
+        cameraPosition,
+        targetPosition,
+        nextMotionRequest.settings.speed,
+        distance,
+        nextMotionRequest.settings.maxDuration,
+        nextMotionRequest.settings.easing
+      );
       dispatch(_setCurrentCameraMotion(nextMotion));
 
       const nextQueue = cameraMotionQueue.slice(1);
       dispatch(_setCameraMotionQueue(nextQueue));
     }
-  }, [cameraPosition, currentCameraMotion, cameraMotionQueue, isCameraDragging, dispatch, currentZoomMotion]);
+  }, [
+    cameraPosition,
+    currentCameraMotion,
+    cameraMotionQueue,
+    isCameraDragging,
+    dispatch,
+    currentZoomMotion,
+    canvasSize,
+    tileSize,
+    mapSize,
+  ]);
 
   const endCameraMotion = useCallback(() => {
     dispatch(_setCurrentCameraMotion(undefined));

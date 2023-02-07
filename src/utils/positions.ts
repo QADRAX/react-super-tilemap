@@ -36,10 +36,13 @@ export function getTilePosition(
   return tilePosition;
 }
 
-export function getCenteredCameraPosition(canvas: Size, map: Size): Position {
+export function getCenteredCameraPosition(
+  canvasSize: Size,
+  mapSize: Size
+): Position {
   const centeredCameraPosition = {
-    x: (canvas.width - map.width) / 2,
-    y: (canvas.height - map.height) / 2,
+    x: (canvasSize.width - mapSize.width) / 2,
+    y: (canvasSize.height - mapSize.height) / 2,
   };
   return centeredCameraPosition;
 }

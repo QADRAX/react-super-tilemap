@@ -1,11 +1,6 @@
-import { MoveCameraMotionTarget } from "./Motions";
-import { Position } from "./Position";
+import { ResizeCameraMotionTarget } from "./Motions";
 import { TilePosition } from "./TilePosition";
 
-export function isTilePosition(motionTarget: MoveCameraMotionTarget): motionTarget is TilePosition {
+export function isTilePosition(motionTarget: ResizeCameraMotionTarget): motionTarget is TilePosition {
   return (motionTarget as TilePosition).col !== undefined;
-}
-
-export function isPosition(motionTarget: MoveCameraMotionTarget): motionTarget is Position {
-  return (motionTarget as Position).x !== undefined;
 }

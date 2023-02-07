@@ -37,7 +37,7 @@ export function useDragAndZoomControls(props: TilemapControlProps) {
     isCameraInMotion: isCameraAnimating,
   } = computed;
 
-  const { setCameraPosition, setCurrentZoom } = actions;
+  const { setCameraPosition, setZoom: setCurrentZoom } = actions;
 
   const setIsDragging = (value: boolean) => dispatch(_setIsCameraDragging(value));
 

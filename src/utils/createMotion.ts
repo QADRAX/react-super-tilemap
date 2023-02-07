@@ -1,17 +1,16 @@
-import { CurrentMotion, MotionPosition, MotionRequest } from "../types/Motions";
+import { EasingType } from "../types/EasingType";
+import { CurrentMotion, CurrentMotionPosition } from "../types/Motions";
 
-export function createMotion<T extends MotionPosition>(
-    request: MotionRequest<T>,
-    position: T,
+export function createMotion<T extends CurrentMotionPosition>(
+    initialPosition: T,
+    targetPosition: T,
+    speed: number,
     distance: number,
+    maxDuration: number | undefined,
+    easing: EasingType | undefined,
 ): CurrentMotion<T> {
-    const maxDuration = request.settings.maxDuration;
-    const initialPosition = position;
-    const targetPosition = request.targetPosition;
-
-    const speed =
-      request.settings.speed > 0 ? Math.abs(request.settings.speed) : 1;
-    const duration = (distance / speed) * 1000;
+    const finalSpeed = speed > 0 ? Math.abs(speed) : 1;
+    const duration = (distance / finalSpeed) * 1000;
 
     let finalDuration = duration;
     if (maxDuration) {
@@ -22,12 +21,13 @@ export function createMotion<T extends MotionPosition>(
     }
 
     const startAt = window.performance.now();
+
     const endAt = startAt + finalDuration / 1000;
 
     const result: CurrentMotion<T> = {
       startAt,
       endAt,
-      easing: request.settings.easing,
+      easing,
       initialPosition,
       targetPosition,
     };

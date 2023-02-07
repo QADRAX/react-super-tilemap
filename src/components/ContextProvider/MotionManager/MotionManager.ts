@@ -1,14 +1,14 @@
 import React from 'react';
 import { PublicTilemapContext } from '../../../Context/TilemapContext';
 import { EasingFunction, getEasingFunction } from '../../../utils/easings';
-import { CurrentMotion, MotionPosition } from '../../../types/Motions';
+import { CurrentMotion, CurrentMotionPosition } from '../../../types/Motions';
 
 export interface MotionManagerProps {
   onMotionEnd?: () => void;
 }
 
 export abstract class MotionManager<
-  T extends MotionPosition
+  T extends CurrentMotionPosition
 > extends React.PureComponent<MotionManagerProps> {
   static contextType = PublicTilemapContext;
   context!: React.ContextType<typeof PublicTilemapContext>;

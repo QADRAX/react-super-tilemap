@@ -6,7 +6,7 @@ export class ZoomMotionManager extends MotionManager<number> {
     return this.context.state.zoom;
   }
   protected set position(value: number) {
-    this.context.actions.setCurrentZoom(value);
+    this.context.actions.setZoom(value);
   }
   protected get motion(): CurrentMotion<number> | undefined {
     return this.context.state.currentZoomMotion;

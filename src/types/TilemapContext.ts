@@ -2,9 +2,9 @@ import { SpriteMap } from '../classes/Sprite';
 import { MapDimensions } from './MapDimensions';
 import {
   CameraMotionRequest,
-  CameraMotion,
+  CurrentCameraMotion,
   ZoomMotionRequest,
-  ZoomMotion,
+  CurrentZoomMotion,
   MotionSettings,
 } from './Motions';
 import { Position } from './Position';
@@ -24,7 +24,7 @@ export type ContextState = {
   /**
    * Current camera motion is being taken.
    */
-  currentCameraMotion?: CameraMotion;
+  currentCameraMotion?: CurrentCameraMotion;
   /**
    * Flag to indicate if the camera is being moving by the user dragging the map.
    *
@@ -42,7 +42,7 @@ export type ContextState = {
   /**
    * Current zoom motion is being taken.
    */
-  currentZoomMotion?: ZoomMotion;
+  currentZoomMotion?: CurrentZoomMotion;
   /**
    * Zoom motion queue.
    */
@@ -98,7 +98,7 @@ export type ContextActions = {
    *
    * @param zoom zoom level
    */
-  setCurrentZoom: (zoom: number) => void;
+  setZoom: (zoom: number) => void;
   /**
    * Adds a camera motion to the camera motion stack.
    *
@@ -109,28 +109,8 @@ export type ContextActions = {
    */
   addCameraMotion: (
     settings: MotionSettings,
-    position: Position,
+    position: TilePosition | 'center',
   ) => void;
-  /**
-   * Adds a camera motion centered on the given tile position to the camera motion stack.
-   *
-   * @param settings motion settings
-   * @param tilePosition tile position to center the camera on
-   *
-   * @throws Error if the canvas has no size.
-   */
-  addCameraMotionCenteredOnTilePosition: (
-    settings: MotionSettings,
-    tilePosition: TilePosition
-  ) => void;
-  /**
-   * Centers the camera in the middle of the tilemap using a camera motion.
-   *
-   * @param settings motion settings
-   *
-   * @throws Error if the canvas has no size.
-   */
-  addCameraMotionCentered: (settings: MotionSettings) => void;
   /**
    * Adds a zoom motion to the zoom motion stack.
    * If the zoom level is less than 0, it will be set to 0.

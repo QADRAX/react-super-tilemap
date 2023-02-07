@@ -1,5 +1,5 @@
 import { SpriteMap } from '../classes/Sprite';
-import { CameraMotion, CameraMotionRequest, ZoomMotion, ZoomMotionRequest } from '../types/Motions';
+import { CurrentCameraMotion, CameraMotionRequest, CurrentZoomMotion, ZoomMotionRequest } from '../types/Motions';
 import { Position } from '../types/Position';
 import { Size } from '../types/Size';
 
@@ -51,14 +51,14 @@ export interface SetIsSpriteMapLoading {
 export interface SetCurrentCameraMotion {
   type: TilemapActionType.SetCurrentCameraMotion;
   payload: {
-    currentCameraMotion?: CameraMotion;
+    currentCameraMotion?: CurrentCameraMotion;
   };
 }
 
 export interface SetCurrentZoomMotion {
   type: TilemapActionType.SetCurrentZoomMotion;
   payload: {
-    currentZoomMotion?: ZoomMotion;
+    currentZoomMotion?: CurrentZoomMotion;
   };
 }
 
@@ -135,7 +135,7 @@ export const _setIsSpriteMapLoading = (isSpriteMapLoading: boolean): SetIsSprite
 });
 
 export const _setCurrentCameraMotion = (
-  currentCameraMotion?: CameraMotion
+  currentCameraMotion?: CurrentCameraMotion
 ): SetCurrentCameraMotion => ({
   type: TilemapActionType.SetCurrentCameraMotion,
   payload: {
@@ -143,7 +143,7 @@ export const _setCurrentCameraMotion = (
   },
 });
 
-export const _setCurrentZoomMotion = (currentZoomMotion?: ZoomMotion): SetCurrentZoomMotion => ({
+export const _setCurrentZoomMotion = (currentZoomMotion?: CurrentZoomMotion): SetCurrentZoomMotion => ({
   type: TilemapActionType.SetCurrentZoomMotion,
   payload: {
     currentZoomMotion,
