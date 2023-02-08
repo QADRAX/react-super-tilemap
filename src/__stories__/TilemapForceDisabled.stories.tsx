@@ -30,11 +30,6 @@ const recenterCameraOnResizeSettings: RecenterCameraMotion = {
   target: 'center',
 };
 
-const recenterCameraOnZoomSettings: RecenterCameraMotion = {
-  settings: motionSettings,
-  target: 'last-center',
-};
-
 const rows = 30;
 const cols = 50;
 
