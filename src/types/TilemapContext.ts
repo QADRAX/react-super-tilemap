@@ -69,7 +69,7 @@ export type ContextState = {
 };
 
 /**
- * Set of actions tilemap consumers can use to interact with the tilemap.
+ * Set of actions tilemap that consumers can use to interact with the tilemap.
  */
 export type ContextActions = {
   /**
