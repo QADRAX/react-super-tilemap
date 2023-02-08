@@ -8,7 +8,7 @@ import { TilemapContextProviderProps } from '../../types/TilemapContextProvider'
 import { useTilemapContextActions } from './ContextProvider.actions';
 import { useCameraMotions } from './ContextProvider.cameraMotions';
 import { useComputedTilemapState } from './ContextProvider.computed';
-import { useCameraRecenterOnResize } from './ContextProvider.recenter';
+import { useCameraRecenter } from './ContextProvider.recenter';
 import { useSpriteLoader } from './ContextProvider.spriteLoader';
 import { useZoomMotions } from './ContextProvider.zoomMotions';
 import { CameraMotionManager } from './MotionManager/CameraMotionManager';
@@ -60,7 +60,11 @@ export const ContextProvider: FunctionComponent<TilemapContextProviderProps> = (
 
   // Recenter on resize
 
-  useCameraRecenterOnResize(computed, actions, props.recenterCameraOnResize);
+  useCameraRecenter(computed.isResizing, computed.cameraCenteredTilePosition, actions, props.recenterCameraOnResize);
+
+  // Recenter after zoom
+
+  useCameraRecenter(computed.isZooming, computed.cameraCenteredTilePosition, actions, props.recenterCameraOnZoom);
 
   return (
     <PublicTilemapContext.Provider value={{ state, computed, actions, props: contextProps }}>

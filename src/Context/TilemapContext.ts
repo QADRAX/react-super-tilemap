@@ -33,6 +33,7 @@ const initialContext: Context = {
     isZoomInMotion: false,
     isCameraInMotion: false,
     isResizing: false,
+    isZooming: false,
   },
   props: {
     defaultTileSizePx: DEFAULT_TILE_SIZE,

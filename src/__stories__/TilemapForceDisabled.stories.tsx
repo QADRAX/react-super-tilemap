@@ -6,7 +6,7 @@ import { SpriteName, spritesDefinition } from './__Sprites__';
 import { useTilemapContext } from '../hooks/useTilemapContext';
 import { TilePosition } from '../types/TilePosition';
 import { ContextProvider } from '../components/ContextProvider/ContextProvider';
-import { MotionSettings, ResizeCameraMotion } from '../types/Motions';
+import { MotionSettings, RecenterCameraMotion } from '../types/Motions';
 
 const wrapperStyle: React.CSSProperties = {
   width: '100%',
@@ -21,13 +21,18 @@ const motionSettings: MotionSettings = {
 
 const zoomMotionSettings: MotionSettings = {
   speed: 0.01,
-  easing: 'easeOutElastic',
+  easing: 'easeOutBounce',
   maxDuration: 1,
 };
 
-const recenterCameraOnResizeSettings: ResizeCameraMotion = {
+const recenterCameraOnResizeSettings: RecenterCameraMotion = {
   settings: motionSettings,
   target: 'center',
+};
+
+const recenterCameraOnZoomSettings: RecenterCameraMotion = {
+  settings: motionSettings,
+  target: 'last-center',
 };
 
 const rows = 30;
@@ -76,11 +81,16 @@ const Demo = (props: DemoProps) => {
     };
   }, [isDraggableIntervalActive, draggable]);
 
+  const onDoubleClick = (tilePos: TilePosition) => {
+    actions.addCameraMotion(motionSettings, tilePos);
+  };
+
   return (
     <>
       <Tilemap
         onTileClick={props.onTileClick}
-        onTileContextMenu={props.onTileRightClick}
+        onTileContextMenu={onDoubleClick}
+        onTileDoubleClick={props.onTileRightClick}
         zoomeable={zoomeable}
         draggable={draggable}
       />
@@ -134,7 +144,7 @@ const Demo = (props: DemoProps) => {
         </button>
         <button
           onClick={() => {
-            actions.addCameraMotion(motionSettings, {col: 0, row: 0});
+            actions.addCameraMotion(motionSettings, { col: 0, row: 0 });
           }}
         >
           Camera motion to 0,0
@@ -148,7 +158,7 @@ const Demo = (props: DemoProps) => {
         </button>
         <button
           onClick={() => {
-            actions.addZoomMotion(zoomMotionSettings, state.zoom + 4	);
+            actions.addZoomMotion(zoomMotionSettings, state.zoom + 4);
           }}
         >
           Apply Zoom motion + 4
@@ -162,8 +172,8 @@ const Demo = (props: DemoProps) => {
         </button>
         <button
           onClick={() => {
-            actions.addZoomMotion(zoomMotionSettings, 0);
-            window.setTimeout(() => actions.addCameraMotion(motionSettings, 'center'));
+            actions.addZoomMotion(zoomMotionSettings, 1);
+            actions.addCameraMotion(motionSettings, 'center')
           }}
         >
           Reset Zoom motion to 0
@@ -187,6 +197,7 @@ const Demo = (props: DemoProps) => {
         <label>Camera centered on tile ROW: {computed.cameraCenteredTilePosition?.row}</label>
         <label>Is camera dragging: {state.isCameraDragging ? 'true' : 'false'}</label>
         <label>Is camera in motion: {computed.isCameraInMotion ? 'true' : 'false'}</label>
+        <label>Is zoom in zooming: {computed.isZooming ? 'true' : 'false'}</label>
         <label>Is zoom in motion: {computed.isZoomInMotion ? 'true' : 'false'}</label>
         <label>
           Zoomeable: {zoomeable ? 'true' : 'false'}{' '}
@@ -241,6 +252,7 @@ storiesOf('Tilemap: zoomeable & dragable', module)
         spriteDefinition={spritesDefinition}
         tilmapSchema={schema}
         recenterCameraOnResize={recenterCameraOnResizeSettings}
+        recenterCameraOnZoom={undefined}
       >
         <Demo onTileClick={onTileClick} onTileRightClick={onTileRightClick} />
       </ContextProvider>

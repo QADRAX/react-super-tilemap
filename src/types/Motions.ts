@@ -120,21 +120,21 @@ export interface CurrentCameraMotion extends CurrentMotion<Position2D> {}
  */
 export interface CurrentZoomMotion extends CurrentMotion<Position1D> {}
 
-// RESIZE MOTION
+// RECENTER MOTION
 
 /**
  * Types of camera motion targets.
  * 
  * @public
  */
-export type ResizeCameraMotionTarget = 'center' | 'last-center' | TilePosition;
+export type RecenterCameraMotionTarget = 'center' | 'last-center' | TilePosition;
 
 /**
- * Configuration for camera motions that are being executed after a canvas resize.
+ * Configuration for camera motions that are being executed after a canvas resize or zoom change.
  * 
  * @public
  */
-export interface ResizeCameraMotion {
+export interface RecenterCameraMotion {
   /**
    * Settings of the motion.
    */
@@ -146,5 +146,5 @@ export interface ResizeCameraMotion {
    * If it is a position, the camera will be centered on the given x,y position.
    * If it is a tile position, the camera will be centered on the given tile position.
    */
-  target: ResizeCameraMotionTarget
+  target: RecenterCameraMotionTarget
 }

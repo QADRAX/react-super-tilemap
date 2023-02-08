@@ -17,6 +17,7 @@ export function useComputedTilemapState(
     props: ContextProps
 ): ContextComputedState {
     const isResizing = useIsChanging(state.canvasSize, 500);
+    const isZooming = useIsChanging(state.zoom, 500);
 
     const tileSize = useMemo(
         () => getTileSize(state.zoom, props.defaultTileSizePx),
@@ -56,6 +57,7 @@ export function useComputedTilemapState(
         isCameraInMotion,
         isZoomInMotion: isCurrentZoomInMotion,
         isResizing,
+        isZooming,
     };
 
     return computed;

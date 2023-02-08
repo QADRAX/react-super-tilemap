@@ -160,6 +160,10 @@ export type ContextComputedState = {
    * Indicates if the tilemap is beeing resizing.
    */
   isResizing: boolean;
+  /**
+   * Indicates if the tilemap is beeing zooming.
+   */
+  isZooming: boolean;
 };
 
 export type ContextProps = {

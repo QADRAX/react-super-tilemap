@@ -1,26 +1,27 @@
 import { useEffect, useState } from 'react';
-import { ResizeCameraMotion } from '../../types/Motions';
+import { RecenterCameraMotion } from '../../types/Motions';
 import { isTilePosition } from '../../types/Motions.typeGuards';
-import { ContextActions, ContextComputedState } from '../../types/TilemapContext';
+import { ContextActions } from '../../types/TilemapContext';
 import { TilePosition } from '../../types/TilePosition';
 
-export function useCameraRecenterOnResize(
-  computed: ContextComputedState,
+export function useCameraRecenter(
+  flag: boolean,
+  tilePosition: TilePosition | undefined,
   actions: ContextActions,
-  resizeCameraMotion?: ResizeCameraMotion
+  resizeCameraMotion?: RecenterCameraMotion
 ): void {
   const [lastPositionBeforeResize, setLastPositionBeforeResize] = useState<
     TilePosition | undefined
   >(undefined);
 
   useEffect(() => {
-    if (!computed.isResizing) {
-      setLastPositionBeforeResize(computed.cameraCenteredTilePosition);
+    if (!flag) {
+      setLastPositionBeforeResize(tilePosition);
     }
-  }, [computed.isResizing, computed.cameraCenteredTilePosition]);
+  }, [flag, tilePosition]);
 
   useEffect(() => {
-    if (!computed.isResizing && lastPositionBeforeResize && resizeCameraMotion) {
+    if (!flag && lastPositionBeforeResize && resizeCameraMotion) {
       const type = resizeCameraMotion.target;
       if (type == 'center') {
         actions.addCameraMotion(resizeCameraMotion.settings, 'center');
@@ -30,5 +31,5 @@ export function useCameraRecenterOnResize(
         actions.addCameraMotion(resizeCameraMotion.settings, type);
       }
     }
-  }, [computed.isResizing]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [flag]); // eslint-disable-line react-hooks/exhaustive-deps
 }
