@@ -5,8 +5,8 @@ import {
   _setSpriteMap,
 } from '../../Context/TilemapContext.actions';
 import { usePromise } from '../../hooks/usePromise';
-import { Sprite } from '../../classes/Sprite';
 import { SpriteDefinition } from '../../types/SpriteDefinition';
+import { loadSprites } from '../../utils/loadSprites';
 
 /**
  * Load sprites by given sprites definition.
@@ -22,10 +22,7 @@ export function useSpriteLoader(
   onSpritesLoadError?: (error: Error) => void
 ): void {
   const [spriteMap, error, isLoading] = usePromise(
-    async () => {
-      const spriteMap = await Sprite.loadSprites(spriteDefinition);
-      return spriteMap;
-    },
+    async () => await loadSprites(spriteDefinition),
     undefined,
     [spriteDefinition]
   );

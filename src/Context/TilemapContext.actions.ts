@@ -1,7 +1,7 @@
-import { SpriteMap } from '../classes/Sprite';
 import { CurrentCameraMotion, CameraMotionRequest, CurrentZoomMotion, ZoomMotionRequest } from '../types/Motions';
 import { Position } from '../types/Position';
 import { Size } from '../types/Size';
+import { SpriteMap } from '../types/Sprite';
 
 // Action types
 

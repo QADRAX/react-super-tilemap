@@ -22,7 +22,6 @@ export function useZoomMotions(
       !currentCameraMotion
     ) {
       // add next motion from the queue
-      console.log('klklkl', currentZoomMotion)
 
       const nextMotionRequest = zoomMotionQueue[0];
 
@@ -42,7 +41,13 @@ export function useZoomMotions(
       const nextQueue = zoomMotionQueue.slice(1);
       dispatch(_setZoomMotionQueue(nextQueue));
     }
-  }, [currentZoomMotion, zoomMotionQueue, dispatch]);
+  }, [
+    currentZoomMotion, 
+    zoomMotionQueue, 
+    dispatch,
+    zoom,
+    currentCameraMotion,
+  ]);
 
   const endZoomMotion = useCallback(() => {
     dispatch(_setCurrentZoomMotion(undefined));

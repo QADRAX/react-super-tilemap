@@ -1,4 +1,3 @@
-import { SpriteMap } from '../classes/Sprite';
 import { MapDimensions } from './MapDimensions';
 import {
   CameraMotionRequest,
@@ -9,6 +8,7 @@ import {
 } from './Motions';
 import { Position } from './Position';
 import { Size } from './Size';
+import { SpriteMap } from './Sprite';
 import { TilePosition } from './TilePosition';
 
 /**

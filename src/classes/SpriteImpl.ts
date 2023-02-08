@@ -6,17 +6,16 @@ import {
   INVALID_SPRITE_IMAGE_ERROR,
 } from '../constants';
 import { Size } from '../types/Size';
+import { Sprite } from '../types/Sprite';
 import { SpriteDefinition } from '../types/SpriteDefinition';
-
-export type SpriteMap = Map<string, Sprite>;
 
 /**
  * A sprite is a collection of images that are used to animate a game object 
  * and are loaded from a sprite definition array.
  * 
- * @public
+ * @internal
  */
-export class Sprite {
+export class SpriteImpl implements Sprite {
   private _imagesSrc: string[];
   private _animationDelay: number;
   private _htmlImages: HTMLImageElement[] | undefined;
@@ -41,29 +40,6 @@ export class Sprite {
       this._tileSize = spriteDefinition.tileSize;
     } else {
       this._tileSize = DEFAULT_SPRITE_TILESIZE;
-    }
-  }
-
-  static async loadSprites(
-    spriteDefinitions: SpriteDefinition[] | undefined
-  ): Promise<SpriteMap | undefined> {
-    if (spriteDefinitions) {
-      const spriteMap: SpriteMap = new Map();
-      const promises: (() => Promise<void>)[] = [];
-
-      for (const spriteDefinition of spriteDefinitions) {
-        const loadSprite = async () => {
-          const sprite = new Sprite(spriteDefinition);
-          await sprite.load();
-          spriteMap.set(spriteDefinition.key, sprite);
-        };
-        promises.push(loadSprite);
-      }
-
-      await Promise.all(promises.map((p) => p()));
-      return spriteMap;
-    } else {
-      return undefined;
     }
   }
 

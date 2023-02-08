@@ -1,8 +1,8 @@
 import { Size } from '../types/Size';
 import { DEFAULT_BACKGROUND_COLOR } from '../constants';
-import { SpriteMap } from '../classes/Sprite';
 import { isValidCSSColor } from '../utils/colors';
 import { Position } from '../types/Position';
+import { SpriteMap } from '../types/Sprite';
 
 export type RenderProps = {
   spriteMap?: SpriteMap;
