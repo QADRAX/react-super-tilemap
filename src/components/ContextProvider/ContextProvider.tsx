@@ -31,7 +31,7 @@ export const ContextProvider: FunctionComponent<TilemapContextProviderProps> = (
 
   const contextProps = useMemo(() => {
     const contextProps: ContextProps = {
-      defaultTileSizePx: props.defaultTileSize || DEFAULT_TILE_SIZE,
+      defaultTileSize: props.defaultTileSize || DEFAULT_TILE_SIZE,
       spriteSchema: props.tilmapSchema,
     };
 

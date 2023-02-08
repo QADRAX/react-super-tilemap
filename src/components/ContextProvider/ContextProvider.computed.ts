@@ -20,8 +20,8 @@ export function useComputedTilemapState(
     const isZooming = useIsChanging(state.zoom, 500);
 
     const tileSize = useMemo(
-        () => getTileSize(state.zoom, props.defaultTileSizePx),
-        [state.zoom, props.defaultTileSizePx]
+        () => getTileSize(state.zoom, props.defaultTileSize),
+        [state.zoom, props.defaultTileSize]
     );
 
     const mapDimensions = useMemo(() => getMapDimensions(props.spriteSchema), [props.spriteSchema]);

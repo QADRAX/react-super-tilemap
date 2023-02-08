@@ -170,7 +170,7 @@ export type ContextProps = {
   /**
    * The default size of a tile in pixels.
    */
-  defaultTileSizePx: number;
+  defaultTileSize: number;
   /**
    * Tilemap sprite schema.
    *
