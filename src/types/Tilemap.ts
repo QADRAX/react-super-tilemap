@@ -91,4 +91,8 @@ export interface TilemapProps extends TilemapEvents {
    * @default true
    */
   draggable?: boolean;
+  /**
+   * Children to render.
+   */
+  children?: React.ReactNode;
 }

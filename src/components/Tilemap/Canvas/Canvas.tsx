@@ -74,7 +74,13 @@ export class Canvas extends React.PureComponent<CanvasProps> {
       return null;
     }
     return (
-      <canvas width={this.canvasSize.width} height={this.canvasSize.height} ref={this.canvasRef} />
+      <canvas
+        style={{
+          position: 'absolute',
+        }}
+        width={this.canvasSize.width}
+        height={this.canvasSize.height}
+        ref={this.canvasRef} />
     );
   }
 }

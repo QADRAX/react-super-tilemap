@@ -45,5 +45,5 @@ export interface TilemapContextProviderProps extends TilemapContextProviderEvent
   /**
    * Children to render.
    */
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }

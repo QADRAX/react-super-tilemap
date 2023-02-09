@@ -45,7 +45,15 @@ export const Tilemap: FunctionComponent<TilemapProps> = (props) => {
       onContextMenu={handleContextMenu}
       ref={wrapperRef}
     >
+
       <Canvas backgroundColor={props.settings?.backgroundColor} />
+      <div style={{
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+      }}>
+        {props.children}
+      </div>
     </Controls>
   );
 };

@@ -97,6 +97,7 @@ const Controls = React.forwardRef<HTMLDivElement, ControlsProps>((props, wrapper
       style={{
         width: '100%',
         height: '100%',
+        position: 'relative',
       }}
       onMouseDown={onMouseDown}
       onMouseMove={onMouseMove}
