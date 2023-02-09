@@ -36,7 +36,7 @@ export type TilemapSettings = {
  *
  * @public
  */
-export type TilemapEvents = {
+export type TilemapDisplayEvents = {
   /**
    * It will be called when a tile is clicked.
    *
@@ -74,7 +74,7 @@ export type TilemapEvents = {
  *
  * @public
  */
-export interface TilemapProps extends TilemapEvents {
+export interface TilemapDisplayProps extends TilemapDisplayEvents {
   /**
    * Tilemap's settings.
    */

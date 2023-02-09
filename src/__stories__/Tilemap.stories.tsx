@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { Tilemap } from '../components/Tilemap/Tilemap';
+import { TilemapDisplay } from '../components/Tilemap/TilemapDisplay';
 import { getFullfilledSchema } from './__MapGenerator__';
 import { SpriteName, spritesDefinition } from './__Sprites__';
 import { useTilemapContext } from '../hooks/useTilemapContext';
@@ -27,7 +27,7 @@ const Demo = (props: DemoProps) => {
 
   return (
     <>
-      <Tilemap onTileClick={props.onTileClick} onTileContextMenu={props.onTileRightClick} />
+      <TilemapDisplay onTileClick={props.onTileClick} onTileContextMenu={props.onTileRightClick} />
       <div
         style={{
           display: 'flex',

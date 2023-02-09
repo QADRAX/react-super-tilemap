@@ -1,18 +1,18 @@
 import React, { FunctionComponent } from 'react';
 import { Controls } from './Controls/Controls';
-import { TilemapProps } from '../../types/Tilemap';
-import { useCanvasSize } from './Tilemap.syncSize';
-import { useDragAndZoomControls } from './Tilemap.useControls';
+import { TilemapDisplayProps as TilemapDisplayProps } from '../../../types/TilemapDisplay';
+import { useCanvasSize } from './TilemapDisplay.syncSize';
+import { useDragAndZoomControls } from './TilemapDisplay.useControls';
 import { Canvas } from './Canvas/Canvas';
 
 /**
- * Tilemap's main component
+ * Mounts the canvas and the HTML controls of the tilemap
  *
- * @public
+ * @internal
  *
  * @param props tilemap props
  */
-export const Tilemap: FunctionComponent<TilemapProps> = (props) => {
+export const TilemapDisplay: FunctionComponent<TilemapDisplayProps> = (props) => {
   const wrapperRef = React.useRef<HTMLDivElement | null>(null);
 
   useCanvasSize(wrapperRef);
@@ -45,7 +45,6 @@ export const Tilemap: FunctionComponent<TilemapProps> = (props) => {
       onContextMenu={handleContextMenu}
       ref={wrapperRef}
     >
-
       <Canvas backgroundColor={props.settings?.backgroundColor} />
       <div style={{
         position: 'absolute',
