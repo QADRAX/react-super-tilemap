@@ -72,11 +72,11 @@ export type TilemapSettings = {
   /**
    * Columns/rows/layers matrix of sprite keys.
    */
-  tilmapSchema: string[][][];
+  tilmapSchema?: string[][][];
   /**
    * List of sprites to load.
    */
-  spriteDefinition: SpriteDefinition[];
+  spriteDefinition?: SpriteDefinition[];
   /**
    * Configuration for camera motions that are being executed when the canvas is resized.
    */
@@ -138,7 +138,7 @@ export type TilemapSettings = {
 export interface TilemapProps extends TilemapSettings, TilemapEvents {
   /**
    * Children to render.
-   * 
+   *  
    * Here you can start using the TilemapContext and operate with the tilemap.
    */
   children?: React.ReactNode;

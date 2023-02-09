@@ -21,7 +21,7 @@ import { loadSprites } from '../utils/loadSprites';
  */
 export function useSpriteLoader(
   dispatch: React.Dispatch<TilemapActions>,
-  spriteDefinition: SpriteDefinition[],
+  spriteDefinition?: SpriteDefinition[],
   onSpritesLoadError?: (error: Error) => void
 ): void {
   const [spriteMap, error, isLoading] = usePromise(

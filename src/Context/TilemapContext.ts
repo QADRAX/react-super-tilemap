@@ -15,8 +15,6 @@ const initialContext: Context = {
   actions: {
     setCameraPosition: () => {},
     setZoom: () => {},
-    setCameraTilePosition: () => {},
-    centerCamera: () => {},
     addCameraMotion: () => {},
     addZoomMotion: () => {},
   },
@@ -35,9 +33,7 @@ const initialContext: Context = {
     isResizing: false,
     isZooming: false,
   },
-  props: {
-    defaultTileSize: DEFAULT_TILE_SIZE,
-  },
+  props: {},
 };
 
 /**
