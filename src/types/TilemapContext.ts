@@ -73,25 +73,15 @@ export type ContextState = {
  */
 export type ContextActions = {
   /**
-   * Sets the camera position to the given position
+   * Sets the camera position to the given position.
    *
+   * @throws Error if the canvas has no size.
+   * 
    * @param position position to move the camera to
    */
-  setCameraPosition: (position: Position) => void;
-  /**
-   * Centers the camera on the given tile position.
-   *
-   * @throws Error if the canvas has no size.
-   *
-   * @param tilePosition tile position to center the camera on
-   */
-  setCameraTilePosition: (tilePosition: TilePosition) => void;
-  /**
-   * Centers the camera in the middle of the tilemap.
-   *
-   * @throws Error if the canvas has no size.
-   */
-  centerCamera: () => void;
+  setCameraPosition: (
+    position: Position | TilePosition | 'center',
+  ) => void;
   /**
    * Sets the current zoom level to the given zoom level
    * If the zoom level is less than 0, it will be set to 0.

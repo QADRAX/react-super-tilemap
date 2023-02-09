@@ -1,4 +1,5 @@
 import React from 'react';
+import { DEFAULT_CAMERA_POSITION } from '../../../constants';
 import { PublicTilemapContext } from '../../../Context/TilemapContext';
 import { renderTileMap } from '../../../render/Render';
 
@@ -35,7 +36,8 @@ export class TilemapCanvas extends React.PureComponent {
     const cameraPosition = this.context.state.cameraPosition;
 
     if (!cameraPosition && this.canvasSize) {
-      this.context.actions.centerCamera();
+      const initialPosition = this.context.props.initialCameraPosition ?? DEFAULT_CAMERA_POSITION
+      this.context.actions.setCameraPosition(initialPosition);
     }
 
     if (canvas && cameraPosition && this.canvasSize) {

@@ -120,6 +120,14 @@ export type TilemapSettings = {
    * @default true
    */
   draggable?: boolean;
+  /**
+   * Initial camera position when the tilemap is mounted.
+   * 
+   * If not provided, the default value will be used.
+   * 
+   * @default 'center'
+   */
+  initialCameraPosition?: TilePosition | 'center';
 }
 
 /**

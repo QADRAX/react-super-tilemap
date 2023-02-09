@@ -12,6 +12,7 @@ import { Position } from '../types/Position';
 import { ContextActions, ContextComputedState, ContextState } from '../types/TilemapContext';
 import { TilePosition } from '../types/TilePosition';
 import { getCameraPositionByTilePosition, getCenteredCameraPosition } from '../utils/positions';
+import { isPosition, isTilePosition } from '../utils/typeGuards';
 
 /**
  * Returns the tilemap context actions.
@@ -29,7 +30,27 @@ export function useTilemapActions(
   state: ContextState
 ): ContextActions {
   const setCameraPosition = useCallback(
-    (position?: Position) => dispatch(_setCameraPosition(position)),
+    (position: Position | TilePosition | 'center') => {
+      if (!state.canvasSize) {
+        throw new Error(UNSIZED_CANVAS_ERROR);
+      }
+      let result: Position | undefined = undefined;
+      if (position == 'center') {
+        result = getCenteredCameraPosition(state.canvasSize, computed.mapSize);
+      } else if (isTilePosition(position)) { 
+        result = getCameraPositionByTilePosition(
+          position,
+          computed.tileSize,
+          state.canvasSize
+        );
+      } else if (isPosition(position)) {
+        result = position;
+      }
+
+      if (result) {
+        dispatch(_setCameraPosition(result));
+      }
+    },
     [dispatch]
   );
   const setZoom = useCallback(
@@ -41,29 +62,6 @@ export function useTilemapActions(
     },
     [dispatch]
   );
-
-  const centerCameraOnTilePosition = useCallback(
-    (tilePosition: TilePosition) => {
-      if (!state.canvasSize) {
-        throw new Error(UNSIZED_CANVAS_ERROR);
-      }
-      const cameraPosition = getCameraPositionByTilePosition(
-        tilePosition,
-        computed.tileSize,
-        state.canvasSize
-      );
-      setCameraPosition(cameraPosition);
-    },
-    [setCameraPosition, state.canvasSize, computed.tileSize]
-  );
-
-  const centerCamera = useCallback(() => {
-    if (!state.canvasSize) {
-      throw new Error(UNSIZED_CANVAS_ERROR);
-    }
-    const centeredCameraPosition = getCenteredCameraPosition(state.canvasSize, computed.mapSize);
-    setCameraPosition(centeredCameraPosition);
-  }, [state.canvasSize, computed.mapSize, setCameraPosition]);
 
   const addCameraMotion = useCallback(
     (settings: MotionSettings, position: TilePosition | 'center') => {
@@ -92,8 +90,6 @@ export function useTilemapActions(
   const actions: ContextActions = {
     setCameraPosition,
     setZoom,
-    setCameraTilePosition: centerCameraOnTilePosition,
-    centerCamera,
     addCameraMotion,
     addZoomMotion,
   };
