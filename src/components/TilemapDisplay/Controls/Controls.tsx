@@ -1,5 +1,5 @@
 import React from 'react';
-import { Position } from '../../../../types/Position';
+import { Position } from '../../../types/Position';
 
 export type ControlsProps = {
   children: React.ReactNode;

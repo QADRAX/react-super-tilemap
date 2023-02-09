@@ -1,8 +1,8 @@
 import { useEffect, useMemo } from 'react';
 import { useResizeDetector } from 'react-resize-detector';
-import { _setCanvasSize } from '../../../Context/TilemapContext.actions';
-import { Size } from '../../../types/Size';
-import { useInternalContext } from '../../../hooks/useInternalContext';
+import { _setCanvasSize } from '../../Context/TilemapContext.actions';
+import { Size } from '../../types/Size';
+import { useInternalContext } from '../../hooks/useInternalContext';
 
 /**
  * Sync the size of the given wrapper with the context state

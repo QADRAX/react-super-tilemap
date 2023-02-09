@@ -1,5 +1,5 @@
-import { CurrentMotion } from '../../../types/Motions';
-import { Position } from '../../../types/Position';
+import { CurrentMotion } from '../../types/Motions';
+import { Position } from '../../types/Position';
 import { MotionManager } from './MotionManager';
 
 export class CameraMotionManager extends MotionManager<Position> {

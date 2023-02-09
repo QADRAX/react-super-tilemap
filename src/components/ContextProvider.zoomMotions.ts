@@ -4,9 +4,9 @@ import {
   _setCameraMotionQueue,
   _setCurrentZoomMotion,
   _setZoomMotionQueue,
-} from '../../Context/TilemapContext.actions';
-import { ContextState } from '../../types/TilemapContext';
-import { createMotion } from '../../utils/createMotion';
+} from '../Context/TilemapContext.actions';
+import { ContextState } from '../types/TilemapContext';
+import { createMotion } from '../utils/createMotion';
 
 export function useZoomMotions(
   dispatch: React.Dispatch<TilemapActions>,

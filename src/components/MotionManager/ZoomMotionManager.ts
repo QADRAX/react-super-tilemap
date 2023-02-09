@@ -1,4 +1,4 @@
-import { CurrentMotion } from '../../../types/Motions';
+import { CurrentMotion } from '../../types/Motions';
 import { MotionManager } from './MotionManager';
 
 export class ZoomMotionManager extends MotionManager<number> {

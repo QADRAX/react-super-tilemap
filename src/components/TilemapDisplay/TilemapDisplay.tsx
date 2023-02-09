@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { Controls } from './Controls/Controls';
-import { TilemapDisplayProps as TilemapDisplayProps } from '../../../types/TilemapDisplay';
+import { TilemapDisplayProps as TilemapDisplayProps } from '../../types/TilemapDisplay';
 import { useCanvasSize } from './TilemapDisplay.syncSize';
 import { useDragAndZoomControls } from './TilemapDisplay.useControls';
 import { Canvas } from './Canvas/Canvas';

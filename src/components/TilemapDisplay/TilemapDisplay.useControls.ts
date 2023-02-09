@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
-import { DEFAULT_DRAG_SENSITIVITY, DEFAULT_ZOOM_INCREMENT, DRAG_DELAY } from '../../../constants';
-import { Position } from '../../../types/Position';
-import { TilemapDisplayEvents } from '../../../types/TilemapDisplay';
-import { getTilePosition } from '../../../utils/positions';
-import { useTilemapContext } from '../../../hooks/useTilemapContext';
-import { useInternalContext } from '../../../hooks/useInternalContext';
-import { _setIsCameraDragging } from '../../../Context/TilemapContext.actions';
+import { DEFAULT_DRAG_SENSITIVITY, DEFAULT_ZOOM_INCREMENT, DRAG_DELAY } from '../../constants';
+import { Position } from '../../types/Position';
+import { TilemapDisplayEvents } from '../../types/TilemapDisplay';
+import { getTilePosition } from '../../utils/positions';
+import { useTilemapContext } from '../../hooks/useTilemapContext';
+import { useInternalContext } from '../../hooks/useInternalContext';
+import { _setIsCameraDragging } from '../../Context/TilemapContext.actions';
 
 export interface TilemapControlProps extends TilemapDisplayEvents {
   dragSensitivity?: number;

@@ -3,11 +3,11 @@ import {
   TilemapActions,
   _setCameraMotionQueue,
   _setCurrentCameraMotion,
-} from '../../Context/TilemapContext.actions';
-import { Position } from '../../types/Position';
-import { ContextComputedState, ContextState } from '../../types/TilemapContext';
-import { createMotion } from '../../utils/createMotion';
-import { getCameraPositionByTilePosition, getCenteredCameraPosition, getDistance } from '../../utils/positions';
+} from '../Context/TilemapContext.actions';
+import { Position } from '../types/Position';
+import { ContextComputedState, ContextState } from '../types/TilemapContext';
+import { createMotion } from '../utils/createMotion';
+import { getCameraPositionByTilePosition, getCenteredCameraPosition, getDistance } from '../utils/positions';
 
 export function useCameraMotions(
   dispatch: React.Dispatch<TilemapActions>,

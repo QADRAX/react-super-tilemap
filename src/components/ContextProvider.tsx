@@ -1,10 +1,10 @@
 import React, { FunctionComponent, useMemo, useReducer } from 'react';
-import { DEFAULT_TILE_SIZE } from '../../constants';
-import { InternalTilemapContext } from '../../Context/InternalTilemapContext';
-import { initialState, PublicTilemapContext } from '../../Context/TilemapContext';
-import { tilemapReducer } from '../../Context/TilemapContext.reducer';
-import { ContextProps } from '../../types/TilemapContext';
-import { TilemapContextProviderProps } from '../../types/TilemapContextProvider';
+import { DEFAULT_TILE_SIZE } from '../constants';
+import { InternalTilemapContext } from '../Context/InternalTilemapContext';
+import { initialState, PublicTilemapContext } from '../Context/TilemapContext';
+import { tilemapReducer } from '../Context/TilemapContext.reducer';
+import { ContextProps } from '../types/TilemapContext';
+import { TilemapContextProviderProps } from '../types/TilemapContextProvider';
 import { useTilemapContextActions } from './ContextProvider.actions';
 import { useCameraMotions } from './ContextProvider.cameraMotions';
 import { useComputedTilemapState } from './ContextProvider.computed';

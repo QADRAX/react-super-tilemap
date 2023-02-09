@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { RecenterCameraMotion } from '../../types/Motions';
-import { isTilePosition } from '../../types/Motions.typeGuards';
-import { ContextActions } from '../../types/TilemapContext';
-import { TilePosition } from '../../types/TilePosition';
+import { RecenterCameraMotion } from '../types/Motions';
+import { isTilePosition } from '../types/Motions.typeGuards';
+import { ContextActions } from '../types/TilemapContext';
+import { TilePosition } from '../types/TilePosition';
 
 export function useCameraRecenter(
   flag: boolean,

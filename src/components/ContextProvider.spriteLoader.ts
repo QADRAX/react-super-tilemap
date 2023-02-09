@@ -3,10 +3,10 @@ import {
   TilemapActions,
   _setIsSpriteMapLoading,
   _setSpriteMap,
-} from '../../Context/TilemapContext.actions';
-import { usePromise } from '../../hooks/usePromise';
-import { SpriteDefinition } from '../../types/SpriteDefinition';
-import { loadSprites } from '../../utils/loadSprites';
+} from '../Context/TilemapContext.actions';
+import { usePromise } from '../hooks/usePromise';
+import { SpriteDefinition } from '../types/SpriteDefinition';
+import { loadSprites } from '../utils/loadSprites';
 
 /**
  * Load sprites by given sprites definition.
