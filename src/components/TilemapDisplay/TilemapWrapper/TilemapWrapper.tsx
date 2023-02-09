@@ -1,7 +1,7 @@
 import React from 'react';
 import { Position } from '../../../types/Position';
 
-export type ControlsProps = {
+export type TilemapWrapperProps = {
   children: React.ReactNode;
   onMouseDown: (mousePosition: Position) => void;
   onMouseMove: (mousePosition: Position) => void;
@@ -39,13 +39,13 @@ function getDataFromEvent(event: ControlEvent): {
 }
 
 /**
- * Wrapper for the Tilemap.
+ * Tilemap's wrapper.
  *
  * It handles mouse and touch events and forwards them to the Tilemap.
  *
  * @internal
  */
-const Controls = React.forwardRef<HTMLDivElement, ControlsProps>((props, wrapperRef) => {
+const TilemapWrapper = React.forwardRef<HTMLDivElement, TilemapWrapperProps>((props, wrapperRef) => {
   // Events
 
   const onMouseDown = (event: ControlEvent) => {
@@ -117,6 +117,6 @@ const Controls = React.forwardRef<HTMLDivElement, ControlsProps>((props, wrapper
   );
 });
 
-Controls.displayName = 'Controls';
+TilemapWrapper.displayName = 'TilemapWrapper';
 
-export { Controls };
+export { TilemapWrapper };

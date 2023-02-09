@@ -8,6 +8,16 @@ import {
 import { ContextState } from '../types/TilemapContext';
 import { createMotion } from '../utils/createMotion';
 
+/**
+ * Dispatch current zoom motion from the zoom motion queue.
+ * 
+ * @private
+ * 
+ * @param dispatch context dispatch
+ * @param state context state
+ * @param onZoomMotionEnds callback to advise the consumer that a zoom motion ends
+ * @returns internal callback to be called when the zoom motion ends
+ */
 export function useZoomMotions(
   dispatch: React.Dispatch<TilemapActions>,
   state: ContextState,

@@ -10,10 +10,12 @@ import { getMapDimensions, getMapSize, getTileSize } from '../utils/sizes';
 /**
  * Returns useful computed values from the tilemap state.
  *
- * @param state
- * @returns
+ * @private
+ * 
+ * @param state tilemap state
+ * @returns computed values
  */
-export function useComputedTilemapState(
+export function useComputedValues(
     state: ContextState,
     props: TilemapProps
 ): ContextComputedState {

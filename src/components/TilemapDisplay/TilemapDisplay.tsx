@@ -1,11 +1,13 @@
 import React, { FunctionComponent } from 'react';
-import { Controls } from './Controls/Controls';
-import { useCanvasSize } from './TilemapDisplay.syncSize';
-import { useDragAndZoomControls } from './TilemapDisplay.useControls';
-import { Canvas } from './Canvas/Canvas';
+import { TilemapWrapper } from './TilemapWrapper/TilemapWrapper';
+import { useCanvasSize } from './TilemapDisplay.useCanvasSize';
+import { useDragAndZoomControls } from './TilemapDisplay.useDragAndZoomControls';
+import { TilemapCanvas } from './TilemapCanvas/TilemapCanvas';
 
 /**
- * Mounts the canvas and the HTML controls of the tilemap
+ * Tilemap's display.
+ * 
+ * It Mounts the canvas and the HTML controls of the tilemap
  *
  * @internal
  *
@@ -27,7 +29,7 @@ export const TilemapDisplay: FunctionComponent = (props) => {
   } = useDragAndZoomControls();
 
   return (
-    <Controls
+    <TilemapWrapper
       onWheel={handleWheel}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
@@ -37,7 +39,7 @@ export const TilemapDisplay: FunctionComponent = (props) => {
       onContextMenu={handleContextMenu}
       ref={wrapperRef}
     >
-      <Canvas />
+      <TilemapCanvas />
       <div style={{
         position: 'absolute',
         width: '100%',
@@ -45,6 +47,6 @@ export const TilemapDisplay: FunctionComponent = (props) => {
       }}>
         {props.children}
       </div>
-    </Controls>
+    </TilemapWrapper>
   );
 };

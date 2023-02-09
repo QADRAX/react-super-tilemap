@@ -9,6 +9,17 @@ import { ContextComputedState, ContextState } from '../types/TilemapContext';
 import { createMotion } from '../utils/createMotion';
 import { getCameraPositionByTilePosition, getCenteredCameraPosition, getDistance } from '../utils/positions';
 
+/**
+ * Dispatch current camera motion from the camera motion queue.
+ * 
+ * @private
+ * 
+ * @param dispatch context dispatch
+ * @param state context state
+ * @param computed computed values
+ * @param onCameraMotionEnds callback to advise the consumer that a camera motion ends
+ * @returns internal callback to be called when the camera motion ends
+ */
 export function useCameraMotions(
   dispatch: React.Dispatch<TilemapActions>,
   state: ContextState,

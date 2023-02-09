@@ -3,24 +3,23 @@ import { InternalTilemapContext } from '../Context/InternalTilemapContext';
 import { initialState, PublicTilemapContext } from '../Context/TilemapContext';
 import { tilemapReducer } from '../Context/TilemapContext.reducer';
 import { TilemapProps } from '../types/TilemapContextProvider';
-import { useTilemapContextActions } from './ContextProvider.actions';
-import { useCameraMotions } from './ContextProvider.cameraMotions';
-import { useComputedTilemapState } from './ContextProvider.computed';
-import { useCameraRecenter } from './ContextProvider.recenter';
-import { useSpriteLoader } from './ContextProvider.spriteLoader';
-import { useZoomMotions } from './ContextProvider.zoomMotions';
+import { useTilemapActions } from './Tilemap.useTilemapActions';
+import { useCameraMotions } from './Tilemap.useCameraMotions';
+import { useComputedValues } from './Tilmeap.useComputedValues';
+import { useCameraRecenter } from './Tilemap.useCameraRecenter';
+import { useSpriteLoader } from './Tilemap.useSpriteLoader';
+import { useZoomMotions } from './Tilemap.useZoomMotions';
 import { CameraMotionManager } from './MotionManager/CameraMotionManager';
 import { ZoomMotionManager } from './MotionManager/ZoomMotionManager';
 
 /**
- * Tilemap's context provider
+ * Tilemap main component.
  *
  * @public
  *
  * @param props
- * @returns Context provider for the tilemap
  */
-export const ContextProvider: FunctionComponent<TilemapProps> = (props) => {
+export const Tilemap: FunctionComponent<TilemapProps> = (props) => {
   // Context Reducer
 
   const [state, dispatch] = useReducer(tilemapReducer, initialState);
@@ -31,11 +30,11 @@ export const ContextProvider: FunctionComponent<TilemapProps> = (props) => {
 
   // Computed values from the context state
 
-  const computed = useComputedTilemapState(state, props);
+  const computed = useComputedValues(state, props);
 
   // Context actions
 
-  const actions = useTilemapContextActions(dispatch, computed, state);
+  const actions = useTilemapActions(dispatch, computed, state);
 
   // Sync camera motions
 

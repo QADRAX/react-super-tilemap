@@ -12,9 +12,12 @@ import { loadSprites } from '../utils/loadSprites';
  * Load sprites by given sprites definition.
  *
  * Dispatch the result to the context and throw errors if the sprites cannot be loaded.
- *
- * @param props
- * @param dispatch
+ * 
+ * @private
+ * 
+ * @param dispatch context dispatch
+ * @param spriteDefinition sprites definition
+ * @param onSpritesLoadError callback to advise the consumer that the sprites cannot be loaded
  */
 export function useSpriteLoader(
   dispatch: React.Dispatch<TilemapActions>,

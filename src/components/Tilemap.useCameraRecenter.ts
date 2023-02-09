@@ -4,6 +4,16 @@ import { isTilePosition } from '../types/Motions.typeGuards';
 import { ContextActions } from '../types/TilemapContext';
 import { TilePosition } from '../types/TilePosition';
 
+/**
+ * Calls to recenter the camera when the flag is set to false.
+ * 
+ * @private
+ * 
+ * @param flag flag to trigger the recenter
+ * @param tilePosition tile position to recenter on
+ * @param actions tilemap actions
+ * @param resizeCameraMotion camera motion to use when recentering
+ */
 export function useCameraRecenter(
   flag: boolean,
   tilePosition: TilePosition | undefined,

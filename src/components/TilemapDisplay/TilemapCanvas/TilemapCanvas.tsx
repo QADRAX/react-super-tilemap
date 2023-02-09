@@ -3,13 +3,13 @@ import { PublicTilemapContext } from '../../../Context/TilemapContext';
 import { renderTileMap } from '../../../render/Render';
 
 /**
- * Tilemap's canvas
+ * Tilemap's canvas.
  *
  * It is responsible for rendering the tilemap in a <canvas> element.
  *
  * @internal
  */
-export class Canvas extends React.PureComponent {
+export class TilemapCanvas extends React.PureComponent {
   private canvasRef: React.RefObject<HTMLCanvasElement>;
   private bufferCanvas: HTMLCanvasElement;
   private animationFrameId?: number;

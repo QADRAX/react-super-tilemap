@@ -5,9 +5,9 @@ import { Size } from '../../types/Size';
 import { useInternalContext } from '../../hooks/useInternalContext';
 
 /**
- * Sync the size of the given wrapper with the context state
+ * Sync the size of the given wrapper with the context state.
  *
- * @internal
+ * @private
  *
  * @param targetRef wrapper ref
  */

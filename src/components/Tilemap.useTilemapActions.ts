@@ -15,11 +15,15 @@ import { getCameraPositionByTilePosition, getCenteredCameraPosition } from '../u
 
 /**
  * Returns the tilemap context actions.
+ * 
+ * @private
  *
- * @param dispatch
- * @returns
+ * @param dispatch context dispatch
+ * @param computed computed values
+ * @param state context state
+ * @returns context actions
  */
-export function useTilemapContextActions(
+export function useTilemapActions(
   dispatch: React.Dispatch<TilemapActions>,
   computed: ContextComputedState,
   state: ContextState

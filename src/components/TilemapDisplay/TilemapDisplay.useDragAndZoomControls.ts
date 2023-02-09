@@ -9,7 +9,7 @@ import { _setIsCameraDragging } from '../../Context/TilemapContext.actions';
 /**
  * Bind mouse and touch events to drag and zoom logic.
  *
- * @internal
+ * @private
  *
  * @param props
  * @returns
