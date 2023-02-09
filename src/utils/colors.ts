@@ -1,6 +1,7 @@
 export function isValidCSSColor(color?: string): boolean {
-    if (!color) return false;
-    const s = new Option().style;
-    s.color = color;
-    return s.color === color;
+  if (!color) {
+    return false;
   }
+
+  return CSS.supports('color', color);
+}
