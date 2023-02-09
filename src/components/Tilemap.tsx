@@ -11,6 +11,7 @@ import { useSpriteLoader } from './Tilemap.useSpriteLoader';
 import { useZoomMotions } from './Tilemap.useZoomMotions';
 import { CameraMotionManager } from './MotionManager/CameraMotionManager';
 import { ZoomMotionManager } from './MotionManager/ZoomMotionManager';
+import { TilemapDisplay } from './TilemapDisplay/TilemapDisplay';
 
 /**
  * Tilemap main component.
@@ -57,7 +58,9 @@ export const Tilemap: FunctionComponent<TilemapProps> = (props) => {
       <InternalTilemapContext.Provider value={{ dispatch }}>
         <CameraMotionManager onMotionEnd={endCameraMotion} />
         <ZoomMotionManager onMotionEnd={endZoomMotion} />
-        {props.children}
+        <TilemapDisplay>
+          {props.children}
+        </TilemapDisplay>
       </InternalTilemapContext.Provider>
     </PublicTilemapContext.Provider>
   );

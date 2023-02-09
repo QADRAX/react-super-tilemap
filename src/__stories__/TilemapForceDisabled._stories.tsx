@@ -1,3 +1,4 @@
+/*
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { TilemapDisplay } from '../components/Tilemap/TilemapDisplay';
@@ -253,3 +254,4 @@ storiesOf('Tilemap: zoomeable & dragable', module)
       </ContextProvider>
     );
   });
+*/

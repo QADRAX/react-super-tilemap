@@ -1,108 +1,143 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { TilemapDisplay } from '../components/Tilemap/TilemapDisplay';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Tilemap } from '../components/Tilemap';
 import { getFullfilledSchema } from './__MapGenerator__';
 import { SpriteName, spritesDefinition } from './__Sprites__';
-import { useTilemapContext } from '../hooks/useTilemapContext';
-import { TilePosition } from '../types/TilePosition';
-import { ContextProvider } from '../components/ContextProvider/ContextProvider';
-
-const wrapperStyle: React.CSSProperties = {
-  width: '100%',
-  height: '700px',
-};
+import { MotionSettings } from '../types/Motions';
+import { DEFAULT_BACKGROUND_COLOR, DEFAULT_DRAG_SENSITIVITY, DEFAULT_TILE_SIZE } from '../constants';
 
 const rows = 30;
 const cols = 50;
 
 const initialSchema = getFullfilledSchema(cols, rows, SpriteName.grass, 3);
 
-interface DemoProps {
-  onTileClick: (tilePos: TilePosition) => void;
-  onTileRightClick: (tilePos: TilePosition) => void;
-}
-
-const Demo = (props: DemoProps) => {
-  const { state, computed, actions } = useTilemapContext();
-
-  return (
-    <>
-      <TilemapDisplay onTileClick={props.onTileClick} onTileContextMenu={props.onTileRightClick} />
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-        }}
-      >
-        <button
-          onClick={() => {
-            actions.setZoom(0);
-          }}
-        >
-          Reset zoom
-        </button>
-        <button
-          onClick={() => {
-            actions.setCameraPosition({ x: 0, y: 0 });
-          }}
-        >
-          Center camera
-        </button>
-      </div>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignContent: 'flex-start',
-        }}
-      >
-        <label>Current Zoom: {state.zoom}</label>
-        <label>Tile size: {computed.tileSize}</label>
-        <label>Camera X: {state.cameraPosition?.x}</label>
-        <label>Camera Y: {state.cameraPosition?.y}</label>
-      </div>
-    </>
-  );
+const motionSettings: MotionSettings = {
+    speed: 0.1,
+    easing: 'easeOutElastic',
+    maxDuration: 1,
 };
 
-storiesOf('Tilemap', module)
-  .addDecorator((storyFn) => <div style={wrapperStyle}>{storyFn()}</div>)
-  .add('Demo 1', () => {
-    const [schema, setSchema] = React.useState(initialSchema);
+export default {
+    title: 'Tilemap/Basic',
+    component: Tilemap,
+    argTypes: {
+        backgroundColor: {
+            defaultValue: DEFAULT_BACKGROUND_COLOR,
+            table: {
+                type: {
+                    summary: 'string',
+                },
+            },
+            control: 'color',
+        },
+        defaultTileSize: {
+            defaultValue: DEFAULT_TILE_SIZE,
+            table: {
+                type: {
+                    summary: 'number',
+                },
+            },
+            control: 'number',
+        },
+        tilmapSchema: {
+            defaultValue: initialSchema,
+            table: {
+                type: {
+                    summary: 'TilemapSchema',
+                },
+            },
+            control: 'object',
+        },
+        spriteDefinition: {
+            defaultValue: spritesDefinition,
+            table: {
+                type: {
+                    summary: 'SpriteDefinition',
+                },
+            },
+            control: 'object',
+        },
+        recenterCameraOnResize: {
+            defaultValue: {
+                settings: motionSettings,
+                target: 'center',
+            },
+            table: {
+                type: {
+                    summary: 'RecenterCameraMotion',
+                },
+            },
+            control: 'object',
+        },
+        recenterCameraOnZoom: {
+            table: {
+                type: {
+                    summary: 'RecenterCameraMotion',
+                },
+            },
+            control: 'object',
+        },
+        draggable: {
+            defaultValue: true,
+            table: {
+                type: {
+                    summary: 'boolean',
+                },
+            },
+            control: 'boolean',
+        },
+        zoomeable: {
+            defaultValue: true,
+            table: {
+                type: {
+                    summary: 'boolean',
+                },
+            },
+            control: 'boolean'
+        },
+        dragSensitivity: {
+            defaultValue: DEFAULT_DRAG_SENSITIVITY,
+            table: {
+                type: {
+                    summary: 'number',
+                },
+            },
+            control: 'number',
+        },
+        onTileClick: { control: 'function' },
+        onTileContextMenu: { control: 'function' },
+        onTileDoubleClick: { control: 'function' },
+        onTileHover: { control: 'function' },
+        onTileHoverOut: { control: 'function' },
+        onCameraMotionEnd: { control: 'function' },
+        onZoomMotionEnd: { control: 'function' },
+        onSpritesLoadError: { control: 'function' },
+    },
+    parameters: { 
+        actions: { 
+            argTypesRegex: '^on.*' 
+        },
+        controls: {
+            expanded: true,
+            hideNoControlsWarning: true,
+          },        
+    },
+} as ComponentMeta<typeof Tilemap>;
 
-    const onTileClick = (tilePos: TilePosition) => {
-      console.log(tilePos);
-      const newSchema = [...schema];
-      const tile = newSchema[tilePos.col][tilePos.row];
-      if (tile) {
-        const layer = tile[1];
-        if (layer) {
-          tile[1] = '';
-        } else {
-          tile[1] = SpriteName.building;
-        }
-      }
-      setSchema(newSchema);
-    };
+const Template: ComponentStory<typeof Tilemap> = (args) => <Tilemap {...args} />;
 
-    const onTileRightClick = (tilePos: TilePosition) => {
-      console.log(tilePos);
-      const newSchema = [...schema];
-      const tile = newSchema[tilePos.col][tilePos.row];
-      if (tile) {
-        const layer = tile[2];
-        if (layer) {
-          tile[2] = '';
-        } else {
-          tile[2] = SpriteName.armyIdle;
-        }
-      }
-      setSchema(newSchema);
-    };
+export const Basic = Template.bind({});
 
-    return (
-      <ContextProvider spriteDefinition={spritesDefinition} tilmapSchema={schema}>
-        <Demo onTileClick={onTileClick} onTileRightClick={onTileRightClick} />
-      </ContextProvider>
-    );
-  });
+Basic.args = {
+    defaultTileSize: 16,
+    tilmapSchema: initialSchema,
+    spriteDefinition: spritesDefinition,
+    draggable: true,
+    zoomeable: true,
+    dragSensitivity: 1.1,
+    recenterCameraOnResize: {
+        settings: motionSettings,
+        target: 'center',
+    },
+};
+

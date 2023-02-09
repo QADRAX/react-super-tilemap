@@ -3,6 +3,8 @@ import { DEFAULT_CAMERA_POSITION } from '../../../constants';
 import { PublicTilemapContext } from '../../../Context/TilemapContext';
 import { renderTileMap } from '../../../render/Render';
 
+type TilemapCanvasProps = Record<string, never>;
+
 /**
  * Tilemap's canvas.
  *
@@ -10,13 +12,13 @@ import { renderTileMap } from '../../../render/Render';
  *
  * @internal
  */
-export class TilemapCanvas extends React.PureComponent {
+export class TilemapCanvas extends React.PureComponent<TilemapCanvasProps> {
   private canvasRef: React.RefObject<HTMLCanvasElement>;
   private bufferCanvas: HTMLCanvasElement;
   private animationFrameId?: number;
 
-  constructor() {
-    super({});
+  constructor(props: TilemapCanvasProps) {
+    super(props);
 
     this.canvasRef = React.createRef();
     this.bufferCanvas = document.createElement('canvas');

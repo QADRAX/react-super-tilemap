@@ -5,11 +5,12 @@ module.exports = {
   webpackFinal: async (config, { configType }) => {
    // add scss support
     config.module.rules.push({
-      test: /\.scss$/,
-      use: ['style-loader', 'css-loader', 'sass-loader'],
+      test: /\.css$/,
+      use: ['style-loader', 'css-loader'],
       include: path.resolve(__dirname, '../'),
     });
 
     return config;
   },
+  addons: ['@storybook/addon-essentials'],
 };

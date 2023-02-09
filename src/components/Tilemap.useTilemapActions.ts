@@ -51,7 +51,7 @@ export function useTilemapActions(
         dispatch(_setCameraPosition(result));
       }
     },
-    [dispatch]
+    [dispatch, computed.tileSize, computed.mapSize, state.canvasSize]
   );
   const setZoom = useCallback(
     (zoom: number) => {
