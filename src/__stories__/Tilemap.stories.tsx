@@ -1,15 +1,15 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Tilemap } from '../components/Tilemap';
-import { getFullfilledSchema } from './__MapGenerator__';
-import { SpriteName, spritesDefinition } from './__Sprites__';
+import { getRandomSpriteSchema } from './__MapGenerator__';
+import { spritesDefinition } from './__Sprites__';
 import { MotionSettings } from '../types/Motions';
 import { DEFAULT_BACKGROUND_COLOR, DEFAULT_DRAG_SENSITIVITY, DEFAULT_TILE_SIZE } from '../constants';
 
-const rows = 10;
-const cols = 10;
+const rows = 5;
+const cols = 5;
 
-const initialSchema = getFullfilledSchema(cols, rows, SpriteName.grass, 3);
+const initialSchema = getRandomSpriteSchema(cols, rows);
 
 const motionSettings: MotionSettings = {
     speed: 0.1,
