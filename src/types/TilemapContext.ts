@@ -9,7 +9,7 @@ import {
 import { Position } from './Position';
 import { Size } from './Size';
 import { SpriteMap } from './Sprite';
-import { TilemapProps } from './TilemapContextProvider';
+import { TilemapProps } from './Tilemap';
 import { TilePosition } from './TilePosition';
 
 /**
@@ -26,12 +26,6 @@ export type ContextState = {
    * Current camera motion is being taken.
    */
   currentCameraMotion?: CurrentCameraMotion;
-  /**
-   * Flag to indicate if the camera is being moving by the user dragging the map.
-   *
-   * This flag is used to prevent running camera motions while the user is dragging the map.
-   */
-  isCameraDragging: boolean;
   /**
    * Camera motion queue.
    */
@@ -55,18 +49,23 @@ export type ContextState = {
    */
   spriteMap?: SpriteMap;
   /**
-   * Flag to indicate if the sprite map is loading.
-   *
-   * This flag is used to prevent the tilemap from rendering before the sprite map is completely loaded.
-   *
-   * @remarks
-   * Any errors that occur while loading the sprite map will be thrown via component event.
-   */
-  isSpriteMapLoading: boolean;
-  /**
    * Size of the canvas in pixels.
    */
   canvasSize?: Size;
+  /**
+   * Flag to indicate if the sprite map is loading.
+   * 
+   * @remarks
+   * This flag is used to prevent the tilemap from rendering before the sprite map is completely loaded.
+   */
+  isSpriteMapLoading: boolean;
+  /**
+   * Flag to indicate if the camera is being moving by the user dragging the map.
+   *
+   * @remarks
+   * This flag is used to prevent running camera motions while the user is dragging the map.
+   */
+  isCameraDragging: boolean;
 };
 
 /**
@@ -86,7 +85,7 @@ export type ContextActions = {
    *
    * @param tilePosition tile position to center the camera on
    */
-  centerCameraOnTilePosition: (tilePosition: TilePosition) => void;
+  setCameraTilePosition: (tilePosition: TilePosition) => void;
   /**
    * Centers the camera in the middle of the tilemap.
    *
@@ -148,7 +147,7 @@ export type ContextComputedState = {
   /**
    * Current tile position where the camera is centered.
    */
-  cameraCenteredTilePosition?: TilePosition;
+  cameraTilePosition?: TilePosition;
   /**
    * Indicates if the camera is beeing in a motion.
    */

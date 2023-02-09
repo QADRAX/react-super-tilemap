@@ -2,6 +2,11 @@ import { RecenterCameraMotion } from './Motions';
 import { SpriteDefinition } from './SpriteDefinition';
 import { TilePosition } from './TilePosition';
 
+/**
+ * Tilemap events.
+ * 
+ * @public
+ */
 export type TilemapEvents = {
   /**
    * This event is triggered when an error occurs loading sprites.
@@ -49,6 +54,11 @@ export type TilemapEvents = {
   onTileHoverOut?: (tile: TilePosition) => void;
 };
 
+/**
+ * Tilemap settings.
+ * 
+ * @public
+ */
 export type TilemapSettings = {
   /**
    * Tilemap's default tile size in px.
@@ -112,6 +122,11 @@ export type TilemapSettings = {
   draggable?: boolean;
 }
 
+/**
+ * Tilemap component props.
+ * 
+ * @public
+ */
 export interface TilemapProps extends TilemapSettings, TilemapEvents {
   /**
    * Children to render.

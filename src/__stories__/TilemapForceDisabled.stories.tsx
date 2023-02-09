@@ -111,7 +111,7 @@ const Demo = (props: DemoProps) => {
         </button>
         <button
           onClick={() => {
-            actions.centerCameraOnTilePosition({ col: 24, row: 14 });
+            actions.setCameraTilePosition({ col: 24, row: 14 });
           }}
         >
           Center the camera at col 24, row 14
@@ -188,8 +188,8 @@ const Demo = (props: DemoProps) => {
         <label>Is resizing: {computed.isResizing ? 'true' : 'false'}</label>
         <label>Viewport width: {state.canvasSize?.width}</label>
         <label>Viewport height: {state.canvasSize?.height}</label>
-        <label>Camera centered on tile COL: {computed.cameraCenteredTilePosition?.col}</label>
-        <label>Camera centered on tile ROW: {computed.cameraCenteredTilePosition?.row}</label>
+        <label>Camera centered on tile COL: {computed.cameraTilePosition?.col}</label>
+        <label>Camera centered on tile ROW: {computed.cameraTilePosition?.row}</label>
         <label>Is camera dragging: {state.isCameraDragging ? 'true' : 'false'}</label>
         <label>Is camera in motion: {computed.isCameraInMotion ? 'true' : 'false'}</label>
         <label>Is zoom in zooming: {computed.isZooming ? 'true' : 'false'}</label>

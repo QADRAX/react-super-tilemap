@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useIsChanging } from '../hooks/useIsChanging';
 import { ContextComputedState, ContextState } from '../types/TilemapContext';
-import { TilemapProps } from '../types/TilemapContextProvider';
+import { TilemapProps } from '../types/Tilemap';
 import {
     getCenteredTilePositionByCameraPosition,
 } from '../utils/positions';
@@ -56,7 +56,7 @@ export function useComputedValues(
         tileSize,
         mapDimensions,
         mapSize,
-        cameraCenteredTilePosition,
+        cameraTilePosition: cameraCenteredTilePosition,
         isCameraInMotion,
         isZoomInMotion: isCurrentZoomInMotion,
         isResizing,

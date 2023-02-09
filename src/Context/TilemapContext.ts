@@ -15,7 +15,7 @@ const initialContext: Context = {
   actions: {
     setCameraPosition: () => {},
     setZoom: () => {},
-    centerCameraOnTilePosition: () => {},
+    setCameraTilePosition: () => {},
     centerCamera: () => {},
     addCameraMotion: () => {},
     addZoomMotion: () => {},

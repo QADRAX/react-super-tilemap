@@ -92,7 +92,7 @@ export function useTilemapActions(
   const actions: ContextActions = {
     setCameraPosition,
     setZoom,
-    centerCameraOnTilePosition,
+    setCameraTilePosition: centerCameraOnTilePosition,
     centerCamera,
     addCameraMotion,
     addZoomMotion,

@@ -2,7 +2,7 @@ import React, { FunctionComponent, useReducer } from 'react';
 import { InternalTilemapContext } from '../Context/InternalTilemapContext';
 import { initialState, PublicTilemapContext } from '../Context/TilemapContext';
 import { tilemapReducer } from '../Context/TilemapContext.reducer';
-import { TilemapProps } from '../types/TilemapContextProvider';
+import { TilemapProps } from '../types/Tilemap';
 import { useTilemapActions } from './Tilemap.useTilemapActions';
 import { useCameraMotions } from './Tilemap.useCameraMotions';
 import { useComputedValues } from './Tilmeap.useComputedValues';
@@ -46,11 +46,11 @@ export const Tilemap: FunctionComponent<TilemapProps> = (props) => {
 
   // Recenter on resize
 
-  useCameraRecenter(computed.isResizing, computed.cameraCenteredTilePosition, actions, props.recenterCameraOnResize);
+  useCameraRecenter(computed.isResizing, computed.cameraTilePosition, actions, props.recenterCameraOnResize);
 
   // Recenter after zoom
 
-  useCameraRecenter(computed.isZooming, computed.cameraCenteredTilePosition, actions, props.recenterCameraOnZoom);
+  useCameraRecenter(computed.isZooming, computed.cameraTilePosition, actions, props.recenterCameraOnZoom);
 
   return (
     <PublicTilemapContext.Provider value={{ state, computed, actions, props }}>
