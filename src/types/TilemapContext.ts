@@ -9,6 +9,7 @@ import {
 import { Position } from './Position';
 import { Size } from './Size';
 import { SpriteMap } from './Sprite';
+import { TilemapProps } from './TilemapContextProvider';
 import { TilePosition } from './TilePosition';
 
 /**
@@ -166,19 +167,6 @@ export type ContextComputedState = {
   isZooming: boolean;
 };
 
-export type ContextProps = {
-  /**
-   * The default size of a tile in pixels.
-   */
-  defaultTileSize: number;
-  /**
-   * Tilemap sprite schema.
-   *
-   * This three-dimensional matrix represents what sprites will be displayed for each column/row/layer of the tilemap.
-   */
-  spriteSchema?: string[][][];
-};
-
 /**
  * Tilemap context.
  */
@@ -198,5 +186,5 @@ export type Context = {
   /**
    * Props passed to the tilemap context provider.
    */
-  readonly props: Readonly<ContextProps>;
+  readonly props: Readonly<TilemapProps>;
 };

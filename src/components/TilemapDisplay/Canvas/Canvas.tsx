@@ -2,10 +2,6 @@ import React from 'react';
 import { PublicTilemapContext } from '../../../Context/TilemapContext';
 import { renderTileMap } from '../../../render/Render';
 
-export interface CanvasProps {
-  backgroundColor?: string;
-}
-
 /**
  * Tilemap's canvas
  *
@@ -13,13 +9,13 @@ export interface CanvasProps {
  *
  * @internal
  */
-export class Canvas extends React.PureComponent<CanvasProps> {
+export class Canvas extends React.PureComponent {
   private canvasRef: React.RefObject<HTMLCanvasElement>;
   private bufferCanvas: HTMLCanvasElement;
   private animationFrameId?: number;
 
-  constructor(props: CanvasProps) {
-    super(props);
+  constructor() {
+    super({});
 
     this.canvasRef = React.createRef();
     this.bufferCanvas = document.createElement('canvas');
@@ -48,11 +44,11 @@ export class Canvas extends React.PureComponent<CanvasProps> {
         buffer: this.bufferCanvas,
         canvasSizePx: this.canvasSize,
         spriteMap: this.context.state.spriteMap,
-        schema: this.context.props.spriteSchema,
+        schema: this.context.props.tilmapSchema,
         cameraPosition,
         tileSizePx: this.context.computed.tileSize,
         timestamp,
-        backgroundColor: this.props.backgroundColor,
+        backgroundColor: this.context.props.backgroundColor,
       });
     }
 

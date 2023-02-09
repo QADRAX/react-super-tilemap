@@ -1,17 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
 import { DEFAULT_DRAG_SENSITIVITY, DEFAULT_ZOOM_INCREMENT, DRAG_DELAY } from '../../constants';
 import { Position } from '../../types/Position';
-import { TilemapDisplayEvents } from '../../types/TilemapDisplay';
 import { getTilePosition } from '../../utils/positions';
 import { useTilemapContext } from '../../hooks/useTilemapContext';
 import { useInternalContext } from '../../hooks/useInternalContext';
 import { _setIsCameraDragging } from '../../Context/TilemapContext.actions';
-
-export interface TilemapControlProps extends TilemapDisplayEvents {
-  dragSensitivity?: number;
-  zoomeable: boolean;
-  dragable: boolean;
-}
 
 /**
  * Bind mouse and touch events to drag and zoom logic.
@@ -21,10 +14,10 @@ export interface TilemapControlProps extends TilemapDisplayEvents {
  * @param props
  * @returns
  */
-export function useDragAndZoomControls(props: TilemapControlProps) {
+export function useDragAndZoomControls() {
   // State from context
 
-  const { state, computed, actions } = useTilemapContext();
+  const { state, computed, actions, props } = useTilemapContext();
 
   const { dispatch } = useInternalContext();
 
@@ -48,8 +41,8 @@ export function useDragAndZoomControls(props: TilemapControlProps) {
   }, [props.zoomeable, isCurrentZoomAnimating]);
 
   const dragEnabled = useMemo(() => {
-    return props.dragable && !isCameraAnimating;
-  }, [props.dragable, isCameraAnimating]);
+    return props.draggable && !isCameraAnimating;
+  }, [props.draggable, isCameraAnimating]);
 
   // Internal state
 

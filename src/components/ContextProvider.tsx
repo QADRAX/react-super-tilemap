@@ -1,10 +1,8 @@
-import React, { FunctionComponent, useMemo, useReducer } from 'react';
-import { DEFAULT_TILE_SIZE } from '../constants';
+import React, { FunctionComponent, useReducer } from 'react';
 import { InternalTilemapContext } from '../Context/InternalTilemapContext';
 import { initialState, PublicTilemapContext } from '../Context/TilemapContext';
 import { tilemapReducer } from '../Context/TilemapContext.reducer';
-import { ContextProps } from '../types/TilemapContext';
-import { TilemapContextProviderProps } from '../types/TilemapContextProvider';
+import { TilemapProps } from '../types/TilemapContextProvider';
 import { useTilemapContextActions } from './ContextProvider.actions';
 import { useCameraMotions } from './ContextProvider.cameraMotions';
 import { useComputedTilemapState } from './ContextProvider.computed';
@@ -22,21 +20,10 @@ import { ZoomMotionManager } from './MotionManager/ZoomMotionManager';
  * @param props
  * @returns Context provider for the tilemap
  */
-export const ContextProvider: FunctionComponent<TilemapContextProviderProps> = (props) => {
+export const ContextProvider: FunctionComponent<TilemapProps> = (props) => {
   // Context Reducer
 
   const [state, dispatch] = useReducer(tilemapReducer, initialState);
-
-  // Context props
-
-  const contextProps = useMemo(() => {
-    const contextProps: ContextProps = {
-      defaultTileSize: props.defaultTileSize || DEFAULT_TILE_SIZE,
-      spriteSchema: props.tilmapSchema,
-    };
-
-    return contextProps;
-  }, [props.defaultTileSize, props.tilmapSchema]);
 
   // Load sprites from the sprite definition
 
@@ -44,7 +31,7 @@ export const ContextProvider: FunctionComponent<TilemapContextProviderProps> = (
 
   // Computed values from the context state
 
-  const computed = useComputedTilemapState(state, contextProps);
+  const computed = useComputedTilemapState(state, props);
 
   // Context actions
 
@@ -67,7 +54,7 @@ export const ContextProvider: FunctionComponent<TilemapContextProviderProps> = (
   useCameraRecenter(computed.isZooming, computed.cameraCenteredTilePosition, actions, props.recenterCameraOnZoom);
 
   return (
-    <PublicTilemapContext.Provider value={{ state, computed, actions, props: contextProps }}>
+    <PublicTilemapContext.Provider value={{ state, computed, actions, props }}>
       <InternalTilemapContext.Provider value={{ dispatch }}>
         <CameraMotionManager onMotionEnd={endCameraMotion} />
         <ZoomMotionManager onMotionEnd={endZoomMotion} />

@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { useIsChanging } from '../hooks/useIsChanging';
-import { ContextComputedState, ContextProps, ContextState } from '../types/TilemapContext';
+import { ContextComputedState, ContextState } from '../types/TilemapContext';
+import { TilemapProps } from '../types/TilemapContextProvider';
 import {
     getCenteredTilePositionByCameraPosition,
 } from '../utils/positions';
@@ -14,7 +15,7 @@ import { getMapDimensions, getMapSize, getTileSize } from '../utils/sizes';
  */
 export function useComputedTilemapState(
     state: ContextState,
-    props: ContextProps
+    props: TilemapProps
 ): ContextComputedState {
     const isResizing = useIsChanging(state.canvasSize, 500);
     const isZooming = useIsChanging(state.zoom, 500);
@@ -24,7 +25,7 @@ export function useComputedTilemapState(
         [state.zoom, props.defaultTileSize]
     );
 
-    const mapDimensions = useMemo(() => getMapDimensions(props.spriteSchema), [props.spriteSchema]);
+    const mapDimensions = useMemo(() => getMapDimensions(props.tilmapSchema), [props.tilmapSchema]);
 
     const mapSize = useMemo(() => getMapSize(mapDimensions, tileSize), [mapDimensions, tileSize]);
 
