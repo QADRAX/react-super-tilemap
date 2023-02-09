@@ -6,8 +6,8 @@ import { SpriteName, spritesDefinition } from './__Sprites__';
 import { MotionSettings } from '../types/Motions';
 import { DEFAULT_BACKGROUND_COLOR, DEFAULT_DRAG_SENSITIVITY, DEFAULT_TILE_SIZE } from '../constants';
 
-const rows = 30;
-const cols = 50;
+const rows = 10;
+const cols = 10;
 
 const initialSchema = getFullfilledSchema(cols, rows, SpriteName.grass, 3);
 
@@ -112,6 +112,9 @@ export default {
         onCameraMotionEnd: { control: 'function' },
         onZoomMotionEnd: { control: 'function' },
         onSpritesLoadError: { control: 'function' },
+        children: { 
+            control: false,
+        }
     },
     parameters: { 
         actions: { 
@@ -134,7 +137,7 @@ Basic.args = {
     spriteDefinition: spritesDefinition,
     draggable: true,
     zoomeable: true,
-    dragSensitivity: 1.1,
+    dragSensitivity: 1,
     recenterCameraOnResize: {
         settings: motionSettings,
         target: 'center',
