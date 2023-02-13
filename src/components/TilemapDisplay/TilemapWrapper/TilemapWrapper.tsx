@@ -1,8 +1,7 @@
 import React from 'react';
 import { Position } from '../../../types/Position';
 
-export type TilemapWrapperProps = {
-  children: React.ReactNode;
+export type TilemapWrapperEvents = {
   onMouseDown: (mousePosition: Position) => void;
   onMouseMove: (mousePosition: Position) => void;
   onMouseUp: () => void;
@@ -10,6 +9,10 @@ export type TilemapWrapperProps = {
   onClick: (mousePosition: Position) => void;
   onContextMenu: (mousePosition: Position) => void;
   onDoubleClick: (mousePosition: Position) => void;
+};
+
+export type TilemapWrapperProps = TilemapWrapperEvents & {
+  children: React.ReactNode;
 };
 
 type ControlEvent =
