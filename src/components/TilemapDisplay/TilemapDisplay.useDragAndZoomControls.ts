@@ -21,13 +21,13 @@ export function useDragAndZoomControls() {
 
   const { dispatch } = useInternalContext();
 
-  const { cameraPosition, zoom: currentZoom, isCameraDragging: isDragging } = state;
+  const { cameraPosition, zoom, isCameraDragging } = state;
 
   const {
     tileSize,
     mapSize,
-    isZoomInMotion: isCurrentZoomAnimating,
-    isCameraInMotion: isCameraAnimating,
+    isZoomInMotion,
+    isCameraInMotion,
   } = computed;
 
   const { setCameraPosition, setZoom: setCurrentZoom } = actions;
@@ -37,12 +37,12 @@ export function useDragAndZoomControls() {
   // enable/disable drag and zoom flags
 
   const zoomEnabled = useMemo(() => {
-    return props.zoomeable && !isCurrentZoomAnimating;
-  }, [props.zoomeable, isCurrentZoomAnimating]);
+    return props.zoomeable && !isZoomInMotion;
+  }, [props.zoomeable, isZoomInMotion]);
 
   const dragEnabled = useMemo(() => {
-    return props.draggable && !isCameraAnimating;
-  }, [props.draggable, isCameraAnimating]);
+    return props.draggable && !isCameraInMotion;
+  }, [props.draggable, isCameraInMotion]);
 
   // Internal state
 
@@ -68,7 +68,7 @@ export function useDragAndZoomControls() {
   }, [clickCapture]);
 
   useEffect(() => {
-    if (!dragEnabled && isDragging) {
+    if (!dragEnabled && isCameraDragging) {
       setIsDragging(false);
       setCurrentMousePosition(null);
     }
@@ -91,7 +91,7 @@ export function useDragAndZoomControls() {
 
   const handleMouseUp = () => {
     setIsDown(false);
-    if (isDragging) {
+    if (isCameraDragging) {
       setIsDragging(false);
       setClickCapture(true);
     }
@@ -119,12 +119,12 @@ export function useDragAndZoomControls() {
 
   const handleWheel = (deltaY: number) => {
     if (zoomEnabled) {
-      let nextZoom = currentZoom;
+      let nextZoom = zoom;
 
       if (deltaY < 0) {
         nextZoom = nextZoom + DEFAULT_ZOOM_INCREMENT;
       } else {
-        if (currentZoom > 0) {
+        if (zoom > 0) {
           nextZoom = nextZoom - DEFAULT_ZOOM_INCREMENT;
         }
       }
