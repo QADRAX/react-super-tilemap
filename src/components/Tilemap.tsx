@@ -12,6 +12,7 @@ import { useZoomMotions } from './Tilemap.useZoomMotions';
 import { CameraMotionManager } from './MotionManager/CameraMotionManager';
 import { ZoomMotionManager } from './MotionManager/ZoomMotionManager';
 import { TilemapDisplay } from './TilemapDisplay/TilemapDisplay';
+import { useInitialCameraPosition } from './Tilemap.useInitialCameraPosition';
 
 /**
  * Tilemap main component.
@@ -44,6 +45,10 @@ export const Tilemap: FunctionComponent<TilemapProps> = (props) => {
   // Sync zoom motions
 
   const endZoomMotion = useZoomMotions(dispatch, state, props.onZoomMotionEnd);
+
+  // Sets initial camera position
+
+  useInitialCameraPosition(props.initialCameraPosition, state.canvasSize, state.cameraPosition, actions.setCameraPosition);
 
   // Recenter on resize
 
