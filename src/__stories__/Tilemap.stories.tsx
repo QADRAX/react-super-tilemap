@@ -2,27 +2,18 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Tilemap } from '../components/Tilemap';
 import { getRandomSpriteSchema } from './__MapGenerator__';
-import { spritesDefinition } from './__Sprites__';
-import { MotionSettings } from '../types/Motions';
-import { DEFAULT_BACKGROUND_COLOR, DEFAULT_DRAG_SENSITIVITY, DEFAULT_TILE_SIZE } from '../constants';
+import { defaultTilemapArgs } from './__defaultArgs__';
 
 const rows = 5;
 const cols = 5;
 
 const initialSchema = getRandomSpriteSchema(cols, rows);
 
-const motionSettings: MotionSettings = {
-    speed: 0.1,
-    easing: 'easeOutElastic',
-    maxDuration: 1,
-};
-
 export default {
-    title: 'Tilemap/Basic',
+    title: 'Tilemap/Basic example',
     component: Tilemap,
     argTypes: {
         backgroundColor: {
-            defaultValue: DEFAULT_BACKGROUND_COLOR,
             table: {
                 type: {
                     summary: 'string',
@@ -31,7 +22,6 @@ export default {
             control: 'color',
         },
         defaultTileSize: {
-            defaultValue: DEFAULT_TILE_SIZE,
             table: {
                 type: {
                     summary: 'number',
@@ -40,7 +30,6 @@ export default {
             control: 'number',
         },
         tilmapSchema: {
-            defaultValue: initialSchema,
             table: {
                 type: {
                     summary: 'TilemapSchema',
@@ -49,7 +38,6 @@ export default {
             control: 'object',
         },
         spriteDefinition: {
-            defaultValue: spritesDefinition,
             table: {
                 type: {
                     summary: 'SpriteDefinition',
@@ -58,10 +46,6 @@ export default {
             control: 'object',
         },
         recenterCameraOnResize: {
-            defaultValue: {
-                settings: motionSettings,
-                target: 'center',
-            },
             table: {
                 type: {
                     summary: 'RecenterCameraMotion',
@@ -78,7 +62,6 @@ export default {
             control: 'object',
         },
         draggable: {
-            defaultValue: true,
             table: {
                 type: {
                     summary: 'boolean',
@@ -87,7 +70,6 @@ export default {
             control: 'boolean',
         },
         zoomeable: {
-            defaultValue: true,
             table: {
                 type: {
                     summary: 'boolean',
@@ -96,7 +78,6 @@ export default {
             control: 'boolean'
         },
         dragSensitivity: {
-            defaultValue: DEFAULT_DRAG_SENSITIVITY,
             table: {
                 type: {
                     summary: 'number',
@@ -132,15 +113,7 @@ const Template: ComponentStory<typeof Tilemap> = (args) => <Tilemap {...args} />
 export const Basic = Template.bind({});
 
 Basic.args = {
-    defaultTileSize: 16,
     tilmapSchema: initialSchema,
-    spriteDefinition: spritesDefinition,
-    draggable: true,
-    zoomeable: true,
-    dragSensitivity: 1,
-    recenterCameraOnResize: {
-        settings: motionSettings,
-        target: 'center',
-    },
+    ...defaultTilemapArgs,
 };
 
