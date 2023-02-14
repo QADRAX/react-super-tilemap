@@ -2,8 +2,8 @@ import React, { FunctionComponent } from 'react';
 import { TilemapWrapper } from './TilemapWrapper/TilemapWrapper';
 import { useCanvasSize } from './TilemapDisplay.useCanvasSize';
 import { TilemapCanvas } from './TilemapCanvas/TilemapCanvas';
-import { tilemapEventChannel } from '../../EventBus/TilemapEventChannel';
-import { Position } from '../../types/Position';
+import { tilemapEventChannel } from '../../../EventBus/TilemapEventChannel';
+import { Position } from '../../../types/Position';
 
 /**
  * Tilemap's display.

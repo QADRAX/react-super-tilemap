@@ -1,17 +1,17 @@
 import React, { useCallback } from 'react';
-import { UNSIZED_CANVAS_ERROR } from '../constants';
+import { UNSIZED_CANVAS_ERROR } from '../../constants';
 import {
   TilemapActions,
   _setCameraPosition,
   _setCanvasSize,
   _setCurrentZoom,
-} from '../Context/TilemapContext.actions';
-import { Position } from '../types/Position';
-import { Size } from '../types/Size';
-import { ContextActions, ContextComputedState, ContextState } from '../types/TilemapContext';
-import { TilePosition } from '../types/TilePosition';
-import { getCameraPositionByTilePosition, getCenteredCameraPosition } from '../utils/positions';
-import { isPosition, isTilePosition } from '../utils/typeGuards';
+} from '../../Context/TilemapContext.actions';
+import { Position } from '../../types/Position';
+import { Size } from '../../types/Size';
+import { ContextActions, ContextComputedState, ContextState } from '../../types/TilemapContext';
+import { TilePosition } from '../../types/TilePosition';
+import { getCameraPositionByTilePosition, getCenteredCameraPosition } from '../../utils/positions';
+import { isPosition, isTilePosition } from '../../utils/typeGuards';
 
 /**
  * Returns the tilemap context actions.

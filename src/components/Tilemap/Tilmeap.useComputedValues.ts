@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
-import { useIsChanging } from '../hooks/useIsChanging';
-import { ContextComputedState, ContextState } from '../types/TilemapContext';
-import { TilemapProps } from '../types/Tilemap';
+import { useIsChanging } from '../../hooks/useIsChanging';
+import { ContextComputedState, ContextState } from '../../types/TilemapContext';
+import { TilemapProps } from '../../types/Tilemap';
 import {
     getCenteredTilePositionByCameraPosition,
-} from '../utils/positions';
-import { getMapDimensions, getMapSize, getTileSize } from '../utils/sizes';
+} from '../../utils/positions';
+import { getMapDimensions, getMapSize, getTileSize } from '../../utils/sizes';
 
 /**
  * Returns useful computed values from the tilemap state.

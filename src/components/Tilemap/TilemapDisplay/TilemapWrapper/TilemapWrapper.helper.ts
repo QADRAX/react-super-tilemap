@@ -1,4 +1,4 @@
-import { Position } from "../../../types/Position";
+import { Position } from "../../../../types/Position";
 import { ControlEvent } from "./TilemapWrapper.types";
 
 export function getDataFromEvent(event: ControlEvent): {

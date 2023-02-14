@@ -1,6 +1,6 @@
 import React from 'react';
-import { PublicTilemapContext } from '../../../Context/TilemapContext';
-import { renderTileMap } from '../../../render/Render';
+import { PublicTilemapContext } from '../../../../Context/TilemapContext';
+import { renderTileMap } from '../../../../render/Render';
 
 type TilemapCanvasProps = Record<string, never>;
 
