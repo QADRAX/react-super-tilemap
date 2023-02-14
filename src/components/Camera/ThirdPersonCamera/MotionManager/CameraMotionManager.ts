@@ -1,4 +1,3 @@
-import { CurrentMotion } from '../../../../types/Motions';
 import { Position } from '../../../../types/Position';
 import { MotionManager } from './MotionManager';
 
@@ -8,9 +7,6 @@ export class CameraMotionManager extends MotionManager<Position> {
   }
   protected set position(value: Position | undefined) {
     this.context.actions.setCameraPosition(value!);
-  }
-  protected get motion(): CurrentMotion<Position> | undefined {
-    return this.context.state.currentCameraMotion;
   }
   protected getNextPosition(
     progress: number,

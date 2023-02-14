@@ -1,18 +1,11 @@
 import React, { FunctionComponent, useReducer } from 'react';
-import { InternalTilemapContext } from '../Context/InternalTilemapContext';
 import { initialState, PublicTilemapContext } from '../Context/TilemapContext';
 import { tilemapReducer } from '../Context/TilemapContext.reducer';
 import { TilemapProps } from '../types/Tilemap';
 import { useTilemapActions } from './Tilemap.useTilemapActions';
-import { useCameraMotions } from './Tilemap.useCameraMotions';
 import { useComputedValues } from './Tilmeap.useComputedValues';
-import { useCameraRecenter } from './Tilemap.useCameraRecenter';
 import { useSpriteLoader } from './Tilemap.useSpriteLoader';
-import { useZoomMotions } from './Tilemap.useZoomMotions';
-import { CameraMotionManager } from './MotionManager/CameraMotionManager';
-import { ZoomMotionManager } from './MotionManager/ZoomMotionManager';
 import { TilemapDisplay } from './TilemapDisplay/TilemapDisplay';
-import { useInitialCameraPosition } from './Tilemap.useInitialCameraPosition';
 
 /**
  * Tilemap main component.
@@ -38,35 +31,11 @@ export const Tilemap: FunctionComponent<TilemapProps> = (props) => {
 
   const actions = useTilemapActions(dispatch, computed, state);
 
-  // Sync camera motions
-
-  const endCameraMotion = useCameraMotions(dispatch, state, computed, props.onCameraMotionEnd);
-
-  // Sync zoom motions
-
-  const endZoomMotion = useZoomMotions(dispatch, state, props.onZoomMotionEnd);
-
-  // Sets initial camera position
-
-  useInitialCameraPosition(props.initialCameraPosition, state.canvasSize, state.cameraPosition, actions.setCameraPosition);
-
-  // Recenter on resize
-
-  useCameraRecenter(computed.isResizing, computed.cameraTilePosition, actions, props.recenterCameraOnResize);
-
-  // Recenter after zoom
-
-  useCameraRecenter(computed.isZooming, computed.cameraTilePosition, actions, props.recenterCameraOnZoom);
-
   return (
     <PublicTilemapContext.Provider value={{ state, computed, actions, props }}>
-      <InternalTilemapContext.Provider value={{ dispatch }}>
-        <CameraMotionManager onMotionEnd={endCameraMotion} />
-        <ZoomMotionManager onMotionEnd={endZoomMotion} />
         <TilemapDisplay>
           {props.children}
         </TilemapDisplay>
-      </InternalTilemapContext.Provider>
     </PublicTilemapContext.Provider>
   );
 };

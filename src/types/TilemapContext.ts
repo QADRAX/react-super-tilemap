@@ -1,11 +1,4 @@
 import { MapDimensions } from './MapDimensions';
-import {
-  CameraMotionRequest,
-  CurrentCameraMotion,
-  ZoomMotionRequest,
-  CurrentZoomMotion,
-  MotionSettings,
-} from './Motions';
 import { Position } from './Position';
 import { Size } from './Size';
 import { SpriteMap } from './Sprite';
@@ -23,25 +16,9 @@ export type ContextState = {
    */
   cameraPosition?: Position;
   /**
-   * Current camera motion is being taken.
-   */
-  currentCameraMotion?: CurrentCameraMotion;
-  /**
-   * Camera motion queue.
-   */
-  cameraMotionQueue: CameraMotionRequest[];
-  /**
    * Current zoom level.
    */
   zoom: number;
-  /**
-   * Current zoom motion is being taken.
-   */
-  currentZoomMotion?: CurrentZoomMotion;
-  /**
-   * Zoom motion queue.
-   */
-  zoomMotionQueue: ZoomMotionRequest[];
   /**
    * Sprite map.
    *
@@ -59,13 +36,6 @@ export type ContextState = {
    * This flag is used to prevent the tilemap from rendering before the sprite map is completely loaded.
    */
   isSpriteMapLoading: boolean;
-  /**
-   * Flag to indicate if the camera is being moving by the user dragging the map.
-   *
-   * @remarks
-   * This flag is used to prevent running camera motions while the user is dragging the map.
-   */
-  isCameraDragging: boolean;
 };
 
 /**
@@ -80,7 +50,7 @@ export type ContextActions = {
    * @param position position to move the camera to
    */
   setCameraPosition: (
-    position: Position | TilePosition | 'center',
+    position?: Position | TilePosition | 'center',
   ) => void;
   /**
    * Sets the current zoom level to the given zoom level
@@ -90,29 +60,10 @@ export type ContextActions = {
    */
   setZoom: (zoom: number) => void;
   /**
-   * Adds a camera motion to the camera motion stack.
-   *
-   * @param motionRequest motion request
-   * @param position position to move the camera to
-   *
-   * @throws Error if the canvas has no size.
+   * Sets the canvas size.
+   * @param size canvas size
    */
-  addCameraMotion: (
-    settings: MotionSettings,
-    position: TilePosition | 'center',
-  ) => void;
-  /**
-   * Adds a zoom motion to the zoom motion stack.
-   * If the zoom level is less than 0, it will be set to 0.
-   * 
-   * @param settings motion settings
-   * @param targetZoom target zoom level
-   * @returns 
-   */
-  addZoomMotion: (
-    settings: MotionSettings,
-    targetZoom: number,
-  ) => void;
+  setCanvasSize: (size?: Size) => void;
 };
 
 /**
@@ -138,14 +89,6 @@ export type ContextComputedState = {
    * Current tile position where the camera is centered.
    */
   cameraTilePosition?: TilePosition;
-  /**
-   * Indicates if the camera is beeing in a motion.
-   */
-  isCameraInMotion: boolean;
-  /**
-   * Indicates if zoom is beeing in a motion.
-   */
-  isZoomInMotion: boolean;
   /**
    * Indicates if the tilemap is beeing resizing.
    */

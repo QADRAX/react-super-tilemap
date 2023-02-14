@@ -5,9 +5,6 @@ import { Context, ContextState } from '../types/TilemapContext';
 export const initialState: ContextState = {
   zoom: 0,
   isSpriteMapLoading: false,
-  isCameraDragging: false,
-  cameraMotionQueue: [],
-  zoomMotionQueue: [],
 };
 
 const initialContext: Context = {
@@ -15,8 +12,7 @@ const initialContext: Context = {
   actions: {
     setCameraPosition: () => {},
     setZoom: () => {},
-    addCameraMotion: () => {},
-    addZoomMotion: () => {},
+    setCanvasSize: () => {},
   },
   computed: {
     tileSize: DEFAULT_TILE_SIZE,
@@ -28,8 +24,6 @@ const initialContext: Context = {
       width: 0,
       height: 0,
     },
-    isZoomInMotion: false,
-    isCameraInMotion: false,
     isResizing: false,
     isZooming: false,
   },

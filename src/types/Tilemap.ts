@@ -15,14 +15,6 @@ export type TilemapEvents = {
    */
   onSpritesLoadError?: (error: Error) => void;
   /**
-   * This event is triggered when a camera motion ends.
-   */
-  onCameraMotionEnd?: () => void;
-  /**
-   * This event is triggered when a zoom motion ends.
-   */
-  onZoomMotionEnd?: () => void;
-  /**
    * It will be called when a tile is clicked.
    *
    * @param tile tile position
@@ -78,23 +70,6 @@ export type TilemapSettings = {
    */
   spriteDefinition?: SpriteDefinition[];
   /**
-   * Configuration for camera motions that are being executed when the canvas is resized.
-   */
-  recenterCameraOnResize?: RecenterCameraMotion;
-  /**
-   * Configuration for camera motions that are being executed after a the zoom level is changed.
-   */
-  recenterCameraOnZoom?: RecenterCameraMotion;
-  /**
-   * Tilemap's drag speed sensitivity.
-   *
-   * If not provided, the default value will be used.
-   * If provided, it must be greater than 0.
-   *
-   * @default 1
-   */
-  dragSensitivity?: number;
-  /**
    * canvas's background color.
    *
    * If not provided, the default value will be used.
@@ -108,26 +83,6 @@ export type TilemapSettings = {
    * @default '#cbf0ff'
    */
   backgroundColor?: string;
-  /**
-   * Flag to indicate if the tilemap zoom control is enabled.
-   *
-   * @default true
-   */
-  zoomeable?: boolean;
-  /**
-   * Flag to indicate if the tilemap drag controls to move the camera are enabled.
-   *
-   * @default true
-   */
-  draggable?: boolean;
-  /**
-   * Initial camera position when the tilemap is mounted.
-   * 
-   * If not provided, the default value will be used.
-   * 
-   * @default 'center'
-   */
-  initialCameraPosition?: TilePosition | 'center';
 }
 
 /**

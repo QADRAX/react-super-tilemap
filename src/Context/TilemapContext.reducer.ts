@@ -17,23 +17,8 @@ export function tilemapReducer(state: ContextState, action: TilemapActions): Con
     case TilemapActionType.SetIsSpriteMapLoading:
       nextState.isSpriteMapLoading = action.payload.isSpriteMapLoading;
       return nextState;
-    case TilemapActionType.SetCurrentCameraMotion:
-      nextState.currentCameraMotion = action.payload.currentCameraMotion;
-      return nextState;
-    case TilemapActionType.SetCurrentZoomMotion:
-      nextState.currentZoomMotion = action.payload.currentZoomMotion;
-      return nextState;
     case TilemapActionType.SetCanvasSize:
       nextState.canvasSize = action.payload.canvasSize;
-      return nextState;
-    case TilemapActionType.SetCameraMotionQueue:
-      nextState.cameraMotionQueue = action.payload.cameraMotionQueue;
-      return nextState;
-    case TilemapActionType.SetZoomMotionQueue:
-      nextState.zoomMotionQueue = action.payload.zoomMotionQueue;
-      return nextState;
-    case TilemapActionType.SetIsCameraDragging:
-      nextState.isCameraDragging = action.payload.isCameraDragging;
       return nextState;
 
     default:

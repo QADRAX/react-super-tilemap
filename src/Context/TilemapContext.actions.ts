@@ -1,4 +1,3 @@
-import { CurrentCameraMotion, CameraMotionRequest, CurrentZoomMotion, ZoomMotionRequest } from '../types/Motions';
 import { Position } from '../types/Position';
 import { Size } from '../types/Size';
 import { SpriteMap } from '../types/Sprite';
@@ -10,12 +9,7 @@ export enum TilemapActionType {
   SetCurrentZoom,
   SetSpriteMap,
   SetIsSpriteMapLoading,
-  SetCurrentCameraMotion,
-  SetCurrentZoomMotion,
   SetCanvasSize,
-  SetCameraMotionQueue,
-  SetZoomMotionQueue,
-  SetIsCameraDragging,
 }
 
 // Action interfaces
@@ -48,20 +42,6 @@ export interface SetIsSpriteMapLoading {
   };
 }
 
-export interface SetCurrentCameraMotion {
-  type: TilemapActionType.SetCurrentCameraMotion;
-  payload: {
-    currentCameraMotion?: CurrentCameraMotion;
-  };
-}
-
-export interface SetCurrentZoomMotion {
-  type: TilemapActionType.SetCurrentZoomMotion;
-  payload: {
-    currentZoomMotion?: CurrentZoomMotion;
-  };
-}
-
 export interface SetCanvasSize {
   type: TilemapActionType.SetCanvasSize;
   payload: {
@@ -69,26 +49,6 @@ export interface SetCanvasSize {
   };
 }
 
-export interface SetCameraMotionQueue {
-  type: TilemapActionType.SetCameraMotionQueue;
-  payload: {
-    cameraMotionQueue: CameraMotionRequest[];
-  };
-}
-
-export interface SetZoomMotionQueue {
-  type: TilemapActionType.SetZoomMotionQueue;
-  payload: {
-    zoomMotionQueue: ZoomMotionRequest[];
-  };
-}
-
-export interface SetIsCameraDragging {
-  type: TilemapActionType.SetIsCameraDragging;
-  payload: {
-    isCameraDragging: boolean;
-  };
-}
 
 // Actions
 
@@ -97,12 +57,7 @@ export type TilemapActions =
   | SetCurrentZoom
   | SetSpriteMap
   | SetIsSpriteMapLoading
-  | SetCurrentCameraMotion
-  | SetCurrentZoomMotion
-  | SetCanvasSize
-  | SetCameraMotionQueue
-  | SetZoomMotionQueue
-  | SetIsCameraDragging;
+  | SetCanvasSize;
 
 // Action creators
 
@@ -134,48 +89,9 @@ export const _setIsSpriteMapLoading = (isSpriteMapLoading: boolean): SetIsSprite
   },
 });
 
-export const _setCurrentCameraMotion = (
-  currentCameraMotion?: CurrentCameraMotion
-): SetCurrentCameraMotion => ({
-  type: TilemapActionType.SetCurrentCameraMotion,
-  payload: {
-    currentCameraMotion,
-  },
-});
-
-export const _setCurrentZoomMotion = (currentZoomMotion?: CurrentZoomMotion): SetCurrentZoomMotion => ({
-  type: TilemapActionType.SetCurrentZoomMotion,
-  payload: {
-    currentZoomMotion,
-  },
-});
-
 export const _setCanvasSize = (canvasSize?: Size): SetCanvasSize => ({
   type: TilemapActionType.SetCanvasSize,
   payload: {
     canvasSize,
-  },
-});
-
-export const _setCameraMotionQueue = (
-  cameraMotionQueue: CameraMotionRequest[]
-): SetCameraMotionQueue => ({
-  type: TilemapActionType.SetCameraMotionQueue,
-  payload: {
-    cameraMotionQueue,
-  },
-});
-
-export const _setZoomMotionQueue = (zoomMotionQueue: ZoomMotionRequest[]): SetZoomMotionQueue => ({
-  type: TilemapActionType.SetZoomMotionQueue,
-  payload: {
-    zoomMotionQueue,
-  },
-});
-
-export const _setIsCameraDragging = (isCameraDragging: boolean): SetIsCameraDragging => ({
-  type: TilemapActionType.SetIsCameraDragging,
-  payload: {
-    isCameraDragging,
   },
 });

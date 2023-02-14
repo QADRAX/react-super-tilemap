@@ -2,13 +2,12 @@ import React, { useCallback } from 'react';
 import { UNSIZED_CANVAS_ERROR } from '../constants';
 import {
   TilemapActions,
-  _setCameraMotionQueue,
   _setCameraPosition,
+  _setCanvasSize,
   _setCurrentZoom,
-  _setZoomMotionQueue,
 } from '../Context/TilemapContext.actions';
-import { CameraMotionRequest, MotionSettings, ZoomMotionRequest } from '../types/Motions';
 import { Position } from '../types/Position';
+import { Size } from '../types/Size';
 import { ContextActions, ContextComputedState, ContextState } from '../types/TilemapContext';
 import { TilePosition } from '../types/TilePosition';
 import { getCameraPositionByTilePosition, getCenteredCameraPosition } from '../utils/positions';
@@ -30,7 +29,7 @@ export function useTilemapActions(
   state: ContextState
 ): ContextActions {
   const setCameraPosition = useCallback(
-    (position: Position | TilePosition | 'center') => {
+    (position?: Position | TilePosition | 'center') => {
       if (!state.canvasSize) {
         throw new Error(UNSIZED_CANVAS_ERROR);
       }
@@ -45,6 +44,8 @@ export function useTilemapActions(
         );
       } else if (isPosition(position)) {
         result = position;
+      } else {
+        result = undefined;
       }
 
       if (result) {
@@ -63,35 +64,18 @@ export function useTilemapActions(
     [dispatch]
   );
 
-  const addCameraMotion = useCallback(
-    (settings: MotionSettings, position: TilePosition | 'center') => {
-      const motionRequest: CameraMotionRequest = {
-        settings,
-        target: position,
-      };
-      const nextMotionStack = [...state.cameraMotionQueue, motionRequest];
-      dispatch(_setCameraMotionQueue(nextMotionStack));
+  const setCanvasSize = useCallback(
+    (size?: Size) => {
+      dispatch(_setCanvasSize(size));
     },
-    [state.cameraMotionQueue, dispatch]
+    [dispatch]
   );
 
-  const addZoomMotion = useCallback(
-    (settings: MotionSettings, targetZoom: number) => {
-      const motionRequest: ZoomMotionRequest = {
-        settings,
-        target: targetZoom,
-      };
-      const nextMotionQueue = [...state.zoomMotionQueue, motionRequest];
-      dispatch(_setZoomMotionQueue(nextMotionQueue));
-    },
-    [state.zoomMotionQueue, dispatch]
-  );
 
   const actions: ContextActions = {
     setCameraPosition,
     setZoom,
-    addCameraMotion,
-    addZoomMotion,
+    setCanvasSize,
   };
 
   return actions;

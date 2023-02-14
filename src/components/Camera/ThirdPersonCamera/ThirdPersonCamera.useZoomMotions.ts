@@ -24,7 +24,7 @@ export function useZoomMotions(
                 settings,
                 target: targetZoom,
             };
-            const nextMotionQueue = [...state.zoomMotionQueue, motionRequest];
+            const nextMotionQueue = [...zoomMotionQueue, motionRequest];
             setZoomMotionQueue(nextMotionQueue);
         },
         [zoomMotionQueue, setZoomMotionQueue]

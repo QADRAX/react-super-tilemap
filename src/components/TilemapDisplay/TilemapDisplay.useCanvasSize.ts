@@ -1,8 +1,8 @@
 import { useEffect, useMemo } from 'react';
 import { useResizeDetector } from 'react-resize-detector';
 import { _setCanvasSize } from '../../Context/TilemapContext.actions';
+import { useTilemapContext } from '../../hooks/useTilemapContext';
 import { Size } from '../../types/Size';
-import { useInternalContext } from '../../hooks/useInternalContext';
 
 /**
  * Sync the size of the given wrapper with the context state.
@@ -12,7 +12,7 @@ import { useInternalContext } from '../../hooks/useInternalContext';
  * @param targetRef wrapper ref
  */
 export function useCanvasSize(targetRef?: React.MutableRefObject<unknown>): void {
-  const { dispatch } = useInternalContext();
+  const { actions } = useTilemapContext();
   const { width, height } = useResizeDetector({
     targetRef,
   });
@@ -29,6 +29,6 @@ export function useCanvasSize(targetRef?: React.MutableRefObject<unknown>): void
   }, [width, height]);
 
   useEffect(() => {
-    dispatch(_setCanvasSize(canvasSize));
-  }, [canvasSize, dispatch]);
+    actions.setCanvasSize(canvasSize);
+  }, [canvasSize, actions.setCanvasSize]);
 }

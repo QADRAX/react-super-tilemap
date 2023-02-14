@@ -1,4 +1,3 @@
-import { CurrentMotion } from '../../../../types/Motions';
 import { MotionManager } from './MotionManager';
 
 export class ZoomMotionManager extends MotionManager<number> {
@@ -7,9 +6,6 @@ export class ZoomMotionManager extends MotionManager<number> {
   }
   protected set position(value: number) {
     this.context.actions.setZoom(value);
-  }
-  protected get motion(): CurrentMotion<number> | undefined {
-    return this.context.state.currentZoomMotion;
   }
   protected getNextPosition(
     progress: number,

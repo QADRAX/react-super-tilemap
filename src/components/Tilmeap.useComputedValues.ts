@@ -31,7 +31,7 @@ export function useComputedValues(
 
     const mapSize = useMemo(() => getMapSize(mapDimensions, tileSize), [mapDimensions, tileSize]);
 
-    const cameraCenteredTilePosition = useMemo(() => {
+    const cameraTilePosition = useMemo(() => {
         if (!state.cameraPosition || !state.canvasSize) {
             return undefined;
         }
@@ -42,23 +42,11 @@ export function useComputedValues(
         );
     }, [state.cameraPosition, tileSize, state.canvasSize]);
 
-    const isCameraInMotion = useMemo(
-        () => state.currentCameraMotion !== undefined,
-        [state.currentCameraMotion]
-    );
-
-    const isCurrentZoomInMotion = useMemo(
-        () => state.currentZoomMotion !== undefined,
-        [state.currentZoomMotion]
-    );
-
     const computed: ContextComputedState = {
         tileSize,
         mapDimensions,
         mapSize,
-        cameraTilePosition: cameraCenteredTilePosition,
-        isCameraInMotion,
-        isZoomInMotion: isCurrentZoomInMotion,
+        cameraTilePosition,
         isResizing,
         isZooming,
     };
