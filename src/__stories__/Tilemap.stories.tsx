@@ -1,8 +1,11 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Tilemap } from '../components/Tilemap';
+import { Meta, Story } from '@storybook/react';
+import { Tilemap } from '../components/Tilemap/Tilemap';
 import { getRandomSpriteSchema } from './__MapGenerator__';
-import { defaultTilemapArgs } from './__defaultArgs__';
+import { defaulthridPersonCameraArgs, defaultTilemapArgs } from './__defaultArgs__';
+import { TilemapProps } from '../types/Tilemap';
+import { ThirdPersonCameraProps } from '../types/ThirdPersonCamera';
+import { ThirdPersonCamera } from '../components/Camera/ThirdPersonCamera/ThirdPersonCamera';
 
 const rows = 5;
 const cols = 5;
@@ -93,27 +96,51 @@ export default {
         onCameraMotionEnd: { control: 'function' },
         onZoomMotionEnd: { control: 'function' },
         onSpritesLoadError: { control: 'function' },
-        children: { 
+        children: {
             control: false,
         }
     },
-    parameters: { 
-        actions: { 
-            argTypesRegex: '^on.*' 
+    parameters: {
+        actions: {
+            argTypesRegex: '^on.*'
         },
         controls: {
             expanded: true,
             hideNoControlsWarning: true,
-          },        
+        },
     },
-} as ComponentMeta<typeof Tilemap>;
+} as Meta<TilemapProps & ThirdPersonCameraProps>;
 
-const Template: ComponentStory<typeof Tilemap> = (args) => <Tilemap {...args} />;
+const Template: Story<TilemapProps & ThirdPersonCameraProps> = (args) => (
+    <Tilemap 
+        defaultTileSize={args.defaultTileSize}
+        backgroundColor={args.backgroundColor}
+        tilmapSchema={args.tilmapSchema}
+        spriteDefinition={args.spriteDefinition}
+        onSpritesLoadError={args.onSpritesLoadError}
+        onTileClick={args.onTileClick}
+        onTileContextMenu={args.onTileContextMenu}
+        onTileDoubleClick={args.onTileDoubleClick}
+        onTileHover={args.onTileHover}
+        onTileHoverOut={args.onTileHoverOut}
+    >
+        <ThirdPersonCamera 
+            draggable={args.draggable}
+            zoomeable={args.zoomeable}
+            dragSensitivity={args.dragSensitivity}
+            recenterCameraOnResize={args.recenterCameraOnResize}
+            recenterCameraOnZoom={args.recenterCameraOnZoom}
+            onCameraMotionEnd={args.onCameraMotionEnd}
+            onZoomMotionEnd={args.onZoomMotionEnd}
+            initialCameraPosition={args.initialCameraPosition} />
+    </Tilemap>
+);
 
 export const Basic = Template.bind({});
 
 Basic.args = {
     tilmapSchema: initialSchema,
     ...defaultTilemapArgs,
+    ...defaulthridPersonCameraArgs
 };
 

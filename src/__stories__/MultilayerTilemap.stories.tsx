@@ -1,12 +1,13 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { Tilemap } from '../components/Tilemap';
-import { defaultTilemapArgs } from './__defaultArgs__';
+import { Tilemap } from '../components/Tilemap/Tilemap';
+import { defaulthridPersonCameraArgs, defaultTilemapArgs } from './__defaultArgs__';
 import { getFullfilledSchema } from './__MapGenerator__';
 import { TilePosition } from '../types/TilePosition';
 import { FirstLayerSprites, SpriteName } from './__Sprites__';
+import { ThirdPersonCamera } from '../components/Camera/ThirdPersonCamera/ThirdPersonCamera';
 
-export interface MultilayerTilemapExampleProps {
+export interface ExampleProps {
     rows: number;
     cols: number;
     baseSprite: string;
@@ -14,7 +15,7 @@ export interface MultilayerTilemapExampleProps {
     onTileClick: (position: TilePosition) => void;
 }
 
-const Example: FunctionComponent<MultilayerTilemapExampleProps> = (props) => {
+const Example: FunctionComponent<ExampleProps> = (props) => {
     const initialSchema = getFullfilledSchema(props.cols, props.rows, props.baseSprite, 2);
     const [schema, setSchema] = React.useState(initialSchema);
 
@@ -24,29 +25,31 @@ const Example: FunctionComponent<MultilayerTilemapExampleProps> = (props) => {
     }, [props.cols, props.rows, props.baseSprite]);
 
     const handleTileClick = (tilePos: TilePosition) => {
-      const newSchema = [...schema];
-      const tile = newSchema[tilePos.col][tilePos.row];
-      if (tile) {
-        const layer = tile[1];
-        if (layer) {
-          tile[1] = '';
-        } else {
-          tile[1] = props.spriteToAdd;
+        const newSchema = [...schema];
+        const tile = newSchema[tilePos.col][tilePos.row];
+        if (tile) {
+            const layer = tile[1];
+            if (layer) {
+                tile[1] = '';
+            } else {
+                tile[1] = props.spriteToAdd;
+            }
         }
-      }
-      setSchema(newSchema);
+        setSchema(newSchema);
     };
 
     return (
         <Tilemap {...defaultTilemapArgs}
             tilmapSchema={schema}
             onTileClick={handleTileClick}
-        />
+        >
+            <ThirdPersonCamera {...defaulthridPersonCameraArgs} />
+        </Tilemap>
     );
 };
 
 export default {
-    title: 'Tilemap/Multilayer tilemap example',
+    title: 'Tilemap/Adding tiles on click',
     component: Example,
     argTypes: {
         rows: {

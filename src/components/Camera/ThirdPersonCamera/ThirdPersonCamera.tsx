@@ -1,20 +1,13 @@
 import React, { useState } from "react";
-import { TilePosition } from "../../../types/TilePosition";
+import { ThirdPersonCameraProps } from "../../../types/ThirdPersonCamera";
 import { CameraEventListener } from "./CameraEventListener/CameraEventListener";
 import { CameraMotionManager } from "./MotionManager/CameraMotionManager";
 import { ZoomMotionManager } from "./MotionManager/ZoomMotionManager";
 import { ThirdPersonCameraContext } from "./ThirdCameraContext/ThirdPersonCameraContext";
+import { useCameraRecenter } from "./ThirdPersonCamera.useCameraRecenter";
 import { useDragAndZoomHandlers } from "./ThirdPersonCamera.useDragAndZoomHandlers";
 import { useInitialCameraPosition } from "./ThirdPersonCamera.useInitialCameraPosition";
 import { useMotions } from "./ThirdPersonCamera.useMotions";
-
-export type ThirdPersonCameraProps = {
-    initialCameraPosition?: TilePosition | 'center';
-    draggable?: boolean;
-    zoomeable?: boolean;
-    dragSensitivity?: number;
-    zoomIncrement?: number;
-};
 
 export const ThirdPersonCamera: React.FunctionComponent<ThirdPersonCameraProps> = (props) => {
     const [isCameraDragging, setIsDragging] = useState<boolean>(false);
@@ -45,6 +38,8 @@ export const ThirdPersonCamera: React.FunctionComponent<ThirdPersonCameraProps> 
     });
 
     useInitialCameraPosition(props.initialCameraPosition);
+
+    useCameraRecenter(addCameraMotion, props.recenterCameraOnResize, props.recenterCameraOnZoom);
 
     return (
         <ThirdPersonCameraContext.Provider value={{

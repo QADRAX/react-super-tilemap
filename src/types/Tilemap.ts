@@ -1,4 +1,3 @@
-import { RecenterCameraMotion } from './Motions';
 import { SpriteDefinition } from './SpriteDefinition';
 import { TilePosition } from './TilePosition';
 

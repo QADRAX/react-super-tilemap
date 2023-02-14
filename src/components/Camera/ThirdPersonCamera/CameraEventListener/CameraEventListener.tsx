@@ -15,15 +15,37 @@ export class CameraEventListener extends React.PureComponent<CameraEventListener
     private unsubscribeOnDoubleClick?: () => void;
     private unsubscribeOnContextMenu?: () => void;
 
+    get handlers() {
+        return this.props.handlers;
+    }
 
     componentDidMount(): void {
-        this.unsubscribeOnMouseDown = tilemapEventChannel.on('onMouseDown', this.props.handlers.handleMouseDown);
-        this.unsubscribeOnMouseUp = tilemapEventChannel.on('onMouseUp', this.props.handlers.handleMouseUp);
-        this.unsubscribeOnMouseMove = tilemapEventChannel.on('onMouseMove', this.props.handlers.handleMouseMove);
-        this.unsubscribeOnWheel = tilemapEventChannel.on('onWheel', this.props.handlers.handleWheel);
-        this.unsubscribeOnClick = tilemapEventChannel.on('onClick', this.props.handlers.handleClick);
-        this.unsubscribeOnDoubleClick = tilemapEventChannel.on('onDoubleClick', this.props.handlers.handleDoubleClick);
-        this.unsubscribeOnContextMenu = tilemapEventChannel.on('onContextMenu', this.props.handlers.handleContextMenu);
+        this.unsubscribeOnMouseDown = tilemapEventChannel.on('onMouseDown', (mousePosition) => {
+            console.log('onMouseDown', mousePosition)
+            this.handlers.handleMouseDown(mousePosition)
+        });
+        this.unsubscribeOnMouseUp = tilemapEventChannel.on('onMouseUp', () => {
+            console.log('onMouseUp')
+            this.handlers.handleMouseUp()
+        });
+        this.unsubscribeOnMouseMove = tilemapEventChannel.on('onMouseMove', (mousePosition) => {
+            console.log('onMouseMove', mousePosition)
+            this.handlers.handleMouseMove(mousePosition);
+        });
+        this.unsubscribeOnWheel = tilemapEventChannel.on('onWheel', (deltaY) => {
+            console.log('onWheel', deltaY)
+            this.props.handlers.handleWheel(deltaY)
+        });
+        this.unsubscribeOnClick = tilemapEventChannel.on('onClick', (mousePosition) => {
+            
+            this.props.handlers.handleClick(mousePosition)
+        });
+        this.unsubscribeOnDoubleClick = tilemapEventChannel.on('onDoubleClick', (mousePosition) => {
+            this.props.handlers.handleDoubleClick(mousePosition)
+        });
+        this.unsubscribeOnContextMenu = tilemapEventChannel.on('onContextMenu', (mousePosition) => { 
+            this.props.handlers.handleContextMenu(mousePosition)
+        });
     }
 
     componentWillUnmount(): void {
