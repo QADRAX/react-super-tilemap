@@ -3,7 +3,7 @@ import { PublicTilemapContext } from '../../../../Context/TilemapContext';
 import { EasingFunction, getEasingFunction } from '../../../../utils/easings';
 import { CurrentMotion, CurrentMotionPosition } from '../../../../types/Motions';
 
-export interface MotionManagerProps<T> {
+export interface MotionManagerProps<T extends CurrentMotionPosition> {
   onMotionEnd: () => void;
   motion: CurrentMotion<T> | undefined;
 }
