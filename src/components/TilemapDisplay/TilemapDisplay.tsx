@@ -1,8 +1,9 @@
 import React, { FunctionComponent } from 'react';
 import { TilemapWrapper } from './TilemapWrapper/TilemapWrapper';
 import { useCanvasSize } from './TilemapDisplay.useCanvasSize';
-import { useDragAndZoomControls } from './TilemapDisplay.useDragAndZoomControls';
 import { TilemapCanvas } from './TilemapCanvas/TilemapCanvas';
+import { tilemapEventChannel } from '../../EventBus/TilemapEventChannel';
+import { Position } from '../../types/Position';
 
 /**
  * Tilemap's display.
@@ -18,25 +19,23 @@ export const TilemapDisplay: FunctionComponent = (props) => {
 
   useCanvasSize(wrapperRef);
 
-  const {
-    handleMouseDown,
-    handleMouseUp,
-    handleMouseMove,
-    handleWheel,
-    handleClick,
-    handleDoubleClick,
-    handleContextMenu,
-  } = useDragAndZoomControls();
+  const emitOnWheel = (deltaY: number) => tilemapEventChannel.emit('onWheel', deltaY);
+  const emitOnMouseDown = (mousePosition: Position) => tilemapEventChannel.emit('onMouseDown', mousePosition);
+  const emitOnMouseUp = () => tilemapEventChannel.emit('onMouseUp');
+  const emitOnMouseMove = (mousePosition: Position) => tilemapEventChannel.emit('onMouseMove', mousePosition);
+  const emitOnClick = (mousePosition: Position) => tilemapEventChannel.emit('onClick', mousePosition);
+  const emitOnDoubleClick = (mousePosition: Position) => tilemapEventChannel.emit('onDoubleClick', mousePosition);
+  const emitOnContextMenu = (mousePosition: Position) => tilemapEventChannel.emit('onContextMenu', mousePosition);
 
   return (
     <TilemapWrapper
-      onWheel={handleWheel}
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
-      onMouseMove={handleMouseMove}
-      onClick={handleClick}
-      onDoubleClick={handleDoubleClick}
-      onContextMenu={handleContextMenu}
+      onWheel={emitOnWheel}
+      onMouseDown={emitOnMouseDown}
+      onMouseUp={emitOnMouseUp}
+      onMouseMove={emitOnMouseMove}
+      onClick={emitOnClick}
+      onDoubleClick={emitOnDoubleClick}
+      onContextMenu={emitOnContextMenu}
       ref={wrapperRef}
     >
       <TilemapCanvas />

@@ -1,45 +1,6 @@
 import React from 'react';
-import { Position } from '../../../types/Position';
-
-export type TilemapWrapperEvents = {
-  onMouseDown: (mousePosition: Position) => void;
-  onMouseMove: (mousePosition: Position) => void;
-  onMouseUp: () => void;
-  onWheel: (deltaY: number) => void;
-  onClick: (mousePosition: Position) => void;
-  onContextMenu: (mousePosition: Position) => void;
-  onDoubleClick: (mousePosition: Position) => void;
-};
-
-export type TilemapWrapperProps = TilemapWrapperEvents & {
-  children: React.ReactNode;
-};
-
-type ControlEvent =
-  | React.MouseEvent<HTMLDivElement, MouseEvent>
-  | React.TouchEvent<HTMLDivElement>
-  | React.WheelEvent<HTMLDivElement>;
-
-function getDataFromEvent(event: ControlEvent): {
-  mousePosition: Position;
-  deltaY?: number;
-} {
-  const bounds = event.currentTarget.getBoundingClientRect();
-
-  const clientX = 'clientX' in event ? event.clientX : event.touches[0].clientX;
-  const clientY = 'clientY' in event ? event.clientY : event.touches[0].clientY;
-
-  const x = clientX - bounds.left;
-  const y = clientY - bounds.top;
-
-  const position: Position = { x, y };
-
-  if ('deltaY' in event) {
-    return { mousePosition: position, deltaY: event.deltaY };
-  }
-
-  return { mousePosition: position };
-}
+import { getDataFromEvent } from './TilemapWrapper.helper';
+import { ControlEvent, TilemapWrapperProps } from './TilemapWrapper.types';
 
 /**
  * Tilemap's wrapper.
