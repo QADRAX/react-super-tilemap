@@ -1,5 +1,5 @@
 import { Position } from "../types/Position";
-import { eventbus } from "./EventBus"
+import { createEventBusChannel } from "./EventBus"
 
 export type TilemapControlsEvents = {
     onMouseDown: (mousePosition: Position) => void;
@@ -11,4 +11,4 @@ export type TilemapControlsEvents = {
     onDoubleClick: (mousePosition: Position) => void;
 };
 
-export const tilemapEventChannel = eventbus<TilemapControlsEvents>()
+export const tilemapEventChannel = createEventBusChannel<TilemapControlsEvents>()

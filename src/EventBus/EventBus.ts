@@ -3,10 +3,9 @@ export type EventHandler<T = any> = (payload: T) => void
 export type EventMap = Record<EventKey, EventHandler>
 export type Bus<E> = Record<keyof E, E[keyof E][]>
 
-export interface EventBus<T extends EventMap> {
+export interface EventBusChannel<T extends EventMap> {
   on<Key extends keyof T>(key: Key, handler: T[Key]): () => void
   off<Key extends keyof T>(key: Key, handler: T[Key]): void
-  once<Key extends keyof T>(key: Key, handler: T[Key]): void
   emit<Key extends keyof T>(key: Key, ...payload: Parameters<T[Key]>): void
 }
 
@@ -14,12 +13,12 @@ export interface EventBusConfig {
   onError: (...params: any[]) => void
 }
 
-export function eventbus<E extends EventMap>(
+export function createEventBusChannel<E extends EventMap>(
   config?: EventBusConfig
-): EventBus<E> {
+): EventBusChannel<E> {
   const bus: Partial<Bus<E>> = {}
 
-  const on: EventBus<E>['on'] = (key, handler) => {
+  const on: EventBusChannel<E>['on'] = (key, handler) => {
     if (bus[key] === undefined) {
       bus[key] = []
     }
@@ -30,22 +29,12 @@ export function eventbus<E extends EventMap>(
     }
   }
 
-  const off: EventBus<E>['off'] = (key, handler) => {
+  const off: EventBusChannel<E>['off'] = (key, handler) => {
     const index = bus[key]?.indexOf(handler) ?? -1
     bus[key]?.splice(index >>> 0, 1)
   }
 
-  const once: EventBus<E>['once'] = (key, handler) => {
-    const handleOnce = (payload: Parameters<typeof handler>) => {
-      handler(payload)
-      // TODO: find out a better way to type `handleOnce`
-      off(key, handleOnce as typeof handler)
-    }
-
-    on(key, handleOnce as typeof handler)
-  }
-
-  const emit: EventBus<E>['emit'] = (key, payload) => {
+  const emit: EventBusChannel<E>['emit'] = (key, payload) => {
     bus[key]?.forEach((fn) => {
       try {
         fn(payload)
@@ -55,5 +44,5 @@ export function eventbus<E extends EventMap>(
     })
   }
 
-  return { on, off, once, emit }
+  return { on, off, emit }
 }
