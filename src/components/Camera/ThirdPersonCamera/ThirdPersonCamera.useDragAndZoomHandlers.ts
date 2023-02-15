@@ -3,16 +3,7 @@ import { DEFAULT_DRAG_SENSITIVITY, DEFAULT_ZOOM_INCREMENT, DRAG_DELAY } from '..
 import { Position } from '../../../types/Position';
 import { getTilePosition } from '../../../utils/positions';
 import { useTilemapContext } from '../../../hooks/useTilemapContext';
-
-export type DragAndZoomHandlers = {
-  handleMouseDown: (position: Position) => void;
-  handleMouseMove: (position: Position) => void;
-  handleMouseUp: () => void;
-  handleWheel: (delta: number) => void;
-  handleClick: (position: Position) => void;
-  handleDoubleClick: (position: Position) => void;
-  handleContextMenu: (position: Position) => void;
-};
+import { DragAndZoomHandlers } from './CameraEventListener/CameraEventListener.types';
 
 /**
  * Bind mouse and touch events to drag and zoom logic.
