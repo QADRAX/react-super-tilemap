@@ -23,7 +23,7 @@ export class CameraEventListener extends React.PureComponent<CameraEventListener
             this.handlers.handleMouseUp?.();
         });
         this.unsubscribeOnMouseMove = tilemapEventChannel.on('onMouseMove', (mousePosition) => {
-            this.handlers.handleMouseMove?(mousePosition);
+            this.handlers.handleMouseMove?.(mousePosition);
         });
         this.unsubscribeOnWheel = tilemapEventChannel.on('onWheel', (deltaY) => {
             this.props.handlers.handleWheel?.(deltaY)
