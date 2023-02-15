@@ -106,12 +106,14 @@ export function renderTileMap({
               const spriteSize = sprite.size;
               const spriteWidthPx = spriteSize.width * tileSizePx;
               const spriteHeightPx = spriteSize.height * tileSizePx;
+              const spriteX = x + (tileSizePx * sprite.offset.col);
+              const spriteY = y + (tileSizePx * sprite.offset.row);
 
               const frame = sprite.getFrame(timestamp);
               bufferCtx.drawImage(
                 frame,
-                x,
-                y - spriteHeightPx + tileSizePx,
+                spriteX,
+                spriteY - spriteHeightPx + tileSizePx,
                 spriteWidthPx,
                 spriteHeightPx
               );

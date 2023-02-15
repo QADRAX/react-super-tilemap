@@ -1,4 +1,5 @@
 import { Size } from './Size';
+import { TilePosition } from './TilePosition';
 
 /**
  * Definition of a sprite to be used in the tilemap.
@@ -72,5 +73,11 @@ export type SpriteDefinition = {
    *
    * @default { width: 1, height: 1 }
    */
-  tileSize?: Size;
+  size?: Size;
+  /**
+   * Sprite's offset in tiles. Indicates how many tiles the sprite will be offset from it origin.
+   * 
+   * @default { col: 0, row: 0 }
+   */
+  offset?: TilePosition;
 };

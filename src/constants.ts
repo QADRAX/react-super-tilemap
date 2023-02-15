@@ -1,4 +1,5 @@
 import { Size } from './types/Size';
+import { TilePosition } from './types/TilePosition';
 
 export const DEFAULT_TILE_SIZE = 16;
 export const ZOOM_RATIO = 1.1;
@@ -8,6 +9,7 @@ export const DEFAULT_BACKGROUND_COLOR = '#cbf0ff';
 export const DEFAULT_ANIMATION_DELAY = 1000;
 export const DRAG_DELAY = 100;
 export const DEFAULT_SPRITE_TILESIZE: Size = { width: 1, height: 1 };
+export const DEFAULT_SPRITE_OFFSET: TilePosition = { col: 0, row: 0 };
 export const DEFAULT_CAMERA_POSITION = 'center';
 
 export const DIFERENT_SIZE_ERROR = `Sprite definition has images with different sizes`;

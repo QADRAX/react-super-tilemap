@@ -1,5 +1,6 @@
 import {
   DEFAULT_ANIMATION_DELAY,
+  DEFAULT_SPRITE_OFFSET,
   DEFAULT_SPRITE_TILESIZE,
   DIFERENT_SIZE_ERROR,
   EMPTY_SPRITE_ERROR,
@@ -8,6 +9,7 @@ import {
 import { Size } from '../types/Size';
 import { Sprite } from '../types/Sprite';
 import { SpriteDefinition } from '../types/SpriteDefinition';
+import { TilePosition } from '../types/TilePosition';
 
 /**
  * A sprite is a collection of images that are used to animate a game object 
@@ -18,6 +20,7 @@ import { SpriteDefinition } from '../types/SpriteDefinition';
 export class SpriteImpl implements Sprite {
   private _imagesSrc: string[];
   private _animationDelay: number;
+  private _offset: TilePosition;
   private _htmlImages: HTMLImageElement[] | undefined;
   private _tileSize: Size;
 
@@ -33,14 +36,16 @@ export class SpriteImpl implements Sprite {
     this._animationDelay = this._imagesSrc.length > 1 ? animationDelay : 0;
 
     if (
-      spriteDefinition.tileSize &&
-      spriteDefinition.tileSize.width > 0 &&
-      spriteDefinition.tileSize.height > 0
+      spriteDefinition.size &&
+      spriteDefinition.size.width > 0 &&
+      spriteDefinition.size.height > 0
     ) {
-      this._tileSize = spriteDefinition.tileSize;
+      this._tileSize = spriteDefinition.size;
     } else {
       this._tileSize = DEFAULT_SPRITE_TILESIZE;
     }
+
+    this._offset = spriteDefinition.offset || DEFAULT_SPRITE_OFFSET;
   }
 
   async load() {
@@ -86,6 +91,10 @@ export class SpriteImpl implements Sprite {
 
   get animationDelay() {
     return this._animationDelay;
+  }
+
+  get offset() {
+    return this._offset;
   }
 
   getFrame(timestamp: number) {

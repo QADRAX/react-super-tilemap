@@ -117,7 +117,7 @@ export const spritesDefinition: SpriteDefinition[] = [
     key: SpriteName.building,
     imagesSrc: [building_1, building_2],
     animationDelay: 800,
-    tileSize: {
+    size: {
       width: 1,
       height: 2,
     },

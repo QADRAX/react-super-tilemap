@@ -1,4 +1,5 @@
 import { Size } from "./Size";
+import { TilePosition } from "./TilePosition";
 
 export type SpriteMap = Map<string, Sprite>;
 
@@ -11,6 +12,10 @@ export interface Sprite {
      * Configured image sizing in tiles.
      */
     readonly size: Size;
+    /**
+     * Configured offset of the sprite.
+     */
+    readonly offset: TilePosition;
     /**
      * Configured animation delay in milliseconds.
      */
