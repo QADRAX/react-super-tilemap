@@ -23,22 +23,32 @@ export function useSpriteLoader(
   spriteDefinition?: SpriteDefinition[],
   onSpritesLoadError?: (error: Error) => void
 ): void {
-
   useEffect(() => {
+    let isMounted = true;
     dispatch(_setSpriteMap(undefined));
-    (async () => {
-      if (spriteDefinition) {
-        dispatch(_setIsSpriteMapLoading(true));
-        try {
-          const spriteMap = await loadSprites(spriteDefinition);
-          dispatch(_setSpriteMap(spriteMap));
-        } catch (error) {
-          if (onSpritesLoadError) {
+
+    if (spriteDefinition) {
+      dispatch(_setIsSpriteMapLoading(true));
+
+      loadSprites(spriteDefinition)
+        .then((spriteMap) => {
+          if (isMounted) {
+            dispatch(_setSpriteMap(spriteMap));
+          }
+        })
+        .catch((error) => {
+          if (onSpritesLoadError && isMounted) {
             onSpritesLoadError(error as Error);
           }
-        }
-        dispatch(_setIsSpriteMapLoading(false));
-      }
-    })();
+        })
+        .finally(() => {
+          if (isMounted) {
+            dispatch(_setIsSpriteMapLoading(false));
+          }
+        });
+    }
+    return () => {
+      isMounted = false;
+    }
   }, [spriteDefinition]); // eslint-disable-line react-hooks/exhaustive-dep
 }
