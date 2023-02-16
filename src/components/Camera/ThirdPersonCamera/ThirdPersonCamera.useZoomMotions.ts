@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useTilemapContext } from '../../../hooks/useTilemapContext';
 import { CurrentZoomMotion, MotionSettings, ZoomMotionRequest } from '../../../types/Motions';
-import { createMotion } from '../../../utils/createMotion';
+import { createCurrentMotion } from '../../../utils/createCurrentMotion';
 
 export function useZoomMotions(
     props: {
@@ -58,7 +58,7 @@ export function useZoomMotions(
             const targetZoom = nextMotionRequest.target;
             const distance = Math.abs(zoom - targetZoom);
 
-            const nextMotion = createMotion(
+            const nextMotion = createCurrentMotion(
                 zoom,
                 targetZoom,
                 nextMotionRequest.settings.speed,

@@ -3,7 +3,7 @@ import { useTilemapContext } from "../../../hooks/useTilemapContext";
 import { CameraMotionRequest, CurrentCameraMotion, MotionSettings } from "../../../types/Motions";
 import { Position } from "../../../types/Position";
 import { TilePosition } from "../../../types/TilePosition";
-import { createMotion } from "../../../utils/createMotion";
+import { createCurrentMotion } from "../../../utils/createCurrentMotion";
 import { getCameraPositionByTilePosition, getCenteredCameraPosition, getDistance } from "../../../utils/positions";
 
 export function useCameraMotions(
@@ -81,7 +81,7 @@ export function useCameraMotions(
             }
             const distance = getDistance(cameraPosition, targetPosition);
 
-            const nextMotion = createMotion(
+            const nextMotion = createCurrentMotion(
                 cameraPosition,
                 targetPosition,
                 nextMotionRequest.settings.speed,

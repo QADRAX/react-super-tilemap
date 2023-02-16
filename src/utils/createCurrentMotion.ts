@@ -1,7 +1,7 @@
 import { EasingType } from "../types/EasingType";
 import { CurrentMotion, CurrentMotionPosition } from "../types/Motions";
 
-export function createMotion<T extends CurrentMotionPosition>(
+export function createCurrentMotion<T extends CurrentMotionPosition>(
     initialPosition: T,
     targetPosition: T,
     speed: number,
