@@ -1,6 +1,7 @@
 import { Position } from '../types/Position';
 import { Size } from '../types/Size';
 import { SpriteMap } from '../types/Sprite';
+import { TilemapElementMap } from '../types/TilemapElement';
 
 // Action types
 
@@ -10,6 +11,7 @@ export enum TilemapActionType {
   SetSpriteMap,
   SetIsSpriteMapLoading,
   SetCanvasSize,
+  SetElementMap,
 }
 
 // Action interfaces
@@ -49,6 +51,13 @@ export interface SetCanvasSize {
   };
 }
 
+export interface SetElementMap {
+  type: TilemapActionType.SetElementMap;
+  payload: {
+    elementMap: TilemapElementMap;
+  };
+}
+
 
 // Actions
 
@@ -57,7 +66,8 @@ export type TilemapActions =
   | SetCurrentZoom
   | SetSpriteMap
   | SetIsSpriteMapLoading
-  | SetCanvasSize;
+  | SetCanvasSize
+  | SetElementMap;
 
 // Action creators
 
@@ -93,5 +103,12 @@ export const _setCanvasSize = (canvasSize?: Size): SetCanvasSize => ({
   type: TilemapActionType.SetCanvasSize,
   payload: {
     canvasSize,
+  },
+});
+
+export const _setElementMap = (elementMap: TilemapElementMap): SetElementMap => ({
+  type: TilemapActionType.SetElementMap,
+  payload: {
+    elementMap,
   },
 });

@@ -5,10 +5,12 @@ import {
   _setCameraPosition,
   _setCanvasSize,
   _setCurrentZoom,
+  _setElementMap,
 } from '../../Context/TilemapContext.actions';
 import { Position } from '../../types/Position';
 import { Size } from '../../types/Size';
 import { ContextActions, ContextComputedState, ContextState } from '../../types/TilemapContext';
+import { TilemapElement } from '../../types/TilemapElement';
 import { TilePosition } from '../../types/TilePosition';
 import { getCameraPositionByTilePosition, getCenteredCameraPosition } from '../../utils/positions';
 import { isPosition, isTilePosition } from '../../utils/typeGuards';
@@ -36,7 +38,7 @@ export function useTilemapActions(
       let result: Position | undefined = undefined;
       if (position == 'center') {
         result = getCenteredCameraPosition(state.canvasSize, computed.mapSize);
-      } else if (isTilePosition(position)) { 
+      } else if (isTilePosition(position)) {
         result = getCameraPositionByTilePosition(
           position,
           computed.tileSize,
@@ -71,11 +73,20 @@ export function useTilemapActions(
     [dispatch]
   );
 
+  const setTilemapElement = useCallback(
+    (elementKey: string, element: TilemapElement) => {
+      const nextTilemapElements = state.elementMap.set(elementKey, element);
+      dispatch(_setElementMap(nextTilemapElements));
+    },
+    []
+  );
+
 
   const actions: ContextActions = {
     setCameraPosition,
     setZoom,
     setCanvasSize,
+    setTilemapElement,
   };
 
   return actions;

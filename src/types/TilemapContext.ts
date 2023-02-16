@@ -1,3 +1,4 @@
+import { TilemapElement, TilemapElementMap } from './TilemapElement';
 import { MapDimensions } from './MapDimensions';
 import { Position } from './Position';
 import { Size } from './Size';
@@ -25,6 +26,12 @@ export type ContextState = {
    * This object contains all the sprites that can be used in the tilemap.
    */
   spriteMap?: SpriteMap;
+  /**
+   * Tilmap element map.
+   * 
+   * This object contains all the elements that are currently in the tilemap.
+   */
+  elementMap: TilemapElementMap;
   /**
    * Size of the canvas in pixels.
    */
@@ -64,6 +71,13 @@ export type ContextActions = {
    * @param size canvas size
    */
   setCanvasSize: (size?: Size) => void;
+  /**
+   * Sets a tilemap element.
+   * 
+   * @param elementKey key of the tilemap element to set
+   * @param element tilemap element to set
+   */
+  setTilemapElement: (elementKey: string, element: TilemapElement) => void;
 };
 
 /**

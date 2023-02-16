@@ -20,6 +20,9 @@ export function tilemapReducer(state: ContextState, action: TilemapActions): Con
     case TilemapActionType.SetCanvasSize:
       nextState.canvasSize = action.payload.canvasSize;
       return nextState;
+    case TilemapActionType.SetElementMap:
+      nextState.elementMap = action.payload.elementMap;
+      return nextState;
 
     default:
       return state;

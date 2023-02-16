@@ -5,6 +5,7 @@ import { Context, ContextState } from '../types/TilemapContext';
 export const initialState: ContextState = {
   zoom: 0,
   isSpriteMapLoading: false,
+  elementMap: new Map(),
 };
 
 const initialContext: Context = {
@@ -13,6 +14,7 @@ const initialContext: Context = {
     setCameraPosition: () => {},
     setZoom: () => {},
     setCanvasSize: () => {},
+    setTilemapElement: () => {},
   },
   computed: {
     tileSize: DEFAULT_TILE_SIZE,
