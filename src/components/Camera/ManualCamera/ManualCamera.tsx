@@ -5,7 +5,7 @@ import { useHandlers } from "./ManualCamera.useHandlers";
 import { useSyncPosition } from "./ManualCamera.useSyncPosition";
 
 export type ManualCameraProps = {
-    position?: TilePosition | 'center';
+    position?: TilePosition;
     zoom?: number;
     clickable?: boolean;
 };

@@ -16,19 +16,27 @@ export interface ExampleProps {
     onTileClick: (position: TilePosition) => void;
 }
 
-const ContextButtons = () => {
+const ContextButtons = (props: {
+    focusedTile: TilePosition | null;
+}) => {
     const {
         zoom,
         addCameraMotion,
         addZoomMotion,
     } = useThirdPersonCameraContext();
 
+    useEffect(() => {
+        if (props.focusedTile) {
+            addCameraMotion(defaultMotionSettings, props.focusedTile);
+        }
+    }, [props.focusedTile]);
+
     const centerCamera = () => {
         addCameraMotion(defaultMotionSettings, 'center');
     };
 
     const resetZoom = () => {
-        addZoomMotion(defaultMotionSettings, 0);
+        addZoomMotion(defaultZoomMotionSettings, 0);
     };
 
     const zoomIn = () => {
@@ -68,6 +76,7 @@ const ContextButtons = () => {
 const Example: FunctionComponent<ExampleProps> = (props) => {
     const initialSchema = getFullfilledSchema(props.cols, props.rows, props.baseSprite, 2);
     const [schema, setSchema] = React.useState(initialSchema);
+    const [focusedTile, setFocusedTile] = React.useState<TilePosition | null>(null);
 
     useEffect(() => {
         const newSchema = getFullfilledSchema(props.cols, props.rows, props.baseSprite, 2);
@@ -88,13 +97,18 @@ const Example: FunctionComponent<ExampleProps> = (props) => {
         setSchema(newSchema);
     };
 
+    const handleTileContextMenu = (tilePos: TilePosition) => {
+        setFocusedTile(tilePos);
+    };
+
     return (
         <Tilemap {...defaultTilemapArgs}
             tilmapSchema={schema}
             onTileClick={handleTileClick}
+            onTileContextMenu={handleTileContextMenu}
         >
             <ThirdPersonCamera {...defaulthridPersonCameraArgs}>
-                <ContextButtons />
+                <ContextButtons focusedTile={focusedTile} />
             </ThirdPersonCamera>
         </Tilemap>
     );

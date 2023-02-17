@@ -130,8 +130,8 @@ export const spritesDefinition: SpriteDefinition[] = [
   },
   {
     key: SpriteName.selector,
-    imagesSrc: [selector1, selector2],
-    animationDelay: 650,
+    imagesSrc: [selector2, selector1],
+    animationDelay: 800,
     size: {
       width: 2,
       height: 2,

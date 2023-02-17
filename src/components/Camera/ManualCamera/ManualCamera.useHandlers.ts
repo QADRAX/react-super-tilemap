@@ -13,15 +13,15 @@ import { EventHandlers } from '../CameraEventListener/CameraEventListener.types'
  */
 export function useHandlers(): Partial<EventHandlers> {
   const { state, computed, props: contextProps } = useTilemapContext();
-  const { cameraPosition } = state;
+  const { cameraPosition, canvasSize } = state;
   const {
     tileSize,
-    mapSize,
+    mapDimensions,
   } = computed;
 
   const getTilePositionByMousePosition = (mousePosition: Position) => {
-    if (cameraPosition) {
-      const position = getTilePosition(mousePosition, cameraPosition, tileSize);
+    if (cameraPosition && canvasSize) {
+      const position = getTilePosition(mousePosition, cameraPosition, tileSize, canvasSize);
       return position;
     }
     return null;
@@ -31,7 +31,7 @@ export function useHandlers(): Partial<EventHandlers> {
       const tilePosition = getTilePositionByMousePosition(position);
       if (tilePosition) {
         const result = floorTilePosition(tilePosition);
-        if (isTilePositionValid(result, mapSize)) {
+        if (isTilePositionValid(result, mapDimensions)) {
           contextProps.onTileClick?.(result);
         }
         contextProps.onTilemapClick?.(result);
@@ -43,7 +43,7 @@ export function useHandlers(): Partial<EventHandlers> {
       const tilePosition = getTilePositionByMousePosition(position);
       if (tilePosition) {
         const result = floorTilePosition(tilePosition);
-        if (isTilePositionValid(result, mapSize)) {
+        if (isTilePositionValid(result, mapDimensions)) {
           contextProps.onTileDoubleClick?.(result);
         }
         contextProps.onTilemapDoubleClick?.(result);
@@ -56,7 +56,7 @@ export function useHandlers(): Partial<EventHandlers> {
       const tilePosition = getTilePositionByMousePosition(position);
       if (tilePosition) {
         const result = floorTilePosition(tilePosition);
-        if (isTilePositionValid(result, mapSize)) {
+        if (isTilePositionValid(result, mapDimensions)) {
           contextProps.onTileContextMenu?.(result);
         }
         contextProps.onTilemapContextMenu?.(result);

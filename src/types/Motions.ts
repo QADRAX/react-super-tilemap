@@ -126,7 +126,7 @@ export interface CurrentZoomMotion extends CurrentMotion<Position1D> {}
  * 
  * @public
  */
-export type RecenterCameraMotionTarget = 'center' | 'last-center' | TilePosition;
+export type RecenterCameraMotionTarget = 'center' | TilePosition;
 
 /**
  * Configuration for camera motions that are being executed after a canvas resize or zoom change.

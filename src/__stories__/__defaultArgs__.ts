@@ -12,7 +12,7 @@ export const defaultMotionSettings: MotionSettings = {
 
 export const defaultZoomMotionSettings: MotionSettings = {
     speed: 0.01,
-    easing: 'linear',
+    easing: 'easeOutBack',
     maxDuration: 1,
 };
 

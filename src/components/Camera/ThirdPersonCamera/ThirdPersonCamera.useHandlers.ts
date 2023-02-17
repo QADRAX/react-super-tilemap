@@ -35,7 +35,7 @@ export function useHandlers(
   const { state, computed, props: contextProps } = useTilemapContext();
 
   const {
-    cameraPosition: absoluteCameraPosition,
+    canvasSize,
   } = state;
 
   const {
@@ -47,7 +47,7 @@ export function useHandlers(
 
   const {
     tileSize,
-    mapSize,
+    mapDimensions,
   } = computed;
 
   // enable/disable drag and zoom flags
@@ -91,8 +91,8 @@ export function useHandlers(
   }, [dragEnabled]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const getTilePositionByMousePosition = (mousePosition: Position) => {
-    if (absoluteCameraPosition) {
-      const position = getTilePosition(mousePosition, absoluteCameraPosition, tileSize);
+    if (cameraPosition && canvasSize) {
+      const position = getTilePosition(mousePosition, cameraPosition, tileSize, canvasSize);
       return position;
     }
     return null;
@@ -156,7 +156,7 @@ export function useHandlers(
       const tilePosition = getTilePositionByMousePosition(position);
       if (tilePosition) {
         const result = floorTilePosition(tilePosition);
-        if (isTilePositionValid(result, mapSize)) {
+        if (isTilePositionValid(result, mapDimensions)) {
           contextProps.onTileClick?.(result);
         }
         contextProps.onTilemapClick?.(result)
@@ -169,7 +169,7 @@ export function useHandlers(
       const tilePosition = getTilePositionByMousePosition(position);
       if (tilePosition) {
         const result = floorTilePosition(tilePosition);
-        if (isTilePositionValid(result, mapSize)) {
+        if (isTilePositionValid(result, mapDimensions)) {
           contextProps.onTileDoubleClick?.(result);
         }
         contextProps.onTilemapDoubleClick?.(result);
@@ -182,7 +182,7 @@ export function useHandlers(
       const tilePosition = getTilePositionByMousePosition(position);
       if (tilePosition) {
         const result = floorTilePosition(tilePosition);
-        if (isTilePositionValid(result, mapSize)) {
+        if (isTilePositionValid(result, mapDimensions)) {
           contextProps.onTileContextMenu?.(result);
         }
         contextProps.onTilemapContextMenu?.(result);

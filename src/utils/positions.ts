@@ -1,12 +1,20 @@
 import { Size } from '../types/Size';
 import { TilePosition } from '../types/TilePosition';
 import { Position } from '../types/Position';
+import { MapDimensions } from '../types/MapDimensions';
 
 export function getTilePosition(
   mousePosition: Position,
-  cameraPosition: Position,
-  tileSize: number
+  cameraTilePosition: TilePosition,
+  tileSize: number,
+  canvasSize: Size
 ): TilePosition | null {
+  const cameraPosition = getCameraPositionByTilePosition(
+    cameraTilePosition,
+    tileSize,
+    canvasSize
+  );
+
   const relativeMousePosition: Position = {
     x: mousePosition.x - cameraPosition.x,
     y: mousePosition.y - cameraPosition.y,
@@ -30,14 +38,13 @@ export function floorTilePosition(tilePosition: TilePosition): TilePosition {
 
 export function isTilePositionValid(
   tilePosition: TilePosition,
-  tilemapSize: Size
+  dimensions: MapDimensions
 ): boolean {
   const isValid =
     tilePosition.col >= 0 &&
-    tilePosition.col < tilemapSize.width &&
+    tilePosition.col < dimensions.cols &&
     tilePosition.row >= 0 &&
-    tilePosition.row < tilemapSize.height;
-
+    tilePosition.row < dimensions.rows;
   return isValid;
 }
 

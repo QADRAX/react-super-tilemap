@@ -3,7 +3,8 @@ import { useIsChanging } from '../../hooks/useIsChanging';
 import { ContextComputedState, ContextState } from './TilemapContext/TilemapContext.types';
 import { TilemapProps } from '../../types/Tilemap';
 import {
-    getCenteredTilePositionByCameraPosition,
+    floorTilePosition,
+    getCameraPositionByTilePosition,
 } from '../../utils/positions';
 import { getMapDimensions, getMapSize, getTileSize } from '../../utils/sizes';
 
@@ -35,7 +36,14 @@ export function useComputedValues(
         if (!state.cameraPosition || !state.canvasSize) {
             return undefined;
         }
-        return getCenteredTilePositionByCameraPosition(
+        return floorTilePosition(state.cameraPosition);
+    }, [state.cameraPosition, tileSize, state.canvasSize]);
+
+    const cameraAbsolutePosition = useMemo(() => {
+        if (!state.cameraPosition || !state.canvasSize) {
+            return undefined;
+        }
+        return getCameraPositionByTilePosition(
             state.cameraPosition,
             tileSize,
             state.canvasSize
@@ -49,6 +57,7 @@ export function useComputedValues(
         cameraTilePosition,
         isResizing,
         isZooming,
+        cameraAbsolutePosition,
     };
 
     return computed;

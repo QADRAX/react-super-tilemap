@@ -29,7 +29,7 @@ export const Tilemap: FunctionComponent<TilemapProps> = (props) => {
 
   // Context actions
 
-  const actions = useTilemapActions(dispatch, computed, state);
+  const actions = useTilemapActions(dispatch, state);
 
   return (
     <TilemapContext.Provider value={{ state, computed, actions, props }}>

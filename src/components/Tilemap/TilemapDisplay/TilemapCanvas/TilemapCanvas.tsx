@@ -34,9 +34,10 @@ export class TilemapCanvas extends React.PureComponent<TilemapCanvasProps> {
 
   private renderLoop = (timestamp: number) => {
     const canvas = this.canvasRef.current;
-    const cameraPosition = this.context.state.cameraPosition;
+    const cameraPosition = this.context.computed.cameraAbsolutePosition;
 
     if (canvas && cameraPosition && this.canvasSize) {
+
       renderTileMap({
         canvas,
         buffer: this.bufferCanvas,

@@ -1,10 +1,10 @@
 import { TilemapElement, TilemapElementMap } from '../../../types/TilemapElement';
 import { MapDimensions } from '../../../types/MapDimensions';
-import { Position } from '../../../types/Position';
 import { Size } from '../../../types/Size';
 import { SpriteMap } from '../../../types/Sprite';
 import { TilemapProps } from '../../../types/Tilemap';
 import { TilePosition } from '../../../types/TilePosition';
+import { Position } from '../../../types/Position';
 
 /**
  * Tilemap context state.
@@ -15,7 +15,7 @@ export type ContextState = {
   /**
    * Camera position in the tilemap.
    */
-  cameraPosition?: Position;
+  cameraPosition?: TilePosition;
   /**
    * Current zoom level.
    */
@@ -57,7 +57,7 @@ export type ContextActions = {
    * @param position position to move the camera to
    */
   setCameraPosition: (
-    position?: Position | TilePosition | 'center',
+    position?: TilePosition,
   ) => void;
   /**
    * Sets the current zoom level to the given zoom level
@@ -103,6 +103,10 @@ export type ContextComputedState = {
    * Current tile position where the camera is centered.
    */
   cameraTilePosition?: TilePosition;
+  /**
+   * Current position where the camera is centered in pixels.
+   */
+  cameraAbsolutePosition?: Position;
   /**
    * Indicates if the tilemap is beeing resizing.
    */
