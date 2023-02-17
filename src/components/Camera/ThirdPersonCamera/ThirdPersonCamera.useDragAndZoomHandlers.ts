@@ -3,7 +3,7 @@ import { DEFAULT_DRAG_SENSITIVITY, DEFAULT_ZOOM_INCREMENT, DRAG_DELAY } from '..
 import { Position } from '../../../types/Position';
 import { getTilePosition } from '../../../utils/positions';
 import { useTilemapContext } from '../../../hooks/useTilemapContext';
-import { DragAndZoomHandlers } from './CameraEventListener/CameraEventListener.types';
+import { EventHandlers } from '../CameraEventListener/CameraEventListener.types';
 
 /**
  * Bind mouse and touch events to drag and zoom logic.
@@ -13,7 +13,7 @@ import { DragAndZoomHandlers } from './CameraEventListener/CameraEventListener.t
  * @param props
  * @returns
  */
-export function useDragAndZoomHandlers(
+export function useHandlers(
   props: {
     draggable?: boolean;
     zoomeable?: boolean;
@@ -24,7 +24,7 @@ export function useDragAndZoomHandlers(
     isZoomInMotion: boolean;
     isCameraInMotion: boolean;
   },
-): DragAndZoomHandlers {
+): EventHandlers {
   // State from context
 
   const { state, computed, actions, props: contextProps } = useTilemapContext();

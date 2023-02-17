@@ -59,7 +59,7 @@ export function useTilemapActions(
   const setZoom = useCallback(
     (zoom: number) => {
       if (zoom < 0) {
-        zoom = 0;
+        zoom = Math.abs(zoom);
       }
       dispatch(_setCurrentZoom(zoom));
     },

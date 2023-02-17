@@ -1,5 +1,5 @@
 import React from "react";
-import { tilemapEventChannel } from "../../../../EventBus/TilemapEventChannel";
+import { tilemapEventChannel } from "../../../EventBus/TilemapEventChannel";
 import { CameraEventListenerProps } from "./CameraEventListener.types";
 
 export class CameraEventListener extends React.PureComponent<CameraEventListenerProps> {

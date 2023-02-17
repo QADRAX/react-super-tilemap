@@ -1,6 +1,6 @@
-import { Position } from "../../../../types/Position";
+import { Position } from "../../../types/Position";
 
-export type DragAndZoomHandlers = {
+export type EventHandlers = {
     handleMouseDown: (position: Position) => void;
     handleMouseMove: (position: Position) => void;
     handleMouseUp: () => void;
@@ -11,5 +11,5 @@ export type DragAndZoomHandlers = {
 };
 
 export type CameraEventListenerProps = {
-    handlers: Partial<DragAndZoomHandlers>;
+    handlers: Partial<EventHandlers>;
 };
