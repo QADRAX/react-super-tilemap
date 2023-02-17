@@ -4,7 +4,7 @@ import { Tilemap } from '../components/Tilemap/Tilemap';
 import { defaulthridPersonCameraArgs, defaultTilemapArgs } from './__defaultArgs__';
 import { getFullfilledSchema } from './__MapGenerator__';
 import { TilePosition } from '../types/TilePosition';
-import { FirstLayerSprites, SpriteName } from './__Sprites__';
+import { FirstLayerSprites, SecondLayerSprites, SpriteName } from './__Sprites__';
 import { ThirdPersonCamera } from '../components/Camera/ThirdPersonCamera/ThirdPersonCamera';
 
 export interface ExampleProps {
@@ -83,7 +83,7 @@ export default {
                     summary: 'string',
                 },
             },
-            options: [SpriteName.armyIdle, SpriteName.building],
+            options: [...SecondLayerSprites],
             control: 'select',
         },
         onTileClick: {

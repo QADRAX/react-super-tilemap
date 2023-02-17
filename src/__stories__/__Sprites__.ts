@@ -40,6 +40,11 @@ const road6 =
   'https://firebasestorage.googleapis.com/v0/b/react-super-tilemap.appspot.com/o/road_6.png?alt=media&token=29dfe1e7-cbaf-4069-b6a2-612b7c61ecc4';
 const shadow =
   'https://firebasestorage.googleapis.com/v0/b/react-super-tilemap.appspot.com/o/shadow.png?alt=media&token=8b973cbb-9606-435e-99c8-60b4ba9937e7';
+const selector1 =
+  'https://firebasestorage.googleapis.com/v0/b/react-super-tilemap.appspot.com/o/selector_1.png?alt=media&token=b59b6457-22ad-4c6d-a467-47d39b8e3997';
+const selector2 = 
+  'https://firebasestorage.googleapis.com/v0/b/react-super-tilemap.appspot.com/o/selector_2.png?alt=media&token=425f4cd4-880c-4263-8d70-b597a65913a4';
+
 
 export enum SpriteName {
   forest1 = 'forest1',
@@ -56,6 +61,7 @@ export enum SpriteName {
   ocean1 = 'ocean1',
   armyIdle = 'armyIdle',
   building = 'building',
+  selector = 'selector',
 }
 
 export const spritesDefinition: SpriteDefinition[] = [
@@ -122,6 +128,19 @@ export const spritesDefinition: SpriteDefinition[] = [
       height: 2,
     },
   },
+  {
+    key: SpriteName.selector,
+    imagesSrc: [selector1, selector2],
+    animationDelay: 650,
+    size: {
+      width: 2,
+      height: 2,
+    },
+    offset: {
+      col: -0.5,
+      row: 0.5,
+    },
+  },
 ];
 
 export const FirstLayerSprites = [
@@ -137,4 +156,10 @@ export const FirstLayerSprites = [
   SpriteName.road5,
   SpriteName.road6,
   SpriteName.ocean1,
+];
+
+export const SecondLayerSprites = [
+  SpriteName.building,
+  SpriteName.armyIdle,
+  SpriteName.selector,
 ];

@@ -12,17 +12,9 @@ import { useMotions } from "./ThirdPersonCamera.useMotions";
 /**
  * Use this component to operate with a third person camera in the tilemap.
  * 
- * Here you can forget about control the camera position and zoom because this component will do it for you enabling drag and zoom in/ zoom out controls by default.
+ * Here you can forget about control the camera position and zoom because this component will do it for you enabling drag and zoom controls by default.
  * 
- * You can disable these controls by setting the draggable and zoomeable props to false.
- * 
- * You can also set the initial camera position and zoom.
- * 
- * You can also set the drag sensitivity and zoom increment.
- * 
- * You can also set the camera to recenter on resize and zoom.
- * 
- * This component will provide a context to all its children.
+ * This component will provide a context to all its children. There you can use the `useThirdPersonCamera` hook to get this context and use it to control the camera using the `addCameraMotion` and `addZoomMotion` functions.
  * 
  * @param props component props
  */

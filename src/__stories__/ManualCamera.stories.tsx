@@ -4,7 +4,7 @@ import { Tilemap } from '../components/Tilemap/Tilemap';
 import { defaultTilemapArgs } from './__defaultArgs__';
 import { getFullfilledSchema } from './__MapGenerator__';
 import { TilePosition } from '../types/TilePosition';
-import { FirstLayerSprites, SpriteName } from './__Sprites__';
+import { FirstLayerSprites, SecondLayerSprites, SpriteName } from './__Sprites__';
 import { ManualCamera } from '../components/Camera/ManualCamera/ManualCamera';
 
 export interface ExampleProps {
@@ -93,7 +93,7 @@ export default {
                     summary: 'string',
                 },
             },
-            options: [SpriteName.armyIdle, SpriteName.building],
+            options: [...SecondLayerSprites],
             control: 'select',
         },
         col:{
