@@ -7,14 +7,17 @@ import { useSyncPosition } from "./ManualCamera.useSyncPosition";
 export type ManualCameraProps = {
     position?: TilePosition | 'center';
     zoom?: number;
+    clickable?: boolean;
 };
 
 export const ManualCamera: FunctionComponent<ManualCameraProps> = (props) => {
     useSyncPosition(props.position, props.zoom);
-    
-    const handlers = useHandlers();
+
+    const handlers = props.clickable ?? true ? useHandlers() : {};
 
     return (
-        <CameraEventListener handlers={handlers} />
+        <>
+            {props.clickable && <CameraEventListener handlers={handlers} />}
+        </>
     );
 };
