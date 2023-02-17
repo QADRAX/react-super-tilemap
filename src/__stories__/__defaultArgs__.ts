@@ -7,7 +7,13 @@ import { spritesDefinition } from "./__Sprites__";
 export const defaultMotionSettings: MotionSettings = {
     speed: 0.01,
     easing: 'easeOutElastic',
-    maxDuration: 10,
+    maxDuration: 1,
+};
+
+export const defaultZoomMotionSettings: MotionSettings = {
+    speed: 0.01,
+    easing: 'linear',
+    maxDuration: 1,
 };
 
 export const defaultTilemapArgs: Partial<TilemapProps> = {
