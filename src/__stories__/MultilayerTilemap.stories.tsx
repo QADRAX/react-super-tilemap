@@ -49,7 +49,7 @@ const Example: FunctionComponent<ExampleProps> = (props) => {
 };
 
 export default {
-    title: 'Tilemap/Adding tiles on click',
+    title: 'Tilemap/Tilemap',
     component: Example,
     argTypes: {
         rows: {
@@ -103,9 +103,9 @@ export default {
 
 const Template: ComponentStory<typeof Example> = (args) => <Example {...args} />;
 
-export const MultilayerExample = Template.bind({});
+export const ClickableTilemapExample = Template.bind({});
 
-MultilayerExample.args = {
+ClickableTilemapExample.args = {
     rows: 20,
     cols: 20,
     baseSprite: SpriteName.grass,

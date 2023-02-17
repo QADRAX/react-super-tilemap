@@ -1,23 +1,32 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Tilemap } from '../components/Tilemap/Tilemap';
-import { defaulthridPersonCameraArgs, defaultMotionSettings, defaultTilemapArgs, defaultZoomMotionSettings } from './__defaultArgs__';
+import { defaultEasingTypes, defaulthridPersonCameraArgs, defaultMotionSettings, defaultTilemapArgs, defaultZoomMotionSettings } from './__defaultArgs__';
 import { getFullfilledSchema } from './__MapGenerator__';
 import { TilePosition } from '../types/TilePosition';
 import { FirstLayerSprites, SecondLayerSprites, SpriteName } from './__Sprites__';
 import { ThirdPersonCamera } from '../components/Camera/ThirdPersonCamera/ThirdPersonCamera';
 import { useThirdPersonCameraContext } from '../components/Camera/ThirdPersonCamera/ThirdPersonCameraContext/useThirdPersonCameraContext';
+import { Element } from '../components/Element/Element';
+import { EasingType } from '../types/EasingType';
+import { MotionSettings } from '../types/Motions';
 
 export interface ExampleProps {
     rows: number;
     cols: number;
     baseSprite: string;
     spriteToAdd: string;
+    elementCol: number;
+    elementRow: number;
+    motionEasingType: EasingType;
+    zoomEasingType: EasingType;
     onTileClick: (position: TilePosition) => void;
 }
 
 const ContextButtons = (props: {
     focusedTile: TilePosition | null;
+    motionEasingType: EasingType;
+    zoomEasingType: EasingType;
 }) => {
     const {
         zoom,
@@ -25,31 +34,41 @@ const ContextButtons = (props: {
         addZoomMotion,
     } = useThirdPersonCameraContext();
 
+    const cameraMotion: MotionSettings = {
+        ...defaultMotionSettings,
+        easing: props.motionEasingType,
+    };
+
+    const zoomMotion: MotionSettings = {
+        ...defaultZoomMotionSettings,
+        easing: props.zoomEasingType,
+    };
+
     useEffect(() => {
         if (props.focusedTile) {
-            addCameraMotion(defaultMotionSettings, props.focusedTile);
+            addCameraMotion(cameraMotion, props.focusedTile);
         }
     }, [props.focusedTile]);
 
     const centerCamera = () => {
-        addCameraMotion(defaultMotionSettings, 'center');
+        addCameraMotion(cameraMotion, 'center');
     };
 
     const resetZoom = () => {
-        addZoomMotion(defaultZoomMotionSettings, 0);
+        addZoomMotion(zoomMotion, 0);
     };
 
     const zoomIn = () => {
-        addZoomMotion(defaultZoomMotionSettings, zoom + 5);
+        addZoomMotion(zoomMotion, zoom + 5);
     };
 
     const zoomOut = () => {
-        addZoomMotion(defaultZoomMotionSettings, zoom - 5);
+        addZoomMotion(zoomMotion, zoom - 5);
     };
 
     return (
         <>
-            <button onClick={(e) => {
+            <button onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 centerCamera();
@@ -58,7 +77,13 @@ const ContextButtons = (props: {
                 e.preventDefault();
                 e.stopPropagation();
                 resetZoom();
-            }}>ResetZoom</button>
+            }}>Reset Zoom</button>
+            <button onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                resetZoom();
+                centerCamera();
+            }}>Reset all</button>
             <button onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -108,14 +133,23 @@ const Example: FunctionComponent<ExampleProps> = (props) => {
             onTileContextMenu={handleTileContextMenu}
         >
             <ThirdPersonCamera {...defaulthridPersonCameraArgs}>
-                <ContextButtons focusedTile={focusedTile} />
+                <ContextButtons focusedTile={focusedTile} motionEasingType={props.motionEasingType} zoomEasingType={props.zoomEasingType} />
             </ThirdPersonCamera>
+            <Element tilemapElement={{
+                tilePosition: {
+                    col: props.elementCol,
+                    row: props.elementRow,
+                },
+                spriteKey: SpriteName.armyIdle,
+                layer: 1,
+            }} key="army" />
+
         </Tilemap>
     );
 };
 
 export default {
-    title: 'Tilemap/Camera Context',
+    title: 'Tilemap/Cameras',
     component: Example,
     argTypes: {
         rows: {
@@ -152,6 +186,40 @@ export default {
             options: [...SecondLayerSprites],
             control: 'select',
         },
+        elementCol: {
+            table: {
+                type: {
+                    summary: 'number',
+                },
+            },
+            control: 'number',
+        },
+        elementRow: {
+            table: {
+                type: {
+                    summary: 'number',
+                },
+            },
+            control: 'number',
+        },
+        motionEasingType: {
+            table: {
+                type: {
+                    summary: 'EasingType',
+                },
+            },
+            options: [...defaultEasingTypes],
+            control: 'select',
+        },
+        zoomEasingType: {
+            table: {
+                type: {
+                    summary: 'EasingType',
+                },
+            },
+            options: [...defaultEasingTypes],
+            control: 'select',
+        },
         onTileClick: {
             control: 'function',
         },
@@ -169,12 +237,16 @@ export default {
 
 const Template: ComponentStory<typeof Example> = (args) => <Example {...args} />;
 
-export const MultilayerExample = Template.bind({});
+export const ThirdPersonCameraExample = Template.bind({});
 
-MultilayerExample.args = {
+ThirdPersonCameraExample.args = {
     rows: 20,
     cols: 20,
     baseSprite: SpriteName.grass,
     spriteToAdd: SpriteName.building,
+    elementCol: 10,
+    elementRow: 10,
+    motionEasingType: defaultMotionSettings.easing,
+    zoomEasingType: defaultMotionSettings.easing,
 };
 

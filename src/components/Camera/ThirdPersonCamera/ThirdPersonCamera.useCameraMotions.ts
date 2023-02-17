@@ -8,7 +8,6 @@ import { getDistance } from "../../../utils/positions";
 export function useCameraMotions(
     props: {
         isCameraDragging: boolean;
-        isZoomInMotion: boolean;
         currentCameraMotion: CurrentCameraMotion | undefined;
         setCurrentCameraMotion: (motion: CurrentCameraMotion | undefined) => void;
         cameraPosition: TilePosition | undefined;
@@ -60,7 +59,6 @@ export function useCameraMotions(
             !props.currentCameraMotion &&
             cameraMotionQueue.length > 0 &&
             cameraPosition &&
-            !props.isZoomInMotion &&
             canvasSize
         ) {
             // add next motion from the queue
@@ -97,7 +95,6 @@ export function useCameraMotions(
         props.isCameraDragging,
         props.setCurrentCameraMotion,
         sliceCameraMotionQueue,
-        props.isZoomInMotion,
         canvasSize,
         mapDimensions,
     ]);

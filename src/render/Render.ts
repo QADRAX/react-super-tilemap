@@ -3,6 +3,7 @@ import { DEFAULT_BACKGROUND_COLOR } from '../constants';
 import { isValidCSSColor } from '../utils/colors';
 import { Position } from '../types/Position';
 import { SpriteMap } from '../types/Sprite';
+import { TilemapElementMap } from '../types/TilemapElement';
 
 export type RenderProps = {
   spriteMap?: SpriteMap;
@@ -14,6 +15,7 @@ export type RenderProps = {
   buffer: HTMLCanvasElement;
   canvas: HTMLCanvasElement;
   backgroundColor?: string;
+  elementMap: TilemapElementMap;
 };
 
 /**
@@ -29,6 +31,7 @@ export function renderTileMap({
   buffer,
   canvas,
   backgroundColor,
+  elementMap,
 }: RenderProps): void {
   const { width: canvasWidthPx, height: canvasHeightPx } = canvasSizePx;
 
@@ -64,10 +67,15 @@ export function renderTileMap({
   ctx.fillRect(0, 0, canvasWidthPx, canvasHeightPx);
 
   if (schema && spriteMap) {
-    // Draw the tilemap to the buffer. Only visible tiles are drawn.
+    // Calculate first and last visible columns and rows
 
     const firstVisibleCol = Math.floor(-cameraPosition.x / tileSizePx);
     const lastVisibleCol = Math.ceil((canvasWidthPx - cameraPosition.x) / tileSizePx);
+
+    const firstVisibleRow = Math.floor(-cameraPosition.y / tileSizePx);
+    const lastVisibleRow = Math.ceil((canvasHeightPx - cameraPosition.y) / tileSizePx);
+
+    // Calculate the max number of layers
 
     const maxLayers = schema.reduce((max, rows) => {
       const maxRows = rows.reduce((max, layers) => {
@@ -77,6 +85,8 @@ export function renderTileMap({
       return Math.max(max, maxRows);
     }, 0);
 
+    // Draw the tilemap based on the schema
+
     for (let l = 0; l < maxLayers; l++) {
       for (let c = firstVisibleCol; c < lastVisibleCol; c++) {
         const rows = schema[c];
@@ -84,9 +94,6 @@ export function renderTileMap({
         if (!rows) {
           continue;
         }
-
-        const firstVisibleRow = Math.floor(-cameraPosition.y / tileSizePx);
-        const lastVisibleRow = Math.ceil((canvasHeightPx - cameraPosition.y) / tileSizePx);
 
         for (let r = firstVisibleRow; r < lastVisibleRow; r++) {
           const layers = rows[r];
@@ -122,6 +129,40 @@ export function renderTileMap({
         }
       }
     }
+
+    // Draw the elements
+    const visibleElements = Object.values(elementMap).filter((element) => {
+      const isVisible = element.tilePosition.col >= firstVisibleCol &&
+        element.tilePosition.col <= lastVisibleCol &&
+        element.tilePosition.row >= firstVisibleRow &&
+        element.tilePosition.row <= lastVisibleRow;
+      return isVisible;
+    }).sort((a, b) => {
+      return a.layer - b.layer;
+    });
+
+    visibleElements.forEach((element) => {
+      const sprite = spriteMap.get(element.spriteKey);
+      if (sprite) {
+        const spriteSize = sprite.size;
+        const spriteWidthPx = spriteSize.width * tileSizePx;
+        const spriteHeightPx = spriteSize.height * tileSizePx;
+        const spriteX = element.tilePosition.col * tileSizePx + cameraPosition.x + (tileSizePx * sprite.offset.col);
+        const spriteY = element.tilePosition.row * tileSizePx + cameraPosition.y + (tileSizePx * sprite.offset.row);
+
+        const frame = sprite.getFrame(timestamp);
+        bufferCtx.drawImage(
+          frame,
+          spriteX,
+          spriteY - spriteHeightPx + tileSizePx,
+          spriteWidthPx,
+          spriteHeightPx
+        );
+      }
+    });
+
+
+
   }
 
   // Draw the buffer to the canvas

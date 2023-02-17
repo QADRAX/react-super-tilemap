@@ -15,16 +15,12 @@ export function useMotions(
     const [currentZoomMotion, setCurrentZoomMotion] = useState<CurrentZoomMotion | undefined>(undefined);
     const [currentCameraMotion, setCurrentCameraMotion] = useState<CurrentCameraMotion | undefined>(undefined);
 
-    const isCameraInMotion = !!currentCameraMotion;
-    const isZoomInMotion = !!currentZoomMotion;
-
     const {
         addZoomMotion,
         endZoomMotion,
         zoomMotionQueue,
     } = useZoomMotions({
         isCameraDragging,
-        isCameraInMotion,
         currentZoomMotion,
         setCurrentZoomMotion,
         zoom,
@@ -36,7 +32,6 @@ export function useMotions(
         cameraMotionQueue,
     } = useCameraMotions({
         isCameraDragging,
-        isZoomInMotion,
         currentCameraMotion,
         setCurrentCameraMotion,
         cameraPosition,

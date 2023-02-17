@@ -48,6 +48,7 @@ export class TilemapCanvas extends React.PureComponent<TilemapCanvasProps> {
         tileSizePx: this.context.computed.tileSize,
         timestamp,
         backgroundColor: this.context.props.backgroundColor,
+        elementMap: this.context.state.elementMap,
       });
     }
 

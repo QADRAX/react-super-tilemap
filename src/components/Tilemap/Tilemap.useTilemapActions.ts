@@ -53,11 +53,11 @@ export function useTilemapActions(
 
   const setTilemapElement = useCallback(
     (elementKey: string, element?: TilemapElement) => {
-      const nextMap = Object.assign({}, state.elementMap);
+      const nextMap = { ...state.elementMap}
       if(element) {
-        nextMap.set(elementKey, element);
+        nextMap[elementKey] = element;
       } else {
-        nextMap.delete(elementKey);
+        delete nextMap[elementKey];
       }
       dispatch(_setElementMap(nextMap));
     },

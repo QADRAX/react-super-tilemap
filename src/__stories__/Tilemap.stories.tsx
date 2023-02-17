@@ -13,7 +13,7 @@ const cols = 5;
 const initialSchema = getRandomSpriteSchema(cols, rows);
 
 export default {
-    title: 'Tilemap/Basic example',
+    title: 'Tilemap/Tilemap',
     component: Tilemap,
     argTypes: {
         backgroundColor: {
@@ -136,9 +136,9 @@ const Template: Story<TilemapProps & ThirdPersonCameraProps> = (args) => (
     </Tilemap>
 );
 
-export const Basic = Template.bind({});
+export const AllPropsExample = Template.bind({});
 
-Basic.args = {
+AllPropsExample.args = {
     tilmapSchema: initialSchema,
     ...defaultTilemapArgs,
     ...defaulthridPersonCameraArgs

@@ -5,7 +5,6 @@ import { createCurrentMotion } from '../../../utils/createCurrentMotion';
 export function useZoomMotions(
     props: {
         isCameraDragging: boolean;
-        isCameraInMotion: boolean;
         currentZoomMotion: CurrentZoomMotion | undefined;
         setCurrentZoomMotion: (motion: CurrentZoomMotion | undefined) => void;
         zoom: number;
@@ -46,8 +45,7 @@ export function useZoomMotions(
     useEffect(() => {
         if (
             !props.currentZoomMotion &&
-            zoomMotionQueue.length > 0 &&
-            !props.isCameraInMotion
+            zoomMotionQueue.length > 0
         ) {
             // add next motion from the queue
 
@@ -72,7 +70,6 @@ export function useZoomMotions(
         props.currentZoomMotion,
         zoomMotionQueue,
         zoom,
-        props.isCameraInMotion,
         props.setCurrentZoomMotion,
         sliceZoomMotionQueue,
     ]);

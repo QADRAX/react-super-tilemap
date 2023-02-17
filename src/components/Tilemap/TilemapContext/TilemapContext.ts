@@ -5,7 +5,7 @@ import { Context, ContextState } from './TilemapContext.types';
 export const initialState: ContextState = {
   zoom: 0,
   isSpriteMapLoading: false,
-  elementMap: new Map(),
+  elementMap: {},
 };
 
 const initialContext: Context = {
