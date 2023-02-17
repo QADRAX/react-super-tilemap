@@ -7,6 +7,7 @@ export function createCurrentMotion<T extends CurrentMotionPosition>(
     speed: number,
     distance: number,
     maxDuration: number | undefined,
+    minDuration: number | undefined,
     easing: EasingType | undefined,
 ): CurrentMotion<T> {
     const finalSpeed = speed > 0 ? Math.abs(speed) : 1;
@@ -17,6 +18,12 @@ export function createCurrentMotion<T extends CurrentMotionPosition>(
       const maxDurationLongMs = maxDuration * 1000 * 1000;
       if (duration > maxDurationLongMs) {
         finalDuration = maxDurationLongMs;
+      }
+    }
+    if (minDuration) {
+      const minDurationLongMs = minDuration * 1000 * 1000;
+      if (finalDuration < minDurationLongMs) {
+        finalDuration = minDurationLongMs;
       }
     }
 

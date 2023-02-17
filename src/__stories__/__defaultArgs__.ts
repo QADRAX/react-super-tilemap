@@ -6,8 +6,9 @@ import { spritesDefinition } from "./__Sprites__";
 
 export const defaultMotionSettings: MotionSettings = {
     speed: 0.01,
-    easing: 'easeOutElastic',
-    maxDuration: 1,
+    easing: 'easeOutBack',
+    maxDuration: 0.3,
+    minDuration: 0.1,
 };
 
 export const defaultZoomMotionSettings: MotionSettings = {

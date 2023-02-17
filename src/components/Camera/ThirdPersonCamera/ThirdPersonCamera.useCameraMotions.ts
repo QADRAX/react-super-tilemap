@@ -82,6 +82,7 @@ export function useCameraMotions(
                 nextMotionRequest.settings.speed,
                 distance,
                 nextMotionRequest.settings.maxDuration,
+                nextMotionRequest.settings.minDuration,
                 nextMotionRequest.settings.easing
             );
 

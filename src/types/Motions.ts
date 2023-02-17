@@ -26,9 +26,15 @@ export type MotionSettings = {
   /**
    * The maximum duration of the motion in seconds.
    * If it is not provided, the motion will run until it reaches the target using the configured speed.
-   * If it is provided, the speed will be calculated to reach the target in the given duration.
+   * If it is provided, the speed will be calculated to reach the target in the given max duration.
    */
   maxDuration?: number;
+  /**
+   * The minimum duration of the motion in seconds.
+   * 
+   * @default 0
+   */
+  minDuration?: number;
 };
 
 // MOTION REQUESTS
