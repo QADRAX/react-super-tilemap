@@ -6,7 +6,7 @@ import { getFullfilledSchema } from './__MapGenerator__';
 import { TilePosition } from '../types/TilePosition';
 import { FirstLayerSprites, SpriteName } from './__Sprites__';
 import { ThirdPersonCamera } from '../components/Camera/ThirdPersonCamera/ThirdPersonCamera';
-import { useThirdPersonCameraContext } from '../components/Camera/ThirdPersonCamera/ThirdCameraContext/useThirdPersonCameraContext';
+import { useThirdPersonCameraContext } from '../components/Camera/ThirdPersonCamera/ThirdPersonCameraContext/useThirdPersonCameraContext';
 
 export interface ExampleProps {
     rows: number;

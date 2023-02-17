@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 /**
- * Hook that returns true if the target is changing
+ * Hook that returns true if the target is changing based on the detectionTimeout
  * 
  * @internal
  * 

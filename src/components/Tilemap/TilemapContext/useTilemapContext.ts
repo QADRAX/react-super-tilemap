@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { TilemapContext } from '../Context/TilemapContext';
+import { TilemapContext } from './TilemapContext';
 
 export function useTilemapContext() {
   return useContext(TilemapContext);

@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useReducer } from 'react';
-import { initialState, TilemapContext } from '../../Context/TilemapContext';
-import { tilemapReducer } from '../../Context/TilemapContext.reducer';
+import { initialState, TilemapContext } from './TilemapContext/TilemapContext';
+import { tilemapReducer } from './TilemapContext/TilemapContext.reducer';
 import { TilemapProps } from '../../types/Tilemap';
 import { useTilemapActions } from './Tilemap.useTilemapActions';
 import { useComputedValues } from './Tilmeap.useComputedValues';

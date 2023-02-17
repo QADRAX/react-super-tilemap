@@ -6,7 +6,7 @@ import {
   _setCanvasSize,
   _setCurrentZoom,
   _setElementMap,
-} from '../../Context/TilemapContext.actions';
+} from './TilemapContext/TilemapContext.actions';
 import { Position } from '../../types/Position';
 import { Size } from '../../types/Size';
 import { ContextActions, ContextComputedState, ContextState } from '../../types/TilemapContext';

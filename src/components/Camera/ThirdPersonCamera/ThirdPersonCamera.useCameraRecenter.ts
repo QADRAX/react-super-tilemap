@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { useTilemapContext } from "../../../hooks/useTilemapContext";
+import { useTilemapContext } from "../../Tilemap/TilemapContext/useTilemapContext";
 import { ThirdPersonCameraProps } from "../../../types/ThirdPersonCamera";
 import { TilePosition } from "../../../types/TilePosition";
 import { isTilePosition } from "../../../utils/typeGuards";
-import { CameraContext } from "./ThirdCameraContext/ThirdPersonCameraContext";
+import { CameraContext } from "./ThirdPersonCameraContext/ThirdPersonCameraContext";
 
 export function useCameraRecenter(
     addCameraMotion: CameraContext["addCameraMotion"],

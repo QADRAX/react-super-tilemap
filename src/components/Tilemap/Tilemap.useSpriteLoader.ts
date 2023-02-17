@@ -3,7 +3,7 @@ import {
   TilemapActions,
   _setIsSpriteMapLoading,
   _setSpriteMap,
-} from '../../Context/TilemapContext.actions';
+} from './TilemapContext/TilemapContext.actions';
 import { SpriteDefinition } from '../../types/SpriteDefinition';
 import { loadSprites } from '../../utils/loadSprites';
 

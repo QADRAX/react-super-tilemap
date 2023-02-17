@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from "react";
-import { useTilemapContext } from "../../../hooks/useTilemapContext";
+import { useTilemapContext } from "../../Tilemap/TilemapContext/useTilemapContext";
 import { TilePosition } from "../../../types/TilePosition";
 
 export function useInitialCameraPosition(

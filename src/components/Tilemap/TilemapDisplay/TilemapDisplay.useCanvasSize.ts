@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from 'react';
 import { useResizeDetector } from 'react-resize-detector';
-import { _setCanvasSize } from '../../../Context/TilemapContext.actions';
-import { useTilemapContext } from '../../../hooks/useTilemapContext';
+import { _setCanvasSize } from '../TilemapContext/TilemapContext.actions';
+import { useTilemapContext } from '../TilemapContext/useTilemapContext';
 import { Size } from '../../../types/Size';
 
 /**

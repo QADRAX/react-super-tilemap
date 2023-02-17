@@ -1,5 +1,5 @@
 import React from 'react';
-import { TilemapContext } from '../../../../Context/TilemapContext';
+import { TilemapContext } from '../../TilemapContext/TilemapContext';
 import { renderTileMap } from '../../../../render/Render';
 
 type TilemapCanvasProps = {};

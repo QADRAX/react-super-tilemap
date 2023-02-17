@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { useTilemapContext } from "../../../hooks/useTilemapContext";
+import { useTilemapContext } from "../../Tilemap/TilemapContext/useTilemapContext";
 import { CameraMotionRequest, CurrentCameraMotion, MotionSettings } from "../../../types/Motions";
 import { TilePosition } from "../../../types/TilePosition";
 import { createCurrentMotion } from "../../../utils/createCurrentMotion";

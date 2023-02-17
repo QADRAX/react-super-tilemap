@@ -1,7 +1,7 @@
-import { Position } from '../types/Position';
-import { Size } from '../types/Size';
-import { SpriteMap } from '../types/Sprite';
-import { TilemapElementMap } from '../types/TilemapElement';
+import { Position } from '../../../types/Position';
+import { Size } from '../../../types/Size';
+import { SpriteMap } from '../../../types/Sprite';
+import { TilemapElementMap } from '../../../types/TilemapElement';
 
 // Action types
 

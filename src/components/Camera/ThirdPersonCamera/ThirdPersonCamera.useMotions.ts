@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CurrentCameraMotion, CurrentZoomMotion } from "../../../types/Motions";
-import { useMotionRunner } from "./useMotionRunner";
+import { useStartMotion } from "../../../hooks/useStartMotion";
 import { useCameraMotions } from "./ThirdPersonCamera.useCameraMotions";
 import { useZoomMotions } from "./ThirdPersonCamera.useZoomMotions";
 import { TilePosition } from "../../../types/TilePosition";
@@ -43,8 +43,8 @@ export function useMotions(
     });
 
 
-    useMotionRunner(currentZoomMotion, (zoom) => setZoom(zoom!), endZoomMotion);
-    useMotionRunner(currentCameraMotion, (camera) => setCameraPosition(camera!), endCameraMotion);
+    useStartMotion(currentZoomMotion, (zoom) => setZoom(zoom!), endZoomMotion);
+    useStartMotion(currentCameraMotion, (camera) => setCameraPosition(camera!), endCameraMotion);
 
     return {
         addZoomMotion,

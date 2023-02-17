@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { DEFAULT_DRAG_SENSITIVITY, DEFAULT_ZOOM_INCREMENT, DRAG_DELAY } from '../../../constants';
 import { Position } from '../../../types/Position';
 import { floorTilePosition, getTilePosition, isTilePositionValid } from '../../../utils/positions';
-import { useTilemapContext } from '../../../hooks/useTilemapContext';
+import { useTilemapContext } from '../../Tilemap/TilemapContext/useTilemapContext';
 import { EventHandlers } from '../CameraEventListener/CameraEventListener.types';
 import { TilePosition } from '../../../types/TilePosition';
 

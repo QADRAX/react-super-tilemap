@@ -1,6 +1,6 @@
 import { Position } from '../../../types/Position';
 import { floorTilePosition, getTilePosition, isTilePositionValid } from '../../../utils/positions';
-import { useTilemapContext } from '../../../hooks/useTilemapContext';
+import { useTilemapContext } from '../../Tilemap/TilemapContext/useTilemapContext';
 import { EventHandlers } from '../CameraEventListener/CameraEventListener.types';
 
 /**

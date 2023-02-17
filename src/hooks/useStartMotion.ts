@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { CurrentMotion, CurrentMotionPosition } from "../../../types/Motions";
-import { startMotion } from "../../../utils/startMotion";
+import { CurrentMotion, CurrentMotionPosition } from "../types/Motions";
+import { startMotion } from "../utils/startMotion";
 
 export interface MotionRunnerProps<T extends CurrentMotionPosition> {
     onMotionEnd: () => void;
@@ -8,7 +8,7 @@ export interface MotionRunnerProps<T extends CurrentMotionPosition> {
     setPosition: (value: T | undefined) => void;
 }
 
-export function useMotionRunner<T extends CurrentMotionPosition>(
+export function useStartMotion<T extends CurrentMotionPosition>(
     motion: CurrentMotion<T> | undefined,
     setPosition: (value: T | undefined) => void,
     onMotionEnd: () => void,
