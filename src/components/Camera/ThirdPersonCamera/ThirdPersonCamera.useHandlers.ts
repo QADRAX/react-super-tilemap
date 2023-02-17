@@ -34,7 +34,6 @@ export function useHandlers(
   const {
     tileSize,
     mapSize,
-    cameraTilePosition,
   } = computed;
 
   const { setCameraPosition, setZoom: setCurrentZoom } = actions;
