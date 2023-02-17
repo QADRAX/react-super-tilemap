@@ -1,5 +1,5 @@
 import React from 'react';
-import { PublicTilemapContext } from '../../../../Context/TilemapContext';
+import { TilemapContext } from '../../../../Context/TilemapContext';
 import { renderTileMap } from '../../../../render/Render';
 
 type TilemapCanvasProps = Record<string, never>;
@@ -23,8 +23,8 @@ export class TilemapCanvas extends React.PureComponent<TilemapCanvasProps> {
     this.bufferCanvas = document.createElement('canvas');
   }
 
-  static contextType = PublicTilemapContext;
-  context!: React.ContextType<typeof PublicTilemapContext>;
+  static contextType = TilemapContext;
+  context!: React.ContextType<typeof TilemapContext>;
 
   get canvasSize() {
     return this.context.state.canvasSize;

@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useReducer } from 'react';
-import { initialState, PublicTilemapContext } from '../../Context/TilemapContext';
+import { initialState, TilemapContext } from '../../Context/TilemapContext';
 import { tilemapReducer } from '../../Context/TilemapContext.reducer';
 import { TilemapProps } from '../../types/Tilemap';
 import { useTilemapActions } from './Tilemap.useTilemapActions';
@@ -32,10 +32,10 @@ export const Tilemap: FunctionComponent<TilemapProps> = (props) => {
   const actions = useTilemapActions(dispatch, computed, state);
 
   return (
-    <PublicTilemapContext.Provider value={{ state, computed, actions, props }}>
+    <TilemapContext.Provider value={{ state, computed, actions, props }}>
         <TilemapDisplay>
           {props.children}
         </TilemapDisplay>
-    </PublicTilemapContext.Provider>
+    </TilemapContext.Provider>
   );
 };

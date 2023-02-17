@@ -37,4 +37,4 @@ const initialContext: Context = {
  *
  * This context is accessible for the tilemap consumers.
  */
-export const PublicTilemapContext = createContext<Context>(initialContext);
+export const TilemapContext = createContext<Context>(initialContext);
