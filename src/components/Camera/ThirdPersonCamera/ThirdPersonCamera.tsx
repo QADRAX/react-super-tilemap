@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { ThirdPersonCameraProps } from "../../../types/ThirdPersonCamera";
 import { CameraEventListener } from "./CameraEventListener/CameraEventListener";
-import { CameraMotionManager } from "./MotionManager/CameraMotionManager";
-import { ZoomMotionManager } from "./MotionManager/ZoomMotionManager";
 import { ThirdPersonCameraContext } from "./ThirdCameraContext/ThirdPersonCameraContext";
 import { useCameraRecenter } from "./ThirdPersonCamera.useCameraRecenter";
 import { useDragAndZoomHandlers } from "./ThirdPersonCamera.useDragAndZoomHandlers";
@@ -14,9 +12,7 @@ export const ThirdPersonCamera: React.FunctionComponent<ThirdPersonCameraProps> 
 
     const {
         addZoomMotion,
-        endZoomMotion,
         addCameraMotion,
-        endCameraMotion,
         currentZoomMotion,
         currentCameraMotion,
         zoomMotionQueue,
@@ -51,8 +47,6 @@ export const ThirdPersonCamera: React.FunctionComponent<ThirdPersonCameraProps> 
             cameraMotionQueue,
         }}> 
             <CameraEventListener handlers={dragAndZoomHandlers} />
-            <CameraMotionManager onMotionEnd={endCameraMotion} motion={currentCameraMotion} />
-            <ZoomMotionManager onMotionEnd={endZoomMotion} motion={currentZoomMotion} />
             {props.children}
         </ThirdPersonCameraContext.Provider>
     );

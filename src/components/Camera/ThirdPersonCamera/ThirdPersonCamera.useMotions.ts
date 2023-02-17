@@ -1,11 +1,15 @@
 import { useState } from "react";
+import { useTilemapContext } from "../../../hooks/useTilemapContext";
 import { CurrentCameraMotion, CurrentZoomMotion } from "../../../types/Motions";
+import { useMotionRunner } from "./useMotionRunner";
 import { useCameraMotions } from "./ThirdPersonCamera.useCameraMotions";
 import { useZoomMotions } from "./ThirdPersonCamera.useZoomMotions";
 
 export function useMotions(
     isCameraDragging: boolean,
 ) {
+    const { actions } = useTilemapContext();
+
     const [currentZoomMotion, setCurrentZoomMotion] = useState<CurrentZoomMotion | undefined>(undefined);
     const [currentCameraMotion, setCurrentCameraMotion] = useState<CurrentCameraMotion | undefined>(undefined);
 
@@ -34,11 +38,13 @@ export function useMotions(
         setCurrentCameraMotion,
     });
 
+
+    useMotionRunner(currentZoomMotion, (zoom) => actions.setZoom(zoom!), endZoomMotion);
+    useMotionRunner(currentCameraMotion, (camera) => actions.setCameraPosition(camera!), endCameraMotion);
+
     return {
         addZoomMotion,
-        endZoomMotion,
         addCameraMotion,
-        endCameraMotion,
         currentZoomMotion,
         currentCameraMotion,  
         zoomMotionQueue,

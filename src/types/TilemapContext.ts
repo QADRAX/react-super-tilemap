@@ -75,9 +75,9 @@ export type ContextActions = {
    * Sets a tilemap element.
    * 
    * @param elementKey key of the tilemap element to set
-   * @param element tilemap element to set
+   * @param element tilemap element to set or undefined to remove the element
    */
-  setTilemapElement: (elementKey: string, element: TilemapElement) => void;
+  setTilemapElement: (elementKey: string, element?: TilemapElement) => void;
 };
 
 /**
