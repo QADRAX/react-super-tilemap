@@ -21,7 +21,6 @@ export function useSyncPosition(
         if (canvasSize) {
             setZoom(zoom ?? 0);
             setCameraPosition(position);
-            
         }
     }, [zoom, position, canvasSize]); // eslint-disable-line react-hooks/exhaustive-deps
 }

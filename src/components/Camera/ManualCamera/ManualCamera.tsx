@@ -20,6 +20,7 @@ export const ManualCamera: FunctionComponent<ManualCameraProps> = (props) => {
     return (
         <>
             {clickable && <CameraEventListener handlers={handlers} />}
+            {props.children}
         </>
     );
 };

@@ -1,5 +1,4 @@
 import { EasingType } from './EasingType';
-import { Position } from './Position';
 import { TilePosition } from './TilePosition';
 
 // MOTION SETTINGS
@@ -71,7 +70,7 @@ export interface ZoomMotionRequest extends MotionRequest<number> {}
 // MOTION QUEUE
 
 export type Position1D = number;
-export type Position2D = Position;
+export type Position2D = TilePosition;
 export type CurrentMotionPosition = Position2D | Position1D;
 
 /**

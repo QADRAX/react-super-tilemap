@@ -23,6 +23,15 @@ export type ThirdPersonCameraSettings = {
      */
     initialCameraPosition?: TilePosition | 'center';
     /**
+     * Initial zoom level when the tilemap is mounted.
+     * 
+     * If not provided, the default value will be used.
+     * Absolute value if negative.
+     * 
+     * @default 0
+     */
+    initialZoom?: number;
+    /**
      * Tilemap's drag speed sensitivity.
      *
      * If not provided, the default value will be used.

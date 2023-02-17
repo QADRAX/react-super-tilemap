@@ -5,7 +5,6 @@ import { Position } from '../types/Position';
 export function getTilePosition(
   mousePosition: Position,
   cameraPosition: Position,
-  tilemapSize: Size,
   tileSize: number
 ): TilePosition | null {
   const relativeMousePosition: Position = {
@@ -13,27 +12,33 @@ export function getTilePosition(
     y: mousePosition.y - cameraPosition.y,
   };
 
-  const relativeTilePosition: Position = {
-    x: relativeMousePosition.x / tileSize,
-    y: relativeMousePosition.y / tileSize,
-  };
-
   const tilePosition: TilePosition = {
-    col: Math.floor(relativeTilePosition.x),
-    row: Math.floor(relativeTilePosition.y),
+    col: relativeMousePosition.x / tileSize,
+    row: relativeMousePosition.y / tileSize,
   };
-
-  const isTilePositionValid =
-    tilePosition.col >= 0 &&
-    tilePosition.col < tilemapSize.width / tileSize &&
-    tilePosition.row >= 0 &&
-    tilePosition.row < tilemapSize.height / tileSize;
-
-  if (!isTilePositionValid) {
-    return null;
-  }
 
   return tilePosition;
+}
+
+export function floorTilePosition(tilePosition: TilePosition): TilePosition {
+  const floorTilePosition: TilePosition = {
+    col: Math.floor(tilePosition.col),
+    row: Math.floor(tilePosition.row),
+  };
+  return floorTilePosition;
+}
+
+export function isTilePositionValid(
+  tilePosition: TilePosition,
+  tilemapSize: Size
+): boolean {
+  const isValid =
+    tilePosition.col >= 0 &&
+    tilePosition.col < tilemapSize.width &&
+    tilePosition.row >= 0 &&
+    tilePosition.row < tilemapSize.height;
+
+  return isValid;
 }
 
 export function getCenteredCameraPosition(
@@ -93,8 +98,8 @@ export function getCameraPositionByTilePosition(
   return cameraPosition;
 }
 
-export function getDistance(p1: Position, p2: Position): number {
-  const dx = p1.x - p2.x;
-  const dy = p1.y - p2.y;
+export function getDistance(p1: TilePosition, p2: TilePosition): number {
+  const dx = p1.col - p2.col;
+  const dy = p1.row - p2.row;
   return Math.sqrt(dx * dx + dy * dy);
 }

@@ -1,8 +1,8 @@
 import { EasingType } from "../types/EasingType";
 import { CurrentMotion, CurrentMotionPosition } from "../types/Motions";
-import { Position } from "../types/Position";
+import { TilePosition } from "../types/TilePosition";
 import { getEasingFunction } from "./easings";
-import { isPosition } from "./typeGuards";
+import { isTilePosition } from "./typeGuards";
 
 /**
  * Starts a motion from an initial position to a target position with the given motion settings.
@@ -67,12 +67,12 @@ function getNextPosition1D(
 function getNextPosition2D(
     progress: number,
     easingType: EasingType | undefined,
-    initialPosition: Position,
-    targetPoisition: Position
-): Position {
-    const x = getNextPosition1D(progress, easingType, initialPosition.x, targetPoisition.x);
-    const y = getNextPosition1D(progress, easingType, initialPosition.y, targetPoisition.y);
-    return { x, y };
+    initialPosition: TilePosition,
+    targetPoisition: TilePosition
+): TilePosition {
+    const col = getNextPosition1D(progress, easingType, initialPosition.col, targetPoisition.col);
+    const row = getNextPosition1D(progress, easingType, initialPosition.row, targetPoisition.row);
+    return { col, row };
 }
 
 function getNextPosition<T extends CurrentMotionPosition>(
@@ -83,7 +83,7 @@ function getNextPosition<T extends CurrentMotionPosition>(
 ): T {
     if (typeof initialPosition === "number" && typeof targetPoisition === "number") {
         return getNextPosition1D(progress, easingType, initialPosition, targetPoisition) as T;
-    } else if(isPosition(initialPosition) && isPosition(targetPoisition)) {
+    } else if(isTilePosition(initialPosition) && isTilePosition(targetPoisition)) {
         return getNextPosition2D(progress, easingType, initialPosition, targetPoisition) as T;
     } else {
         throw new Error("Initial and target positions must be of the same type");

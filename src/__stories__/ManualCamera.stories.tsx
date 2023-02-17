@@ -42,11 +42,18 @@ const Example: FunctionComponent<ExampleProps> = (props) => {
     };
 
     return (
-        <Tilemap {...defaultTilemapArgs}
+        <Tilemap 
+            {...defaultTilemapArgs}
             tilmapSchema={schema}
             onTileClick={handleTileClick}
         >
-            <ManualCamera position={{ col: props.col, row: props.row}} zoom={props.cameraZoom} />
+            <ManualCamera 
+                position={{ 
+                    col: props.col, 
+                    row: props.row
+                }} 
+                zoom={props.cameraZoom} 
+            />
         </Tilemap>
     );
 };

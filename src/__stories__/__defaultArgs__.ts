@@ -5,9 +5,9 @@ import { TilemapProps } from "../types/Tilemap";
 import { spritesDefinition } from "./__Sprites__";
 
 export const defaultMotionSettings: MotionSettings = {
-    speed: 0.1,
+    speed: 0.01,
     easing: 'easeOutElastic',
-    maxDuration: 1,
+    maxDuration: 10,
 };
 
 export const defaultTilemapArgs: Partial<TilemapProps> = {

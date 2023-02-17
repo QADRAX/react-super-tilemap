@@ -1,10 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
 import { useTilemapContext } from "../../../hooks/useTilemapContext";
 import { CameraMotionRequest, CurrentCameraMotion, MotionSettings } from "../../../types/Motions";
-import { Position } from "../../../types/Position";
 import { TilePosition } from "../../../types/TilePosition";
 import { createCurrentMotion } from "../../../utils/createCurrentMotion";
-import { getCameraPositionByTilePosition, getCenteredCameraPosition, getDistance } from "../../../utils/positions";
+import { getDistance } from "../../../utils/positions";
 
 export function useCameraMotions(
     props: {
@@ -12,18 +11,21 @@ export function useCameraMotions(
         isZoomInMotion: boolean;
         currentCameraMotion: CurrentCameraMotion | undefined;
         setCurrentCameraMotion: (motion: CurrentCameraMotion | undefined) => void;
+        cameraPosition: TilePosition | undefined;
     }
 ) {
     const { state, computed } = useTilemapContext();
 
     const {
-        cameraPosition,
         canvasSize,
     } = state;
 
     const {
-        tileSize,
-        mapSize,
+        cameraPosition,
+    } = props;
+
+    const {
+        mapDimensions,
     } = computed;
 
     const [cameraMotionQueue, setCameraMotionQueue] = useState<CameraMotionRequest[]>([]);
@@ -65,25 +67,18 @@ export function useCameraMotions(
 
             const nextMotionRequest = cameraMotionQueue[0];
 
-            const targetTilePosition = nextMotionRequest.target;
-            let targetPosition: Position;
+            let targetTilePosition = nextMotionRequest.target;
             if (targetTilePosition == 'center') {
-                targetPosition = getCenteredCameraPosition(
-                    canvasSize,
-                    mapSize,
-                )
-            } else {
-                targetPosition = getCameraPositionByTilePosition(
-                    targetTilePosition,
-                    tileSize,
-                    canvasSize
-                );
+                targetTilePosition = {
+                    col: Math.floor(mapDimensions.cols / 2),
+                    row: Math.floor(mapDimensions.rows / 2),
+                }
             }
-            const distance = getDistance(cameraPosition, targetPosition);
+            const distance = getDistance(cameraPosition, targetTilePosition);
 
             const nextMotion = createCurrentMotion(
                 cameraPosition,
-                targetPosition,
+                targetTilePosition,
                 nextMotionRequest.settings.speed,
                 distance,
                 nextMotionRequest.settings.maxDuration,
@@ -103,8 +98,7 @@ export function useCameraMotions(
         sliceCameraMotionQueue,
         props.isZoomInMotion,
         canvasSize,
-        tileSize,
-        mapSize,
+        mapDimensions,
     ]);
 
     return {

@@ -1,15 +1,17 @@
 import { useState } from "react";
-import { useTilemapContext } from "../../../hooks/useTilemapContext";
 import { CurrentCameraMotion, CurrentZoomMotion } from "../../../types/Motions";
 import { useMotionRunner } from "./useMotionRunner";
 import { useCameraMotions } from "./ThirdPersonCamera.useCameraMotions";
 import { useZoomMotions } from "./ThirdPersonCamera.useZoomMotions";
+import { TilePosition } from "../../../types/TilePosition";
 
 export function useMotions(
     isCameraDragging: boolean,
+    cameraPosition: TilePosition | undefined,
+    zoom: number,
+    setCameraPosition: (position: TilePosition | undefined) => void,
+    setZoom: (zoom: number) => void,
 ) {
-    const { actions } = useTilemapContext();
-
     const [currentZoomMotion, setCurrentZoomMotion] = useState<CurrentZoomMotion | undefined>(undefined);
     const [currentCameraMotion, setCurrentCameraMotion] = useState<CurrentCameraMotion | undefined>(undefined);
 
@@ -25,6 +27,7 @@ export function useMotions(
         isCameraInMotion,
         currentZoomMotion,
         setCurrentZoomMotion,
+        zoom,
     });
 
     const {
@@ -36,11 +39,12 @@ export function useMotions(
         isZoomInMotion,
         currentCameraMotion,
         setCurrentCameraMotion,
+        cameraPosition,
     });
 
 
-    useMotionRunner(currentZoomMotion, (zoom) => actions.setZoom(zoom!), endZoomMotion);
-    useMotionRunner(currentCameraMotion, (camera) => actions.setCameraPosition(camera!), endCameraMotion);
+    useMotionRunner(currentZoomMotion, (zoom) => setZoom(zoom!), endZoomMotion);
+    useMotionRunner(currentCameraMotion, (camera) => setCameraPosition(camera!), endCameraMotion);
 
     return {
         addZoomMotion,

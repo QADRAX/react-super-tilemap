@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
 import { DEFAULT_DRAG_SENSITIVITY, DEFAULT_ZOOM_INCREMENT, DRAG_DELAY } from '../../../constants';
 import { Position } from '../../../types/Position';
-import { getTilePosition } from '../../../utils/positions';
+import { floorTilePosition, getTilePosition, isTilePositionValid } from '../../../utils/positions';
 import { useTilemapContext } from '../../../hooks/useTilemapContext';
 import { EventHandlers } from '../CameraEventListener/CameraEventListener.types';
+import { TilePosition } from '../../../types/TilePosition';
 
 /**
  * Bind mouse and touch events to drag and zoom logic.
@@ -23,20 +24,31 @@ export function useHandlers(
     setIsDragging: (value: boolean) => void;
     isZoomInMotion: boolean;
     isCameraInMotion: boolean;
+    cameraPosition: TilePosition | undefined;
+    zoom: number;
+    setCameraPosition: (position: TilePosition | undefined) => void;
+    setZoom: (zoom: number) => void;
   },
 ): EventHandlers {
   // State from context
 
-  const { state, computed, actions, props: contextProps } = useTilemapContext();
+  const { state, computed, props: contextProps } = useTilemapContext();
 
-  const { cameraPosition, zoom } = state;
+  const {
+    cameraPosition: absoluteCameraPosition,
+  } = state;
+
+  const {
+    cameraPosition,
+    zoom,
+    setCameraPosition,
+    setZoom,
+  } = props;
 
   const {
     tileSize,
     mapSize,
   } = computed;
-
-  const { setCameraPosition, setZoom: setCurrentZoom } = actions;
 
   // enable/disable drag and zoom flags
 
@@ -79,8 +91,8 @@ export function useHandlers(
   }, [dragEnabled]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const getTilePositionByMousePosition = (mousePosition: Position) => {
-    if (cameraPosition) {
-      const position = getTilePosition(mousePosition, cameraPosition, mapSize, tileSize);
+    if (absoluteCameraPosition) {
+      const position = getTilePosition(mousePosition, absoluteCameraPosition, tileSize);
       return position;
     }
     return null;
@@ -103,17 +115,19 @@ export function useHandlers(
   };
 
   const handleMouseMove = (position: Position) => {
-    if (isDown && dragEnabled && currentMousePosition && cameraPosition) {
+    const nextTilePosition = getTilePositionByMousePosition(position);
+    const prevTilePosition = getTilePositionByMousePosition(currentMousePosition || position);
+    if (isDown && dragEnabled && currentMousePosition && cameraPosition && nextTilePosition && prevTilePosition) {
       props.setIsDragging(true);
 
       const dragSensivility = props.dragSensitivity || DEFAULT_DRAG_SENSITIVITY;
 
-      const relativeMovementX = (position.x - currentMousePosition.x) * dragSensivility;
-      const relativeMovementY = (position.y - currentMousePosition.y) * dragSensivility;
+      const relativeMovementX = (nextTilePosition.col - prevTilePosition.col) * dragSensivility;
+      const relativeMovementY = (nextTilePosition.row - prevTilePosition.row) * dragSensivility;
 
-      const nextCameraPosition: Position = {
-        x: cameraPosition.x + relativeMovementX,
-        y: cameraPosition.y + relativeMovementY,
+      const nextCameraPosition: TilePosition = {
+        col: cameraPosition.col - relativeMovementX,
+        row: cameraPosition.row - relativeMovementY,
       };
 
       setCurrentMousePosition(position);
@@ -121,26 +135,31 @@ export function useHandlers(
     }
   };
 
+  const increment = props.zoomIncrement || DEFAULT_ZOOM_INCREMENT;
   const handleWheel = (deltaY: number) => {
     if (zoomEnabled) {
       let nextZoom = zoom;
 
       if (deltaY < 0) {
-        nextZoom = nextZoom + DEFAULT_ZOOM_INCREMENT;
+        nextZoom = nextZoom + increment;
       } else {
         if (zoom > 0) {
-          nextZoom = nextZoom - DEFAULT_ZOOM_INCREMENT;
+          nextZoom = nextZoom - increment;
         }
       }
-      setCurrentZoom(nextZoom);
+      setZoom(nextZoom);
     }
   };
 
   const handleClick = (position: Position) => {
     if (cameraPosition && !clickCapture) {
       const tilePosition = getTilePositionByMousePosition(position);
-      if (tilePosition && contextProps.onTileClick) {
-        contextProps.onTileClick(tilePosition);
+      if (tilePosition) {
+        const result = floorTilePosition(tilePosition);
+        if (isTilePositionValid(result, mapSize)) {
+          contextProps.onTileClick?.(result);
+        }
+        contextProps.onTilemapClick?.(result)
       }
     }
   };
@@ -148,8 +167,12 @@ export function useHandlers(
   const handleDoubleClick = (position: Position) => {
     if (cameraPosition) {
       const tilePosition = getTilePositionByMousePosition(position);
-      if (tilePosition && contextProps.onTileDoubleClick) {
-        contextProps.onTileDoubleClick(tilePosition);
+      if (tilePosition) {
+        const result = floorTilePosition(tilePosition);
+        if (isTilePositionValid(result, mapSize)) {
+          contextProps.onTileDoubleClick?.(result);
+        }
+        contextProps.onTilemapDoubleClick?.(result);
       }
     }
   };
@@ -157,8 +180,12 @@ export function useHandlers(
   const handleContextMenu = (position: Position) => {
     if (cameraPosition) {
       const tilePosition = getTilePositionByMousePosition(position);
-      if (tilePosition && contextProps.onTileContextMenu) {
-        contextProps.onTileContextMenu(tilePosition);
+      if (tilePosition) {
+        const result = floorTilePosition(tilePosition);
+        if (isTilePositionValid(result, mapSize)) {
+          contextProps.onTileContextMenu?.(result);
+        }
+        contextProps.onTilemapContextMenu?.(result);
       }
     }
   };

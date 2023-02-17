@@ -14,7 +14,26 @@ export type TilemapEvents = {
    */
   onSpritesLoadError?: (error: Error) => void;
   /**
-   * It will be called when a tile is clicked.
+   * It will be called when a tilemap is clicked, even if is not a tile where the click happened.
+   *
+   * @param tile tile position
+   */
+  onTilemapClick?: (tile: TilePosition) => void;
+  /**
+   * It will be called when a tilemap is double clicked, even if is not a tile where the click happened.
+   * 
+   * @param tile tile position
+   */
+  onTilemapDoubleClick?: (tile: TilePosition) => void;
+  /**
+   * It will be called when a tilemap is right clicked, even if is not a tile where the click happened.
+   * 
+   * @param tile tile position
+   * 
+   */
+  onTilemapContextMenu?: (tile: TilePosition) => void;
+  /**
+   * It will be called when defined tilemap's tile are clicked.
    *
    * @param tile tile position
    */

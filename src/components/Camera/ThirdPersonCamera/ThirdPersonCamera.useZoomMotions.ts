@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useTilemapContext } from '../../../hooks/useTilemapContext';
 import { CurrentZoomMotion, MotionSettings, ZoomMotionRequest } from '../../../types/Motions';
 import { createCurrentMotion } from '../../../utils/createCurrentMotion';
 
@@ -9,14 +8,13 @@ export function useZoomMotions(
         isCameraInMotion: boolean;
         currentZoomMotion: CurrentZoomMotion | undefined;
         setCurrentZoomMotion: (motion: CurrentZoomMotion | undefined) => void;
+        zoom: number;
     }
 ) {
 
     const [zoomMotionQueue, setZoomMotionQueue] = useState<ZoomMotionRequest[]>([]);
 
-    const { state } = useTilemapContext();
-
-    const { zoom } = state;
+    const { zoom } = props;
 
     const addZoomMotion = useCallback(
         (settings: MotionSettings, targetZoom: number) => {

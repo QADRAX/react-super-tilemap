@@ -3,6 +3,8 @@ import { CameraMotionRequest, CurrentCameraMotion, CurrentZoomMotion, MotionSett
 import { TilePosition } from '../../../../types/TilePosition';
 
 export type CameraContext = {
+    cameraPosition?: TilePosition;
+    zoom: number;
     addCameraMotion: (settings: MotionSettings, target: TilePosition | 'center') => void;
     addZoomMotion: (settings: MotionSettings, target: number) => void;
     currentCameraMotion?: CurrentCameraMotion;
@@ -12,6 +14,7 @@ export type CameraContext = {
 };
 
 const initialContext: CameraContext = {
+    zoom: 0,
     addCameraMotion: () => {},
     addZoomMotion: () => {},
     zoomMotionQueue: [],

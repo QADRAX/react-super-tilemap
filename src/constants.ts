@@ -3,7 +3,7 @@ import { TilePosition } from './types/TilePosition';
 
 export const DEFAULT_TILE_SIZE = 16;
 export const ZOOM_RATIO = 1.1;
-export const DEFAULT_DRAG_SENSITIVITY = 0.7;
+export const DEFAULT_DRAG_SENSITIVITY = 1;
 export const DEFAULT_ZOOM_INCREMENT = 1;
 export const DEFAULT_BACKGROUND_COLOR = '#cbf0ff';
 export const DEFAULT_ANIMATION_DELAY = 1000;

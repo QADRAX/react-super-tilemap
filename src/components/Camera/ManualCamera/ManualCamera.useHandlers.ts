@@ -1,5 +1,5 @@
 import { Position } from '../../../types/Position';
-import { getTilePosition } from '../../../utils/positions';
+import { floorTilePosition, getTilePosition, isTilePositionValid } from '../../../utils/positions';
 import { useTilemapContext } from '../../../hooks/useTilemapContext';
 import { EventHandlers } from '../CameraEventListener/CameraEventListener.types';
 
@@ -21,7 +21,7 @@ export function useHandlers(): Partial<EventHandlers> {
 
   const getTilePositionByMousePosition = (mousePosition: Position) => {
     if (cameraPosition) {
-      const position = getTilePosition(mousePosition, cameraPosition, mapSize, tileSize);
+      const position = getTilePosition(mousePosition, cameraPosition, tileSize);
       return position;
     }
     return null;
@@ -29,16 +29,24 @@ export function useHandlers(): Partial<EventHandlers> {
 
   const handleClick = (position: Position) => {
       const tilePosition = getTilePositionByMousePosition(position);
-      if (tilePosition && contextProps.onTileClick) {
-        contextProps.onTileClick(tilePosition);
+      if (tilePosition) {
+        const result = floorTilePosition(tilePosition);
+        if (isTilePositionValid(result, mapSize)) {
+          contextProps.onTileClick?.(result);
+        }
+        contextProps.onTilemapClick?.(result);
       }
   };
 
   const handleDoubleClick = (position: Position) => {
     if (cameraPosition) {
       const tilePosition = getTilePositionByMousePosition(position);
-      if (tilePosition && contextProps.onTileDoubleClick) {
-        contextProps.onTileDoubleClick(tilePosition);
+      if (tilePosition) {
+        const result = floorTilePosition(tilePosition);
+        if (isTilePositionValid(result, mapSize)) {
+          contextProps.onTileDoubleClick?.(result);
+        }
+        contextProps.onTilemapDoubleClick?.(result);
       }
     }
   };
@@ -46,8 +54,12 @@ export function useHandlers(): Partial<EventHandlers> {
   const handleContextMenu = (position: Position) => {
     if (cameraPosition) {
       const tilePosition = getTilePositionByMousePosition(position);
-      if (tilePosition && contextProps.onTileContextMenu) {
-        contextProps.onTileContextMenu(tilePosition);
+      if (tilePosition) {
+        const result = floorTilePosition(tilePosition);
+        if (isTilePositionValid(result, mapSize)) {
+          contextProps.onTileContextMenu?.(result);
+        }
+        contextProps.onTilemapContextMenu?.(result);
       }
     }
   };

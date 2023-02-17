@@ -1,25 +1,35 @@
-import { useEffect } from "react";
-import { DEFAULT_CAMERA_POSITION } from "../../../constants";
+import { useEffect, useMemo } from "react";
 import { useTilemapContext } from "../../../hooks/useTilemapContext";
 import { TilePosition } from "../../../types/TilePosition";
 
 export function useInitialCameraPosition(
-    initialCameraPosition?: TilePosition | 'center',
+    initialCameraPosition: TilePosition | 'center' | undefined,
+    cameraPosition: TilePosition | undefined,
+    setCameraPosition: (position: TilePosition | undefined) => void,
 ) {
-    const { state, actions } = useTilemapContext();
+    const { computed, state } = useTilemapContext();
 
     const {
-        cameraPosition,
         canvasSize,
     } = state;
 
     const {
-        setCameraPosition,
-    } = actions;
+        mapDimensions,
+    } = computed;
+
+    const initialPosition: TilePosition = useMemo(() => {
+        if (initialCameraPosition === 'center' || !initialCameraPosition) {
+            return {
+                col: Math.floor(mapDimensions.cols / 2),
+                row: Math.floor(mapDimensions.rows / 2),
+            }
+        }
+        return initialCameraPosition;
+    }, [initialCameraPosition, mapDimensions]);
 
     useEffect(() => {
         if (canvasSize && !cameraPosition) {
-            setCameraPosition(initialCameraPosition ?? DEFAULT_CAMERA_POSITION);
+            setCameraPosition(initialPosition);
         }
-    }, [setCameraPosition, canvasSize, cameraPosition, initialCameraPosition]);
+    }, [setCameraPosition, canvasSize, cameraPosition, initialPosition]);
 }
