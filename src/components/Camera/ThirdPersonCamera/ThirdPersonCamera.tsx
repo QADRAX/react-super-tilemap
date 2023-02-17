@@ -3,7 +3,7 @@ import { ThirdPersonCameraProps } from "../../../types/ThirdPersonCamera";
 import { CameraEventListener } from "../CameraEventListener/CameraEventListener";
 import { ThirdPersonCameraContext } from "./ThirdCameraContext/ThirdPersonCameraContext";
 import { useCameraRecenter } from "./ThirdPersonCamera.useCameraRecenter";
-import { useHandlers } from "./ThirdPersonCamera.useDragAndZoomHandlers";
+import { useHandlers } from "./ThirdPersonCamera.useHandlers";
 import { useInitialCameraPosition } from "./ThirdPersonCamera.useInitialCameraPosition";
 import { useMotions } from "./ThirdPersonCamera.useMotions";
 

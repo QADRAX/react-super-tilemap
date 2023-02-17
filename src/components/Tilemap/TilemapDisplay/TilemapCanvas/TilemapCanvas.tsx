@@ -2,7 +2,7 @@ import React from 'react';
 import { TilemapContext } from '../../../../Context/TilemapContext';
 import { renderTileMap } from '../../../../render/Render';
 
-type TilemapCanvasProps = Record<string, never>;
+type TilemapCanvasProps = {};
 
 /**
  * Tilemap's canvas.
