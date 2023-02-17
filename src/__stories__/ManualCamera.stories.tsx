@@ -11,7 +11,8 @@ export interface ExampleProps {
     rows: number;
     cols: number;
     baseSprite: string;
-    cameraPosion: TilePosition;
+    col: number;
+    row: number;
     cameraZoom: number;
     spriteToAdd: string;
     onTileClick: (position: TilePosition) => void;
@@ -45,7 +46,7 @@ const Example: FunctionComponent<ExampleProps> = (props) => {
             tilmapSchema={schema}
             onTileClick={handleTileClick}
         >
-            <ManualCamera position={props.cameraPosion} zoom={props.cameraZoom} />
+            <ManualCamera position={{ col: props.col, row: props.row}} zoom={props.cameraZoom} />
         </Tilemap>
     );
 };
@@ -88,13 +89,21 @@ export default {
             options: [SpriteName.armyIdle, SpriteName.building],
             control: 'select',
         },
-        cameraPosion: {
+        col:{
             table: {
                 type: {
-                    summary: 'TilePosition',
+                    summary: 'number',
                 },
             },
-            control: 'object',
+            control: 'number',
+        },
+        row: {
+            table: {
+                type: {
+                    summary: 'number',
+                },
+            },
+            control: 'number',
         },
         cameraZoom: {
             table: {
@@ -128,7 +137,8 @@ MultilayerExample.args = {
     cols: 20,
     baseSprite: SpriteName.grass,
     spriteToAdd: SpriteName.building,
-    cameraPosion: { col: 10, row: 10 },
+    col: 10,
+    row: 10,
     cameraZoom: 1,
 };
 

@@ -134,7 +134,6 @@ export function useHandlers(
         }
       }
       setCurrentZoom(nextZoom);
-      setCameraPosition(cameraTilePosition);
     }
   };
 

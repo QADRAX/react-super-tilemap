@@ -13,11 +13,13 @@ export type ManualCameraProps = {
 export const ManualCamera: FunctionComponent<ManualCameraProps> = (props) => {
     useSyncPosition(props.position, props.zoom);
 
-    const handlers = props.clickable ?? true ? useHandlers() : {};
+    const clickable = props.clickable ?? true;
+
+    const handlers = clickable ? useHandlers() : {};
 
     return (
         <>
-            {props.clickable && <CameraEventListener handlers={handlers} />}
+            {clickable && <CameraEventListener handlers={handlers} />}
         </>
     );
 };
