@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useIsChanging } from '../../hooks/useIsChanging';
-import { ContextComputedState, ContextState } from '../../types/TilemapContext';
+import { ContextComputedState, ContextState } from './TilemapContext/TilemapContext.types';
 import { TilemapProps } from '../../types/Tilemap';
 import {
     getCenteredTilePositionByCameraPosition,

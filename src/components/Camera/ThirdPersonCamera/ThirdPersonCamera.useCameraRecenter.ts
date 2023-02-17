@@ -3,7 +3,7 @@ import { useTilemapContext } from "../../Tilemap/TilemapContext/useTilemapContex
 import { ThirdPersonCameraProps } from "../../../types/ThirdPersonCamera";
 import { TilePosition } from "../../../types/TilePosition";
 import { isTilePosition } from "../../../utils/typeGuards";
-import { CameraContext } from "./ThirdPersonCameraContext/ThirdPersonCameraContext";
+import { CameraContext } from "./ThirdPersonCameraContext/ThirdPersonCameraContext.types";
 
 export function useCameraRecenter(
     addCameraMotion: CameraContext["addCameraMotion"],

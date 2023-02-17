@@ -1,10 +1,10 @@
-import { TilemapElement, TilemapElementMap } from './TilemapElement';
-import { MapDimensions } from './MapDimensions';
-import { Position } from './Position';
-import { Size } from './Size';
-import { SpriteMap } from './Sprite';
-import { TilemapProps } from './Tilemap';
-import { TilePosition } from './TilePosition';
+import { TilemapElement, TilemapElementMap } from '../../../types/TilemapElement';
+import { MapDimensions } from '../../../types/MapDimensions';
+import { Position } from '../../../types/Position';
+import { Size } from '../../../types/Size';
+import { SpriteMap } from '../../../types/Sprite';
+import { TilemapProps } from '../../../types/Tilemap';
+import { TilePosition } from '../../../types/TilePosition';
 
 /**
  * Tilemap context state.

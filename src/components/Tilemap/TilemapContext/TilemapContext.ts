@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 import { DEFAULT_TILE_SIZE } from '../../../constants';
-import { Context, ContextState } from '../../../types/TilemapContext';
+import { Context, ContextState } from './TilemapContext.types';
 
 export const initialState: ContextState = {
   zoom: 0,

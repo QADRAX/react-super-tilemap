@@ -9,7 +9,7 @@ import {
 } from './TilemapContext/TilemapContext.actions';
 import { Position } from '../../types/Position';
 import { Size } from '../../types/Size';
-import { ContextActions, ContextComputedState, ContextState } from '../../types/TilemapContext';
+import { ContextActions, ContextComputedState, ContextState } from './TilemapContext/TilemapContext.types';
 import { TilemapElement } from '../../types/TilemapElement';
 import { TilePosition } from '../../types/TilePosition';
 import { getCameraPositionByTilePosition, getCenteredCameraPosition } from '../../utils/positions';

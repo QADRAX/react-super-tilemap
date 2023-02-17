@@ -1,4 +1,4 @@
-import { ContextState } from '../../../types/TilemapContext';
+import { ContextState } from './TilemapContext.types';
 import { TilemapActions, TilemapActionType } from './TilemapContext.actions';
 
 export function tilemapReducer(state: ContextState, action: TilemapActions): ContextState {

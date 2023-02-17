@@ -1,7 +1,6 @@
 // Export public React components
 
-export * from './components/Tilemap/Tilemap';
-export * from './components/Camera/ThirdPersonCamera/ThirdPersonCamera';
+export * from './components';
 
 // Export public types
 
