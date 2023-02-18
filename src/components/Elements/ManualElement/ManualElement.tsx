@@ -1,17 +1,12 @@
 import React from "react";
-import { TilemapElement } from "../../types/TilemapElement";
-import { TilemapContext } from "../Tilemap/TilemapContext/TilemapContext";
+import { TilemapContext } from "../../Tilemap/TilemapContext/TilemapContext";
+import { ManualElementProps } from "./ManualElement.types";
 
-export type ElementProps = {
-    element: TilemapElement;
-    elementKey: string;
-};
-
-export class Element extends React.PureComponent<ElementProps> {
+export class ManualElement extends React.PureComponent<ManualElementProps> {
     static contextType = TilemapContext;
     context!: React.ContextType<typeof TilemapContext>;
 
-    componentDidUpdate(prevProps: Readonly<ElementProps>): void {
+    componentDidUpdate(prevProps: Readonly<ManualElementProps>): void {
         const isDifferentElement = prevProps.element !== this.props.element;
         const isDifferentKey = prevProps.elementKey !== this.props.elementKey;
 

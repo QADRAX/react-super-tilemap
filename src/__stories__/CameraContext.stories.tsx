@@ -7,7 +7,7 @@ import { TilePosition } from '../types/TilePosition';
 import { FirstLayerSprites, SecondLayerSprites, SpriteName } from './__Sprites__';
 import { ThirdPersonCamera } from '../components/Camera/ThirdPersonCamera/ThirdPersonCamera';
 import { useThirdPersonCameraContext } from '../components/Camera/ThirdPersonCamera/ThirdPersonCameraContext/useThirdPersonCameraContext';
-import { Element } from '../components/Element/Element';
+import { ManualElement } from '../components/Elements/ManualElement/ManualElement';
 import { EasingType } from '../types/EasingType';
 import { MotionSettings } from '../types/Motions';
 
@@ -138,7 +138,7 @@ const Example: FunctionComponent<ExampleProps> = (props) => {
                     motionEasingType={props.motionEasingType}
                     zoomEasingType={props.zoomEasingType} />
             </ThirdPersonCamera>
-            <Element
+            <ManualElement
                 element={{
                     tilePosition: {
                         col: props.elementCol,

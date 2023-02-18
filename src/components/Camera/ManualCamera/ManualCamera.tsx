@@ -1,14 +1,9 @@
 import React, { FunctionComponent } from "react";
-import { TilePosition } from "../../../types/TilePosition";
 import { CameraEventListener } from "../CameraEventListener/CameraEventListener";
+import { ManualCameraProps } from "./ManualCamera.types";
 import { useHandlers } from "./ManualCamera.useHandlers";
 import { useSyncPosition } from "./ManualCamera.useSyncPosition";
 
-export type ManualCameraProps = {
-    position?: TilePosition;
-    zoom?: number;
-    clickable?: boolean;
-};
 
 /**
  * This component is used to manually control the camera position and zoom of the tilemap.

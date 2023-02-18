@@ -7,7 +7,7 @@ import { TilePosition } from '../types/TilePosition';
 import { FirstLayerSprites, SecondLayerSprites, SpriteName } from './__Sprites__';
 import { ThirdPersonCamera } from '../components/Camera/ThirdPersonCamera/ThirdPersonCamera';
 import { useThirdPersonCameraContext } from '../components/Camera/ThirdPersonCamera/ThirdPersonCameraContext/useThirdPersonCameraContext';
-import { Element } from '../components/Element/Element';
+import { ManualElement } from '../components/Elements/ManualElement/ManualElement';
 
 export interface ExampleProps {
     rows: number;
@@ -113,7 +113,7 @@ const Example: FunctionComponent<ExampleProps> = (props) => {
             <ThirdPersonCamera {...defaulthridPersonCameraArgs}>
                 <ContextButtons focusedTile={focusedTile} />
             </ThirdPersonCamera>
-            <Element element={{
+            <ManualElement element={{
                 tilePosition: {
                     col: props.elementCol,
                     row: props.elementRow,
