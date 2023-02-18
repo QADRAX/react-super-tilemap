@@ -113,7 +113,7 @@ const Example: FunctionComponent<ExampleProps> = (props) => {
             <ThirdPersonCamera {...defaulthridPersonCameraArgs}>
                 <ContextButtons focusedTile={focusedTile} />
             </ThirdPersonCamera>
-            <Element tilemapElement={{
+            <Element element={{
                 tilePosition: {
                     col: props.elementCol,
                     row: props.elementRow,

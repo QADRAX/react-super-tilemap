@@ -108,7 +108,7 @@ const Example: FunctionComponent<ExampleProps> = (props) => {
         setSchema(newSchema);
     }, [props.cols, props.rows, props.baseSprite]);
 
-    const handleTileClick = (tilePos: TilePosition) => {
+    const handleTileContextMenu = (tilePos: TilePosition) => {
         const newSchema = [...schema];
         const tile = newSchema[tilePos.col][tilePos.row];
         if (tile) {
@@ -122,7 +122,7 @@ const Example: FunctionComponent<ExampleProps> = (props) => {
         setSchema(newSchema);
     };
 
-    const handleTileContextMenu = (tilePos: TilePosition) => {
+    const handleTileClick = (tilePos: TilePosition) => {
         setFocusedTile(tilePos);
     };
 
@@ -133,17 +133,21 @@ const Example: FunctionComponent<ExampleProps> = (props) => {
             onTileContextMenu={handleTileContextMenu}
         >
             <ThirdPersonCamera {...defaulthridPersonCameraArgs}>
-                <ContextButtons focusedTile={focusedTile} motionEasingType={props.motionEasingType} zoomEasingType={props.zoomEasingType} />
+                <ContextButtons
+                    focusedTile={focusedTile}
+                    motionEasingType={props.motionEasingType}
+                    zoomEasingType={props.zoomEasingType} />
             </ThirdPersonCamera>
-            <Element tilemapElement={{
-                tilePosition: {
-                    col: props.elementCol,
-                    row: props.elementRow,
-                },
-                spriteKey: SpriteName.armyIdle,
-                layer: 1,
-            }} key="army" />
-
+            <Element
+                element={{
+                    tilePosition: {
+                        col: props.elementCol,
+                        row: props.elementRow,
+                    },
+                    spriteKey: SpriteName.armyIdle,
+                    layer: 1,
+                }}
+                elementKey="army" />
         </Tilemap>
     );
 };

@@ -143,9 +143,7 @@ export function useHandlers(
       if (deltaY < 0) {
         nextZoom = nextZoom + increment;
       } else {
-        if (zoom > 0) {
           nextZoom = nextZoom - increment;
-        }
       }
       setZoom(nextZoom);
     }

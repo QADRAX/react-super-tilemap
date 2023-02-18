@@ -26,7 +26,6 @@ export type ThirdPersonCameraSettings = {
      * Initial zoom level when the tilemap is mounted.
      * 
      * If not provided, the default value will be used.
-     * Absolute value if negative.
      * 
      * @default 0
      */
@@ -44,7 +43,6 @@ export type ThirdPersonCameraSettings = {
      * Zoom increment per wheel scroll.
      * 
      * If not provided, the default value will be used.
-     * If provided, it must be greater than 0.
      * 
      * @default 1
      */
