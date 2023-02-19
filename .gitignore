@@ -16,5 +16,6 @@ yarn-error.log
 .out
 /storybook-static
 /docs
+/github-pages
 
 /coverage
