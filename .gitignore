@@ -14,5 +14,6 @@ yarn-error.log
 
 # storybook
 .out
+.storybook-static
 
 /coverage
