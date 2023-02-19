@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useTilemapContext } from "../../Tilemap/TilemapContext/useTilemapContext";
-import { ManualCameraProps } from "./ManualCamera";
+import { ManualCameraProps } from "./ManualCamera.types";
 
 export function useSyncPosition(
     position: ManualCameraProps["position"],
