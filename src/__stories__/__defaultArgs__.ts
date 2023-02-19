@@ -1,8 +1,8 @@
+import { ThirdPersonCameraProps } from '../components/Camera/ThirdPersonCamera/ThirdPersonCamera.types';
+import { TilemapProps } from '../components/Tilemap/Tilemap.types';
 import { DEFAULT_BACKGROUND_COLOR, DEFAULT_DRAG_SENSITIVITY } from '../constants';
 import { EasingType } from '../types/EasingType';
 import { MotionSettings } from '../types/Motions';
-import { ThirdPersonCameraProps } from '../types/ThirdPersonCamera';
-import { TilemapProps } from '../types/Tilemap';
 import { spritesDefinition } from './__Sprites__';
 
 export const defaultMotionSettings: MotionSettings = {

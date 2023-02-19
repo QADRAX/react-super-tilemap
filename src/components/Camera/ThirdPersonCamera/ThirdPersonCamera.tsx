@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { ThirdPersonCameraProps } from '../../../types/ThirdPersonCamera';
 import { TilePosition } from '../../../types/TilePosition';
 import { CameraEventListener } from '../CameraEventListener/CameraEventListener';
 import { ManualCamera } from '../ManualCamera/ManualCamera';
@@ -8,6 +7,7 @@ import { useCameraRecenter } from './ThirdPersonCamera.useCameraRecenter';
 import { useHandlers } from './ThirdPersonCamera.useHandlers';
 import { useInitialCameraPosition } from './ThirdPersonCamera.useInitialCameraPosition';
 import { useMotions } from './ThirdPersonCamera.useMotions';
+import { ThirdPersonCameraProps } from './ThirdPersonCamera.types';
 
 /**
  * Use this component to operate with a third person camera in the tilemap.

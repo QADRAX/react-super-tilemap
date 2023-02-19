@@ -1,1 +1,1 @@
-export * from './ManualElement/ManualElement';
+export * from './ManualElement';

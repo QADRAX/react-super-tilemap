@@ -1,6 +1,6 @@
-import { TilemapControlsEvents } from '../../../../EventBus/TilemapEventChannel';
+import { TilemapEventChannel } from '../../../../EventBus/TilemapEventChannel';
 
-export type TilemapWrapperProps = TilemapControlsEvents & {
+export type TilemapWrapperProps = TilemapEventChannel & {
   children: React.ReactNode;
 };
 
