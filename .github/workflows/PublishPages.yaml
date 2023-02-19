@@ -37,22 +37,13 @@ jobs:
       - name: Install Dependencies
         run: yarn install
 
-      - name: Lint code
-        run: yarn lint
-
-      - name: Test code with coverage
-        run: echo 'testing... xD'
-        
-      - name: Build
-        run: yarn build
-      
       - name: Build storybook
-        run: yarn build-storybook
+        run: yarn run github-pages
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: './storybook-static'
+          path: './github-pages'
 
       - name: Deploy to GitHub Pages
         id: deployment
