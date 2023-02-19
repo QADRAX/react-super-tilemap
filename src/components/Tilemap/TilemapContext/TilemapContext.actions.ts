@@ -58,7 +58,6 @@ export interface SetElementMap {
   };
 }
 
-
 // Actions
 
 export type TilemapActions =

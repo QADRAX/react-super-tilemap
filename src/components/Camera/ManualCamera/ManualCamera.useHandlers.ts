@@ -14,10 +14,7 @@ import { EventHandlers } from '../CameraEventListener/CameraEventListener.types'
 export function useHandlers(): Partial<EventHandlers> {
   const { state, computed, props: contextProps } = useTilemapContext();
   const { cameraPosition, canvasSize } = state;
-  const {
-    tileSize,
-    mapDimensions,
-  } = computed;
+  const { tileSize, mapDimensions } = computed;
 
   const getTilePositionByMousePosition = (mousePosition: Position) => {
     if (cameraPosition && canvasSize) {
@@ -28,14 +25,14 @@ export function useHandlers(): Partial<EventHandlers> {
   };
 
   const handleClick = (position: Position) => {
-      const tilePosition = getTilePositionByMousePosition(position);
-      if (tilePosition) {
-        const result = floorTilePosition(tilePosition);
-        if (isTilePositionValid(result, mapDimensions)) {
-          contextProps.onTileClick?.(result);
-        }
-        contextProps.onTilemapClick?.(result);
+    const tilePosition = getTilePositionByMousePosition(position);
+    if (tilePosition) {
+      const result = floorTilePosition(tilePosition);
+      if (isTilePositionValid(result, mapDimensions)) {
+        contextProps.onTileClick?.(result);
       }
+      contextProps.onTilemapClick?.(result);
+    }
   };
 
   const handleDoubleClick = (position: Position) => {

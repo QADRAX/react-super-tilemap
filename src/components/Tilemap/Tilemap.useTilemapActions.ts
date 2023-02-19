@@ -13,7 +13,7 @@ import { TilemapElement } from '../../types/TilemapElement';
 import { TilePosition } from '../../types/TilePosition';
 /**
  * Returns the tilemap context actions.
- * 
+ *
  * @private
  *
  * @param dispatch context dispatch
@@ -25,17 +25,14 @@ export function useTilemapActions(
   dispatch: React.Dispatch<TilemapActions>,
   state: ContextState
 ): ContextActions {
-  const {
-    canvasSize,
-    elementMap,
-  } = state;
+  const { canvasSize, elementMap } = state;
 
   const setCameraPosition = useCallback(
     (position?: TilePosition) => {
       if (!canvasSize) {
         throw new Error(UNSIZED_CANVAS_ERROR);
       }
-        dispatch(_setCameraPosition(position));
+      dispatch(_setCameraPosition(position));
     },
     [dispatch, canvasSize]
   );
@@ -55,8 +52,8 @@ export function useTilemapActions(
 
   const setTilemapElement = useCallback(
     (elementKey: string, element?: TilemapElement) => {
-      const nextMap = { ...elementMap}
-      if(element) {
+      const nextMap = { ...elementMap };
+      if (element) {
         nextMap[elementKey] = element;
       } else {
         delete nextMap[elementKey];

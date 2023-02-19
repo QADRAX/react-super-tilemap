@@ -12,9 +12,9 @@ import { SpriteDefinition } from '../types/SpriteDefinition';
 import { TilePosition } from '../types/TilePosition';
 
 /**
- * A sprite is a collection of images that are used to animate a game object 
+ * A sprite is a collection of images that are used to animate a game object
  * and are loaded from a sprite definition array.
- * 
+ *
  * @internal
  */
 export class SpriteImpl implements Sprite {
@@ -45,7 +45,7 @@ export class SpriteImpl implements Sprite {
       this._tileSize = DEFAULT_SPRITE_TILESIZE;
     }
 
-    this._offset = spriteDefinition.offset || DEFAULT_SPRITE_OFFSET;
+    this._offset = spriteDefinition.offset || DEFAULT_SPRITE_OFFSET;
   }
 
   async load() {

@@ -9,11 +9,7 @@ export function getTilePosition(
   tileSize: number,
   canvasSize: Size
 ): TilePosition | null {
-  const cameraPosition = getCameraPositionByTilePosition(
-    cameraTilePosition,
-    tileSize,
-    canvasSize
-  );
+  const cameraPosition = getCameraPositionByTilePosition(cameraTilePosition, tileSize, canvasSize);
 
   const relativeMousePosition: Position = {
     x: mousePosition.x - cameraPosition.x,
@@ -48,10 +44,7 @@ export function isTilePositionValid(
   return isValid;
 }
 
-export function getCenteredCameraPosition(
-  canvasSize: Size,
-  mapSize: Size
-): Position {
+export function getCenteredCameraPosition(canvasSize: Size, mapSize: Size): Position {
   const centeredCameraPosition = {
     x: (canvasSize.width - mapSize.width) / 2,
     y: (canvasSize.height - mapSize.height) / 2,

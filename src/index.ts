@@ -10,5 +10,3 @@ export * from './types/Size';
 export * from './types/MapDimensions';
 export * from './types/TilePosition';
 export * from './types/SpriteDefinition';
-
-

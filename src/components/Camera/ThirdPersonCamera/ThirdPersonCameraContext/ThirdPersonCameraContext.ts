@@ -2,11 +2,11 @@ import { createContext } from 'react';
 import { CameraContext } from './ThirdPersonCameraContext.types';
 
 const initialContext: CameraContext = {
-    zoom: 0,
-    addCameraMotion: () => {},
-    addZoomMotion: () => {},
-    zoomMotionQueue: [],
-    cameraMotionQueue: [],
+  zoom: 0,
+  addCameraMotion: () => {},
+  addZoomMotion: () => {},
+  zoomMotionQueue: [],
+  cameraMotionQueue: [],
 };
 
 /**

@@ -5,7 +5,7 @@ import { TilePosition } from './TilePosition';
 
 /**
  * Motion settings.
- * 
+ *
  * @public
  */
 export type MotionSettings = {
@@ -31,7 +31,7 @@ export type MotionSettings = {
   maxDuration?: number;
   /**
    * The minimum duration of the motion in seconds.
-   * 
+   *
    * @default 0
    */
   minDuration?: number;
@@ -43,13 +43,13 @@ export type MotionRequestTarget = TilePosition | 'center' | number;
 
 /**
  * A motion request.
- * 
+ *
  * @public
  */
 export interface MotionRequest<T extends MotionRequestTarget> {
   /**
    * Settings of the motion.
-   * 
+   *
    * @example { speed: 100, easing: 'linear' }
    */
   settings: MotionSettings;
@@ -61,14 +61,14 @@ export interface MotionRequest<T extends MotionRequestTarget> {
 
 /**
  * A camera motion request.
- * 
+ *
  * @public
  */
 export interface CameraMotionRequest extends MotionRequest<TilePosition | 'center'> {}
 
 /**
  * A zoom motion request.
- * 
+ *
  * @public
  */
 export interface ZoomMotionRequest extends MotionRequest<number> {}
@@ -81,7 +81,7 @@ export type CurrentMotionPosition = Position2D | Position1D;
 
 /**
  * A motion that is being executed.
- * 
+ *
  * @public
  */
 export interface CurrentMotion<T extends CurrentMotionPosition> {
@@ -95,9 +95,9 @@ export interface CurrentMotion<T extends CurrentMotionPosition> {
   endAt: number;
   /**
    * The easing function to use for the motion.
-   * 
+   *
    * Easing functions specify the rate of change of a parameter over time
-   * 
+   *
    * @default 'linear'
    */
   easing?: EasingType;
@@ -113,14 +113,14 @@ export interface CurrentMotion<T extends CurrentMotionPosition> {
 
 /**
  * A motion that moves the camera.
- * 
+ *
  * @public
  */
 export interface CurrentCameraMotion extends CurrentMotion<Position2D> {}
 
 /**
  * A motion that zooms the zoom.
- * 
+ *
  * @public
  */
 export interface CurrentZoomMotion extends CurrentMotion<Position1D> {}
@@ -129,14 +129,14 @@ export interface CurrentZoomMotion extends CurrentMotion<Position1D> {}
 
 /**
  * Types of camera motion targets.
- * 
+ *
  * @public
  */
 export type RecenterCameraMotionTarget = 'center' | TilePosition;
 
 /**
  * Configuration for camera motions that are being executed after a canvas resize or zoom change.
- * 
+ *
  * @public
  */
 export interface RecenterCameraMotion {
@@ -151,5 +151,5 @@ export interface RecenterCameraMotion {
    * If it is a position, the camera will be centered on the given x,y position.
    * If it is a tile position, the camera will be centered on the given tile position.
    */
-  target: RecenterCameraMotionTarget
+  target: RecenterCameraMotionTarget;
 }

@@ -13,134 +13,134 @@ const cols = 5;
 const initialSchema = getRandomSpriteSchema(cols, rows);
 
 export default {
-    title: 'Tilemap/Tilemap',
-    component: Tilemap,
-    argTypes: {
-        backgroundColor: {
-            table: {
-                type: {
-                    summary: 'string',
-                },
-            },
-            control: 'color',
+  title: 'Tilemap/Tilemap',
+  component: Tilemap,
+  argTypes: {
+    backgroundColor: {
+      table: {
+        type: {
+          summary: 'string',
         },
-        defaultTileSize: {
-            table: {
-                type: {
-                    summary: 'number',
-                },
-            },
-            control: 'number',
-        },
-        tilmapScheme: {
-            table: {
-                type: {
-                    summary: 'TilemapSchema',
-                },
-            },
-            control: 'object',
-        },
-        spriteDefinition: {
-            table: {
-                type: {
-                    summary: 'SpriteDefinition',
-                },
-            },
-            control: 'object',
-        },
-        recenterCameraOnResize: {
-            table: {
-                type: {
-                    summary: 'RecenterCameraMotion',
-                },
-            },
-            control: 'object',
-        },
-        recenterCameraOnZoom: {
-            table: {
-                type: {
-                    summary: 'RecenterCameraMotion',
-                },
-            },
-            control: 'object',
-        },
-        draggable: {
-            table: {
-                type: {
-                    summary: 'boolean',
-                },
-            },
-            control: 'boolean',
-        },
-        zoomeable: {
-            table: {
-                type: {
-                    summary: 'boolean',
-                },
-            },
-            control: 'boolean'
-        },
-        dragSensitivity: {
-            table: {
-                type: {
-                    summary: 'number',
-                },
-            },
-            control: 'number',
-        },
-        onTileClick: { control: 'function' },
-        onTileContextMenu: { control: 'function' },
-        onTileDoubleClick: { control: 'function' },
-        onTileHover: { control: 'function' },
-        onTileHoverOut: { control: 'function' },
-        onCameraMotionEnd: { control: 'function' },
-        onZoomMotionEnd: { control: 'function' },
-        onSpritesLoadError: { control: 'function' },
-        children: {
-            control: false,
-        }
+      },
+      control: 'color',
     },
-    parameters: {
-        actions: {
-            argTypesRegex: '^on.*'
+    defaultTileSize: {
+      table: {
+        type: {
+          summary: 'number',
         },
-        controls: {
-            expanded: true,
-            hideNoControlsWarning: true,
-        },
+      },
+      control: 'number',
     },
+    tilmapScheme: {
+      table: {
+        type: {
+          summary: 'TilemapSchema',
+        },
+      },
+      control: 'object',
+    },
+    spriteDefinition: {
+      table: {
+        type: {
+          summary: 'SpriteDefinition',
+        },
+      },
+      control: 'object',
+    },
+    recenterCameraOnResize: {
+      table: {
+        type: {
+          summary: 'RecenterCameraMotion',
+        },
+      },
+      control: 'object',
+    },
+    recenterCameraOnZoom: {
+      table: {
+        type: {
+          summary: 'RecenterCameraMotion',
+        },
+      },
+      control: 'object',
+    },
+    draggable: {
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+      },
+      control: 'boolean',
+    },
+    zoomeable: {
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+      },
+      control: 'boolean',
+    },
+    dragSensitivity: {
+      table: {
+        type: {
+          summary: 'number',
+        },
+      },
+      control: 'number',
+    },
+    onTileClick: { control: 'function' },
+    onTileContextMenu: { control: 'function' },
+    onTileDoubleClick: { control: 'function' },
+    onTileHover: { control: 'function' },
+    onTileHoverOut: { control: 'function' },
+    onCameraMotionEnd: { control: 'function' },
+    onZoomMotionEnd: { control: 'function' },
+    onSpritesLoadError: { control: 'function' },
+    children: {
+      control: false,
+    },
+  },
+  parameters: {
+    actions: {
+      argTypesRegex: '^on.*',
+    },
+    controls: {
+      expanded: true,
+      hideNoControlsWarning: true,
+    },
+  },
 } as Meta<TilemapProps & ThirdPersonCameraProps>;
 
 const Template: Story<TilemapProps & ThirdPersonCameraProps> = (args) => (
-    <Tilemap 
-        defaultTileSize={args.defaultTileSize}
-        backgroundColor={args.backgroundColor}
-        tilmapScheme={args.tilmapScheme}
-        spriteDefinition={args.spriteDefinition}
-        onSpritesLoadError={args.onSpritesLoadError}
-        onTileClick={args.onTileClick}
-        onTileContextMenu={args.onTileContextMenu}
-        onTileDoubleClick={args.onTileDoubleClick}
-        onTileHover={args.onTileHover}
-        onTileHoverOut={args.onTileHoverOut}
-    >
-        <ThirdPersonCamera 
-            draggable={args.draggable}
-            zoomeable={args.zoomeable}
-            dragSensitivity={args.dragSensitivity}
-            recenterCameraOnResize={args.recenterCameraOnResize}
-            recenterCameraOnZoom={args.recenterCameraOnZoom}
-            onCameraMotionEnd={args.onCameraMotionEnd}
-            onZoomMotionEnd={args.onZoomMotionEnd}
-            initialCameraPosition={args.initialCameraPosition} />
-    </Tilemap>
+  <Tilemap
+    defaultTileSize={args.defaultTileSize}
+    backgroundColor={args.backgroundColor}
+    tilmapScheme={args.tilmapScheme}
+    spriteDefinition={args.spriteDefinition}
+    onSpritesLoadError={args.onSpritesLoadError}
+    onTileClick={args.onTileClick}
+    onTileContextMenu={args.onTileContextMenu}
+    onTileDoubleClick={args.onTileDoubleClick}
+    onTileHover={args.onTileHover}
+    onTileHoverOut={args.onTileHoverOut}
+  >
+    <ThirdPersonCamera
+      draggable={args.draggable}
+      zoomeable={args.zoomeable}
+      dragSensitivity={args.dragSensitivity}
+      recenterCameraOnResize={args.recenterCameraOnResize}
+      recenterCameraOnZoom={args.recenterCameraOnZoom}
+      onCameraMotionEnd={args.onCameraMotionEnd}
+      onZoomMotionEnd={args.onZoomMotionEnd}
+      initialCameraPosition={args.initialCameraPosition}
+    />
+  </Tilemap>
 );
 
 export const AllPropsExample = Template.bind({});
 
 AllPropsExample.args = {
-    tilmapScheme: initialSchema,
-    ...defaultTilemapArgs,
-    ...defaulthridPersonCameraArgs
+  tilmapScheme: initialSchema,
+  ...defaultTilemapArgs,
+  ...defaulthridPersonCameraArgs,
 };
-

@@ -42,9 +42,8 @@ const shadow =
   'https://firebasestorage.googleapis.com/v0/b/react-super-tilemap.appspot.com/o/shadow.png?alt=media&token=8b973cbb-9606-435e-99c8-60b4ba9937e7';
 const selector1 =
   'https://firebasestorage.googleapis.com/v0/b/react-super-tilemap.appspot.com/o/selector_1.png?alt=media&token=b59b6457-22ad-4c6d-a467-47d39b8e3997';
-const selector2 = 
+const selector2 =
   'https://firebasestorage.googleapis.com/v0/b/react-super-tilemap.appspot.com/o/selector_2.png?alt=media&token=425f4cd4-880c-4263-8d70-b597a65913a4';
-
 
 export enum SpriteName {
   forest1 = 'forest1',
@@ -158,8 +157,4 @@ export const FirstLayerSprites = [
   SpriteName.ocean1,
 ];
 
-export const SecondLayerSprites = [
-  SpriteName.building,
-  SpriteName.armyIdle,
-  SpriteName.selector,
-];
+export const SecondLayerSprites = [SpriteName.building, SpriteName.armyIdle, SpriteName.selector];

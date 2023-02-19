@@ -1,26 +1,21 @@
-import { useEffect } from "react";
-import { useTilemapContext } from "../../Tilemap/TilemapContext/useTilemapContext";
-import { ManualCameraProps } from "./ManualCamera.types";
+import { useEffect } from 'react';
+import { useTilemapContext } from '../../Tilemap/TilemapContext/useTilemapContext';
+import { ManualCameraProps } from './ManualCamera.types';
 
 export function useSyncPosition(
-    position: ManualCameraProps["position"],
-    zoom: ManualCameraProps["zoom"],
+  position: ManualCameraProps['position'],
+  zoom: ManualCameraProps['zoom']
 ) {
-    const { state, actions } = useTilemapContext();
+  const { state, actions } = useTilemapContext();
 
-    const {
-        canvasSize,
-    } = state;
+  const { canvasSize } = state;
 
-    const {
-        setCameraPosition,
-        setZoom,
-    } = actions;
+  const { setCameraPosition, setZoom } = actions;
 
-    useEffect(() => {
-        if (canvasSize) {
-            setZoom(zoom ?? 0);
-            setCameraPosition(position);
-        }
-    }, [zoom, position, canvasSize]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    if (canvasSize) {
+      setZoom(zoom ?? 0);
+      setCameraPosition(position);
+    }
+  }, [zoom, position, canvasSize]); // eslint-disable-line react-hooks/exhaustive-deps
 }

@@ -3,7 +3,7 @@ import { TilePosition } from './TilePosition';
 
 /**
  * Tilemap events.
- * 
+ *
  * @public
  */
 export type TilemapEvents = {
@@ -21,15 +21,15 @@ export type TilemapEvents = {
   onTilemapClick?: (tile: TilePosition) => void;
   /**
    * It will be called when a tilemap is double clicked, even if is not a tile where the click happened.
-   * 
+   *
    * @param tile tile position
    */
   onTilemapDoubleClick?: (tile: TilePosition) => void;
   /**
    * It will be called when a tilemap is right clicked, even if is not a tile where the click happened.
-   * 
+   *
    * @param tile tile position
-   * 
+   *
    */
   onTilemapContextMenu?: (tile: TilePosition) => void;
   /**
@@ -66,7 +66,7 @@ export type TilemapEvents = {
 
 /**
  * Tilemap settings.
- * 
+ *
  * @public
  */
 export type TilemapSettings = {
@@ -101,17 +101,17 @@ export type TilemapSettings = {
    * @default '#cbf0ff'
    */
   backgroundColor?: string;
-}
+};
 
 /**
  * Tilemap component props.
- * 
+ *
  * @public
  */
 export interface TilemapProps extends TilemapSettings, TilemapEvents {
   /**
    * Children to render.
-   *  
+   *
    * Here you can start using the TilemapContext and operate with the tilemap.
    */
   children?: React.ReactNode;

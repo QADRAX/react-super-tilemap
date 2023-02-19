@@ -1,6 +1,6 @@
-import { TilemapElement } from "../../../types/TilemapElement";
+import { TilemapElement } from '../../../types/TilemapElement';
 
 export type ManualElementProps = {
-    element: TilemapElement;
-    elementKey: string;
+  element: TilemapElement;
+  elementKey: string;
 };

@@ -113,8 +113,8 @@ export function renderTileMap({
               const spriteSize = sprite.size;
               const spriteWidthPx = spriteSize.width * tileSizePx;
               const spriteHeightPx = spriteSize.height * tileSizePx;
-              const spriteX = x + (tileSizePx * sprite.offset.col);
-              const spriteY = y + (tileSizePx * sprite.offset.row);
+              const spriteX = x + tileSizePx * sprite.offset.col;
+              const spriteY = y + tileSizePx * sprite.offset.row;
 
               const frame = sprite.getFrame(timestamp);
               bufferCtx.drawImage(
@@ -131,15 +131,18 @@ export function renderTileMap({
     }
 
     // Draw the elements
-    const visibleElements = Object.values(elementMap).filter((element) => {
-      const isVisible = element.tilePosition.col >= firstVisibleCol &&
-        element.tilePosition.col <= lastVisibleCol &&
-        element.tilePosition.row >= firstVisibleRow &&
-        element.tilePosition.row <= lastVisibleRow;
-      return isVisible;
-    }).sort((a, b) => {
-      return a.layer - b.layer;
-    });
+    const visibleElements = Object.values(elementMap)
+      .filter((element) => {
+        const isVisible =
+          element.tilePosition.col >= firstVisibleCol &&
+          element.tilePosition.col <= lastVisibleCol &&
+          element.tilePosition.row >= firstVisibleRow &&
+          element.tilePosition.row <= lastVisibleRow;
+        return isVisible;
+      })
+      .sort((a, b) => {
+        return a.layer - b.layer;
+      });
 
     visibleElements.forEach((element) => {
       const sprite = spriteMap.get(element.spriteKey);
@@ -147,8 +150,10 @@ export function renderTileMap({
         const spriteSize = sprite.size;
         const spriteWidthPx = spriteSize.width * tileSizePx;
         const spriteHeightPx = spriteSize.height * tileSizePx;
-        const spriteX = element.tilePosition.col * tileSizePx + cameraPosition.x + (tileSizePx * sprite.offset.col);
-        const spriteY = element.tilePosition.row * tileSizePx + cameraPosition.y + (tileSizePx * sprite.offset.row);
+        const spriteX =
+          element.tilePosition.col * tileSizePx + cameraPosition.x + tileSizePx * sprite.offset.col;
+        const spriteY =
+          element.tilePosition.row * tileSizePx + cameraPosition.y + tileSizePx * sprite.offset.row;
 
         const frame = sprite.getFrame(timestamp);
         bufferCtx.drawImage(
@@ -160,9 +165,6 @@ export function renderTileMap({
         );
       }
     });
-
-
-
   }
 
   // Draw the buffer to the canvas

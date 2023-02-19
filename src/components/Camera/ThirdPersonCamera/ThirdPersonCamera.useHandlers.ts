@@ -14,41 +14,29 @@ import { TilePosition } from '../../../types/TilePosition';
  * @param props
  * @returns
  */
-export function useHandlers(
-  props: {
-    draggable?: boolean;
-    zoomeable?: boolean;
-    dragSensitivity?: number;
-    zoomIncrement?: number;
-    isCameraDragging: boolean;
-    setIsDragging: (value: boolean) => void;
-    isZoomInMotion: boolean;
-    isCameraInMotion: boolean;
-    cameraPosition: TilePosition | undefined;
-    zoom: number;
-    setCameraPosition: (position: TilePosition | undefined) => void;
-    setZoom: (zoom: number) => void;
-  },
-): EventHandlers {
+export function useHandlers(props: {
+  draggable?: boolean;
+  zoomeable?: boolean;
+  dragSensitivity?: number;
+  zoomIncrement?: number;
+  isCameraDragging: boolean;
+  setIsDragging: (value: boolean) => void;
+  isZoomInMotion: boolean;
+  isCameraInMotion: boolean;
+  cameraPosition: TilePosition | undefined;
+  zoom: number;
+  setCameraPosition: (position: TilePosition | undefined) => void;
+  setZoom: (zoom: number) => void;
+}): EventHandlers {
   // State from context
 
   const { state, computed, props: contextProps } = useTilemapContext();
 
-  const {
-    canvasSize,
-  } = state;
+  const { canvasSize } = state;
 
-  const {
-    cameraPosition,
-    zoom,
-    setCameraPosition,
-    setZoom,
-  } = props;
+  const { cameraPosition, zoom, setCameraPosition, setZoom } = props;
 
-  const {
-    tileSize,
-    mapDimensions,
-  } = computed;
+  const { tileSize, mapDimensions } = computed;
 
   // enable/disable drag and zoom flags
 
@@ -117,7 +105,14 @@ export function useHandlers(
   const handleMouseMove = (position: Position) => {
     const nextTilePosition = getTilePositionByMousePosition(position);
     const prevTilePosition = getTilePositionByMousePosition(currentMousePosition || position);
-    if (isDown && dragEnabled && currentMousePosition && cameraPosition && nextTilePosition && prevTilePosition) {
+    if (
+      isDown &&
+      dragEnabled &&
+      currentMousePosition &&
+      cameraPosition &&
+      nextTilePosition &&
+      prevTilePosition
+    ) {
       props.setIsDragging(true);
 
       const dragSensivility = props.dragSensitivity || DEFAULT_DRAG_SENSITIVITY;
@@ -143,7 +138,7 @@ export function useHandlers(
       if (deltaY < 0) {
         nextZoom = nextZoom + increment;
       } else {
-          nextZoom = nextZoom - increment;
+        nextZoom = nextZoom - increment;
       }
       setZoom(nextZoom);
     }
@@ -157,7 +152,7 @@ export function useHandlers(
         if (isTilePositionValid(result, mapDimensions)) {
           contextProps.onTileClick?.(result);
         }
-        contextProps.onTilemapClick?.(result)
+        contextProps.onTilemapClick?.(result);
       }
     }
   };

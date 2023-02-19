@@ -28,7 +28,7 @@ export type ContextState = {
   spriteMap?: SpriteMap;
   /**
    * Tilmap element map.
-   * 
+   *
    * This object contains all the elements that are currently in the tilemap.
    */
   elementMap: TilemapElementMap;
@@ -38,7 +38,7 @@ export type ContextState = {
   canvasSize?: Size;
   /**
    * Flag to indicate if the sprite map is loading.
-   * 
+   *
    * @remarks
    * This flag is used to prevent the tilemap from rendering before the sprite map is completely loaded.
    */
@@ -53,12 +53,10 @@ export type ContextActions = {
    * Sets the camera position to the given position.
    *
    * @throws Error if the canvas has no size.
-   * 
+   *
    * @param position position to move the camera to
    */
-  setCameraPosition: (
-    position?: TilePosition,
-  ) => void;
+  setCameraPosition: (position?: TilePosition) => void;
   /**
    * Sets the current zoom level to the given zoom level
    * If the zoom level is less than 0, it will be set to 0.
@@ -73,7 +71,7 @@ export type ContextActions = {
   setCanvasSize: (size?: Size) => void;
   /**
    * Sets a tilemap element.
-   * 
+   *
    * @param elementKey key of the tilemap element to set
    * @param element tilemap element to set or undefined to remove the element
    */

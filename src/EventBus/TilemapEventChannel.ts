@@ -1,14 +1,14 @@
-import { Position } from "../types/Position";
-import { createEventBusChannel } from "./EventBus"
+import { Position } from '../types/Position';
+import { createEventBusChannel } from './EventBus';
 
 export type TilemapControlsEvents = {
-    onMouseDown: (mousePosition: Position) => void;
-    onMouseMove: (mousePosition: Position) => void;
-    onMouseUp: () => void;
-    onWheel: (deltaY: number) => void;
-    onClick: (mousePosition: Position) => void;
-    onContextMenu: (mousePosition: Position) => void;
-    onDoubleClick: (mousePosition: Position) => void;
+  onMouseDown: (mousePosition: Position) => void;
+  onMouseMove: (mousePosition: Position) => void;
+  onMouseUp: () => void;
+  onWheel: (deltaY: number) => void;
+  onClick: (mousePosition: Position) => void;
+  onContextMenu: (mousePosition: Position) => void;
+  onDoubleClick: (mousePosition: Position) => void;
 };
 
-export const tilemapEventChannel = createEventBusChannel<TilemapControlsEvents>()
+export const tilemapEventChannel = createEventBusChannel<TilemapControlsEvents>();
