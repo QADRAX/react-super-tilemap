@@ -1,0 +1,84 @@
+{
+  "name": "react-super-tilemap",
+  "license": "MIT",
+  "version": "0.0.1-alpha.0",
+  "private": false,
+  "description": "HTML/CSS tilemap react wrapper",
+  "author": "Carlos Cuadra",
+  "homepage": "https://github.com/QADRAX/react-super-tilemap",
+  "bugs": {
+    "url": "https://github.com/QADRAX/react-super-tilemap/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QADRAX/react-super-tilemap.git"
+  },
+  "scripts": {
+    "build": "yarn clean && rollup -c",
+    "clean": "rimraf dist",
+    "dev": "yarn storybook",
+    "format": "prettier --write \"src/**/*.{ts,tsx,json,js,jsx}\"",
+    "format:check": "prettier --list-different \"src/**/*.{ts,tsx,json,js,jsx}\"",
+    "lint": "yarn lint:script",
+    "lint:script": "eslint ./src --ext .js,.jsx,.ts,.tsx",
+    "storybook": "start-storybook -p 9001 -s ./src/assets -c .storybook",
+    "test": "jest --maxWorkers=2",
+    "test:watch": "yarn test --watch",
+    "test:coverage": "jest --coverage --colors --maxWorkers=2",
+    "publish": "npx semantic-release --no-ci"
+  },
+  "main": "index.js",
+  "module": "index.esm.js",
+  "types": "index.d.ts",
+  "dependencies": {
+    "react-resize-detector": "^6.7.6"
+  },
+  "peerDependencies": {
+    "react": ">=16",
+    "react-dom": ">=16"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.7",
+    "@rollup/plugin-commonjs": "^16.0.0",
+    "@rollup/plugin-node-resolve": "^10.0.0",
+    "@storybook/addon-essentials": "^6.5.16",
+    "@storybook/react": "^6.1.2",
+    "@testing-library/react": "^11.2.2",
+    "@types/classnames": "^2.2.11",
+    "@types/jest": "^26.0.15",
+    "@types/merge-images": "^1.2.1",
+    "@types/node": "^12",
+    "@types/react": "^16.9.10",
+    "@types/react-dom": "^16.9.10",
+    "@typescript-eslint/eslint-plugin": "^4.8.1",
+    "@typescript-eslint/parser": "^4.8.1",
+    "babel-loader": "^8.2.1",
+    "classnames": "^2.2.6",
+    "conventional-changelog-conventionalcommits": "^4.4.0",
+    "css-loader": "^5.0.1",
+    "eslint": "^7.14.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^26.6.3",
+    "prettier": "^2.2.0",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.33.3",
+    "rollup-plugin-copy": "^3.3.0",
+    "rollup-plugin-postcss": "^3.1.8",
+    "rollup-plugin-terser": "7.0.2",
+    "rollup-plugin-typescript2": "^0.29.0",
+    "style-loader": "^2.0.0",
+    "ts-jest": "^26.4.4",
+    "ts-loader": "^8.0.11",
+    "typescript": "^4.9.5",
+    "webpack": "^4.42.1"
+  },
+  "engines": {
+    "yarn": "^1.5"
+  }
+}
