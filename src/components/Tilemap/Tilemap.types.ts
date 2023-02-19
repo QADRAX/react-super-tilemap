@@ -1,5 +1,5 @@
-import { SpriteDefinition } from './SpriteDefinition';
-import { TilePosition } from './TilePosition';
+import { SpriteDefinition } from '../../types/SpriteDefinition';
+import { TilePosition } from '../../types/TilePosition';
 
 /**
  * Tilemap events.

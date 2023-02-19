@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
 import { useIsChanging } from '../../hooks/useIsChanging';
 import { ContextComputedState, ContextState } from './TilemapContext/TilemapContext.types';
-import { TilemapProps } from '../../types/Tilemap';
 import { floorTilePosition, getCameraPositionByTilePosition } from '../../utils/positions';
 import { getMapDimensions, getMapSize, getTileSize } from '../../utils/sizes';
+import { TilemapProps } from './Tilemap.types';
 
 /**
  * Returns useful computed values from the tilemap state.

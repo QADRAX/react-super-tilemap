@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useTilemapContext } from '../../Tilemap/TilemapContext/useTilemapContext';
-import { ThirdPersonCameraProps } from '../../../types/ThirdPersonCamera';
+import { ThirdPersonCameraProps } from './ThirdPersonCamera.types';
 import { TilePosition } from '../../../types/TilePosition';
 import { isTilePosition } from '../../../utils/typeGuards';
 import { CameraContext } from './ThirdPersonCameraContext/ThirdPersonCameraContext.types';

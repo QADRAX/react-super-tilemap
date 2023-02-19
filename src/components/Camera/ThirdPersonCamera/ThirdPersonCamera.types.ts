@@ -1,5 +1,5 @@
-import { RecenterCameraMotion } from './Motions';
-import { TilePosition } from './TilePosition';
+import { RecenterCameraMotion } from '../../../types/Motions';
+import { TilePosition } from '../../../types/TilePosition';
 
 export type ThirdPersonCameraSettings = {
   /**

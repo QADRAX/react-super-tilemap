@@ -1,11 +1,11 @@
 import React, { FunctionComponent, useReducer } from 'react';
 import { initialState, TilemapContext } from './TilemapContext/TilemapContext';
 import { tilemapReducer } from './TilemapContext/TilemapContext.reducer';
-import { TilemapProps } from '../../types/Tilemap';
 import { useTilemapActions } from './Tilemap.useTilemapActions';
 import { useComputedValues } from './Tilmeap.useComputedValues';
 import { useSpriteLoader } from './Tilemap.useSpriteLoader';
 import { TilemapDisplay } from './TilemapDisplay/TilemapDisplay';
+import { TilemapProps } from './Tilemap.types';
 
 /**
  * Tilemap main component.
