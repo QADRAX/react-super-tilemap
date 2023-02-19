@@ -75,9 +75,7 @@ export interface ZoomMotionRequest extends MotionRequest<number> {}
 
 // MOTION QUEUE
 
-export type Position1D = number;
-export type Position2D = TilePosition;
-export type CurrentMotionPosition = Position2D | Position1D;
+export type CurrentMotionPosition = number | TilePosition;
 
 /**
  * A motion that is being executed.
@@ -116,14 +114,14 @@ export interface CurrentMotion<T extends CurrentMotionPosition> {
  *
  * @public
  */
-export interface CurrentCameraMotion extends CurrentMotion<Position2D> {}
+export interface CurrentCameraMotion extends CurrentMotion<TilePosition> {}
 
 /**
  * A motion that zooms the zoom.
  *
  * @public
  */
-export interface CurrentZoomMotion extends CurrentMotion<Position1D> {}
+export interface CurrentZoomMotion extends CurrentMotion<number> {}
 
 // RECENTER MOTION
 

@@ -2,9 +2,9 @@ import { TilemapElement, TilemapElementMap } from '../../../types/TilemapElement
 import { MapDimensions } from '../../../types/MapDimensions';
 import { Size } from '../../../types/Size';
 import { SpriteMap } from '../../../types/Sprite';
-import { TilemapProps } from '../Tilemap';
 import { TilePosition } from '../../../types/TilePosition';
 import { Position } from '../../../types/Position';
+import { TilemapProps } from '../Tilemap.types';
 
 /**
  * Tilemap context state.

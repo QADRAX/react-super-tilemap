@@ -3,9 +3,9 @@ import { Meta, Story } from '@storybook/react';
 import { Tilemap } from '../components/Tilemap/Tilemap';
 import { getRandomSpriteSchema } from './__MapGenerator__';
 import { defaulthridPersonCameraArgs, defaultTilemapArgs } from './__defaultArgs__';
-import { TilemapProps } from '../components/Tilemap/Tilemap';
-import { ThirdPersonCameraProps } from '../components/Camera/ThirdPersonCamera/ThirdPersonCamera';
 import { ThirdPersonCamera } from '../components/Camera/ThirdPersonCamera/ThirdPersonCamera';
+import { TilemapProps } from '../components/Tilemap/Tilemap.types';
+import { ThirdPersonCameraProps } from '../components/Camera/ThirdPersonCamera/ThirdPersonCamera.types';
 
 const rows = 5;
 const cols = 5;
