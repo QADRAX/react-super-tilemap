@@ -18,7 +18,7 @@ yarn add react-super-tilemap
 
 ## **🎞 Sprite 🎞**
 
-[**SpriteDefinition API 📜**]()
+[**SpriteDefinition API 📜**](#spritedefinition)
 
 Mainly you will need to define the set of sprites that the map will render. These sprites can be oriented to different purposes and have configurations so you can adapt them according to your needs.
 
@@ -91,9 +91,9 @@ const sprites: SpriteDefinition[] = [
 
 ## **🗺 Tilemap 🗺**
 
-[**Tilemap API 📜**]()
+[**Tilemap API 📜**](#tilemap)
 
-[**Demo 🕹**]()
+[**Demo 🕹**](https://qadrax.github.io/react-super-tilemap/?path=/story/tilemap-tilemap--all-props-example)
 
 This is the main component to start painting in your React application 2D tilemaps.
 
@@ -127,9 +127,9 @@ const YourComponent = () => (
 
 ### **Manual camera**
 
-[**ManualCamera API 📜**]()
+[**ManualCamera API 📜**](#manualcamera)
 
-[**Demo 🕹**]()
+[**Demo 🕹**](https://qadrax.github.io/react-super-tilemap/?path=/story/tilemap-cameras--manual-camera-example)
 
 This component is used to manually control the camera position and zoom of the tilemap.
 
@@ -160,9 +160,9 @@ const YourComponent = () => {
 
 ### **Third person camera**
 
-[**ThirdPersonCamera API 📜**]()
+[**ThirdPersonCamera API 📜**](#thirdpersoncamera)
 
-[**Demo 🕹**]()
+[**Demo 🕹**](https://qadrax.github.io/react-super-tilemap/?path=/story/tilemap-tilemap--clickable-tilemap-example)
 
 Use this component to operate with a third person camera in the tilemap.
 
@@ -185,9 +185,9 @@ const YourComponent = () => {
 
 ### **Third person camera context**
 
-[**ThirdPersonCameraContext API 📜**]()
+[**ThirdPersonCameraContext API 📜**](#thirdpersoncameracontext)
 
-[**Demo 🕹**]()
+[**Demo 🕹**](https://qadrax.github.io/react-super-tilemap/?path=/story/tilemap-cameras--third-person-camera-example)
 
 Third person camera allows you to apply Motion effects to the position and zoom of it. To do this you just have to create a child component and use the `useThirdPersonCameraContext` hook.
 
@@ -225,13 +225,13 @@ const YourComponent = () => {
 
 ### **Manual element**
 
-[**ManualElement API 📜**]()
+[**ManualElement API 📜**](#manualelement)
 
-[**Demo 🕹**]()
+[**Demo 🕹**](https://qadrax.github.io/react-super-tilemap/?path=/story/tilemap-elements--manual-element-example)
 
 ### **Motionable element**
 
-[**MotionableCamera API 📜**]()
+[**MotionableElement API 📜**](#motionableelement)
 
 [**Demo 🕹**]()
 
@@ -263,7 +263,7 @@ const YourComponent = () => {
 
 ## **EasingType**
 
-See all supported easing functions [here]()
+See all supported easing functions [here](https://easings.net/)
 
 ## **MotionSettings**
 
@@ -276,21 +276,21 @@ See all supported easing functions [here]()
 
 ## **Tilemap**
 
-| Prop                 | Type                         | Description                                                                                        | Default |
-|----------------------|------------------------------|----------------------------------------------------------------------------------------------------|---------|
-| defaultTileSize      | number                       | Tile default size in px                                                                            | 16      |
-| backgroundColor      | string                       | Tilemap's background color. (It must be a valid CSS color)                                         | #cbf0ff |
-| tilemapSchema        | string[][][]                 | Scheme of Columns/rows/layers of sprite keys that will be rendered on the tile map                 |         |
-| spriteDefinition     | SpriteDefinition[]           | Definition of the sprites that tilemap will render                                                 |         |
-| onSpritesLoadError   | (error: Error) => void       | It will be called when an error occurs while loading sprites                                       |         |
+| Prop                 | Type                         | Description                                                                                                | Default |
+|----------------------|------------------------------|------------------------------------------------------------------------------------------------------------|---------|
+| defaultTileSize      | number                       | Tile default size in px                                                                                    | 16      |
+| backgroundColor      | string                       | Tilemap's background color. (It must be a valid CSS color)                                                 | #cbf0ff |
+| tilemapSchema        | string[][][]                 | Scheme of Columns/rows/layers of sprite keys that will be rendered on the tile map                         |         |
+| spriteDefinition     | SpriteDefinition[]           | Definition of the sprites that tilemap will render                                                         |         |
+| onSpritesLoadError   | (error: Error) => void       | It will be called when an error occurs while loading sprites                                               |         |
 | onTilemapClick       | (tile: TilePosition) => void | It will be called when the tilemap is clicked, even if is not a valid tile where the click happened        |         |
 | onTilemapDoubleClick | (tile: TilePosition) => void | It will be called when the tilemap is double clicked, even if is not a valid tile where the click happened |         |
 | onTilemapContextMenu | (tile: TilePosition) => void | It will be called when the tilemap is right clicked, even if is not a valid tile where the click happened  |         |
-| onTileClick          | (tile: TilePosition) => void | It will be called when defined tilemap's tile are clicked                                          |         |
-| onTileDoubleClick    | (tile: TilePosition) => void | It will be called when a tile is double clicked                                                    |         |
-| onTileContextMenu    | (tile: TilePosition) => void | It will be called when a tile is right clicked                                                     |         |
-| onTileHover          | (tile: TilePosition) => void | It will be called when a tile is hovered                                                           |         |
-| onTileHoverOut       | (tile: TilePosition) => void | It will be called when a tile is hovered out                                                       |         |
+| onTileClick          | (tile: TilePosition) => void | It will be called when defined tilemap's tile are clicked                                                  |         |
+| onTileDoubleClick    | (tile: TilePosition) => void | It will be called when a tile is double clicked                                                            |         |
+| onTileContextMenu    | (tile: TilePosition) => void | It will be called when a tile is right clicked                                                             |         |
+| onTileHover          | (tile: TilePosition) => void | It will be called when a tile is hovered                                                                   |         |
+| onTileHoverOut       | (tile: TilePosition) => void | It will be called when a tile is hovered out                                                               |         |
 
 
 ## **ManualCamera**
