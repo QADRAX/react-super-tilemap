@@ -13,7 +13,11 @@ export function useZoomMotions(
 
     const [zoomMotionQueue, setZoomMotionQueue] = useState<ZoomMotionRequest[]>([]);
 
-    const { zoom } = props;
+    const { 
+        zoom,
+        setCurrentZoomMotion,
+        currentZoomMotion,
+    } = props;
 
     const addZoomMotion = useCallback(
         (settings: MotionSettings, targetZoom: number) => {
@@ -37,14 +41,14 @@ export function useZoomMotions(
 
     const endZoomMotion = useCallback(
         () => {
-            props.setCurrentZoomMotion(undefined);
+            setCurrentZoomMotion(undefined);
         },
-        [props.setCurrentZoomMotion]
+        [setCurrentZoomMotion]
     );
 
     useEffect(() => {
         if (
-            !props.currentZoomMotion &&
+            !currentZoomMotion &&
             zoomMotionQueue.length > 0
         ) {
             // add next motion from the queue
@@ -63,14 +67,14 @@ export function useZoomMotions(
                 nextMotionRequest.settings.minDuration,
                 nextMotionRequest.settings.easing
             );
-            props.setCurrentZoomMotion(nextMotion);
+            setCurrentZoomMotion(nextMotion);
             sliceZoomMotionQueue();
         }
     }, [
-        props.currentZoomMotion,
+        currentZoomMotion,
+        setCurrentZoomMotion,
         zoomMotionQueue,
         zoom,
-        props.setCurrentZoomMotion,
         sliceZoomMotionQueue,
     ]);
 

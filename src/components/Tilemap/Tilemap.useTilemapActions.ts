@@ -25,14 +25,19 @@ export function useTilemapActions(
   dispatch: React.Dispatch<TilemapActions>,
   state: ContextState
 ): ContextActions {
+  const {
+    canvasSize,
+    elementMap,
+  } = state;
+
   const setCameraPosition = useCallback(
     (position?: TilePosition) => {
-      if (!state.canvasSize) {
+      if (!canvasSize) {
         throw new Error(UNSIZED_CANVAS_ERROR);
       }
         dispatch(_setCameraPosition(position));
     },
-    [dispatch, state.canvasSize]
+    [dispatch, canvasSize]
   );
   const setZoom = useCallback(
     (zoom: number) => {
@@ -50,7 +55,7 @@ export function useTilemapActions(
 
   const setTilemapElement = useCallback(
     (elementKey: string, element?: TilemapElement) => {
-      const nextMap = { ...state.elementMap}
+      const nextMap = { ...elementMap}
       if(element) {
         nextMap[elementKey] = element;
       } else {
@@ -58,7 +63,7 @@ export function useTilemapActions(
       }
       dispatch(_setElementMap(nextMap));
     },
-    []
+    [dispatch, elementMap]
   );
 
   const actions: ContextActions = {

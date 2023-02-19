@@ -19,7 +19,7 @@ export const ManualCamera: FunctionComponent<ManualCameraProps> = (props) => {
 
     const clickable = props.clickable ?? true;
 
-    const handlers = clickable ? useHandlers() : {};
+    const handlers = useHandlers();
 
     return (
         <>

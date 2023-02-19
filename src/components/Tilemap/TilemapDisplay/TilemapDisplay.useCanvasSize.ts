@@ -13,6 +13,11 @@ import { Size } from '../../../types/Size';
  */
 export function useCanvasSize(targetRef?: React.MutableRefObject<unknown>): void {
   const { actions } = useTilemapContext();
+
+  const {
+    setCanvasSize,
+  } = actions;
+
   const { width, height } = useResizeDetector({
     targetRef,
   });
@@ -29,6 +34,6 @@ export function useCanvasSize(targetRef?: React.MutableRefObject<unknown>): void
   }, [width, height]);
 
   useEffect(() => {
-    actions.setCanvasSize(canvasSize);
-  }, [canvasSize, actions.setCanvasSize]);
+    setCanvasSize(canvasSize);
+  }, [canvasSize, setCanvasSize]);
 }

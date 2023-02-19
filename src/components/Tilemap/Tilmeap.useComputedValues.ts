@@ -37,7 +37,7 @@ export function useComputedValues(
             return undefined;
         }
         return floorTilePosition(state.cameraPosition);
-    }, [state.cameraPosition, tileSize, state.canvasSize]);
+    }, [state.cameraPosition, state.canvasSize]);
 
     const cameraAbsolutePosition = useMemo(() => {
         if (!state.cameraPosition || !state.canvasSize) {

@@ -50,5 +50,5 @@ export function useSpriteLoader(
     return () => {
       isMounted = false;
     }
-  }, [spriteDefinition]); // eslint-disable-line react-hooks/exhaustive-dep
+  }, [spriteDefinition]); // eslint-disable-line react-hooks/exhaustive-deps
 }

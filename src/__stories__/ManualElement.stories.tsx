@@ -32,7 +32,7 @@ const ContextButtons = (props: {
         if (props.focusedTile) {
             addCameraMotion(defaultMotionSettings, props.focusedTile);
         }
-    }, [props.focusedTile]);
+    }, [props.focusedTile]); // eslint-disable-line react-hooks/exhaustive-deps
 
     const centerCamera = () => {
         addCameraMotion(defaultMotionSettings, 'center');

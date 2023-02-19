@@ -16,7 +16,10 @@ export function useCameraMotions(
     const { computed } = useTilemapContext();
 
     const {
+        isCameraDragging,
         cameraPosition,
+        setCurrentCameraMotion,
+        currentCameraMotion,
     } = props;
 
     const {
@@ -46,13 +49,13 @@ export function useCameraMotions(
     );
 
     const endCameraMotion = useCallback(() => {
-        props.setCurrentCameraMotion(undefined);
-    }, [props.setCurrentCameraMotion]);
+        setCurrentCameraMotion(undefined);
+    }, [setCurrentCameraMotion]);
 
     useEffect(() => {
         if (
-            !props.isCameraDragging &&
-            !props.currentCameraMotion &&
+            !isCameraDragging &&
+            !currentCameraMotion &&
             cameraMotionQueue.length > 0 &&
             cameraPosition
         ) {
@@ -79,16 +82,16 @@ export function useCameraMotions(
                 nextMotionRequest.settings.easing
             );
 
-            props.setCurrentCameraMotion(nextMotion);
+            setCurrentCameraMotion(nextMotion);
 
             sliceCameraMotionQueue();
         }
     }, [
         cameraPosition,
-        props.currentCameraMotion,
+        currentCameraMotion,
         cameraMotionQueue,
-        props.isCameraDragging,
-        props.setCurrentCameraMotion,
+        isCameraDragging,
+        setCurrentCameraMotion,
         sliceCameraMotionQueue,
         mapDimensions,
     ]);
