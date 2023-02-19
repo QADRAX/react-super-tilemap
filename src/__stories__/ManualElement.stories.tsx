@@ -120,7 +120,7 @@ const Example: FunctionComponent<ExampleProps> = (props) => {
                 },
                 spriteKey: SpriteName.armyIdle,
                 layer: 1,
-            }} key="army" />
+            }} elementKey="army" />
             
         </Tilemap>
     );
