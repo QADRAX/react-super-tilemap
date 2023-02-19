@@ -136,20 +136,26 @@ This component is used to manually control the camera position and zoom of the t
 ```ts
 import { Tilemap, ManualCamera } from 'react-super-tilemap'
 
-const YourComponent = () => (
-    <Tilemap
-        tilmapScheme={scheme}
-        spriteDefinition={sprites}
-    >
-        <ManualCamera 
-            position={{
-                col: 0,
-                row: 0,
-            }}
-            zoom={0}
-        />
-    </Tilemap>
-)
+const position = {
+    col: 0,
+    row: 0,
+}
+
+const zoom = 0;
+
+const YourComponent = () => {
+    return (
+        <Tilemap
+            tilmapScheme={scheme}
+            spriteDefinition={sprites}
+        >
+            <ManualCamera 
+                position={position}
+                zoom={zoom}
+            />
+        </Tilemap>
+    )
+}
 ```
 
 ### **Third person camera**
@@ -182,6 +188,8 @@ const YourComponent = () => {
 [**ThirdPersonCameraContext API 📜**]()
 
 [**Demo 🕹**]()
+
+Third person camera allows you to apply Motion effects to the position and zoom of it. To do this you just have to create a child component and use the `useThirdPersonCameraContext` hook.
 
 ```ts
 import { Tilemap, ThirdPersonCamera, useThirdPersonCameraContext } from 'react-super-tilemap'
@@ -227,11 +235,21 @@ const YourComponent = () => {
 
 [**Demo 🕹**]()
 
-# **API**
+# **📜 API 📜**
 
 ## **Size**
 
+| Prop   | Type   | Description  |
+|--------|--------|--------------|
+| width  | number | Width value  |
+| height | number | Height value |
+
 ## **TilePosition**
+
+| Prop | Type   | Description      |
+|------|--------|------------------|
+| col  | number | Tilemap's column |
+| row  | number | Tilemap's row    |
 
 ## **SpriteDefinition**
 
@@ -242,6 +260,19 @@ const YourComponent = () => {
 | animationDelay | number       | Delay in milliseconds between each animation frame.                                          | 1000                    |
 | size           | Size         | Sprite's size in tiles. Indicates how many tiles the sprite will occupy.                     | { width: 1, height: 1 } |
 | offset         | TilePosition | Sprite's offset in tiles. Indicates how many tiles the sprite will be offset from it origin. | { col: 0, row: 0 }      |
+
+## **EasingType**
+
+See all supported easing functions [here]()
+
+## **MotionSettings**
+
+| Prop        | Type       | Description                                    | Default  |
+|-------------|------------|------------------------------------------------|----------|
+| speed       | number     | The speed of the motion in pixels per second.  |          |
+| easing      | EasingType | The easing function to use for the motion      | 'linear' |
+| maxDuration | number     | The maximum duration of the motion in seconds. |          |
+| minDuration | number     | The minimum duration of the motion in seconds. | 0        |
 
 ## **Tilemap**
 
@@ -264,8 +295,16 @@ const YourComponent = () => {
 
 ## **ManualCamera**
 
+| Prop      | Type         | Description                                    |
+|-----------|--------------|------------------------------------------------|
+| position  | TilePosition | Camera position                                |
+| zoom      | number       | Camera zoom                                    |
+| clickable | boolean      | Flag that indicates if the tiles are clickable |
+
 ## **ThirdPersonCamera**
 
 ## **ThirdPersonCameraContext**
 
 ## **ManualElement**
+
+## **MotionableElement**
