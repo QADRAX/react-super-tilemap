@@ -8,7 +8,7 @@ import { TilePosition } from './TilePosition';
  */
 export type TilemapEvents = {
   /**
-   * This event is triggered when an error occurs loading sprites.
+   * It will be called when an error occurs while loading sprites.
    *
    * @param error - Error that occurred while loading sprites.
    */
@@ -71,7 +71,7 @@ export type TilemapEvents = {
  */
 export type TilemapSettings = {
   /**
-   * Tilemap's default tile size in px.
+   * Tile default tile size in px.
    *
    * If not provided, the default value will be used.
    * If provided, it must be greater than 0.
@@ -80,15 +80,15 @@ export type TilemapSettings = {
    */
   defaultTileSize?: number;
   /**
-   * Columns/rows/layers matrix of sprite keys.
+   * Scheme of Columns/rows/layers of sprite keys that will be rendered on the tile map.
    */
-  tilmapSchema?: string[][][];
+  tilmapScheme?: string[][][];
   /**
-   * List of sprites to load.
+   * Definition of the sprites that tilemap will render.
    */
   spriteDefinition?: SpriteDefinition[];
   /**
-   * canvas's background color.
+   * Tilemap's background color.
    *
    * If not provided, the default value will be used.
    * If provided, it must be a valid CSS color.

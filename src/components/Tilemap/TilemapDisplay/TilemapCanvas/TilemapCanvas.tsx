@@ -43,7 +43,7 @@ export class TilemapCanvas extends React.PureComponent<TilemapCanvasProps> {
         buffer: this.bufferCanvas,
         canvasSizePx: this.canvasSize,
         spriteMap: this.context.state.spriteMap,
-        schema: this.context.props.tilmapSchema,
+        schema: this.context.props.tilmapScheme,
         cameraPosition,
         tileSizePx: this.context.computed.tileSize,
         timestamp,

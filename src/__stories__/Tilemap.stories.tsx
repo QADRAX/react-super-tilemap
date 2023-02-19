@@ -32,7 +32,7 @@ export default {
             },
             control: 'number',
         },
-        tilmapSchema: {
+        tilmapScheme: {
             table: {
                 type: {
                     summary: 'TilemapSchema',
@@ -115,7 +115,7 @@ const Template: Story<TilemapProps & ThirdPersonCameraProps> = (args) => (
     <Tilemap 
         defaultTileSize={args.defaultTileSize}
         backgroundColor={args.backgroundColor}
-        tilmapSchema={args.tilmapSchema}
+        tilmapScheme={args.tilmapScheme}
         spriteDefinition={args.spriteDefinition}
         onSpritesLoadError={args.onSpritesLoadError}
         onTileClick={args.onTileClick}
@@ -139,7 +139,7 @@ const Template: Story<TilemapProps & ThirdPersonCameraProps> = (args) => (
 export const AllPropsExample = Template.bind({});
 
 AllPropsExample.args = {
-    tilmapSchema: initialSchema,
+    tilmapScheme: initialSchema,
     ...defaultTilemapArgs,
     ...defaulthridPersonCameraArgs
 };

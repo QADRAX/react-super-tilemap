@@ -40,7 +40,7 @@ const Example: FunctionComponent<ExampleProps> = (props) => {
 
     return (
         <Tilemap {...defaultTilemapArgs}
-            tilmapSchema={schema}
+            tilmapScheme={schema}
             onTileClick={handleTileClick}
         >
             <ThirdPersonCamera {...defaulthridPersonCameraArgs} />

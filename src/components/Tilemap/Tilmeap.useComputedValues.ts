@@ -28,7 +28,7 @@ export function useComputedValues(
         [state.zoom, props.defaultTileSize]
     );
 
-    const mapDimensions = useMemo(() => getMapDimensions(props.tilmapSchema), [props.tilmapSchema]);
+    const mapDimensions = useMemo(() => getMapDimensions(props.tilmapScheme), [props.tilmapScheme]);
 
     const mapSize = useMemo(() => getMapSize(mapDimensions, tileSize), [mapDimensions, tileSize]);
 

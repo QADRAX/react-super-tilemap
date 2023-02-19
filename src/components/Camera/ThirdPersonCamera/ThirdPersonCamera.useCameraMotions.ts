@@ -13,11 +13,7 @@ export function useCameraMotions(
         cameraPosition: TilePosition | undefined;
     }
 ) {
-    const { state, computed } = useTilemapContext();
-
-    const {
-        canvasSize,
-    } = state;
+    const { computed } = useTilemapContext();
 
     const {
         cameraPosition,
@@ -58,8 +54,7 @@ export function useCameraMotions(
             !props.isCameraDragging &&
             !props.currentCameraMotion &&
             cameraMotionQueue.length > 0 &&
-            cameraPosition &&
-            canvasSize
+            cameraPosition
         ) {
             // add next motion from the queue
 
@@ -95,7 +90,6 @@ export function useCameraMotions(
         props.isCameraDragging,
         props.setCurrentCameraMotion,
         sliceCameraMotionQueue,
-        canvasSize,
         mapDimensions,
     ]);
 
