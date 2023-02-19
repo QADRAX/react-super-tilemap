@@ -1,4 +1,4 @@
-# **💎 React Super Tilemap 💎**
+# **💎 React Super Tilemap 💎** [in progress...]
 
 This package provides an implementation as a React component of a low-level 2D tilemap optimized for high-performance rendering in web browsers, as well as a set of implementations to operate with a camera or moving tilemap elements.
 
