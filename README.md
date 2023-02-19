@@ -1,5 +1,9 @@
 # **💎 React Super Tilemap 💎** [in progress...]
 
+[![Build](https://github.com/QADRAX/react-super-tilemap/actions/workflows/Build.yaml/badge.svg)](https://github.com/QADRAX/react-super-tilemap/actions/workflows/Build.yaml)
+[![Publish](https://github.com/QADRAX/react-super-tilemap/actions/workflows/Publish.yaml/badge.svg)](https://github.com/QADRAX/react-super-tilemap/actions/workflows/Publish.yaml)
+[![Publish Storybook](https://github.com/QADRAX/react-super-tilemap/actions/workflows/PublishPages.yaml/badge.svg)](https://github.com/QADRAX/react-super-tilemap/actions/workflows/PublishPages.yaml)
+
 This package provides an implementation as a React component of a low-level 2D tilemap optimized for high-performance rendering in web browsers, as well as a set of implementations to operate with a camera or moving tilemap elements.
 
 ## **Motivations**
