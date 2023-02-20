@@ -81,8 +81,8 @@ export function getCameraPositionByTilePosition(
   canvasSize: Size
 ): Position {
   const relativeTilePosition: Position = {
-    x: tilePosition.col * tileSize,
-    y: tilePosition.row * tileSize,
+    x: tilePosition.col * tileSize + tileSize / 2,
+    y: tilePosition.row * tileSize + tileSize / 2,
   };
 
   const relativeCenterPosition: Position = {
