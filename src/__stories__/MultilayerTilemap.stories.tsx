@@ -1,53 +1,11 @@
-import React, { FunctionComponent, useEffect } from 'react';
+import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { Tilemap } from '../components/Tilemap/Tilemap';
-import { defaulthridPersonCameraArgs, defaultTilemapArgs } from './__defaultArgs__';
-import { getFullfilledSchema } from './__MapGenerator__';
-import { TilePosition } from '../types/TilePosition';
 import { FirstLayerSprites, SecondLayerSprites, SpriteName } from './__Sprites__';
-import { ThirdPersonCamera } from '../components/Camera/ThirdPersonCamera/ThirdPersonCamera';
-
-export interface ExampleProps {
-  rows: number;
-  cols: number;
-  baseSprite: string;
-  spriteToAdd: string;
-  onTileClick: (position: TilePosition) => void;
-}
-
-const Example: FunctionComponent<ExampleProps> = (props) => {
-  const initialSchema = getFullfilledSchema(props.cols, props.rows, props.baseSprite, 2);
-  const [schema, setSchema] = React.useState(initialSchema);
-
-  useEffect(() => {
-    const newSchema = getFullfilledSchema(props.cols, props.rows, props.baseSprite, 2);
-    setSchema(newSchema);
-  }, [props.cols, props.rows, props.baseSprite]);
-
-  const handleTileClick = (tilePos: TilePosition) => {
-    const newSchema = [...schema];
-    const tile = newSchema[tilePos.col][tilePos.row];
-    if (tile) {
-      const layer = tile[1];
-      if (layer) {
-        tile[1] = '';
-      } else {
-        tile[1] = props.spriteToAdd;
-      }
-    }
-    setSchema(newSchema);
-  };
-
-  return (
-    <Tilemap {...defaultTilemapArgs} tilmapScheme={schema} onTileClick={handleTileClick}>
-      <ThirdPersonCamera {...defaulthridPersonCameraArgs} />
-    </Tilemap>
-  );
-};
+import { DemoClickableTilemap } from './demos/tilemap/DemoClickableTilemap';
 
 export default {
-  title: 'Tilemap/Tilemap',
-  component: Example,
+  title: 'Examples/Clickable Tilemap',
+  component: DemoClickableTilemap,
   argTypes: {
     rows: {
       table: {
@@ -96,9 +54,9 @@ export default {
       hideNoControlsWarning: true,
     },
   },
-} as ComponentMeta<typeof Example>;
+} as ComponentMeta<typeof DemoClickableTilemap>;
 
-const Template: ComponentStory<typeof Example> = (args) => <Example {...args} />;
+const Template: ComponentStory<typeof DemoClickableTilemap> = (args) => <DemoClickableTilemap {...args} />;
 
 export const ClickableTilemapExample = Template.bind({});
 

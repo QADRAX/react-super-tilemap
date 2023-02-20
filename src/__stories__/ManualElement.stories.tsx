@@ -2,7 +2,7 @@ import React, { FunctionComponent, useEffect } from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Tilemap } from '../components/Tilemap/Tilemap';
 import {
-  defaulthridPersonCameraArgs,
+  defaulThridPersonCameraArgs,
   defaultMotionSettings,
   defaultTilemapArgs,
   defaultZoomMotionSettings,
@@ -126,7 +126,7 @@ const Example: FunctionComponent<ExampleProps> = (props) => {
       onTileClick={handleTileClick}
       onTileContextMenu={handleTileContextMenu}
     >
-      <ThirdPersonCamera {...defaulthridPersonCameraArgs}>
+      <ThirdPersonCamera {...defaulThridPersonCameraArgs}>
         <ContextButtons focusedTile={focusedTile} />
       </ThirdPersonCamera>
       <ManualElement
