@@ -24,6 +24,24 @@ export function getTilePosition(
   return tilePosition;
 }
 
+export function getAbsolutePosition(
+  tilePosition: TilePosition,
+  cameraPosition: Position,
+  tileSize: number,
+): Position {
+  const relativeTilePosition: Position = {
+    x: tilePosition.col * tileSize,
+    y: tilePosition.row * tileSize,
+  };
+
+  const mousePosition: Position = {
+    x: relativeTilePosition.x + cameraPosition.x,
+    y: relativeTilePosition.y + cameraPosition.y,
+  };
+
+  return mousePosition;
+}
+
 export function floorTilePosition(tilePosition: TilePosition): TilePosition {
   const floorTilePosition: TilePosition = {
     col: Math.floor(tilePosition.col),

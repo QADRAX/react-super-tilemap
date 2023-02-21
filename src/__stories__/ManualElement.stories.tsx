@@ -139,7 +139,9 @@ const Example: FunctionComponent<ExampleProps> = (props) => {
           layer: 1,
         }}
         elementKey='army'
-      />
+      >
+        <label>Player 1</label>
+      </ManualElement>
     </Tilemap>
   );
 };
