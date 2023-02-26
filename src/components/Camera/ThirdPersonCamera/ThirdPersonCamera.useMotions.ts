@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { CurrentCameraMotion, CurrentZoomMotion } from '../../../types/Motions';
 import { useStartMotion } from '../../../hooks/useStartMotion';
 import { useCameraMotions } from './ThirdPersonCamera.useCameraMotions';
 import { useZoomMotions } from './ThirdPersonCamera.useZoomMotions';
 import { TilePosition } from '../../../types/TilePosition';
+import { CurrentMotion } from '../../../types/Motions';
 
 export function useMotions(
   isCameraDragging: boolean,
@@ -12,12 +12,12 @@ export function useMotions(
   setCameraPosition: (position: TilePosition | undefined) => void,
   setZoom: (zoom: number) => void
 ) {
-  const [currentZoomMotion, setCurrentZoomMotion] = useState<CurrentZoomMotion | undefined>(
+  const [currentZoomMotion, setCurrentZoomMotion] = useState<CurrentMotion<number> | undefined>(
     undefined
   );
-  const [currentCameraMotion, setCurrentCameraMotion] = useState<CurrentCameraMotion | undefined>(
-    undefined
-  );
+  const [currentCameraMotion, setCurrentCameraMotion] = useState<
+    CurrentMotion<TilePosition> | undefined
+  >(undefined);
 
   const { addZoomMotion, endZoomMotion, zoomMotionQueue } = useZoomMotions({
     isCameraDragging,

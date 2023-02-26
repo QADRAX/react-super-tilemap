@@ -8,7 +8,7 @@ export type TilemapElementMap = Record<string, TilemapElement>;
 /**
  * A tilemap element.
  */
-export interface TilemapElement {
+export type TilemapElement = {
   /**
    * The position of the element in the tilemap.
    */
@@ -21,4 +21,4 @@ export interface TilemapElement {
    * In witch layer order the element should be rendered.
    */
   layer: number;
-}
+};

@@ -1,11 +1,11 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { FirstLayerSprites, SecondLayerSprites, SpriteName } from './__Sprites__';
-import { DemoManualElement } from './demos/elements/DemoManualElement';
+import { DemoClickableTilemap } from './demos/tilemap/DemoClickableTilemap';
 
 export default {
-  title: 'Manual Element demo',
-  component: DemoManualElement,
+  title: 'Examples/Clickable Tilemap',
+  component: DemoClickableTilemap,
   argTypes: {
     rows: {
       table: {
@@ -32,7 +32,7 @@ export default {
       options: [...FirstLayerSprites],
       control: 'select',
     },
-    elementSprite: {
+    spriteToAdd: {
       table: {
         type: {
           summary: 'string',
@@ -41,21 +41,8 @@ export default {
       options: [...SecondLayerSprites],
       control: 'select',
     },
-    elementCol: {
-      table: {
-        type: {
-          summary: 'number',
-        },
-      },
-      control: 'number',
-    },
-    elementRow: {
-      table: {
-        type: {
-          summary: 'number',
-        },
-      },
-      control: 'number',
+    onTileClick: {
+      control: 'function',
     },
   },
   parameters: {
@@ -67,19 +54,17 @@ export default {
       hideNoControlsWarning: true,
     },
   },
-} as ComponentMeta<typeof DemoManualElement>;
+} as ComponentMeta<typeof DemoClickableTilemap>;
 
-const Template: ComponentStory<typeof DemoManualElement> = (args) => (
-  <DemoManualElement {...args} />
+const Template: ComponentStory<typeof DemoClickableTilemap> = (args) => (
+  <DemoClickableTilemap {...args} />
 );
 
-export const ManualElementExample = Template.bind({});
+export const ClickableTilemapExample = Template.bind({});
 
-ManualElementExample.args = {
+ClickableTilemapExample.args = {
   rows: 20,
   cols: 20,
   baseSprite: SpriteName.grass,
-  elementSprite: SpriteName.armyIdle,
-  elementCol: 10,
-  elementRow: 10,
+  spriteToAdd: SpriteName.building,
 };

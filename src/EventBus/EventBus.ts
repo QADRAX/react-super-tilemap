@@ -1,8 +1,8 @@
 import { EventBusChannel, EventMap } from './EventBus.types';
 
-export interface EventBusConfig {
+export type EventBusConfig = {
   onError: (...params: any[]) => void;
-}
+};
 
 export type Bus<E> = Record<keyof E, E[keyof E][]>;
 

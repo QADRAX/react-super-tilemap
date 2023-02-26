@@ -46,7 +46,7 @@ export type MotionRequestTarget = TilePosition | 'center' | number;
  *
  * @public
  */
-export interface MotionRequest<T extends MotionRequestTarget> {
+export type MotionRequest<T extends MotionRequestTarget> = {
   /**
    * Settings of the motion.
    *
@@ -57,21 +57,7 @@ export interface MotionRequest<T extends MotionRequestTarget> {
    * The target position after the motion.
    */
   target: T;
-}
-
-/**
- * A camera motion request.
- *
- * @public
- */
-export interface CameraMotionRequest extends MotionRequest<TilePosition | 'center'> {}
-
-/**
- * A zoom motion request.
- *
- * @public
- */
-export interface ZoomMotionRequest extends MotionRequest<number> {}
+};
 
 // MOTION QUEUE
 
@@ -82,7 +68,7 @@ export type CurrentMotionPosition = number | TilePosition;
  *
  * @public
  */
-export interface CurrentMotion<T extends CurrentMotionPosition> {
+export type CurrentMotion<T extends CurrentMotionPosition> = {
   /**
    * The time at which the motion started in long milliseconds.
    */
@@ -100,33 +86,19 @@ export interface CurrentMotion<T extends CurrentMotionPosition> {
    */
   easing?: EasingType;
   /**
-   * The initial position of the camera before the motion.
+   * The initial position before the motion.
    */
   initialPosition: T;
   /**
-   * The target position of the camera after the motion.
+   * The target position after the motion.
    */
   targetPosition: T;
-}
-
-/**
- * A motion that moves the camera.
- *
- * @public
- */
-export interface CurrentCameraMotion extends CurrentMotion<TilePosition> {}
-
-/**
- * A motion that zooms the zoom.
- *
- * @public
- */
-export interface CurrentZoomMotion extends CurrentMotion<number> {}
+};
 
 // RECENTER MOTION
 
 /**
- * Types of camera motion targets.
+ * Types of recenter motion targets.
  *
  * @public
  */
@@ -137,7 +109,7 @@ export type RecenterCameraMotionTarget = 'center' | TilePosition;
  *
  * @public
  */
-export interface RecenterCameraMotion {
+export type RecenterCameraMotion = {
   /**
    * Settings of the motion.
    */
@@ -145,9 +117,7 @@ export interface RecenterCameraMotion {
   /**
    * The target position of the camera after any canvas resize.
    * If it is 'center', the camera will be centered on the tilemap.
-   * If it is 'last-center', the camera will be centered on the last tile position it was centered on.
-   * If it is a position, the camera will be centered on the given x,y position.
    * If it is a tile position, the camera will be centered on the given tile position.
    */
   target: RecenterCameraMotionTarget;
-}
+};

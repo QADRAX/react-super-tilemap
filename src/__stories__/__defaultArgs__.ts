@@ -25,7 +25,7 @@ export const defaultTilemapArgs: Partial<TilemapProps> = {
   backgroundColor: DEFAULT_BACKGROUND_COLOR,
 };
 
-export const defaulthridPersonCameraArgs: Partial<ThirdPersonCameraProps> = {
+export const defaulThridPersonCameraArgs: Partial<ThirdPersonCameraProps> = {
   draggable: true,
   zoomeable: true,
   dragSensitivity: DEFAULT_DRAG_SENSITIVITY,

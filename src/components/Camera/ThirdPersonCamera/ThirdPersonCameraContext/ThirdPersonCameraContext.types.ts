@@ -1,10 +1,4 @@
-import {
-  CameraMotionRequest,
-  CurrentCameraMotion,
-  CurrentZoomMotion,
-  MotionSettings,
-  ZoomMotionRequest,
-} from '../../../../types/Motions';
+import { CurrentMotion, MotionRequest, MotionSettings } from '../../../../types/Motions';
 import { TilePosition } from '../../../../types/TilePosition';
 
 /**
@@ -17,8 +11,8 @@ export type CameraContext = {
   zoom: number;
   addCameraMotion: (settings: MotionSettings, target: TilePosition | 'center') => void;
   addZoomMotion: (settings: MotionSettings, target: number) => void;
-  currentCameraMotion?: CurrentCameraMotion;
-  currentZoomMotion?: CurrentZoomMotion;
-  zoomMotionQueue: ZoomMotionRequest[];
-  cameraMotionQueue: CameraMotionRequest[];
+  currentCameraMotion?: CurrentMotion<TilePosition>;
+  currentZoomMotion?: CurrentMotion<number>;
+  zoomMotionQueue: MotionRequest<number>[];
+  cameraMotionQueue: MotionRequest<TilePosition | 'center'>[];
 };

@@ -1,11 +1,12 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { FirstLayerSprites, SecondLayerSprites, SpriteName } from './__Sprites__';
-import { DemoManualElement } from './demos/elements/DemoManualElement';
+import { DemoFollowCameraPostion } from './demos/tilemap/DemoFollowCameraPostion';
+import { defaultMotionSettings } from './__defaultArgs__';
 
 export default {
-  title: 'Manual Element demo',
-  component: DemoManualElement,
+  title: 'Examples/Follow camera position',
+  component: DemoFollowCameraPostion,
   argTypes: {
     rows: {
       table: {
@@ -41,22 +42,7 @@ export default {
       options: [...SecondLayerSprites],
       control: 'select',
     },
-    elementCol: {
-      table: {
-        type: {
-          summary: 'number',
-        },
-      },
-      control: 'number',
-    },
-    elementRow: {
-      table: {
-        type: {
-          summary: 'number',
-        },
-      },
-      control: 'number',
-    },
+    onMotionEnd: { control: 'function' },
   },
   parameters: {
     actions: {
@@ -67,19 +53,21 @@ export default {
       hideNoControlsWarning: true,
     },
   },
-} as ComponentMeta<typeof DemoManualElement>;
+} as ComponentMeta<typeof DemoFollowCameraPostion>;
 
-const Template: ComponentStory<typeof DemoManualElement> = (args) => (
-  <DemoManualElement {...args} />
+const Template: ComponentStory<typeof DemoFollowCameraPostion> = (args) => (
+  <DemoFollowCameraPostion {...args} />
 );
 
-export const ManualElementExample = Template.bind({});
+export const FollowCameraPostion = Template.bind({});
 
-ManualElementExample.args = {
+FollowCameraPostion.args = {
   rows: 20,
   cols: 20,
   baseSprite: SpriteName.grass,
-  elementSprite: SpriteName.armyIdle,
-  elementCol: 10,
-  elementRow: 10,
+  elementSprite: SpriteName.selector,
+  motionSpeed: 0.01,
+  easing: defaultMotionSettings.easing,
+  maxDuration: 0.04,
+  minDuration: 0.03,
 };

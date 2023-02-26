@@ -3,7 +3,7 @@ import { TilePosition } from './TilePosition';
 
 export type SpriteMap = Map<string, Sprite>;
 
-export interface Sprite {
+export type Sprite = {
   /**
    * Real image size in pixels.
    */
@@ -37,4 +37,4 @@ export interface Sprite {
    * @param timestamp system time in milliseconds.
    */
   getFrame(timestamp: number): HTMLImageElement;
-}
+};

@@ -2,10 +2,9 @@ import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import { Tilemap } from '../components/Tilemap/Tilemap';
 import { getRandomSpriteSchema } from './__MapGenerator__';
-import { defaulthridPersonCameraArgs, defaultTilemapArgs } from './__defaultArgs__';
-import { ThirdPersonCamera } from '../components/Camera/ThirdPersonCamera/ThirdPersonCamera';
+import { defaultTilemapArgs } from './__defaultArgs__';
 import { TilemapProps } from '../components/Tilemap/Tilemap.types';
-import { ThirdPersonCameraProps } from '../components/Camera/ThirdPersonCamera/ThirdPersonCamera.types';
+import { ManualCamera } from '../components';
 
 const rows = 5;
 const cols = 5;
@@ -13,7 +12,7 @@ const cols = 5;
 const initialSchema = getRandomSpriteSchema(cols, rows);
 
 export default {
-  title: 'Tilemap/Tilemap',
+  title: 'Tilemap demo',
   component: Tilemap,
   argTypes: {
     backgroundColor: {
@@ -48,54 +47,15 @@ export default {
       },
       control: 'object',
     },
-    recenterCameraOnResize: {
-      table: {
-        type: {
-          summary: 'RecenterCameraMotion',
-        },
-      },
-      control: 'object',
-    },
-    recenterCameraOnZoom: {
-      table: {
-        type: {
-          summary: 'RecenterCameraMotion',
-        },
-      },
-      control: 'object',
-    },
-    draggable: {
-      table: {
-        type: {
-          summary: 'boolean',
-        },
-      },
-      control: 'boolean',
-    },
-    zoomeable: {
-      table: {
-        type: {
-          summary: 'boolean',
-        },
-      },
-      control: 'boolean',
-    },
-    dragSensitivity: {
-      table: {
-        type: {
-          summary: 'number',
-        },
-      },
-      control: 'number',
-    },
+    onSpritesLoadError: { control: 'function' },
     onTileClick: { control: 'function' },
     onTileContextMenu: { control: 'function' },
     onTileDoubleClick: { control: 'function' },
+    onTilemapClick: { control: 'function' },
+    onTilemapContextMenu: { control: 'function' },
+    onTilemapDoubleClick: { control: 'function' },
     onTileHover: { control: 'function' },
     onTileHoverOut: { control: 'function' },
-    onCameraMotionEnd: { control: 'function' },
-    onZoomMotionEnd: { control: 'function' },
-    onSpritesLoadError: { control: 'function' },
     children: {
       control: false,
     },
@@ -109,9 +69,9 @@ export default {
       hideNoControlsWarning: true,
     },
   },
-} as Meta<TilemapProps & ThirdPersonCameraProps>;
+} as Meta<TilemapProps>;
 
-const Template: Story<TilemapProps & ThirdPersonCameraProps> = (args) => (
+const Template: Story<TilemapProps> = (args) => (
   <Tilemap
     defaultTileSize={args.defaultTileSize}
     backgroundColor={args.backgroundColor}
@@ -121,26 +81,19 @@ const Template: Story<TilemapProps & ThirdPersonCameraProps> = (args) => (
     onTileClick={args.onTileClick}
     onTileContextMenu={args.onTileContextMenu}
     onTileDoubleClick={args.onTileDoubleClick}
+    onTilemapClick={args.onTilemapClick}
+    onTilemapContextMenu={args.onTilemapContextMenu}
+    onTilemapDoubleClick={args.onTilemapDoubleClick}
     onTileHover={args.onTileHover}
     onTileHoverOut={args.onTileHoverOut}
   >
-    <ThirdPersonCamera
-      draggable={args.draggable}
-      zoomeable={args.zoomeable}
-      dragSensitivity={args.dragSensitivity}
-      recenterCameraOnResize={args.recenterCameraOnResize}
-      recenterCameraOnZoom={args.recenterCameraOnZoom}
-      onCameraMotionEnd={args.onCameraMotionEnd}
-      onZoomMotionEnd={args.onZoomMotionEnd}
-      initialCameraPosition={args.initialCameraPosition}
-    />
+    <ManualCamera position={{ col: 2, row: 2 }} zoom={15} />
   </Tilemap>
 );
 
-export const AllPropsExample = Template.bind({});
+export const TilemapPropsDemo = Template.bind({});
 
-AllPropsExample.args = {
+TilemapPropsDemo.args = {
   tilmapScheme: initialSchema,
   ...defaultTilemapArgs,
-  ...defaulthridPersonCameraArgs,
 };

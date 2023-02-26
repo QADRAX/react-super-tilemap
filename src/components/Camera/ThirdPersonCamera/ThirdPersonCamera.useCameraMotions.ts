@@ -1,14 +1,14 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useTilemapContext } from '../../Tilemap/TilemapContext/useTilemapContext';
-import { CameraMotionRequest, CurrentCameraMotion, MotionSettings } from '../../../types/Motions';
+import { CurrentMotion, MotionRequest, MotionSettings } from '../../../types/Motions';
 import { TilePosition } from '../../../types/TilePosition';
 import { createCurrentMotion } from '../../../utils/createCurrentMotion';
 import { getDistance } from '../../../utils/positions';
 
 export function useCameraMotions(props: {
   isCameraDragging: boolean;
-  currentCameraMotion: CurrentCameraMotion | undefined;
-  setCurrentCameraMotion: (motion: CurrentCameraMotion | undefined) => void;
+  currentCameraMotion: CurrentMotion<TilePosition> | undefined;
+  setCurrentCameraMotion: (motion: CurrentMotion<TilePosition> | undefined) => void;
   cameraPosition: TilePosition | undefined;
 }) {
   const { computed } = useTilemapContext();
@@ -17,11 +17,13 @@ export function useCameraMotions(props: {
 
   const { mapDimensions } = computed;
 
-  const [cameraMotionQueue, setCameraMotionQueue] = useState<CameraMotionRequest[]>([]);
+  const [cameraMotionQueue, setCameraMotionQueue] = useState<
+    MotionRequest<TilePosition | 'center'>[]
+  >([]);
 
   const addCameraMotion = useCallback(
     (settings: MotionSettings, position: TilePosition | 'center') => {
-      const motionRequest: CameraMotionRequest = {
+      const motionRequest: MotionRequest<TilePosition | 'center'> = {
         settings,
         target: position,
       };

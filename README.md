@@ -1,10 +1,22 @@
-# **💎 React Super Tilemap 💎** [in progress...]
+# **React Super Tilemap 🗺** [in progress...]
 
 [![Build](https://github.com/QADRAX/react-super-tilemap/actions/workflows/Build.yaml/badge.svg)](https://github.com/QADRAX/react-super-tilemap/actions/workflows/Build.yaml)
 [![Publish](https://github.com/QADRAX/react-super-tilemap/actions/workflows/Publish.yaml/badge.svg)](https://github.com/QADRAX/react-super-tilemap/actions/workflows/Publish.yaml)
 [![Publish Storybook](https://github.com/QADRAX/react-super-tilemap/actions/workflows/PublishPages.yaml/badge.svg)](https://github.com/QADRAX/react-super-tilemap/actions/workflows/PublishPages.yaml)
 
-This package provides an implementation as a React component of a low-level 2D tilemap optimized for high-performance rendering in web browsers, as well as a set of implementations to operate with a camera or moving tilemap elements.
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)
+![Storybook](https://img.shields.io/badge/-Storybook-FF4785?style=for-the-badge&logo=storybook&logoColor=white)
+
+This package provides a React implementation of a low-level 2D tilemap board optimized for high-performance rendering in web browsers. 
+
+It pretends to be the graphic engine of games or applications where you need to paint a grid map with sprites, operate with a camera and position elements on it.
+
+- Written entirely in typescript.
+- Designed for React developers.
+- Minimal dependencies.
+- Designed to have animations and motions.
 
 ## **Motivations**
 
@@ -20,13 +32,19 @@ yarn add react-super-tilemap
 
 # **Getting started**
 
-## **🎞 Sprite 🎞**
+## **1) Define your sprite set**
 
-[**SpriteDefinition API 📜**](#spritedefinition)
+[📜 SpriteDefinition](https://qadrax.github.io/react-super-tilemap/modules.html#SpriteDefinition)
 
 Mainly you will need to define the set of sprites that the map will render. These sprites can be oriented to different purposes and have configurations so you can adapt them according to your needs.
 
 ### **Basic sprite**
+
+[🕹 Demo]()
+
+[🎼 Demo code]()
+
+Each sprite will need a unique key, **it is important that they are not repeated** to avoid overlapping.
 
 ```ts
 import { SpriteDefinition } from 'react-super-tilemap'
@@ -46,6 +64,10 @@ const sprites: SpriteDefinition[] = [
 ```
 
 ### **Animated sprite**
+
+[🕹 Demo]()
+
+[🎼 Demo code]()
 
 When you need a sprite to have an animation, you have the possibility to declare an array of imageSrc and the animationDelay field where you can adjust the transition  time between images in milliseconds.
 
@@ -67,6 +89,10 @@ const sprites: SpriteDefinition[] = [
 ```
 
 ### **Oversized and offseted sprite**
+
+[🕹 Demo]()
+
+[🎼 Demo code]()
 
 You can declare oversized and offset sprites when you have elements that stick out of the tile grid.
 
@@ -93,11 +119,13 @@ const sprites: SpriteDefinition[] = [
 
 ```
 
-## **🗺 Tilemap 🗺**
+## **2) Wrap the tilemap component**
 
-[**Tilemap API 📜**](#tilemap)
+[📜 Tilemap]()
 
-[**Demo 🕹**](https://qadrax.github.io/react-super-tilemap/?path=/story/tilemap-tilemap--all-props-example)
+[🕹 Demo](https://qadrax.github.io/react-super-tilemap/?path=/story/tilemap-tilemap--all-props-example)
+
+[🎼 Demo code]()
 
 This is the main component to start painting in your React application 2D tilemaps.
 
@@ -127,13 +155,15 @@ const YourComponent = () => (
 )
 ```
 
-## **🎥 Camera 🎥**
+## **3) Use a camera**
 
 ### **Manual camera**
 
-[**ManualCamera API 📜**](#manualcamera)
+[📜 ManualCamera]()
 
-[**Demo 🕹**](https://qadrax.github.io/react-super-tilemap/?path=/story/tilemap-cameras--manual-camera-example)
+[🕹 Demo](https://qadrax.github.io/react-super-tilemap/?path=/story/tilemap-cameras--manual-camera-example)
+
+[🎼 Demo code]()
 
 This component is used to manually control the camera position and zoom of the tilemap.
 
@@ -164,9 +194,11 @@ const YourComponent = () => {
 
 ### **Third person camera**
 
-[**ThirdPersonCamera API 📜**](#thirdpersoncamera)
+[📜 ThirdPersonCamera]()
 
-[**Demo 🕹**](https://qadrax.github.io/react-super-tilemap/?path=/story/tilemap-tilemap--clickable-tilemap-example)
+[🕹 Demo](https://qadrax.github.io/react-super-tilemap/?path=/story/tilemap-tilemap--clickable-tilemap-example)
+
+[🎼 Demo code]()
 
 Use this component to operate with a third person camera in the tilemap.
 
@@ -189,9 +221,13 @@ const YourComponent = () => {
 
 ### **Third person camera context**
 
-[**ThirdPersonCameraContext API 📜**](#thirdpersoncameracontext)
+[📜 CameraContext]()
 
-[**Demo 🕹**](https://qadrax.github.io/react-super-tilemap/?path=/story/tilemap-cameras--third-person-camera-example)
+[📜 useThirdPersonCameraContext]()
+
+[🕹 Demo](https://qadrax.github.io/react-super-tilemap/?path=/story/tilemap-cameras--third-person-camera-example)
+
+[🎼 Demo code]()
 
 Third person camera allows you to apply Motion effects to the position and zoom of it. To do this you just have to create a child component and use the `useThirdPersonCameraContext` hook.
 
@@ -225,90 +261,26 @@ const YourComponent = () => {
 ```
 
 
-## **♟ Element ♟**
+## **4) Use tilemap elements**
 
 ### **Manual element**
 
-[**ManualElement API 📜**](#manualelement)
+[📜 ManualElement]()
 
-[**Demo 🕹**](https://qadrax.github.io/react-super-tilemap/?path=/story/tilemap-elements--manual-element-example)
+[🕹 Demo](https://qadrax.github.io/react-super-tilemap/storybook/?path=/story/tilemap-elements--manual-element-example)
+
+[🎼 Demo code]()
 
 ### **Motionable element**
 
-[**MotionableElement API 📜**](#motionableelement)
+[📜 MotionableElement]()
 
-[**Demo 🕹**]()
+[🕹 Demo]()
 
-# **📜 API 📜**
+[🎼 Demo code]()
 
-## **Size**
+# **Links**
 
-| Prop   | Type   | Description  |
-|--------|--------|--------------|
-| width  | number | Width value  |
-| height | number | Height value |
+[**📜 Full API documentation**](https://qadrax.github.io/react-super-tilemap)
 
-## **TilePosition**
-
-| Prop | Type   | Description      |
-|------|--------|------------------|
-| col  | number | Tilemap's column |
-| row  | number | Tilemap's row    |
-
-## **SpriteDefinition**
-
-| Prop           | Type         | Description                                                                                  | Default                 |
-|----------------|--------------|----------------------------------------------------------------------------------------------|-------------------------|
-| key            | string       | Unique key to idenitfy the sprite                                                            |                         |
-| imageSrc       | string[]     | List of image sources to be used as sprite frames                                            |                         |
-| animationDelay | number       | Delay in milliseconds between each animation frame.                                          | 1000                    |
-| size           | Size         | Sprite's size in tiles. Indicates how many tiles the sprite will occupy.                     | { width: 1, height: 1 } |
-| offset         | TilePosition | Sprite's offset in tiles. Indicates how many tiles the sprite will be offset from it origin. | { col: 0, row: 0 }      |
-
-## **EasingType**
-
-See all supported easing functions [here](https://easings.net/)
-
-## **MotionSettings**
-
-| Prop        | Type       | Description                                    | Default  |
-|-------------|------------|------------------------------------------------|----------|
-| speed       | number     | The speed of the motion in pixels per second.  |          |
-| easing      | EasingType | The easing function to use for the motion      | 'linear' |
-| maxDuration | number     | The maximum duration of the motion in seconds. |          |
-| minDuration | number     | The minimum duration of the motion in seconds. | 0        |
-
-## **Tilemap**
-
-| Prop                 | Type                         | Description                                                                                                | Default |
-|----------------------|------------------------------|------------------------------------------------------------------------------------------------------------|---------|
-| defaultTileSize      | number                       | Tile default size in px                                                                                    | 16      |
-| backgroundColor      | string                       | Tilemap's background color. (It must be a valid CSS color)                                                 | #cbf0ff |
-| tilemapSchema        | string[][][]                 | Scheme of Columns/rows/layers of sprite keys that will be rendered on the tile map                         |         |
-| spriteDefinition     | SpriteDefinition[]           | Definition of the sprites that tilemap will render                                                         |         |
-| onSpritesLoadError   | (error: Error) => void       | It will be called when an error occurs while loading sprites                                               |         |
-| onTilemapClick       | (tile: TilePosition) => void | It will be called when the tilemap is clicked, even if is not a valid tile where the click happened        |         |
-| onTilemapDoubleClick | (tile: TilePosition) => void | It will be called when the tilemap is double clicked, even if is not a valid tile where the click happened |         |
-| onTilemapContextMenu | (tile: TilePosition) => void | It will be called when the tilemap is right clicked, even if is not a valid tile where the click happened  |         |
-| onTileClick          | (tile: TilePosition) => void | It will be called when defined tilemap's tile are clicked                                                  |         |
-| onTileDoubleClick    | (tile: TilePosition) => void | It will be called when a tile is double clicked                                                            |         |
-| onTileContextMenu    | (tile: TilePosition) => void | It will be called when a tile is right clicked                                                             |         |
-| onTileHover          | (tile: TilePosition) => void | It will be called when a tile is hovered                                                                   |         |
-| onTileHoverOut       | (tile: TilePosition) => void | It will be called when a tile is hovered out                                                               |         |
-
-
-## **ManualCamera**
-
-| Prop      | Type         | Description                                    |
-|-----------|--------------|------------------------------------------------|
-| position  | TilePosition | Camera position                                |
-| zoom      | number       | Camera zoom                                    |
-| clickable | boolean      | Flag that indicates if the tiles are clickable |
-
-## **ThirdPersonCamera**
-
-## **ThirdPersonCameraContext**
-
-## **ManualElement**
-
-## **MotionableElement**
+[**🕹 Storybook**](https://qadrax.github.io/react-super-tilemap/storybook/)
