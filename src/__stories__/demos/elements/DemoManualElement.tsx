@@ -26,14 +26,12 @@ export const DemoManualElement: FunctionComponent<DemoManualElementProps> = (pro
     <Tilemap {...defaultTilemapArgs} tilmapScheme={schema}>
       <ThirdPersonCamera {...defaulThridPersonCameraArgs}></ThirdPersonCamera>
       <ManualElement
-        element={{
-          tilePosition: {
-            col: props.elementCol,
-            row: props.elementRow,
-          },
-          spriteKey: props.elementSprite,
-          layer: 1,
+        tilePosition={{
+          col: props.elementCol,
+          row: props.elementRow,
         }}
+        spriteKey={props.elementSprite}
+        layer={1}
         elementKey='element1'
       >
         <label>Element 1</label>

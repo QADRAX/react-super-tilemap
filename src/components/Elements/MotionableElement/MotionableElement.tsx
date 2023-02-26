@@ -1,5 +1,4 @@
-import React, { FunctionComponent, useMemo, useState } from 'react';
-import { TilemapElement } from '../../../types/TilemapElement';
+import React, { FunctionComponent, useState } from 'react';
 import { TilePosition } from '../../../types/TilePosition';
 import { ManualElement } from '../ManualElement';
 import { ElementSync } from './ElementSync/ElementSync';
@@ -7,7 +6,7 @@ import { MotionableElementProps } from './MotionableElement.types';
 import { useMotions } from './MotionableElement.useMotions';
 
 export const MotionableElement: FunctionComponent<MotionableElementProps> = (props) => {
-  const nextPosition = props.element.tilePosition;
+  const nextPosition = props.tilePosition;
   const [elementPosition, setElementPosition] = useState<TilePosition | undefined>(undefined);
 
   const {
@@ -21,17 +20,6 @@ export const MotionableElement: FunctionComponent<MotionableElementProps> = (pro
     props.onMotionComplete
   );
 
-  const element: TilemapElement | undefined = useMemo(() => {
-    if (elementPosition) {
-      return {
-        ...props.element,
-        tilePosition: elementPosition,
-      };
-    } else {
-      return undefined;
-    }
-  }, [elementPosition]);
-
   return (
     <>
       <ElementSync
@@ -41,8 +29,11 @@ export const MotionableElement: FunctionComponent<MotionableElementProps> = (pro
         position={elementPosition}
         addMotion={addElementMotion}
         setPostion={setElementPosition} />
-      {elementPosition && element && (
-        <ManualElement element={element} elementKey={props.elementKey}>
+      {elementPosition && (
+        <ManualElement tilePosition={elementPosition} 
+          spriteKey={props.spriteKey} 
+          layer={props.layer} 
+          elementKey={props.elementKey}>
           {props.children}
         </ManualElement>
       )}

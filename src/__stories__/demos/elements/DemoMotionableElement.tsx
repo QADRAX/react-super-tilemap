@@ -33,14 +33,12 @@ export const DemoMotionableElement: FunctionComponent<DemoMotionableElementProps
     <Tilemap {...defaultTilemapArgs} tilmapScheme={schema}>
       <ThirdPersonCamera {...defaulThridPersonCameraArgs}></ThirdPersonCamera>
       <MotionableElement
-        element={{
-          tilePosition: {
-            col: props.elementCol,
-            row: props.elementRow,
-          },
-          spriteKey: props.elementSprite,
-          layer: 1,
+        tilePosition={{
+          col: props.elementCol,
+          row: props.elementRow,
         }}
+        spriteKey={props.elementSprite}
+        layer={1}
         elementKey='element1'
         motionSettings={{
           speed: props.motionSpeed,

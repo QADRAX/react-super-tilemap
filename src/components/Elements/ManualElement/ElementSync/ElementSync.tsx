@@ -1,4 +1,5 @@
 import React from 'react';
+import { TilemapElement } from '../../../../types/TilemapElement';
 import { isEqual } from '../../../../utils/deepCompare';
 import { TilemapContext } from '../../../Tilemap/TilemapContext/TilemapContext';
 import { ManualElementProps } from '../ManualElement.types';
@@ -11,7 +12,19 @@ export class ElementSync extends React.PureComponent<ManualElementProps> {
   context!: React.ContextType<typeof TilemapContext>;
 
   componentDidUpdate(prevProps: Readonly<ManualElementProps>): void {
-    const isDifferentElement = !isEqual(prevProps.element, this.props.element);
+    const prevElement: TilemapElement = {
+      tilePosition: prevProps.tilePosition,
+      spriteKey: prevProps.spriteKey,
+      layer: prevProps.layer,
+    };
+
+    const nextElement: TilemapElement = {
+      tilePosition: this.props.tilePosition,
+      spriteKey: this.props.spriteKey,
+      layer: this.props.layer,
+    };
+
+    const isDifferentElement = !isEqual(prevElement, nextElement);
     const isDifferentKey = prevProps.elementKey !== this.props.elementKey;
 
     if (isDifferentElement) {
@@ -31,7 +44,13 @@ export class ElementSync extends React.PureComponent<ManualElementProps> {
   }
 
   private syncElement() {
-    const { element, elementKey } = this.props;
+    const element: TilemapElement = {
+      tilePosition: this.props.tilePosition,
+      spriteKey: this.props.spriteKey,
+      layer: this.props.layer,
+    };
+
+    const { elementKey } = this.props;
     const { actions } = this.context;
 
     actions.setTilemapElement(elementKey, element);

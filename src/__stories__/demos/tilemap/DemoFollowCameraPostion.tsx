@@ -53,18 +53,16 @@ export const DemoFollowCameraPostion: FunctionComponent<DemoFollowCameraPostionP
             </ThirdPersonCamera>
             {cameraPosition && (
                 <MotionableElement
-                    element={{
-                        tilePosition: cameraPosition,
-                        spriteKey: props.elementSprite,
-                        layer: 1,
-                    }}
+                    tilePosition={cameraPosition}
+                    spriteKey={props.elementSprite}
+                    layer={1}
                     elementKey='element1'
                     motionSettings={{
                         speed: props.motionSpeed,
                         easing: props.easing,
                         maxDuration: props.maxDuration,
                         minDuration: props.minDuration,
-                      }}
+                    }}
                     onMotionComplete={props.onMotionEnd}
                 >
                 </MotionableElement>
