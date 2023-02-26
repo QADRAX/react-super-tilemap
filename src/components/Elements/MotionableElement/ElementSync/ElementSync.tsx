@@ -10,8 +10,7 @@ export type ElementSyncProps = {
   currentMotion: CurrentMotion<TilePosition> | undefined;
   setPostion: (position: TilePosition | undefined) => void;
   addMotion: (motion: TilePosition) => void;
-}
-
+};
 
 /**
  * Syncs the element with the tilemap context.
@@ -26,24 +25,25 @@ export class ElementSync extends React.PureComponent<ElementSyncProps> {
   }
 
   syncElement(): void {
-    const {
-      nextPostion,
-      position,
-      motionQueue,
-      currentMotion,
-      setPostion,
-      addMotion,
-    } = this.props;
-    if(!position){
+    const { nextPostion, position, motionQueue, currentMotion, setPostion, addMotion } = this.props;
+    if (!position) {
       setPostion(nextPostion);
     } else {
-      const lastMotionInQueue = motionQueue[motionQueue.length - 1] as MotionRequest<TilePosition> | undefined;
+      const lastMotionInQueue = motionQueue[motionQueue.length - 1] as
+        | MotionRequest<TilePosition>
+        | undefined;
 
       const samePositionAsCurrent = isEqual(position, nextPostion);
-      const samePositionAsCurrentMotion = currentMotion != undefined && isEqual(currentMotion.targetPosition, nextPostion);
-      const samePositionAsLastMotionInQueue = lastMotionInQueue != undefined && isEqual(lastMotionInQueue.target, nextPostion);
+      const samePositionAsCurrentMotion =
+        currentMotion != undefined && isEqual(currentMotion.targetPosition, nextPostion);
+      const samePositionAsLastMotionInQueue =
+        lastMotionInQueue != undefined && isEqual(lastMotionInQueue.target, nextPostion);
 
-      if (!samePositionAsCurrent && !samePositionAsCurrentMotion && !samePositionAsLastMotionInQueue) {
+      if (
+        !samePositionAsCurrent &&
+        !samePositionAsCurrentMotion &&
+        !samePositionAsLastMotionInQueue
+      ) {
         addMotion(nextPostion);
       }
     }

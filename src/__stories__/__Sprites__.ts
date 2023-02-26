@@ -238,7 +238,7 @@ export const FirstLayerSprites = [
 ];
 
 export const SecondLayerSprites = [
-  SpriteName.building, 
+  SpriteName.building,
   SpriteName.armyIdle,
   SpriteName.armyWalkNorth,
   SpriteName.armyWalkSouth,

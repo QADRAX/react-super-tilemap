@@ -1,8 +1,4 @@
-import {
-  CurrentMotion,
-  MotionRequest,
-  MotionSettings,
-} from '../../../../types/Motions';
+import { CurrentMotion, MotionRequest, MotionSettings } from '../../../../types/Motions';
 import { TilePosition } from '../../../../types/TilePosition';
 
 /**
