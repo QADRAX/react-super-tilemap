@@ -4,7 +4,7 @@ import { Tilemap } from "../../../components/Tilemap/Tilemap";
 import { defaulThridPersonCameraArgs, defaultTilemapArgs } from "../../__defaultArgs__";
 import { getFullfilledSchema } from "../../__MapGenerator__";
 
-export interface DemoManualElementProps {
+export type DemoManualElementProps = {
     rows: number;
     cols: number;
     baseSprite: string;

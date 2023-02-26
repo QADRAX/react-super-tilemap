@@ -14,44 +14,44 @@ export enum TilemapActionType {
   SetElementMap,
 }
 
-// Action interfaces
+// Action types
 
-export interface SetCameraPosition {
+export type SetCameraPosition = {
   type: TilemapActionType.SetCameraPosition;
   payload: {
     position?: TilePosition;
   };
 }
 
-export interface SetCurrentZoom {
+export type SetCurrentZoom = {
   type: TilemapActionType.SetCurrentZoom;
   payload: {
     zoom: number;
   };
 }
 
-export interface SetSpriteMap {
+export type SetSpriteMap = {
   type: TilemapActionType.SetSpriteMap;
   payload: {
     spriteMap?: SpriteMap;
   };
 }
 
-export interface SetIsSpriteMapLoading {
+export type SetIsSpriteMapLoading = {
   type: TilemapActionType.SetIsSpriteMapLoading;
   payload: {
     isSpriteMapLoading: boolean;
   };
 }
 
-export interface SetCanvasSize {
+export type SetCanvasSize = {
   type: TilemapActionType.SetCanvasSize;
   payload: {
     canvasSize?: Size;
   };
 }
 
-export interface SetElementMap {
+export type SetElementMap = {
   type: TilemapActionType.SetElementMap;
   payload: {
     elementMap: TilemapElementMap;

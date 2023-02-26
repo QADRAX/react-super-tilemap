@@ -2,7 +2,7 @@ import { EasingType } from '../types/EasingType';
 
 export type EasingFunction = (progress: number) => number;
 
-export interface EasingDictionary {
+export type EasingDictionary = {
   [easing: string]: EasingFunction;
 }
 

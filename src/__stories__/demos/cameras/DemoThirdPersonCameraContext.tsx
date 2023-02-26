@@ -7,7 +7,7 @@ import { SpriteDefinition } from "../../../types/SpriteDefinition";
 import { TilePosition } from "../../../types/TilePosition";
 import { grass, mountain } from "../../__Sprites__";
 
-export interface DemoThirdPersonCameraContextProps {
+export type DemoThirdPersonCameraContextProps = {
     cameraMotionEasingType: EasingType;
     cameraMotionSpeed: number;
     cameraMotionMinDuration?: number;

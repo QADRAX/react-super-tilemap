@@ -108,11 +108,4 @@ export type TilemapSettings = {
  *
  * @public
  */
-export interface TilemapProps extends TilemapSettings, TilemapEvents {
-  /**
-   * Children to render.
-   *
-   * Here you can start using the TilemapContext and operate with the tilemap.
-   */
-  children?: React.ReactNode;
-}
+export type TilemapProps = TilemapSettings & TilemapEvents;

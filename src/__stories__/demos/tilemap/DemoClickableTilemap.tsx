@@ -4,7 +4,7 @@ import { TilePosition } from "../../../types/TilePosition";
 import { defaulThridPersonCameraArgs, defaultTilemapArgs } from "../../__defaultArgs__";
 import { getFullfilledSchema } from "../../__MapGenerator__";
 
-export interface DemoClickableTilemapProps {
+export type DemoClickableTilemapProps = {
     rows: number;
     cols: number;
     baseSprite: string;

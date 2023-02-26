@@ -46,7 +46,7 @@ export type MotionRequestTarget = TilePosition | 'center' | number;
  *
  * @public
  */
-export interface MotionRequest<T extends MotionRequestTarget> {
+export type MotionRequest<T extends MotionRequestTarget> = {
   /**
    * Settings of the motion.
    *

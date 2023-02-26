@@ -6,7 +6,7 @@ import { MotionSettings } from "../../../types/Motions";
 import { defaulThridPersonCameraArgs, defaultTilemapArgs } from "../../__defaultArgs__";
 import { getFullfilledSchema } from "../../__MapGenerator__";
 
-export interface DemoMotionableElementProps {
+export type DemoMotionableElementProps = {
     rows: number;
     cols: number;
     baseSprite: string;
