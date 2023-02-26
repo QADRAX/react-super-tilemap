@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useEffect } from 'react';
-import { ManualElement, MotionableElement, ThirdPersonCamera, useThirdPersonCameraContext } from '../../../components';
+import { MotionableElement, ThirdPersonCamera, useThirdPersonCameraContext } from '../../../components';
 import { Tilemap } from '../../../components/Tilemap/Tilemap';
-import { MotionSettings } from '../../../types/Motions';
+import { EasingType } from '../../../types/EasingType';
 import { TilePosition } from '../../../types/TilePosition';
 import { floorTilePosition } from '../../../utils/positions';
 import { defaulThridPersonCameraArgs, defaultTilemapArgs } from '../../__defaultArgs__';
@@ -12,7 +12,10 @@ export type DemoFollowCameraPostionProps = {
     cols: number;
     baseSprite: string;
     elementSprite: string;
-    motionSettings: MotionSettings;
+    motionSpeed: number;
+    easing: EasingType;
+    maxDuration?: number;
+    minDuration?: number;
     onMotionEnd: () => void;
 };
 
@@ -56,7 +59,13 @@ export const DemoFollowCameraPostion: FunctionComponent<DemoFollowCameraPostionP
                         layer: 1,
                     }}
                     elementKey='element1'
-                    motionSettings={props.motionSettings}
+                    motionSettings={{
+                        speed: props.motionSpeed,
+                        easing: props.easing,
+                        maxDuration: props.maxDuration,
+                        minDuration: props.minDuration,
+                      }}
+                    onMotionComplete={props.onMotionEnd}
                 >
                 </MotionableElement>
             )}

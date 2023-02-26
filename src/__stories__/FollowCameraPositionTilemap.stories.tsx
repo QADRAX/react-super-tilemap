@@ -42,14 +42,6 @@ export default {
       options: [...SecondLayerSprites],
       control: 'select',
     },
-    motionSettings: {
-      table: {
-        type: {
-          summary: 'MotionSettings',
-        },
-      },
-      control: 'object',
-    },
     onMotionEnd: { control: 'function' },
   },
   parameters: {
@@ -74,5 +66,8 @@ FollowCameraPostion.args = {
   cols: 20,
   baseSprite: SpriteName.grass,
   elementSprite: SpriteName.selector,
-  motionSettings: defaultMotionSettings,
+  motionSpeed: 0.01,
+  easing: defaultMotionSettings.easing,
+  maxDuration: 0.04,
+  minDuration: 0.03,
 };
