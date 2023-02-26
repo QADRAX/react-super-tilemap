@@ -38,11 +38,11 @@ yarn add react-super-tilemap
 
 Mainly you will need to define the set of sprites that the map will render. These sprites can be oriented to different purposes and have configurations so you can adapt them according to your needs.
 
-### **Basic sprite**
+### **Basic sprites**
 
-[🕹 Demo]()
+[🕹 Demo](https://qadrax.github.io/react-super-tilemap/storybook/?path=/story/sprites-demo--sprites-basic)
 
-[🎼 Demo code]()
+[🎼 Demo code](https://github.com/QADRAX/react-super-tilemap/blob/main/src/__stories__/demos/sprites/DemoSpriteBasic.tsx)
 
 Each sprite will need a unique key, **it is important that they are not repeated** to avoid overlapping.
 
@@ -63,11 +63,11 @@ const sprites: SpriteDefinition[] = [
 
 ```
 
-### **Animated sprite**
+### **Animated sprites**
 
-[🕹 Demo]()
+[🕹 Demo](https://qadrax.github.io/react-super-tilemap/storybook/?path=/story/sprites-demo--sprites-animated)
 
-[🎼 Demo code]()
+[🎼 Demo code](https://github.com/QADRAX/react-super-tilemap/blob/main/src/__stories__/demos/sprites/DemoSpriteAnimated.tsx)
 
 When you need a sprite to have an animation, you have the possibility to declare an array of imageSrc and the animationDelay field where you can adjust the transition  time between images in milliseconds.
 
@@ -88,13 +88,40 @@ const sprites: SpriteDefinition[] = [
 
 ```
 
-### **Oversized and offseted sprite**
+### **Oversized sprites**
 
-[🕹 Demo]()
+[🕹 Demo](https://qadrax.github.io/react-super-tilemap/storybook/?path=/story/sprites-demo--sprites-oversize)
 
-[🎼 Demo code]()
+[🎼 Demo code](https://github.com/QADRAX/react-super-tilemap/blob/main/src/__stories__/demos/sprites/DemoSpriteOversize.tsx)
 
-You can declare oversized and offset sprites when you have elements that stick out of the tile grid.
+You can declare oversized sprites with the property `size` when you have sprites that stick out of the tile grid.
+
+```ts
+
+const sprites: SpriteDefinition[] = [
+
+    ...
+
+    {
+        key: 'building',
+        imagesSrc: [building_1, building_2],
+        animationDelay: 800,
+        size: {
+            width: 1,
+            height: 2,
+        },
+    },
+]
+
+```
+
+### **Offseted sprites**
+
+[🕹 Demo](https://qadrax.github.io/react-super-tilemap/storybook/?path=/story/sprites-demo--sprites-offset)
+
+[🎼 Demo code](https://github.com/QADRAX/react-super-tilemap/blob/main/src/__stories__/demos/sprites/DemoSpriteOffset.tsx)
+
+You can declare offseted sprites with the property `offset` when you have sprites that you want to fix the anchor point.
 
 ```ts
 
@@ -114,18 +141,16 @@ const sprites: SpriteDefinition[] = [
             col: -0.5,
             row: 0.5,
         },
-  },
+    },
 ]
 
 ```
 
 ## **2) Wrap the tilemap component**
 
-[📜 Tilemap]()
+[📜 Tilemap](https://qadrax.github.io/react-super-tilemap/modules.html#Tilemap)
 
-[🕹 Demo](https://qadrax.github.io/react-super-tilemap/?path=/story/tilemap-tilemap--all-props-example)
-
-[🎼 Demo code]()
+[🕹 Demo](https://qadrax.github.io/react-super-tilemap/storybook/?path=/story/tilemap-demo--tilemap-props-demo)
 
 This is the main component to start painting in your React application 2D tilemaps.
 
