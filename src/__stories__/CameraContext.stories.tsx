@@ -1,11 +1,7 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import {
-  defaultEasingTypes,
-} from './__defaultArgs__';
+import { defaultEasingTypes } from './__defaultArgs__';
 import { DemoThirdPersonCameraContext } from './demos/cameras/DemoThirdPersonCameraContext';
-
-
 
 export default {
   title: 'Third person camera context demo',
@@ -86,7 +82,9 @@ export default {
   },
 } as ComponentMeta<typeof DemoThirdPersonCameraContext>;
 
-const Template: ComponentStory<typeof DemoThirdPersonCameraContext> = (args) => <DemoThirdPersonCameraContext {...args} />;
+const Template: ComponentStory<typeof DemoThirdPersonCameraContext> = (args) => (
+  <DemoThirdPersonCameraContext {...args} />
+);
 
 export const ThirdPersonCameraContextDemo = Template.bind({});
 

@@ -66,7 +66,7 @@ export default {
       },
       control: 'object',
     },
-    onMotionEnd:  { control: 'function' },
+    onMotionEnd: { control: 'function' },
   },
   parameters: {
     actions: {
@@ -79,7 +79,9 @@ export default {
   },
 } as ComponentMeta<typeof DemoMotionableElement>;
 
-const Template: ComponentStory<typeof DemoMotionableElement> = (args) => <DemoMotionableElement {...args} />;
+const Template: ComponentStory<typeof DemoMotionableElement> = (args) => (
+  <DemoMotionableElement {...args} />
+);
 
 export const ManualElementExample = Template.bind({});
 

@@ -27,7 +27,7 @@ export function getTilePosition(
 export function getAbsolutePosition(
   tilePosition: TilePosition,
   cameraPosition: Position,
-  tileSize: number,
+  tileSize: number
 ): Position {
   const relativeTilePosition: Position = {
     x: tilePosition.col * tileSize,

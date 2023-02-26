@@ -1,12 +1,12 @@
-import { MotionSettings } from "../../../types/Motions";
-import { ManualElementProps } from "../ManualElement/ManualElement.types";
+import { MotionSettings } from '../../../types/Motions';
+import { ManualElementProps } from '../ManualElement/ManualElement.types';
 
 export type MotionableElementSettings = ManualElementProps & {
-    motionSettings: MotionSettings;
+  motionSettings: MotionSettings;
 };
 
 export type MotionableElementEvents = {
-    onMotionComplete?: () => void;
+  onMotionComplete?: () => void;
 };
 
 export type MotionableElementProps = MotionableElementSettings & MotionableElementEvents;

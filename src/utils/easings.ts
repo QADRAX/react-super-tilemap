@@ -4,7 +4,7 @@ export type EasingFunction = (progress: number) => number;
 
 export type EasingDictionary = {
   [easing: string]: EasingFunction;
-}
+};
 
 const pow = Math.pow;
 const sqrt = Math.sqrt;

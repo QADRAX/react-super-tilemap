@@ -21,4 +21,4 @@ export type TilemapElement = {
    * In witch layer order the element should be rendered.
    */
   layer: number;
-}
+};

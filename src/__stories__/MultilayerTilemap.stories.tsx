@@ -56,7 +56,9 @@ export default {
   },
 } as ComponentMeta<typeof DemoClickableTilemap>;
 
-const Template: ComponentStory<typeof DemoClickableTilemap> = (args) => <DemoClickableTilemap {...args} />;
+const Template: ComponentStory<typeof DemoClickableTilemap> = (args) => (
+  <DemoClickableTilemap {...args} />
+);
 
 export const ClickableTilemapExample = Template.bind({});
 

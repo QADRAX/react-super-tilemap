@@ -57,7 +57,7 @@ export type MotionRequest<T extends MotionRequestTarget> = {
    * The target position after the motion.
    */
   target: T;
-}
+};
 
 // MOTION QUEUE
 
@@ -93,7 +93,7 @@ export type CurrentMotion<T extends CurrentMotionPosition> = {
    * The target position of the camera after the motion.
    */
   targetPosition: T;
-}
+};
 
 // RECENTER MOTION
 
@@ -121,4 +121,4 @@ export type RecenterCameraMotion = {
    * If it is a tile position, the camera will be centered on the given tile position.
    */
   target: RecenterCameraMotionTarget;
-}
+};

@@ -4,21 +4,9 @@ import { ThirdPersonCamera, Tilemap } from '../components';
 import { defaulThridPersonCameraArgs, defaultTilemapArgs } from './__defaultArgs__';
 
 const scheme: string[][][] = [
-  [
-      ['grass'],
-      ['grass'],
-      ['grass'],
-  ],
-  [
-      ['grass'],
-      ['mountain'],
-      ['grass'],
-  ],
-  [
-      ['grass'],
-      ['grass'],
-      ['grass'],
-  ],
+  [['grass'], ['grass'], ['grass']],
+  [['grass'], ['mountain'], ['grass']],
+  [['grass'], ['grass'], ['grass']],
 ];
 
 export default {

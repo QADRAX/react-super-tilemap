@@ -37,4 +37,4 @@ export type Sprite = {
    * @param timestamp system time in milliseconds.
    */
   getFrame(timestamp: number): HTMLImageElement;
-}
+};

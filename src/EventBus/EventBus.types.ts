@@ -6,4 +6,4 @@ export type EventBusChannel<T extends EventMap> = {
   on<Key extends keyof T>(key: Key, handler: T[Key]): () => void;
   off<Key extends keyof T>(key: Key, handler: T[Key]): void;
   emit<Key extends keyof T>(key: Key, ...payload: Parameters<T[Key]>): void;
-}
+};

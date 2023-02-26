@@ -21,42 +21,42 @@ export type SetCameraPosition = {
   payload: {
     position?: TilePosition;
   };
-}
+};
 
 export type SetCurrentZoom = {
   type: TilemapActionType.SetCurrentZoom;
   payload: {
     zoom: number;
   };
-}
+};
 
 export type SetSpriteMap = {
   type: TilemapActionType.SetSpriteMap;
   payload: {
     spriteMap?: SpriteMap;
   };
-}
+};
 
 export type SetIsSpriteMapLoading = {
   type: TilemapActionType.SetIsSpriteMapLoading;
   payload: {
     isSpriteMapLoading: boolean;
   };
-}
+};
 
 export type SetCanvasSize = {
   type: TilemapActionType.SetCanvasSize;
   payload: {
     canvasSize?: Size;
   };
-}
+};
 
 export type SetElementMap = {
   type: TilemapActionType.SetElementMap;
   payload: {
     elementMap: TilemapElementMap;
   };
-}
+};
 
 // Actions
 

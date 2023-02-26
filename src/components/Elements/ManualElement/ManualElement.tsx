@@ -4,16 +4,12 @@ import { ElementWrapper } from './ElmentWrapper/ElementWrapper';
 import { ManualElementProps } from './ManualElement.types';
 
 export const ManualElement: FunctionComponent<ManualElementProps> = (props) => {
-  const {
-    tilePosition,
-  } = props.element;
+  const { tilePosition } = props.element;
 
   return (
     <>
       <ElementSync {...props} />
-      <ElementWrapper tilePosition={tilePosition}>
-        {props.children}
-      </ElementWrapper>
+      <ElementWrapper tilePosition={tilePosition}>{props.children}</ElementWrapper>
     </>
-  )
-}
+  );
+};

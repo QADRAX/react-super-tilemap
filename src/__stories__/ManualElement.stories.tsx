@@ -69,7 +69,9 @@ export default {
   },
 } as ComponentMeta<typeof DemoManualElement>;
 
-const Template: ComponentStory<typeof DemoManualElement> = (args) => <DemoManualElement {...args} />;
+const Template: ComponentStory<typeof DemoManualElement> = (args) => (
+  <DemoManualElement {...args} />
+);
 
 export const ManualElementExample = Template.bind({});
 

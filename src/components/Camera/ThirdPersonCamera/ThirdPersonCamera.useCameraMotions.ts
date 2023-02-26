@@ -17,7 +17,9 @@ export function useCameraMotions(props: {
 
   const { mapDimensions } = computed;
 
-  const [cameraMotionQueue, setCameraMotionQueue] = useState<MotionRequest<TilePosition | 'center'>[]>([]);
+  const [cameraMotionQueue, setCameraMotionQueue] = useState<
+    MotionRequest<TilePosition | 'center'>[]
+  >([]);
 
   const addCameraMotion = useCallback(
     (settings: MotionSettings, position: TilePosition | 'center') => {
