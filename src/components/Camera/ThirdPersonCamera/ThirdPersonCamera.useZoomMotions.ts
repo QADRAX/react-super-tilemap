@@ -1,20 +1,20 @@
 import { useCallback, useEffect, useState } from 'react';
-import { CurrentZoomMotion, MotionSettings, ZoomMotionRequest } from '../../../types/Motions';
+import { CurrentMotion, MotionRequest, MotionSettings } from '../../../types/Motions';
 import { createCurrentMotion } from '../../../utils/createCurrentMotion';
 
 export function useZoomMotions(props: {
   isCameraDragging: boolean;
-  currentZoomMotion: CurrentZoomMotion | undefined;
-  setCurrentZoomMotion: (motion: CurrentZoomMotion | undefined) => void;
+  currentZoomMotion: CurrentMotion<number> | undefined;
+  setCurrentZoomMotion: (motion: CurrentMotion<number> | undefined) => void;
   zoom: number;
 }) {
-  const [zoomMotionQueue, setZoomMotionQueue] = useState<ZoomMotionRequest[]>([]);
+  const [zoomMotionQueue, setZoomMotionQueue] = useState<MotionRequest<number>[]>([]);
 
   const { zoom, setCurrentZoomMotion, currentZoomMotion } = props;
 
   const addZoomMotion = useCallback(
     (settings: MotionSettings, targetZoom: number) => {
-      const motionRequest: ZoomMotionRequest = {
+      const motionRequest: MotionRequest<number> = {
         settings,
         target: targetZoom,
       };

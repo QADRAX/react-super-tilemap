@@ -1,11 +1,12 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { FirstLayerSprites, SecondLayerSprites, SpriteName } from './__Sprites__';
-import { DemoManualElement } from './demos/elements/DemoManualElement';
+import { DemoMotionableElement } from './demos/elements/DemoMotionableElement';
+import { defaultMotionSettings } from './__defaultArgs__';
 
 export default {
-  title: 'Manual Element demo',
-  component: DemoManualElement,
+  title: 'Motionable Element demo',
+  component: DemoMotionableElement,
   argTypes: {
     rows: {
       table: {
@@ -57,6 +58,15 @@ export default {
       },
       control: 'number',
     },
+    motionSettings: {
+      table: {
+        type: {
+          summary: 'MotionSettings',
+        },
+      },
+      control: 'object',
+    },
+    onMotionEnd:  { control: 'function' },
   },
   parameters: {
     actions: {
@@ -67,9 +77,9 @@ export default {
       hideNoControlsWarning: true,
     },
   },
-} as ComponentMeta<typeof DemoManualElement>;
+} as ComponentMeta<typeof DemoMotionableElement>;
 
-const Template: ComponentStory<typeof DemoManualElement> = (args) => <DemoManualElement {...args} />;
+const Template: ComponentStory<typeof DemoMotionableElement> = (args) => <DemoMotionableElement {...args} />;
 
 export const ManualElementExample = Template.bind({});
 
@@ -80,4 +90,5 @@ ManualElementExample.args = {
   elementSprite: SpriteName.armyIdle,
   elementCol: 10,
   elementRow: 10,
+  motionSettings: defaultMotionSettings,
 };

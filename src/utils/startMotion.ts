@@ -33,11 +33,11 @@ export function startMotion<T extends CurrentMotionPosition>(
     if (progress < 1) {
       const nextPosition = getNextPosition(progress, easing, initialPosition, targetPosition);
       onPositionChange(nextPosition);
+      animationFrameId = window.requestAnimationFrame(motionLoop);
     } else {
       onPositionChange(targetPosition);
       onMotionEnd();
     }
-    animationFrameId = window.requestAnimationFrame(motionLoop);
   };
 
   animationFrameId = window.requestAnimationFrame(motionLoop);
