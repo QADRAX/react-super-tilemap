@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { FirstLayerSprites, SecondLayerSprites, SpriteName } from './__Sprites__';
 import { DemoMotionableElement } from './demos/elements/DemoMotionableElement';
-import { defaultMotionSettings } from './__defaultArgs__';
+import { defaultEasingTypes, defaultMotionSettings } from './__defaultArgs__';
 
 export default {
   title: 'Motionable Element demo',
@@ -58,13 +58,38 @@ export default {
       },
       control: 'number',
     },
-    motionSettings: {
+    motionSpeed: {
       table: {
         type: {
-          summary: 'MotionSettings',
+          summary: 'number',
         },
       },
-      control: 'object',
+      control: 'number',
+    },
+    easing: {
+      table: {
+        type: {
+          summary: 'EasingType',
+        },
+      },
+      options: [...defaultEasingTypes],
+      control: 'select',
+    },
+    maxDuration: {
+      table: {
+        type: {
+          summary: 'number',
+        },
+      },
+      control: 'number',
+    },
+    minDuration: {
+      table: {
+        type: {
+          summary: 'number',
+        },
+      },
+      control: 'number',
     },
     onMotionEnd: { control: 'function' },
   },
@@ -92,5 +117,8 @@ ManualElementExample.args = {
   elementSprite: SpriteName.armyIdle,
   elementCol: 10,
   elementRow: 10,
-  motionSettings: defaultMotionSettings,
+  motionSpeed: defaultMotionSettings.speed,
+  easing: defaultMotionSettings.easing,
+  maxDuration: defaultMotionSettings.maxDuration,
+  minDuration: defaultMotionSettings.minDuration,
 };

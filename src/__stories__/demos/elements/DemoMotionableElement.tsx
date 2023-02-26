@@ -2,7 +2,7 @@ import React, { FunctionComponent, useEffect } from 'react';
 import { ThirdPersonCamera } from '../../../components';
 import { MotionableElement } from '../../../components/Elements/MotionableElement/MotionableElement';
 import { Tilemap } from '../../../components/Tilemap/Tilemap';
-import { MotionSettings } from '../../../types/Motions';
+import { EasingType } from '../../../types/EasingType';
 import { defaulThridPersonCameraArgs, defaultTilemapArgs } from '../../__defaultArgs__';
 import { getFullfilledSchema } from '../../__MapGenerator__';
 
@@ -13,7 +13,10 @@ export type DemoMotionableElementProps = {
   elementSprite: string;
   elementCol: number;
   elementRow: number;
-  motionSettings: MotionSettings;
+  motionSpeed: number;
+  easing: EasingType;
+  maxDuration?: number;
+  minDuration?: number;
   onMotionEnd: () => void;
 };
 
@@ -39,7 +42,12 @@ export const DemoMotionableElement: FunctionComponent<DemoMotionableElementProps
           layer: 1,
         }}
         elementKey='element1'
-        motionSettings={props.motionSettings}
+        motionSettings={{
+          speed: props.motionSpeed,
+          easing: props.easing,
+          maxDuration: props.maxDuration,
+          minDuration: props.minDuration,
+        }}
         onMotionComplete={props.onMotionEnd}
       >
         <label>Element 1</label>
