@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { TilePosition } from '../../../types/TilePosition';
 import { CameraEventListener } from '../CameraEventListener/CameraEventListener';
 import { ManualCamera } from '../ManualCamera/ManualCamera';
@@ -18,7 +18,7 @@ import { ThirdPersonCameraProps } from './ThirdPersonCamera.types';
  *
  * @param props component props
  */
-export const ThirdPersonCamera: React.FunctionComponent<ThirdPersonCameraProps> = (props) => {
+export const ThirdPersonCamera: FunctionComponent<ThirdPersonCameraProps> = (props) => {
   const initialZoom = props.initialZoom != undefined ? Math.abs(props.initialZoom) : 0;
   const [cameraPosition, setCameraPosition] = useState<TilePosition | undefined>(undefined);
   const [zoom, setZoom] = useState<number>(initialZoom);

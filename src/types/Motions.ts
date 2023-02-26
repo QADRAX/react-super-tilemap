@@ -86,11 +86,11 @@ export type CurrentMotion<T extends CurrentMotionPosition> = {
    */
   easing?: EasingType;
   /**
-   * The initial position of the camera before the motion.
+   * The initial position before the motion.
    */
   initialPosition: T;
   /**
-   * The target position of the camera after the motion.
+   * The target position after the motion.
    */
   targetPosition: T;
 };
@@ -98,7 +98,7 @@ export type CurrentMotion<T extends CurrentMotionPosition> = {
 // RECENTER MOTION
 
 /**
- * Types of camera motion targets.
+ * Types of recenter motion targets.
  *
  * @public
  */
@@ -117,7 +117,6 @@ export type RecenterCameraMotion = {
   /**
    * The target position of the camera after any canvas resize.
    * If it is 'center', the camera will be centered on the tilemap.
-   * If it is a position, the camera will be centered on the given x,y position.
    * If it is a tile position, the camera will be centered on the given tile position.
    */
   target: RecenterCameraMotionTarget;
