@@ -6,7 +6,6 @@ import { createCurrentMotion } from '../../../utils/createCurrentMotion';
 import { getDistance } from '../../../utils/positions';
 
 export function useMotions(
-  nextElementPosition: TilePosition,
   elementPosition: TilePosition | undefined,
   setElementPosition: (position: TilePosition | undefined) => void,
   motionSettings: MotionSettings,
@@ -24,6 +23,7 @@ export function useMotions(
         target: position,
       };
       const nextMotionStack = [...elementMotionQueue, motionRequest];
+
       setElementMotionQueue(nextMotionStack);
     },
     [elementMotionQueue, setElementMotionQueue, motionSettings]
@@ -38,14 +38,6 @@ export function useMotions(
     setCurrentElementMotion(undefined);
     onMotionComplete?.();
   }, [setCurrentElementMotion, onMotionComplete]);
-
-  useEffect(() => {
-    if (!elementPosition) {
-      setElementPosition(nextElementPosition);
-    } else {
-      addElementMotion(nextElementPosition);
-    }
-  }, [nextElementPosition]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (!currentElementMotion && elementMotionQueue.length > 0 && elementPosition) {
@@ -85,5 +77,6 @@ export function useMotions(
   return {
     currentElementMotion,
     elementMotionQueue,
+    addElementMotion,
   };
 }

@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useEffect } from 'react';
-import { ManualElement, ThirdPersonCamera, useThirdPersonCameraContext } from '../../../components';
+import { ManualElement, MotionableElement, ThirdPersonCamera, useThirdPersonCameraContext } from '../../../components';
 import { Tilemap } from '../../../components/Tilemap/Tilemap';
 import { MotionSettings } from '../../../types/Motions';
 import { TilePosition } from '../../../types/TilePosition';
@@ -49,15 +49,16 @@ export const DemoFollowCameraPostion: FunctionComponent<DemoFollowCameraPostionP
                 <CameraControl onCameraPositionChange={setCameraPosition} />
             </ThirdPersonCamera>
             {cameraPosition && (
-                <ManualElement
+                <MotionableElement
                     element={{
                         tilePosition: cameraPosition,
                         spriteKey: props.elementSprite,
                         layer: 1,
                     }}
                     elementKey='element1'
+                    motionSettings={props.motionSettings}
                 >
-                </ManualElement>
+                </MotionableElement>
             )}
         </Tilemap>
     );
