@@ -11,6 +11,10 @@ export type DemoMotionableElementProps = {
   cols: number;
   baseSprite: string;
   elementSprite: string;
+  elementSpriteNorth?: string;
+  elementSpriteSouth?: string;
+  elementSpriteWest?: string;
+  elementSpriteEast?: string;
   elementCol: number;
   elementRow: number;
   motionSpeed: number;
@@ -38,6 +42,10 @@ export const DemoMotionableElement: FunctionComponent<DemoMotionableElementProps
           row: props.elementRow,
         }}
         spriteKey={props.elementSprite}
+        spriteKeyNorthMotion={props.elementSpriteNorth}
+        spriteKeySouthMotion={props.elementSpriteSouth}
+        spriteKeyWestMotion={props.elementSpriteWest}
+        spriteKeyEastMotion={props.elementSpriteEast}
         layer={1}
         elementKey='element1'
         motionSettings={{

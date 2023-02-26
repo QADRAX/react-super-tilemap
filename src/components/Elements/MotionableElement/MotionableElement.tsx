@@ -1,12 +1,23 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useMemo, useState } from 'react';
 import { TilePosition } from '../../../types/TilePosition';
+import { getDirection } from '../../../utils/positions';
 import { ManualElement } from '../ManualElement';
 import { ElementSync } from './ElementSync/ElementSync';
 import { MotionableElementProps } from './MotionableElement.types';
 import { useMotions } from './MotionableElement.useMotions';
 
 export const MotionableElement: FunctionComponent<MotionableElementProps> = (props) => {
-  const nextPosition = props.tilePosition;
+  const {
+    tilePosition: nextPosition,
+    motionSettings,
+    onMotionComplete,
+    spriteKey,
+    spriteKeyNorthMotion,
+    spriteKeySouthMotion,
+    spriteKeyWestMotion,
+    spriteKeyEastMotion,
+  } = props;
+
   const [elementPosition, setElementPosition] = useState<TilePosition | undefined>(undefined);
 
   const {
@@ -16,9 +27,38 @@ export const MotionableElement: FunctionComponent<MotionableElementProps> = (pro
   } = useMotions(
     elementPosition,
     setElementPosition,
-    props.motionSettings,
-    props.onMotionComplete
+    motionSettings,
+    onMotionComplete
   );
+
+  const elementSprite = useMemo(() => {
+    if (!currentElementMotion || !elementPosition) {
+      return spriteKey;
+    }
+    const motionDirection = getDirection(
+      elementPosition, 
+      currentElementMotion.targetPosition
+    );
+
+    switch (motionDirection) {
+      case 'north':
+        return spriteKeyNorthMotion || spriteKey;
+      case 'south':
+        return spriteKeySouthMotion || spriteKey;
+      case 'west':
+        return spriteKeyWestMotion || spriteKey;
+      case 'east':
+        return spriteKeyEastMotion || spriteKey;
+    }
+  }, [
+    elementPosition,
+    currentElementMotion,
+    spriteKey,
+    spriteKeyNorthMotion,
+    spriteKeySouthMotion,
+    spriteKeyWestMotion,
+    spriteKeyEastMotion,
+  ]);
 
   return (
     <>
@@ -31,7 +71,7 @@ export const MotionableElement: FunctionComponent<MotionableElementProps> = (pro
         setPostion={setElementPosition} />
       {elementPosition && (
         <ManualElement tilePosition={elementPosition} 
-          spriteKey={props.spriteKey} 
+          spriteKey={elementSprite} 
           layer={props.layer} 
           elementKey={props.elementKey}>
           {props.children}

@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { FirstLayerSprites, SecondLayerSprites, SpriteName } from './__Sprites__';
 import { DemoMotionableElement } from './demos/elements/DemoMotionableElement';
-import { defaultEasingTypes, defaultMotionSettings } from './__defaultArgs__';
+import { defaultEasingTypes } from './__defaultArgs__';
 
 export default {
   title: 'Motionable Element demo',
@@ -34,6 +34,42 @@ export default {
       control: 'select',
     },
     elementSprite: {
+      table: {
+        type: {
+          summary: 'string',
+        },
+      },
+      options: [...SecondLayerSprites],
+      control: 'select',
+    },
+    elementSpriteNorth: {
+      table: {
+        type: {
+          summary: 'string',
+        },
+      },
+      options: [...SecondLayerSprites],
+      control: 'select',
+    },
+    elementSpriteSouth: {
+      table: {
+        type: {
+          summary: 'string',
+        },
+      },
+      options: [...SecondLayerSprites],
+      control: 'select',
+    },
+    elementSpriteEast: {
+      table: {
+        type: {
+          summary: 'string',
+        },
+      },
+      options: [...SecondLayerSprites],
+      control: 'select',
+    },
+    elementSpriteWest: {
       table: {
         type: {
           summary: 'string',
@@ -108,17 +144,19 @@ const Template: ComponentStory<typeof DemoMotionableElement> = (args) => (
   <DemoMotionableElement {...args} />
 );
 
-export const ManualElementExample = Template.bind({});
+export const MotionableElementDemo = Template.bind({});
 
-ManualElementExample.args = {
+MotionableElementDemo.args = {
   rows: 20,
   cols: 20,
   baseSprite: SpriteName.grass,
   elementSprite: SpriteName.armyIdle,
+  elementSpriteNorth: SpriteName.armyWalkNorth,
+  elementSpriteSouth: SpriteName.armyWalkSouth,
+  elementSpriteEast: SpriteName.armyWalkEast,
+  elementSpriteWest: SpriteName.armyWalkWest,
   elementCol: 10,
   elementRow: 10,
-  motionSpeed: defaultMotionSettings.speed,
-  easing: defaultMotionSettings.easing,
-  maxDuration: defaultMotionSettings.maxDuration,
-  minDuration: defaultMotionSettings.minDuration,
+  motionSpeed: 0.001,
+  easing: 'linear',
 };
