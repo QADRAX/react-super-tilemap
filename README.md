@@ -184,11 +184,11 @@ const YourComponent = () => (
 
 ### **Manual camera**
 
-[📜 ManualCamera]()
+[📜 ManualCamera](https://qadrax.github.io/react-super-tilemap/modules.html#ManualCamera)
 
-[🕹 Demo](https://qadrax.github.io/react-super-tilemap/?path=/story/tilemap-cameras--manual-camera-example)
+[🕹 Demo](https://qadrax.github.io/react-super-tilemap/storybook/?path=/story/manual-camera-demo--manual-camera-demo)
 
-[🎼 Demo code]()
+[🎼 Demo code](https://github.com/QADRAX/react-super-tilemap/blob/main/src/__stories__/demos/cameras/DemoManualCamera.tsx)
 
 This component is used to manually control the camera position and zoom of the tilemap.
 
@@ -219,15 +219,15 @@ const YourComponent = () => {
 
 ### **Third person camera**
 
-[📜 ThirdPersonCamera]()
+[📜 ThirdPersonCamera](https://qadrax.github.io/react-super-tilemap/modules.html#ThirdPersonCamera)
 
-[🕹 Demo](https://qadrax.github.io/react-super-tilemap/?path=/story/tilemap-tilemap--clickable-tilemap-example)
-
-[🎼 Demo code]()
+[🕹 Demo](https://qadrax.github.io/react-super-tilemap/storybook/?path=/story/third-person-camera-demo--third-person-camera-demo)
 
 Use this component to operate with a third person camera in the tilemap.
 
 Here you can forget about control the camera position and zoom because this component will do it for you enabling drag and zoom controls by default.
+
+**It is important that multiple cameras are not added between the `Tilemap` children.**
 
 ```ts
 import { Tilemap, ThirdPersonCamera } from 'react-super-tilemap'
@@ -246,15 +246,15 @@ const YourComponent = () => {
 
 ### **Third person camera context**
 
-[📜 CameraContext]()
+[📜 CameraContext](https://qadrax.github.io/react-super-tilemap/modules.html#CameraContext)
 
-[📜 useThirdPersonCameraContext]()
+[📜 useThirdPersonCameraContext](https://qadrax.github.io/react-super-tilemap/modules.html#useThirdPersonCameraContext)
 
 [🕹 Demo](https://qadrax.github.io/react-super-tilemap/?path=/story/tilemap-cameras--third-person-camera-example)
 
-[🎼 Demo code]()
+[🎼 Demo code](https://github.com/QADRAX/react-super-tilemap/blob/main/src/__stories__/demos/cameras/DemoThirdPersonCameraContext.tsx)
 
-Third person camera allows you to apply Motion effects to the position and zoom of it. To do this you just have to create a child component and use the `useThirdPersonCameraContext` hook.
+Third person camera allows you to apply motion effects to the position and zoom. To do this you just have to create a child component and use the `useThirdPersonCameraContext` hook.
 
 ```ts
 import { Tilemap, ThirdPersonCamera, useThirdPersonCameraContext } from 'react-super-tilemap'
@@ -288,24 +288,81 @@ const YourComponent = () => {
 
 ## **4) Use tilemap elements**
 
+To include dynamic elements to the scene you can add child components to `Tilemap` such as the following that are provided:
+
 ### **Manual element**
 
-[📜 ManualElement]()
+[📜 ManualElement](https://qadrax.github.io/react-super-tilemap/modules.html#ManualElement)
 
 [🕹 Demo](https://qadrax.github.io/react-super-tilemap/storybook/?path=/story/tilemap-elements--manual-element-example)
 
-[🎼 Demo code]()
+[🎼 Demo code](https://github.com/QADRAX/react-super-tilemap/blob/main/src/__stories__/demos/elements/DemoManualElement.tsx)
+
+Similar as `ManualCamera`, you can use add a ManualElment as a child of a Tilemap. Using this component you have full control of the position of the element on the map.
+
+```ts
+const YourComponent = () => {
+    return (
+        <Tilemap
+            tilmapScheme={scheme}
+            spriteDefinition={sprites}
+        >
+            <ThirdPersonCamera />
+            <ManualElement 
+                elementKey="element1"
+                spriteKey="armyIdle"
+                layer={1}
+                tilePosition={{
+                    col: 0,
+                    row: 0,
+                }} 
+            />
+        </Tilemap>
+    )
+}
+```
 
 ### **Motionable element**
 
-[📜 MotionableElement]()
+[📜 MotionableElement](https://qadrax.github.io/react-super-tilemap/modules.html#MotionableElement)
 
-[🕹 Demo]()
+[🕹 Demo](https://qadrax.github.io/react-super-tilemap/storybook/?path=/story/motionable-element-demo--motionable-element-demo&args=cols:18;elementCol:9;elementRow:15)
 
-[🎼 Demo code]()
+[🎼 Demo code](https://github.com/QADRAX/react-super-tilemap/blob/main/src/__stories__/demos/elements/DemoMotionableElement.tsx)
+
+With this component you can have relative control over the position keeping you out of everything related to element motions. Just sends props with the position where the element is and, in case of possible changes, these will be done with the given motion configuration.
+
+```ts
+const YourComponent = () => {
+    return (
+        <Tilemap
+            tilmapScheme={scheme}
+            spriteDefinition={sprites}
+        >
+            <ThirdPersonCamera />
+                  <MotionableElement
+                    tilePosition={{
+                        col: elementCol,
+                        row: elementRow,
+                    }}
+                    spriteKey={elementSprite}
+                    layer={1}
+                    elementKey='element1'
+                    motionSettings={{
+                        speed: motionSpeed,
+                        easing: 'linear',
+                    }}
+                >
+                    {/* Children JSX */}
+                    <label> Element 1 </label>
+                </MotionableElement>
+        </Tilemap>
+    )
+}
+```
 
 # **Links**
 
-[**📜 Full API documentation**](https://qadrax.github.io/react-super-tilemap)
+[**📜 Full API documentation**](https://qadrax.github.io/react-super-tilemap/modules.html)
 
 [**🕹 Storybook**](https://qadrax.github.io/react-super-tilemap/storybook/)

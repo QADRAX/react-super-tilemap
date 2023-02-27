@@ -56,7 +56,6 @@ export const DemoMotionableElement: FunctionComponent<DemoMotionableElementProps
         }}
         onMotionComplete={props.onMotionEnd}
       >
-        <label>Element 1</label>
       </MotionableElement>
     </Tilemap>
   );
