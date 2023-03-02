@@ -1,6 +1,7 @@
+import { ReactNode } from 'react';
 import { TilePosition } from '../../../types/TilePosition';
 
-export type ManualCameraProps = {
+export type ManualCameraSettings = {
   /**
    * Camera position
    */
@@ -13,4 +14,8 @@ export type ManualCameraProps = {
    * Flag that indicates if the tiles are clickable
    */
   clickable?: boolean;
+};
+
+export type ManualCameraProps = ManualCameraSettings & {
+  children?: ReactNode;
 };

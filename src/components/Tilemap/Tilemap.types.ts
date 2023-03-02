@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import { SpriteDefinition } from '../../types/SpriteDefinition';
 import { TilePosition } from '../../types/TilePosition';
 
@@ -108,4 +109,7 @@ export type TilemapSettings = {
  *
  * @public
  */
-export type TilemapProps = TilemapSettings & TilemapEvents;
+export type TilemapProps = TilemapSettings &
+  TilemapEvents & {
+    children?: ReactNode;
+  };

@@ -1,7 +1,8 @@
+import { ReactNode } from 'react';
 import { MotionSettings } from '../../../types/Motions';
-import { ManualElementProps } from '../ManualElement/ManualElement.types';
+import { ManualElementSettings } from '../ManualElement/ManualElement.types';
 
-export type MotionableElementSettings = ManualElementProps & {
+export type MotionableElementSettings = ManualElementSettings & {
   spriteKeyNorthMotion?: string;
   spriteKeySouthMotion?: string;
   spriteKeyEastMotion?: string;
@@ -13,4 +14,7 @@ export type MotionableElementEvents = {
   onMotionComplete?: () => void;
 };
 
-export type MotionableElementProps = MotionableElementSettings & MotionableElementEvents;
+export type MotionableElementProps = MotionableElementSettings &
+  MotionableElementEvents & {
+    children?: ReactNode;
+  };
