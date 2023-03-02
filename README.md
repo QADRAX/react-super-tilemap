@@ -1,4 +1,4 @@
-# **React Super Tilemap 🗺** [in progress...]
+# **React Super Tilemap 🗺**
 
 [![Build](https://github.com/QADRAX/react-super-tilemap/actions/workflows/Build.yaml/badge.svg)](https://github.com/QADRAX/react-super-tilemap/actions/workflows/Build.yaml)
 [![Publish](https://github.com/QADRAX/react-super-tilemap/actions/workflows/Publish.yaml/badge.svg)](https://github.com/QADRAX/react-super-tilemap/actions/workflows/Publish.yaml)
@@ -17,10 +17,6 @@ It pretends to be the graphic engine of games or applications where you need to 
 - Designed for React developers.
 - Minimal dependencies.
 - Designed to have animations and motions.
-
-## **Motivations**
-
-
 
 ## **Installation**
 

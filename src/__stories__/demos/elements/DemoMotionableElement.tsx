@@ -55,8 +55,7 @@ export const DemoMotionableElement: FunctionComponent<DemoMotionableElementProps
           minDuration: props.minDuration,
         }}
         onMotionComplete={props.onMotionEnd}
-      >
-      </MotionableElement>
+      ></MotionableElement>
     </Tilemap>
   );
 };
