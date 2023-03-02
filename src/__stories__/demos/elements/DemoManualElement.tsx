@@ -34,12 +34,16 @@ export const DemoManualElement: FunctionComponent<DemoManualElementProps> = (pro
         layer={1}
         elementKey='element1'
       >
-        <label style={{
-              fontSize: "calc(var(--tile-size) / 8)",
-              position: 'absolute',
-              backgroundColor: 'bisque',
-              bottom: 0,
-          }}>{'Element 1'}</label>
+        <label
+          style={{
+            fontSize: 'calc(var(--tile-size) / 8)',
+            position: 'absolute',
+            backgroundColor: 'bisque',
+            bottom: 0,
+          }}
+        >
+          {'Element 1'}
+        </label>
       </ManualElement>
     </Tilemap>
   );
