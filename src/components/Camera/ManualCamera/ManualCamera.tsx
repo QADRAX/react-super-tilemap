@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { CameraEventListener } from '../CameraEventListener/CameraEventListener';
-import { ManualCameraProps } from './ManualCamera.types';
+import { ManualCameraSettings } from './ManualCamera.types';
 import { useHandlers } from './ManualCamera.useHandlers';
 import { useSyncPosition } from './ManualCamera.useSyncPosition';
 
@@ -13,7 +13,7 @@ import { useSyncPosition } from './ManualCamera.useSyncPosition';
  *
  * @param props ManualCameraProps
  */
-export const ManualCamera: FunctionComponent<ManualCameraProps> = (props) => {
+export const ManualCamera: FunctionComponent<ManualCameraSettings> = (props) => {
   useSyncPosition(props.position, props.zoom);
 
   const clickable = props.clickable ?? true;

@@ -2,16 +2,16 @@ import React from 'react';
 import { TilemapElement } from '../../../../types/TilemapElement';
 import { isEqual } from '../../../../utils/deepCompare';
 import { TilemapContext } from '../../../Tilemap/TilemapContext/TilemapContext';
-import { ManualElementProps } from '../ManualElement.types';
+import { ManualElementSettings } from '../ManualElement.types';
 
 /**
  * Syncs the element with the tilemap context.
  */
-export class ElementSync extends React.PureComponent<ManualElementProps> {
+export class ElementSync extends React.PureComponent<ManualElementSettings> {
   static contextType = TilemapContext;
   context!: React.ContextType<typeof TilemapContext>;
 
-  componentDidUpdate(prevProps: Readonly<ManualElementProps>): void {
+  componentDidUpdate(prevProps: Readonly<ManualElementSettings>): void {
     const prevElement: TilemapElement = {
       tilePosition: prevProps.tilePosition,
       spriteKey: prevProps.spriteKey,

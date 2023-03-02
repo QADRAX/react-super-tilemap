@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import { RecenterCameraMotion } from '../../../types/Motions';
 import { TilePosition } from '../../../types/TilePosition';
 
@@ -68,4 +69,7 @@ export type ThirdPersonCameraEvents = {
   onZoomMotionEnd?: () => void;
 };
 
-export type ThirdPersonCameraProps = ThirdPersonCameraSettings & ThirdPersonCameraEvents;
+export type ThirdPersonCameraProps = ThirdPersonCameraSettings &
+  ThirdPersonCameraEvents & {
+    children?: ReactNode;
+  };

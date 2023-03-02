@@ -1,6 +1,7 @@
+import { ReactNode } from 'react';
 import { TilePosition } from '../../../types/TilePosition';
 
-export type ManualElementProps = {
+export type ManualElementSettings = {
   /**
    * The position of the element in the tilemap.
    */
@@ -17,4 +18,8 @@ export type ManualElementProps = {
    * Unique key to identify the element.
    */
   elementKey: string;
+};
+
+export type ManualElementProps = ManualElementSettings & {
+  children?: ReactNode;
 };
