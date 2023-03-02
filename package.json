@@ -1,9 +1,9 @@
 {
   "name": "react-super-tilemap",
   "license": "MIT",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.1",
   "private": false,
-  "description": "HTML/CSS tilemap react wrapper",
+  "description": "React implementation of a low-level 2D tilemap board optimized for high-performance rendering in web browsers",
   "author": "Carlos Cuadra",
   "homepage": "https://github.com/QADRAX/react-super-tilemap",
   "bugs": {

@@ -250,7 +250,7 @@ const YourComponent = () => {
 
 [📜 useThirdPersonCameraContext](https://qadrax.github.io/react-super-tilemap/modules.html#useThirdPersonCameraContext)
 
-[🕹 Demo](https://qadrax.github.io/react-super-tilemap/?path=/story/tilemap-cameras--third-person-camera-example)
+[🕹 Demo](https://qadrax.github.io/react-super-tilemap/storybook/?path=/story/tilemap-cameras--third-person-camera-example)
 
 [🎼 Demo code](https://github.com/QADRAX/react-super-tilemap/blob/main/src/__stories__/demos/cameras/DemoThirdPersonCameraContext.tsx)
 
