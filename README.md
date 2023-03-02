@@ -18,10 +18,6 @@ It pretends to be the graphic engine of games or applications where you need to 
 - Minimal dependencies.
 - Designed to have animations and motions.
 
-## **Motivations**
-
-
-
 ## **Installation**
 
 ```ssh
