@@ -7,8 +7,8 @@ export function getTileSize(zoom: number, tileSize: number = DEFAULT_TILE_SIZE):
 }
 
 export function getMapSize(mapDimensions: MapDimensions, tileSize: number): Size {
-  const width = mapDimensions.cols * tileSize;
-  const height = mapDimensions.rows * tileSize;
+  const width = mapDimensions.rows * tileSize;
+  const height = mapDimensions.cols * tileSize;
 
   return {
     width,
@@ -23,8 +23,8 @@ export function getMapDimensions(schema?: string[][][]): MapDimensions {
       rows: 0,
     };
   }
-  const cols = schema.length;
-  const rows = schema[0]?.length ?? 0;
+  const rows = schema.length;
+  const cols = schema[0]?.length ?? 0;
 
   const dims: MapDimensions = {
     cols,

@@ -69,11 +69,11 @@ export function renderTileMap({
   if (schema && spriteMap) {
     // Calculate first and last visible columns and rows
 
-    const firstVisibleCol = Math.floor(-cameraPosition.x / tileSizePx);
-    const lastVisibleCol = Math.ceil((canvasWidthPx - cameraPosition.x) / tileSizePx);
+    const firstVisibleCol = Math.floor(-cameraPosition.y / tileSizePx);
+    const lastVisibleCol = Math.ceil((canvasHeightPx - cameraPosition.y) / tileSizePx);
 
-    const firstVisibleRow = Math.floor(-cameraPosition.y / tileSizePx);
-    const lastVisibleRow = Math.ceil((canvasHeightPx - cameraPosition.y) / tileSizePx);
+    const firstVisibleRow = Math.floor(-cameraPosition.x / tileSizePx);
+    const lastVisibleRow = Math.ceil((canvasWidthPx- cameraPosition.x) / tileSizePx);
 
     // Calculate the max number of layers
 
@@ -102,8 +102,8 @@ export function renderTileMap({
             continue;
           }
 
-          const x = c * tileSizePx + cameraPosition.x;
-          const y = r * tileSizePx + cameraPosition.y;
+          const x = r * tileSizePx + cameraPosition.x;
+          const y = c * tileSizePx + cameraPosition.y;
 
           const spriteKey = layers[l];
           if (spriteKey) {
@@ -113,8 +113,8 @@ export function renderTileMap({
               const spriteSize = sprite.size;
               const spriteWidthPx = spriteSize.width * tileSizePx;
               const spriteHeightPx = spriteSize.height * tileSizePx;
-              const spriteX = x + tileSizePx * sprite.offset.col;
-              const spriteY = y + tileSizePx * sprite.offset.row;
+              const spriteX = x + tileSizePx * sprite.offset.row;
+              const spriteY = y + tileSizePx * sprite.offset.col;
 
               const frame = sprite.getFrame(timestamp);
               bufferCtx.drawImage(
@@ -151,9 +151,9 @@ export function renderTileMap({
         const spriteWidthPx = spriteSize.width * tileSizePx;
         const spriteHeightPx = spriteSize.height * tileSizePx;
         const spriteX =
-          element.tilePosition.col * tileSizePx + cameraPosition.x + tileSizePx * sprite.offset.col;
+          element.tilePosition.row * tileSizePx + cameraPosition.x + tileSizePx * sprite.offset.row;
         const spriteY =
-          element.tilePosition.row * tileSizePx + cameraPosition.y + tileSizePx * sprite.offset.row;
+          element.tilePosition.col * tileSizePx + cameraPosition.y + tileSizePx * sprite.offset.col;
 
         const frame = sprite.getFrame(timestamp);
         bufferCtx.drawImage(

@@ -42,16 +42,16 @@ const sprites: SpriteDefinition[] = [
       height: 2,
     },
     offset: {
-      col: -0.5,
-      row: 0.5,
+      col: 0.5,
+      row: -0.5,
     },
   },
 ];
 
 const scheme: string[][][] = [
   [['grass'], ['grass'], ['grass']],
-  [['grass'], ['grass', 'building', 'selector'], ['ocean']],
-  [['grass'], ['ocean'], ['ocean']],
+  [['grass'], ['grass', 'building'], ['ocean']],
+  [['grass', 'selector'], ['ocean'], ['ocean']],
 ];
 
 export const DemoSpriteOffset = () => {
