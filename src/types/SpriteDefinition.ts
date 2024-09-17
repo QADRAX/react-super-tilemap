@@ -10,9 +10,11 @@ import { TilePosition } from './TilePosition';
  *
  * The rest of the images will be used for animation.
  *
- * If there is only one image, the animation will be disabled.
+ * If there is only one image, the animation will not be disabled.
  *
  * The images must have the same size.
+ * 
+ * You can define the imageSrc as a base64.
  *
  * @example
  *
@@ -22,6 +24,7 @@ import { TilePosition } from './TilePosition';
  *      "https://example.com/image1.png",
  *      "https://example.com/image2.png",
  *      "https://example.com/image3.png",
+ *      "data:image/png;base64,iVBORw0K...",
  *   ],
  *   animationDelay: 1000,
  *   tileSize: { width: 1, height: 1 },
@@ -41,7 +44,8 @@ export type SpriteDefinition = {
    *
    * The rest of the images will be used for animation.
    *
-   * If there is only one image, the animation will be disabled
+   * If there is only one image, the animation will not be disabled.
+   * 
    * The images must have the same size.
    *
    * @example
@@ -49,6 +53,7 @@ export type SpriteDefinition = {
    *    "https://example.com/image1.png",
    *    "https://example.com/image2.png",
    *    "https://example.com/image3.png",
+   *    "data:image/png;base64,iVBORw0K...",
    * ],
    */
   imagesSrc: string[];
@@ -57,7 +62,7 @@ export type SpriteDefinition = {
    *
    * If not provided, the default value will be used.
    *
-   * If there is only one image, the animation will be disabled.
+   * If there is only one image, the animation will not be disabled.
    *
    * The delay must be greater than 0.
    *
