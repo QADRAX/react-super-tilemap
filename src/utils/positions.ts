@@ -18,8 +18,8 @@ export function getTilePosition(
   };
 
   const tilePosition: TilePosition = {
-    col: relativeMousePosition.x / tileSize,
-    row: relativeMousePosition.y / tileSize,
+    col: relativeMousePosition.y / tileSize,
+    row: relativeMousePosition.x / tileSize,
   };
 
   return tilePosition;
@@ -31,8 +31,8 @@ export function getAbsolutePosition(
   tileSize: number
 ): Position {
   const relativeTilePosition: Position = {
-    x: tilePosition.col * tileSize,
-    y: tilePosition.row * tileSize,
+    x: tilePosition.row * tileSize,
+    y: tilePosition.col * tileSize,
   };
 
   const mousePosition: Position = {
@@ -100,8 +100,8 @@ export function getCameraPositionByTilePosition(
   canvasSize: Size
 ): Position {
   const relativeTilePosition: Position = {
-    x: tilePosition.col * tileSize + tileSize / 2,
-    y: tilePosition.row * tileSize + tileSize / 2,
+    x: tilePosition.row * tileSize + tileSize / 2,
+    y: tilePosition.col * tileSize + tileSize / 2,
   };
 
   const relativeCenterPosition: Position = {
@@ -118,14 +118,14 @@ export function getCameraPositionByTilePosition(
 }
 
 export function getDistance(p1: TilePosition, p2: TilePosition): number {
-  const dx = p1.col - p2.col;
-  const dy = p1.row - p2.row;
+  const dx = p1.row - p2.row;
+  const dy = p1.col - p2.col;
   return Math.sqrt(dx * dx + dy * dy);
 }
 
 export function getDirection(p1: TilePosition, p2: TilePosition): Direction {
-  const dx = p1.col - p2.col;
-  const dy = p1.row - p2.row;
+  const dx = p1.row - p2.row;
+  const dy = p1.col - p2.col;
 
   if (Math.abs(dx) > Math.abs(dy)) {
     return dx > 0 ? 'west' : 'east';
