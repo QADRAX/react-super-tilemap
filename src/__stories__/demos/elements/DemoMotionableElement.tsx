@@ -15,8 +15,8 @@ export type DemoMotionableElementProps = {
   elementSpriteSouth?: string;
   elementSpriteWest?: string;
   elementSpriteEast?: string;
-  elementCol: number;
-  elementRow: number;
+  elementY: number;
+  elementX: number;
   motionSpeed: number;
   easing: EasingType;
   maxDuration?: number;
@@ -38,8 +38,8 @@ export const DemoMotionableElement: FunctionComponent<DemoMotionableElementProps
       <ThirdPersonCamera {...defaulThridPersonCameraArgs}></ThirdPersonCamera>
       <MotionableElement
         tilePosition={{
-          col: props.elementCol,
-          row: props.elementRow,
+          y: props.elementY,
+          x: props.elementX,
         }}
         spriteKey={props.elementSprite}
         spriteKeyNorthMotion={props.elementSpriteNorth}

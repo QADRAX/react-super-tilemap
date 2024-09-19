@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { RecenterCameraMotion } from '../../../types/Motions';
-import { TilePosition } from '../../../types/TilePosition';
+import { Position } from '../../../types/Position';
 
 export type ThirdPersonCameraSettings = {
   /**
@@ -22,7 +22,7 @@ export type ThirdPersonCameraSettings = {
    *
    * @default 'center'
    */
-  initialCameraPosition?: TilePosition | 'center';
+  initialCameraPosition?: Position | 'center';
   /**
    * Initial zoom level when the tilemap is mounted.
    *

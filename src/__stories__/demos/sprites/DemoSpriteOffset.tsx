@@ -42,8 +42,8 @@ const sprites: SpriteDefinition[] = [
       height: 2,
     },
     offset: {
-      col: 0.5,
-      row: -0.5,
+      y: 0.5,
+      x: -0.5,
     },
   },
 ];
@@ -56,8 +56,8 @@ const scheme: string[][][] = [
 
 export const DemoSpriteOffset = () => {
   return (
-    <Tilemap tilmapScheme={scheme} spriteDefinition={sprites}>
-      <ManualCamera position={{ col: 1, row: 1 }} zoom={20} />
+    <Tilemap tilmapScheme={scheme} spriteDefinition={sprites} onTileClick={pos => console.log(pos)}>
+      <ManualCamera position={{ y: 1, x: 1 }} zoom={20} />
     </Tilemap>
   );
 };

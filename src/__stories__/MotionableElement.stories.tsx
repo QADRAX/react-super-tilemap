@@ -78,7 +78,7 @@ export default {
       options: [...SecondLayerSprites],
       control: 'select',
     },
-    elementCol: {
+    elementY: {
       table: {
         type: {
           summary: 'number',
@@ -86,7 +86,7 @@ export default {
       },
       control: 'number',
     },
-    elementRow: {
+    elementX: {
       table: {
         type: {
           summary: 'number',
@@ -155,8 +155,8 @@ MotionableElementDemo.args = {
   elementSpriteSouth: SpriteName.armyWalkSouth,
   elementSpriteEast: SpriteName.armyWalkEast,
   elementSpriteWest: SpriteName.armyWalkWest,
-  elementCol: 10,
-  elementRow: 10,
+  elementY: 10,
+  elementX: 10,
   motionSpeed: 0.001,
   easing: 'linear',
 };

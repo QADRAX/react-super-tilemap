@@ -1,5 +1,4 @@
 import React, { FunctionComponent, useState } from 'react';
-import { TilePosition } from '../../../types/TilePosition';
 import { CameraEventListener } from '../CameraEventListener/CameraEventListener';
 import { ManualCamera } from '../ManualCamera/ManualCamera';
 import { ThirdPersonCameraContext } from './ThirdPersonCameraContext/ThirdPersonCameraContext';
@@ -8,6 +7,7 @@ import { useHandlers } from './ThirdPersonCamera.useHandlers';
 import { useInitialCameraPosition } from './ThirdPersonCamera.useInitialCameraPosition';
 import { useMotions } from './ThirdPersonCamera.useMotions';
 import { ThirdPersonCameraProps } from './ThirdPersonCamera.types';
+import { Position } from '../../../types/Position';
 
 /**
  * Use this component to operate with a third person camera in the tilemap.
@@ -20,7 +20,7 @@ import { ThirdPersonCameraProps } from './ThirdPersonCamera.types';
  */
 export const ThirdPersonCamera: FunctionComponent<ThirdPersonCameraProps> = (props) => {
   const initialZoom = props.initialZoom != undefined ? Math.abs(props.initialZoom) : 0;
-  const [cameraPosition, setCameraPosition] = useState<TilePosition | undefined>(undefined);
+  const [cameraPosition, setCameraPosition] = useState<Position | undefined>(undefined);
   const [zoom, setZoom] = useState<number>(initialZoom);
   const [isCameraDragging, setIsDragging] = useState<boolean>(false);
 

@@ -1,10 +1,10 @@
 import React, { FunctionComponent, useMemo } from 'react';
-import { TilePosition } from '../../../../types/TilePosition';
 import { getAbsolutePosition } from '../../../../utils/positions';
 import { useTilemapContext } from '../../../Tilemap/TilemapContext/useTilemapContext';
+import { Position } from '../../../../types/Position';
 
 export type ElementWrapperProps = {
-  tilePosition: TilePosition;
+  tilePosition: Position;
 };
 
 /**

@@ -4,8 +4,9 @@ import { ThirdPersonCamera, Tilemap, useThirdPersonCameraContext } from '../../.
 import { EasingType } from '../../../types/EasingType';
 import { MotionSettings } from '../../../types/Motions';
 import { SpriteDefinition } from '../../../types/SpriteDefinition';
-import { TilePosition } from '../../../types/TilePosition';
 import { grass, mountain } from '../../__Sprites__';
+import { Position } from '../../../types/Position';
+import { useTilemapContext } from '../../../components/Tilemap/TilemapContext/useTilemapContext';
 
 export type DemoThirdPersonCameraContextProps = {
   cameraMotionEasingType: EasingType;
@@ -30,15 +31,15 @@ const sprites: SpriteDefinition[] = [
 ];
 
 const scheme: string[][][] = [
-  [['grass'], ['grass'], ['grass']],
-  [['grass'], ['mountain'], ['grass']],
-  [['grass'], ['grass'], ['grass']],
+  [['grass'], ['grass'], ['grass'], ['grass']],
+  [['grass'], ['mountain'], ['grass'], ['grass']],
+  [['grass'], ['grass'], ['grass'], ['grass']],
 ];
 
 const initialZoom = 20;
 
 const ContextButtons = (props: {
-  focusedTile: TilePosition | null;
+  focusedTile: Position | null;
   cameraMotionEasingType: EasingType;
   cameraMotionSpeed: number;
   cameraMotionMinDuration?: number;
@@ -48,7 +49,8 @@ const ContextButtons = (props: {
   zoomMotionMinDuration?: number;
   zoomMotionMaxDuration?: number;
 }) => {
-  const { zoom, addCameraMotion, addZoomMotion } = useThirdPersonCameraContext();
+  const { computed } = useTilemapContext();
+  const { zoom, addCameraMotion, addZoomMotion, currentCameraMotion } = useThirdPersonCameraContext();
 
   const cameraMotion: MotionSettings = {
     speed: props.cameraMotionSpeed,
@@ -134,6 +136,18 @@ const ContextButtons = (props: {
       >
         ZoomOut
       </button>
+      <p>
+        Dimensions: {computed.mapDimensions.rows} rows / {computed.mapDimensions.cols} cols
+      </p>
+      <p>
+        isResizing: {computed.isResizing ? 'true' : 'false'}
+      </p>
+      <p>
+        isZoomin: {computed.isZooming ? 'true' : 'false'}
+      </p>
+      <p>
+        isCameraMotion: {currentCameraMotion != undefined ? 'true': 'false'}
+      </p>
     </>
   );
 };
@@ -141,9 +155,9 @@ const ContextButtons = (props: {
 export const DemoThirdPersonCameraContext: FunctionComponent<DemoThirdPersonCameraContextProps> = (
   props
 ) => {
-  const [focusedTile, setFocusedTile] = React.useState<TilePosition | null>(null);
+  const [focusedTile, setFocusedTile] = React.useState<Position | null>(null);
 
-  const handleTileClick = (tilePos: TilePosition) => {
+  const handleTileClick = (tilePos: Position) => {
     setFocusedTile(tilePos);
   };
 

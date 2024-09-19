@@ -22,15 +22,15 @@ const scheme: string[][][] = [
 ];
 
 export type DemoManualCameraProps = {
-  col: number;
-  row: number;
+  y: number;
+  x: number;
   zoom: number;
 };
 
 export const DemoManualCamera: FunctionComponent<DemoManualCameraProps> = (props) => {
   return (
     <Tilemap tilmapScheme={scheme} spriteDefinition={sprites}>
-      <ManualCamera position={{ col: props.col, row: props.row }} zoom={props.zoom} />
+      <ManualCamera position={{ y: props.y, x: props.x }} zoom={props.zoom} />
     </Tilemap>
   );
 };

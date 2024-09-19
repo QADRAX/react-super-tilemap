@@ -1,8 +1,8 @@
 import { EasingType } from '../types/EasingType';
 import { CurrentMotion, CurrentMotionPosition } from '../types/Motions';
-import { TilePosition } from '../types/TilePosition';
+import { Position } from '../types/Position';
 import { getEasingFunction } from './easings';
-import { isTilePosition } from './typeGuards';
+import { isPosition } from './typeGuards';
 
 /**
  * Starts a motion from an initial position to a target position with the given motion settings.
@@ -31,6 +31,7 @@ export function startMotion<T extends CurrentMotionPosition>(
     const duration = timestamp - startAt;
     const progress = duration / (endAt - startAt);
     if (progress < 1) {
+      debugger;
       const nextPosition = getNextPosition(progress, easing, initialPosition, targetPosition);
       onPositionChange(nextPosition);
       animationFrameId = window.requestAnimationFrame(motionLoop);
@@ -67,12 +68,12 @@ function getNextPosition1D(
 function getNextPosition2D(
   progress: number,
   easingType: EasingType | undefined,
-  initialPosition: TilePosition,
-  targetPoisition: TilePosition
-): TilePosition {
-  const col = getNextPosition1D(progress, easingType, initialPosition.col, targetPoisition.col);
-  const row = getNextPosition1D(progress, easingType, initialPosition.row, targetPoisition.row);
-  return { col, row };
+  initialPosition: Position,
+  targetPoisition: Position
+): Position {
+  const y = getNextPosition1D(progress, easingType, initialPosition.y, targetPoisition.y);
+  const x = getNextPosition1D(progress, easingType, initialPosition.x, targetPoisition.x);
+  return { y, x };
 }
 
 function getNextPosition<T extends CurrentMotionPosition>(
@@ -83,7 +84,7 @@ function getNextPosition<T extends CurrentMotionPosition>(
 ): T {
   if (typeof initialPosition === 'number' && typeof targetPoisition === 'number') {
     return getNextPosition1D(progress, easingType, initialPosition, targetPoisition) as T;
-  } else if (isTilePosition(initialPosition) && isTilePosition(targetPoisition)) {
+  } else if (isPosition(initialPosition) && isPosition(targetPoisition)) {
     return getNextPosition2D(progress, easingType, initialPosition, targetPoisition) as T;
   } else {
     throw new Error('Initial and target positions must be of the same type');

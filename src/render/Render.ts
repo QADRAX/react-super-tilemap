@@ -113,8 +113,8 @@ export function renderTileMap({
               const spriteSize = sprite.size;
               const spriteWidthPx = spriteSize.width * tileSizePx;
               const spriteHeightPx = spriteSize.height * tileSizePx;
-              const spriteX = x + tileSizePx * sprite.offset.row;
-              const spriteY = y + tileSizePx * sprite.offset.col;
+              const spriteX = x + tileSizePx * sprite.offset.x;
+              const spriteY = y + tileSizePx * sprite.offset.y;
 
               const frame = sprite.getFrame(timestamp);
               bufferCtx.drawImage(
@@ -134,10 +134,10 @@ export function renderTileMap({
     const visibleElements = Object.values(elementMap)
       .filter((element) => {
         const isVisible =
-          element.tilePosition.col >= firstVisibleCol &&
-          element.tilePosition.col <= lastVisibleCol &&
-          element.tilePosition.row >= firstVisibleRow &&
-          element.tilePosition.row <= lastVisibleRow;
+          element.tilePosition.y >= firstVisibleCol &&
+          element.tilePosition.y <= lastVisibleCol &&
+          element.tilePosition.x >= firstVisibleRow &&
+          element.tilePosition.x <= lastVisibleRow;
         return isVisible;
       })
       .sort((a, b) => {
@@ -151,9 +151,9 @@ export function renderTileMap({
         const spriteWidthPx = spriteSize.width * tileSizePx;
         const spriteHeightPx = spriteSize.height * tileSizePx;
         const spriteX =
-          element.tilePosition.row * tileSizePx + cameraPosition.x + tileSizePx * sprite.offset.row;
+          element.tilePosition.x * tileSizePx + cameraPosition.x + tileSizePx * sprite.offset.x;
         const spriteY =
-          element.tilePosition.col * tileSizePx + cameraPosition.y + tileSizePx * sprite.offset.col;
+          element.tilePosition.y * tileSizePx + cameraPosition.y + tileSizePx * sprite.offset.y;
 
         const frame = sprite.getFrame(timestamp);
         bufferCtx.drawImage(

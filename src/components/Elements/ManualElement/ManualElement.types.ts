@@ -1,11 +1,11 @@
 import { ReactNode } from 'react';
-import { TilePosition } from '../../../types/TilePosition';
+import { Position } from '../../../types/Position';
 
 export type ManualElementSettings = {
   /**
    * The position of the element in the tilemap.
    */
-  tilePosition: TilePosition;
+  tilePosition: Position;
   /**
    * The key of the sprite to use for the element.
    */

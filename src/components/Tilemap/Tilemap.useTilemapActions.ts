@@ -10,7 +10,8 @@ import {
 import { Size } from '../../types/Size';
 import { ContextActions, ContextState } from './TilemapContext/TilemapContext.types';
 import { TilemapElement } from '../../types/TilemapElement';
-import { TilePosition } from '../../types/TilePosition';
+import { Position } from '../../types/Position';
+
 /**
  * Returns the tilemap context actions.
  *
@@ -28,7 +29,7 @@ export function useTilemapActions(
   const { canvasSize, elementMap } = state;
 
   const setCameraPosition = useCallback(
-    (position?: TilePosition) => {
+    (position?: Position) => {
       if (!canvasSize) {
         throw new Error(UNSIZED_CANVAS_ERROR);
       }

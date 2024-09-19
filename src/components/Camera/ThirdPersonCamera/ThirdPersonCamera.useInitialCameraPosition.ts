@@ -1,11 +1,11 @@
 import { useEffect, useMemo } from 'react';
 import { useTilemapContext } from '../../Tilemap/TilemapContext/useTilemapContext';
-import { TilePosition } from '../../../types/TilePosition';
+import { Position } from '../../../types/Position';
 
 export function useInitialCameraPosition(
-  initialCameraPosition: TilePosition | 'center' | undefined,
-  cameraPosition: TilePosition | undefined,
-  setCameraPosition: (position: TilePosition | undefined) => void
+  initialCameraPosition: Position | 'center' | undefined,
+  cameraPosition: Position | undefined,
+  setCameraPosition: (position: Position | undefined) => void
 ) {
   const { computed, state } = useTilemapContext();
 
@@ -13,11 +13,11 @@ export function useInitialCameraPosition(
 
   const { mapDimensions } = computed;
 
-  const initialPosition: TilePosition = useMemo(() => {
+  const initialPosition: Position = useMemo(() => {
     if (initialCameraPosition === 'center' || !initialCameraPosition) {
       return {
-        col: Math.floor(mapDimensions.cols / 2),
-        row: Math.floor(mapDimensions.rows / 2),
+        y: Math.floor(mapDimensions.cols / 2),
+        x: Math.floor(mapDimensions.rows / 2),
       };
     }
     return initialCameraPosition;

@@ -1,5 +1,5 @@
 import { CurrentMotion, MotionRequest, MotionSettings } from '../../../../types/Motions';
-import { TilePosition } from '../../../../types/TilePosition';
+import { Position } from '../../../../types/Position';
 
 /**
  * The context of the ThirdPersonCamera component.
@@ -7,12 +7,12 @@ import { TilePosition } from '../../../../types/TilePosition';
  * @public
  */
 export type CameraContext = {
-  cameraPosition?: TilePosition;
+  cameraPosition?: Position;
   zoom: number;
-  addCameraMotion: (settings: MotionSettings, target: TilePosition | 'center') => void;
+  addCameraMotion: (settings: MotionSettings, target: Position | 'center') => void;
   addZoomMotion: (settings: MotionSettings, target: number) => void;
-  currentCameraMotion?: CurrentMotion<TilePosition>;
+  currentCameraMotion?: CurrentMotion<Position>;
   currentZoomMotion?: CurrentMotion<number>;
   zoomMotionQueue: MotionRequest<number>[];
-  cameraMotionQueue: MotionRequest<TilePosition | 'center'>[];
+  cameraMotionQueue: MotionRequest<Position | 'center'>[];
 };

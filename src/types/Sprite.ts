@@ -1,5 +1,5 @@
+import { Position } from './Position';
 import { Size } from './Size';
-import { TilePosition } from './TilePosition';
 
 export type SpriteMap = Map<string, Sprite>;
 
@@ -15,7 +15,7 @@ export type Sprite = {
   /**
    * Configured offset of the sprite.
    */
-  readonly offset: TilePosition;
+  readonly offset: Position;
   /**
    * Configured animation delay in milliseconds.
    */

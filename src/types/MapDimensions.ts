@@ -4,6 +4,6 @@
  * @public
  */
 export type MapDimensions = {
-  cols: number;
   rows: number;
+  cols: number;
 };

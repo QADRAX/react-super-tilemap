@@ -309,8 +309,8 @@ const YourComponent = () => {
                 spriteKey="armyIdle"
                 layer={1}
                 tilePosition={{
-                    col: 0,
-                    row: 0,
+                    x: 0,
+                    y: 0,
                 }} 
             />
         </Tilemap>
@@ -338,8 +338,8 @@ const YourComponent = () => {
             <ThirdPersonCamera />
                   <MotionableElement
                     tilePosition={{
-                        col: elementCol,
-                        row: elementRow,
+                        x: elementCol,
+                        y: elementRow,
                     }}
                     spriteKey={elementSprite}
                     layer={1}
