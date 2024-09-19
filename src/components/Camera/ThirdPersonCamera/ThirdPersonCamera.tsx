@@ -66,6 +66,7 @@ export const ThirdPersonCamera: FunctionComponent<ThirdPersonCameraProps> = (pro
         currentZoomMotion,
         zoomMotionQueue,
         cameraMotionQueue,
+        isCameraInMotion
       }}
     >
       <CameraEventListener handlers={handlers} />

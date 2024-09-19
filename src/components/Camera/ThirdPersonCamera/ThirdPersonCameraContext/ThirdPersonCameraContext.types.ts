@@ -15,4 +15,5 @@ export type CameraContext = {
   currentZoomMotion?: CurrentMotion<number>;
   zoomMotionQueue: MotionRequest<number>[];
   cameraMotionQueue: MotionRequest<Position | 'center'>[];
+  isCameraInMotion: boolean;
 };
