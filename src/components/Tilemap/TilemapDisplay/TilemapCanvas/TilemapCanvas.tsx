@@ -48,6 +48,7 @@ export class TilemapCanvas extends React.PureComponent<TilemapCanvasProps> {
         timestamp,
         backgroundColor: this.context.props.backgroundColor,
         elementMap: this.context.state.elementMap,
+        getDefaultSpriteKey: this.context.props.outboundSpriteKey,
       });
     }
 

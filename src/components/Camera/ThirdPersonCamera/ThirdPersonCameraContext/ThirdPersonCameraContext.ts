@@ -7,6 +7,7 @@ const initialContext: CameraContext = {
   addZoomMotion: () => {},
   zoomMotionQueue: [],
   cameraMotionQueue: [],
+  isCameraInMotion: false,
 };
 
 /**
