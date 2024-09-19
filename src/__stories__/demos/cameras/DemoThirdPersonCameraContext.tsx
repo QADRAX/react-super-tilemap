@@ -4,8 +4,8 @@ import { ThirdPersonCamera, Tilemap, useThirdPersonCameraContext } from '../../.
 import { EasingType } from '../../../types/EasingType';
 import { MotionSettings } from '../../../types/Motions';
 import { SpriteDefinition } from '../../../types/SpriteDefinition';
-import { TilePosition } from '../../../types/TilePosition';
 import { grass, mountain } from '../../__Sprites__';
+import { Position } from '../../../types/Position';
 
 export type DemoThirdPersonCameraContextProps = {
   cameraMotionEasingType: EasingType;
@@ -38,7 +38,7 @@ const scheme: string[][][] = [
 const initialZoom = 20;
 
 const ContextButtons = (props: {
-  focusedTile: TilePosition | null;
+  focusedTile: Position | null;
   cameraMotionEasingType: EasingType;
   cameraMotionSpeed: number;
   cameraMotionMinDuration?: number;
@@ -141,9 +141,9 @@ const ContextButtons = (props: {
 export const DemoThirdPersonCameraContext: FunctionComponent<DemoThirdPersonCameraContextProps> = (
   props
 ) => {
-  const [focusedTile, setFocusedTile] = React.useState<TilePosition | null>(null);
+  const [focusedTile, setFocusedTile] = React.useState<Position | null>(null);
 
-  const handleTileClick = (tilePos: TilePosition) => {
+  const handleTileClick = (tilePos: Position) => {
     setFocusedTile(tilePos);
   };
 

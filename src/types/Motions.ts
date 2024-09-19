@@ -1,5 +1,5 @@
 import { EasingType } from './EasingType';
-import { TilePosition } from './TilePosition';
+import { Position } from './Position';
 
 // MOTION SETTINGS
 
@@ -39,7 +39,7 @@ export type MotionSettings = {
 
 // MOTION REQUESTS
 
-export type MotionRequestTarget = TilePosition | 'center' | number;
+export type MotionRequestTarget = Position | 'center' | number;
 
 /**
  * A motion request.
@@ -61,7 +61,7 @@ export type MotionRequest<T extends MotionRequestTarget> = {
 
 // MOTION QUEUE
 
-export type CurrentMotionPosition = number | TilePosition;
+export type CurrentMotionPosition = number | Position;
 
 /**
  * A motion that is being executed.
@@ -102,7 +102,7 @@ export type CurrentMotion<T extends CurrentMotionPosition> = {
  *
  * @public
  */
-export type RecenterCameraMotionTarget = 'center' | TilePosition;
+export type RecenterCameraMotionTarget = 'center' | Position;
 
 /**
  * Configuration for camera motions that are being executed after a canvas resize or zoom change.

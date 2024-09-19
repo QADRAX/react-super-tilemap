@@ -9,8 +9,8 @@ export type DemoManualElementProps = {
   cols: number;
   baseSprite: string;
   elementSprite: string;
-  elementCol: number;
-  elementRow: number;
+  elementY: number;
+  elementX: number;
 };
 
 export const DemoManualElement: FunctionComponent<DemoManualElementProps> = (props) => {
@@ -27,8 +27,8 @@ export const DemoManualElement: FunctionComponent<DemoManualElementProps> = (pro
       <ThirdPersonCamera {...defaulThridPersonCameraArgs}></ThirdPersonCamera>
       <ManualElement
         tilePosition={{
-          col: props.elementCol,
-          row: props.elementRow,
+          y: props.elementY,
+          x: props.elementX,
         }}
         spriteKey={props.elementSprite}
         layer={1}

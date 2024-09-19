@@ -164,8 +164,8 @@ export const spritesDefinition: SpriteDefinition[] = [
       height: 2,
     },
     offset: {
-      col: -0.5,
-      row: 0.5,
+      y: -0.5,
+      x: 0.5,
     },
   },
   {
@@ -177,8 +177,8 @@ export const spritesDefinition: SpriteDefinition[] = [
       height: 1.5,
     },
     offset: {
-      col: -0.25,
-      row: 0,
+      y: -0.25,
+      x: 0,
     },
   },
   {
@@ -190,8 +190,8 @@ export const spritesDefinition: SpriteDefinition[] = [
       height: 1.5,
     },
     offset: {
-      col: -0.25,
-      row: 0,
+      y: -0.25,
+      x: 0,
     },
   },
   {
@@ -203,8 +203,8 @@ export const spritesDefinition: SpriteDefinition[] = [
       height: 1.5,
     },
     offset: {
-      col: 0,
-      row: 0,
+      y: 0,
+      x: 0,
     },
   },
   {
@@ -216,8 +216,8 @@ export const spritesDefinition: SpriteDefinition[] = [
       height: 1.5,
     },
     offset: {
-      col: -0.5,
-      row: 0,
+      y: -0.5,
+      x: 0,
     },
   },
 ];

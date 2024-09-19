@@ -6,7 +6,7 @@ export default {
   title: 'Manual Camera demo',
   component: DemoManualCamera,
   argTypes: {
-    col: {
+    y: {
       table: {
         type: {
           summary: 'number',
@@ -14,7 +14,7 @@ export default {
       },
       control: 'number',
     },
-    row: {
+    x: {
       table: {
         type: {
           summary: 'number',
@@ -44,7 +44,7 @@ const Template: ComponentStory<typeof DemoManualCamera> = (args) => <DemoManualC
 export const ManualCameraDemo = Template.bind({});
 
 ManualCameraDemo.args = {
-  col: 2,
-  row: 2,
+  y: 2,
+  x: 2,
   zoom: 15,
 };

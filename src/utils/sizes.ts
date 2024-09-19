@@ -23,8 +23,8 @@ export function getMapDimensions(schema?: string[][][]): MapDimensions {
       rows: 0,
     };
   }
-  const rows = schema.length;
-  const cols = schema[0]?.length ?? 0;
+  const cols = schema.length;
+  const rows= schema[0]?.length ?? 0;
 
   const dims: MapDimensions = {
     cols,

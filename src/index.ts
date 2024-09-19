@@ -12,7 +12,6 @@ export * from './types/MapDimensions';
 export * from './types/Position';
 export * from './types/Size';
 export * from './types/MapDimensions';
-export * from './types/TilePosition';
 export * from './types/SpriteDefinition';
 export * from './types/TilemapElement';
 export * from './types/EasingType';

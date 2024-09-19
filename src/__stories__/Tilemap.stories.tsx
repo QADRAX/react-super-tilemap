@@ -87,7 +87,7 @@ const Template: Story<TilemapProps> = (args) => (
     onTileHover={args.onTileHover}
     onTileHoverOut={args.onTileHoverOut}
   >
-    <ManualCamera position={{ col: 2, row: 2 }} zoom={15} />
+    <ManualCamera position={{ y: 2, x: 2 }} zoom={15} />
   </Tilemap>
 );
 

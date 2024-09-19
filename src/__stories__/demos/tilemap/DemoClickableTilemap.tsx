@@ -1,15 +1,15 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import { ThirdPersonCamera, Tilemap } from '../../../components';
-import { TilePosition } from '../../../types/TilePosition';
 import { defaulThridPersonCameraArgs, defaultTilemapArgs } from '../../__defaultArgs__';
 import { getFullfilledSchema } from '../../__MapGenerator__';
+import { Position } from '../../../types/Position';
 
 export type DemoClickableTilemapProps = {
   rows: number;
   cols: number;
   baseSprite: string;
   spriteToAdd: string;
-  onTileClick: (position: TilePosition) => void;
+  onTileClick: (position: Position) => void;
 };
 
 export const DemoClickableTilemap: FunctionComponent<DemoClickableTilemapProps> = (props) => {
@@ -21,9 +21,10 @@ export const DemoClickableTilemap: FunctionComponent<DemoClickableTilemapProps> 
     setSchema(newSchema);
   }, [props.cols, props.rows, props.baseSprite]);
 
-  const handleTileClick = (tilePos: TilePosition) => {
+  const handleTileClick = (tilePos: Position) => {
+    console.log(tilePos)
     const newSchema = [...schema];
-    const tile = newSchema[tilePos.col][tilePos.row];
+    const tile = newSchema[tilePos.y][tilePos.x];
     if (tile) {
       const layer = tile[1];
       if (layer) {

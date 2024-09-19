@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { SpriteDefinition } from '../../types/SpriteDefinition';
-import { TilePosition } from '../../types/TilePosition';
+import { Position } from '../../types/Position';
 
 /**
  * Tilemap events.
@@ -19,50 +19,50 @@ export type TilemapEvents = {
    *
    * @param tile tile position
    */
-  onTilemapClick?: (tile: TilePosition) => void;
+  onTilemapClick?: (tile: Position) => void;
   /**
    * It will be called when a tilemap is double clicked, even if is not a tile where the click happened.
    *
    * @param tile tile position
    */
-  onTilemapDoubleClick?: (tile: TilePosition) => void;
+  onTilemapDoubleClick?: (tile: Position) => void;
   /**
    * It will be called when a tilemap is right clicked, even if is not a tile where the click happened.
    *
    * @param tile tile position
    *
    */
-  onTilemapContextMenu?: (tile: TilePosition) => void;
+  onTilemapContextMenu?: (tile: Position) => void;
   /**
    * It will be called when defined tilemap's tile are clicked.
    *
    * @param tile tile position
    */
-  onTileClick?: (tile: TilePosition) => void;
+  onTileClick?: (tile: Position) => void;
   /**
    * It will be called when a tile is double clicked.
    *
    * @param tile tile position
    */
-  onTileDoubleClick?: (tile: TilePosition) => void;
+  onTileDoubleClick?: (tile: Position) => void;
   /**
    * It will be called when a tile is right clicked.
    *
    * @param tile tile position
    */
-  onTileContextMenu?: (tile: TilePosition) => void;
+  onTileContextMenu?: (tile: Position) => void;
   /**
    * It will be called when a tile is hovered.
    *
    * @param tile tile position
    */
-  onTileHover?: (tile: TilePosition) => void;
+  onTileHover?: (tile: Position) => void;
   /**
    * It will be called when a tile is hovered out.
    *
    * @param tile tile position
    */
-  onTileHoverOut?: (tile: TilePosition) => void;
+  onTileHoverOut?: (tile: Position) => void;
 };
 
 /**

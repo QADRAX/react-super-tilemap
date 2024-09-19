@@ -1,15 +1,15 @@
 import React from 'react';
 import { CurrentMotion, MotionRequest } from '../../../../types/Motions';
-import { TilePosition } from '../../../../types/TilePosition';
 import { isEqual } from '../../../../utils/deepCompare';
+import { Position } from '../../../../types/Position';
 
 export type ElementSyncProps = {
-  nextPostion: TilePosition;
-  position: TilePosition | undefined;
-  motionQueue: MotionRequest<TilePosition>[];
-  currentMotion: CurrentMotion<TilePosition> | undefined;
-  setPostion: (position: TilePosition | undefined) => void;
-  addMotion: (motion: TilePosition) => void;
+  nextPostion: Position;
+  position: Position | undefined;
+  motionQueue: MotionRequest<Position>[];
+  currentMotion: CurrentMotion<Position> | undefined;
+  setPostion: (position: Position | undefined) => void;
+  addMotion: (motion: Position) => void;
 };
 
 /**
@@ -30,7 +30,7 @@ export class ElementSync extends React.PureComponent<ElementSyncProps> {
       setPostion(nextPostion);
     } else {
       const lastMotionInQueue = motionQueue[motionQueue.length - 1] as
-        | MotionRequest<TilePosition>
+        | MotionRequest<Position>
         | undefined;
 
       const samePositionAsCurrent = isEqual(position, nextPostion);

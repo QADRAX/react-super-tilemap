@@ -1,15 +1,15 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useTilemapContext } from '../../Tilemap/TilemapContext/useTilemapContext';
 import { CurrentMotion, MotionRequest, MotionSettings } from '../../../types/Motions';
-import { TilePosition } from '../../../types/TilePosition';
 import { createCurrentMotion } from '../../../utils/createCurrentMotion';
 import { getDistance } from '../../../utils/positions';
+import { Position } from '../../../types/Position';
 
 export function useCameraMotions(props: {
   isCameraDragging: boolean;
-  currentCameraMotion: CurrentMotion<TilePosition> | undefined;
-  setCurrentCameraMotion: (motion: CurrentMotion<TilePosition> | undefined) => void;
-  cameraPosition: TilePosition | undefined;
+  currentCameraMotion: CurrentMotion<Position> | undefined;
+  setCurrentCameraMotion: (motion: CurrentMotion<Position> | undefined) => void;
+  cameraPosition: Position | undefined;
 }) {
   const { computed } = useTilemapContext();
 
@@ -18,12 +18,12 @@ export function useCameraMotions(props: {
   const { mapDimensions } = computed;
 
   const [cameraMotionQueue, setCameraMotionQueue] = useState<
-    MotionRequest<TilePosition | 'center'>[]
+    MotionRequest<Position | 'center'>[]
   >([]);
 
   const addCameraMotion = useCallback(
-    (settings: MotionSettings, position: TilePosition | 'center') => {
-      const motionRequest: MotionRequest<TilePosition | 'center'> = {
+    (settings: MotionSettings, position: Position | 'center') => {
+      const motionRequest: MotionRequest<Position | 'center'> = {
         settings,
         target: position,
       };
@@ -56,8 +56,8 @@ export function useCameraMotions(props: {
       let targetTilePosition = nextMotionRequest.target;
       if (targetTilePosition == 'center') {
         targetTilePosition = {
-          col: Math.floor(mapDimensions.cols / 2),
-          row: Math.floor(mapDimensions.rows / 2),
+          y: Math.floor(mapDimensions.rows / 2),
+          x: Math.floor(mapDimensions.cols / 2),
         };
       }
       const distance = getDistance(cameraPosition, targetTilePosition);

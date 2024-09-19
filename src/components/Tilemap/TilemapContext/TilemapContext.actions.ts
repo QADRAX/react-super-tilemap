@@ -1,7 +1,7 @@
+import { Position } from '../../../types/Position';
 import { Size } from '../../../types/Size';
 import { SpriteMap } from '../../../types/Sprite';
 import { TilemapElementMap } from '../../../types/TilemapElement';
-import { TilePosition } from '../../../types/TilePosition';
 
 // Action types
 
@@ -19,7 +19,7 @@ export enum TilemapActionType {
 export type SetCameraPosition = {
   type: TilemapActionType.SetCameraPosition;
   payload: {
-    position?: TilePosition;
+    position?: Position;
   };
 };
 
@@ -70,7 +70,7 @@ export type TilemapActions =
 
 // Action creators
 
-export const _setCameraPosition = (position?: TilePosition): SetCameraPosition => ({
+export const _setCameraPosition = (position?: Position): SetCameraPosition => ({
   type: TilemapActionType.SetCameraPosition,
   payload: {
     position,

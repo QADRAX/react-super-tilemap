@@ -1,10 +1,10 @@
 import React, { FunctionComponent, useMemo, useState } from 'react';
-import { TilePosition } from '../../../types/TilePosition';
 import { getDirection } from '../../../utils/positions';
 import { ManualElement } from '../ManualElement';
 import { ElementSync } from './ElementSync/ElementSync';
 import { MotionableElementProps } from './MotionableElement.types';
 import { useMotions } from './MotionableElement.useMotions';
+import { Position } from '../../../types/Position';
 
 export const MotionableElement: FunctionComponent<MotionableElementProps> = (props) => {
   const {
@@ -18,7 +18,7 @@ export const MotionableElement: FunctionComponent<MotionableElementProps> = (pro
     spriteKeyEastMotion,
   } = props;
 
-  const [elementPosition, setElementPosition] = useState<TilePosition | undefined>(undefined);
+  const [elementPosition, setElementPosition] = useState<Position | undefined>(undefined);
 
   const { currentElementMotion, elementMotionQueue, addElementMotion } = useMotions(
     elementPosition,

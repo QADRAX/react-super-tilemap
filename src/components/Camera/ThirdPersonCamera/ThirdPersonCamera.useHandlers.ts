@@ -4,7 +4,6 @@ import { Position } from '../../../types/Position';
 import { floorTilePosition, getTilePosition, isTilePositionValid } from '../../../utils/positions';
 import { useTilemapContext } from '../../Tilemap/TilemapContext/useTilemapContext';
 import { EventHandlers } from '../CameraEventListener/CameraEventListener.types';
-import { TilePosition } from '../../../types/TilePosition';
 
 /**
  * Bind mouse and touch events to drag and zoom logic.
@@ -23,9 +22,9 @@ export function useHandlers(props: {
   setIsDragging: (value: boolean) => void;
   isZoomInMotion: boolean;
   isCameraInMotion: boolean;
-  cameraPosition: TilePosition | undefined;
+  cameraPosition: Position | undefined;
   zoom: number;
-  setCameraPosition: (position: TilePosition | undefined) => void;
+  setCameraPosition: (position: Position | undefined) => void;
   setZoom: (zoom: number) => void;
 }): EventHandlers {
   // State from context
@@ -117,12 +116,12 @@ export function useHandlers(props: {
 
       const dragSensivility = props.dragSensitivity || DEFAULT_DRAG_SENSITIVITY;
 
-      const relativeMovementX = (nextTilePosition.col - prevTilePosition.col) * dragSensivility;
-      const relativeMovementY = (nextTilePosition.row - prevTilePosition.row) * dragSensivility;
+      const relativeMovementX = (nextTilePosition.y - prevTilePosition.y) * dragSensivility;
+      const relativeMovementY = (nextTilePosition.x - prevTilePosition.x) * dragSensivility;
 
-      const nextCameraPosition: TilePosition = {
-        col: cameraPosition.col - relativeMovementX,
-        row: cameraPosition.row - relativeMovementY,
+      const nextCameraPosition: Position = {
+        y: cameraPosition.y - relativeMovementX,
+        x: cameraPosition.x - relativeMovementY,
       };
 
       setCurrentMousePosition(position);

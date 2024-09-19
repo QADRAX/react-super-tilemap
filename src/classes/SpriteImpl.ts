@@ -6,11 +6,10 @@ import {
   EMPTY_SPRITE_ERROR,
   INVALID_SPRITE_IMAGE_ERROR,
 } from '../constants';
+import { Position } from '../types/Position';
 import { Size } from '../types/Size';
 import { Sprite } from '../types/Sprite';
 import { SpriteDefinition } from '../types/SpriteDefinition';
-import { TilePosition } from '../types/TilePosition';
-
 /**
  * A sprite is a collection of images that are used to animate a game object
  * and are loaded from a sprite definition array.
@@ -20,7 +19,7 @@ import { TilePosition } from '../types/TilePosition';
 export class SpriteImpl implements Sprite {
   private _imagesSrc: string[];
   private _animationDelay: number;
-  private _offset: TilePosition;
+  private _offset: Position;
   private _htmlImages: HTMLImageElement[] | undefined;
   private _tileSize: Size;
 

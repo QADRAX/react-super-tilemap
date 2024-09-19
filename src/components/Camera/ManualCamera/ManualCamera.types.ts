@@ -1,11 +1,11 @@
 import { ReactNode } from 'react';
-import { TilePosition } from '../../../types/TilePosition';
+import { Position } from '../../../types/Position';
 
 export type ManualCameraSettings = {
   /**
    * Camera position
    */
-  position?: TilePosition;
+  position?: Position;
   /**
    * Camera zoom
    */

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useTilemapContext } from '../../Tilemap/TilemapContext/useTilemapContext';
 import { ThirdPersonCameraProps } from './ThirdPersonCamera.types';
-import { TilePosition } from '../../../types/TilePosition';
-import { isTilePosition } from '../../../utils/typeGuards';
+import { isPosition } from '../../../utils/typeGuards';
 import { CameraContext } from './ThirdPersonCameraContext/ThirdPersonCameraContext.types';
+import { Position } from '../../../types/Position';
 
 export function useCameraRecenter(
   addCameraMotion: CameraContext['addCameraMotion'],
@@ -44,12 +44,12 @@ export function useCameraRecenterBeforeZoom(
 
 export function useCameraRecenterBeforeFlag(
   flag: boolean,
-  currentCameraTilePosition: TilePosition | undefined,
+  currentCameraTilePosition: Position | undefined,
   addCameraMotion: CameraContext['addCameraMotion'],
   resizeCameraMotion?: ThirdPersonCameraProps['recenterCameraOnResize']
 ): void {
   const [lastPositionBeforeFlagChange, setLastPositionBeforeFlagChange] = useState<
-    TilePosition | undefined
+    Position | undefined
   >(undefined);
 
   useEffect(() => {
@@ -61,7 +61,7 @@ export function useCameraRecenterBeforeFlag(
   useEffect(() => {
     if (!flag && lastPositionBeforeFlagChange && resizeCameraMotion) {
       const target = resizeCameraMotion.target;
-      if (target == 'center' || isTilePosition(target)) {
+      if (target == 'center' || isPosition(target)) {
         addCameraMotion(resizeCameraMotion.settings, target);
       } else if (target == 'last-center') {
         addCameraMotion(resizeCameraMotion.settings, lastPositionBeforeFlagChange);

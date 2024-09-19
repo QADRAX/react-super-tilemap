@@ -1,4 +1,4 @@
-import { TilePosition } from './TilePosition';
+import { Position } from "./Position";
 
 /**
  * A map of tilemap elements.
@@ -12,7 +12,7 @@ export type TilemapElement = {
   /**
    * The position of the element in the tilemap.
    */
-  tilePosition: TilePosition;
+  tilePosition: Position;
   /**
    * The key of the sprite to use for the element.
    */

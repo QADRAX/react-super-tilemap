@@ -1,24 +1,24 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useStartMotion } from '../../../hooks/useStartMotion';
 import { CurrentMotion, MotionRequest, MotionSettings } from '../../../types/Motions';
-import { TilePosition } from '../../../types/TilePosition';
 import { createCurrentMotion } from '../../../utils/createCurrentMotion';
 import { getDistance } from '../../../utils/positions';
+import { Position } from '../../../types/Position';
 
 export function useMotions(
-  elementPosition: TilePosition | undefined,
-  setElementPosition: (position: TilePosition | undefined) => void,
+  elementPosition: Position | undefined,
+  setElementPosition: (position: Position | undefined) => void,
   motionSettings: MotionSettings,
   onMotionComplete?: () => void
 ) {
   const [currentElementMotion, setCurrentElementMotion] = useState<
-    CurrentMotion<TilePosition> | undefined
+    CurrentMotion<Position> | undefined
   >(undefined);
-  const [elementMotionQueue, setElementMotionQueue] = useState<MotionRequest<TilePosition>[]>([]);
+  const [elementMotionQueue, setElementMotionQueue] = useState<MotionRequest<Position>[]>([]);
 
   const addElementMotion = useCallback(
-    (position: TilePosition) => {
-      const motionRequest: MotionRequest<TilePosition> = {
+    (position: Position) => {
+      const motionRequest: MotionRequest<Position> = {
         settings: motionSettings,
         target: position,
       };

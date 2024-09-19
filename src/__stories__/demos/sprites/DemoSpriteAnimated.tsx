@@ -25,7 +25,7 @@ const scheme: string[][][] = [
 export const DemoSpriteAnimated = () => {
   return (
     <Tilemap tilmapScheme={scheme} spriteDefinition={sprites}>
-      <ManualCamera position={{ col: 1, row: 1 }} zoom={20} />
+      <ManualCamera position={{ y: 1, x: 1 }} zoom={20} />
     </Tilemap>
   );
 };

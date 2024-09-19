@@ -41,7 +41,7 @@ export default {
       options: [...SecondLayerSprites],
       control: 'select',
     },
-    elementCol: {
+    elementY: {
       table: {
         type: {
           summary: 'number',
@@ -49,7 +49,7 @@ export default {
       },
       control: 'number',
     },
-    elementRow: {
+    elementX: {
       table: {
         type: {
           summary: 'number',
@@ -80,6 +80,6 @@ ManualElementExample.args = {
   cols: 20,
   baseSprite: SpriteName.grass,
   elementSprite: SpriteName.armyIdle,
-  elementCol: 10,
-  elementRow: 10,
+  elementY: 10,
+  elementX: 10,
 };
