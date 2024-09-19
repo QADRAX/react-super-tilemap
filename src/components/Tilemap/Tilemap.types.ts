@@ -102,6 +102,13 @@ export type TilemapSettings = {
    * @default '#cbf0ff'
    */
   backgroundColor?: string;
+  /**
+   * Define the default sprite key to be used for the outbounds.
+   * 
+   * @param position 
+   * @returns 
+   */
+  outboundSpriteKey?: (position: Position, layer: number) => string | undefined;
 };
 
 /**
