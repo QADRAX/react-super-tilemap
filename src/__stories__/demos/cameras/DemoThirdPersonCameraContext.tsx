@@ -6,6 +6,7 @@ import { MotionSettings } from '../../../types/Motions';
 import { SpriteDefinition } from '../../../types/SpriteDefinition';
 import { grass, mountain } from '../../__Sprites__';
 import { Position } from '../../../types/Position';
+import { useTilemapContext } from '../../../components/Tilemap/TilemapContext/useTilemapContext';
 
 export type DemoThirdPersonCameraContextProps = {
   cameraMotionEasingType: EasingType;
@@ -30,9 +31,9 @@ const sprites: SpriteDefinition[] = [
 ];
 
 const scheme: string[][][] = [
-  [['grass'], ['grass'], ['grass']],
-  [['grass'], ['mountain'], ['grass']],
-  [['grass'], ['grass'], ['grass']],
+  [['grass'], ['grass'], ['grass'], ['grass']],
+  [['grass'], ['mountain'], ['grass'], ['grass']],
+  [['grass'], ['grass'], ['grass'], ['grass']],
 ];
 
 const initialZoom = 20;
@@ -48,7 +49,8 @@ const ContextButtons = (props: {
   zoomMotionMinDuration?: number;
   zoomMotionMaxDuration?: number;
 }) => {
-  const { zoom, addCameraMotion, addZoomMotion } = useThirdPersonCameraContext();
+  const { computed } = useTilemapContext();
+  const { zoom, addCameraMotion, addZoomMotion, currentCameraMotion } = useThirdPersonCameraContext();
 
   const cameraMotion: MotionSettings = {
     speed: props.cameraMotionSpeed,
@@ -134,6 +136,18 @@ const ContextButtons = (props: {
       >
         ZoomOut
       </button>
+      <p>
+        Dimensions: {computed.mapDimensions.rows} rows / {computed.mapDimensions.cols} cols
+      </p>
+      <p>
+        isResizing: {computed.isResizing ? 'true' : 'false'}
+      </p>
+      <p>
+        isZoomin: {computed.isZooming ? 'true' : 'false'}
+      </p>
+      <p>
+        isCameraMotion: {currentCameraMotion != undefined ? 'true': 'false'}
+      </p>
     </>
   );
 };

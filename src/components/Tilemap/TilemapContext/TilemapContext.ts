@@ -19,8 +19,8 @@ const initialContext: Context = {
   computed: {
     tileSize: DEFAULT_TILE_SIZE,
     mapDimensions: {
-      cols: 0,
       rows: 0,
+      cols: 0,
     },
     mapSize: {
       width: 0,

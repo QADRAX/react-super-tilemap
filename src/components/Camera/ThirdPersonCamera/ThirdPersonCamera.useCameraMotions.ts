@@ -56,8 +56,8 @@ export function useCameraMotions(props: {
       let targetTilePosition = nextMotionRequest.target;
       if (targetTilePosition == 'center') {
         targetTilePosition = {
-          y: Math.floor(mapDimensions.rows / 2),
-          x: Math.floor(mapDimensions.cols / 2),
+          y: Math.floor(mapDimensions.cols / 2),
+          x: Math.floor(mapDimensions.rows / 2),
         };
       }
       const distance = getDistance(cameraPosition, targetTilePosition);

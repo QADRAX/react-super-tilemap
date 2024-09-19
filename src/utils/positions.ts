@@ -56,9 +56,9 @@ export function isTilePositionValid(
 ): boolean {
   const isValid =
     tilePosition.y >= 0 &&
-    tilePosition.y < dimensions.cols &&
+    tilePosition.y < dimensions.rows &&
     tilePosition.x >= 0 &&
-    tilePosition.x < dimensions.rows;
+    tilePosition.x < dimensions.cols;
   return isValid;
 }
 

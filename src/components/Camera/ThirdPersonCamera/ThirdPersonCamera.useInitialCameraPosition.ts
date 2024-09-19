@@ -16,8 +16,8 @@ export function useInitialCameraPosition(
   const initialPosition: Position = useMemo(() => {
     if (initialCameraPosition === 'center' || !initialCameraPosition) {
       return {
-        y: Math.floor(mapDimensions.rows / 2),
-        x: Math.floor(mapDimensions.cols / 2),
+        y: Math.floor(mapDimensions.cols / 2),
+        x: Math.floor(mapDimensions.rows / 2),
       };
     }
     return initialCameraPosition;
