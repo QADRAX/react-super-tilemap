@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { Position } from '../../../types/Position';
 import { floorTilePosition, getTilePosition, isTilePositionValid } from '../../../utils/positions';
 import { useTilemapContext } from '../../Tilemap/TilemapContext/useTilemapContext';
@@ -16,12 +17,40 @@ export function useHandlers(): Partial<EventHandlers> {
   const { cameraPosition, canvasSize } = state;
   const { tileSize, mapDimensions } = computed;
 
+  const lastHoveredTileRef = useRef<Position | null>(null);
+
   const getTilePositionByMousePosition = (mousePosition: Position) => {
     if (cameraPosition && canvasSize) {
       const position = getTilePosition(mousePosition, cameraPosition, tileSize, canvasSize);
       return position;
     }
     return null;
+  };
+
+  const handleMouseMove = (position: Position) => {
+    const tilePosition = getTilePositionByMousePosition(position);
+    if (!tilePosition) return;
+
+    const result = floorTilePosition(tilePosition);
+    const last = lastHoveredTileRef.current;
+
+    const isValid = isTilePositionValid(result, mapDimensions);
+
+    if (!isValid) {
+      if (last !== null) {
+        contextProps.onTileHoverOut?.(last);
+        lastHoveredTileRef.current = null;
+      }
+      return;
+    }
+
+    if (!last || last.x !== result.x || last.y !== result.y) {
+      if (last) {
+        contextProps.onTileHoverOut?.(last);
+      }
+      contextProps.onTileHover?.(result);
+      lastHoveredTileRef.current = result;
+    }
   };
 
   const handleClick = (position: Position) => {
@@ -65,5 +94,6 @@ export function useHandlers(): Partial<EventHandlers> {
     handleClick,
     handleDoubleClick,
     handleContextMenu,
+    handleMouseMove,
   };
 }
