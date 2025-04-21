@@ -8,7 +8,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     environment: prod
-    
+
     strategy:
       matrix:
         node-version: [16.x]
@@ -33,6 +33,9 @@ jobs:
         
       - name: Build
         run: yarn build
+
+      - name: Set up NPM auth
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/dist/.npmrc
 
       - name: Publish on npm.js
         run: cd dist && npm publish --access public
